@@ -337,32 +337,42 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
         const origTotalPaid = emi * n;
         const origTotalInterest = origTotalPaid - P;
 
-        // Simulate with prepayment
-        let balance = P - lumpSum; // Apply lump sum immediately
-        if (balance < 0) balance = 0;
-        let totalPaidWithPrepay = lumpSum;
-        let totalInterestWithPrepay = 0;
         let month = 0;
+        let totalPaidWithPrepay = 0;
+        let totalInterestWithPrepay = 0;
 
-        while (balance > 0 && month < n * 2) { // Safety limit
-            month++;
-            const interestThisMonth = balance * r;
-            let principalThisMonth = emi - interestThisMonth + monthlyExtra;
+        if (monthlyExtra === 0 && lumpSum === 0) {
+            month = n;
+            totalPaidWithPrepay = origTotalPaid;
+            totalInterestWithPrepay = origTotalInterest;
+        } else {
+            // Simulate with prepayment
+            let balance = P - lumpSum; // Apply lump sum immediately
+            if (balance < 0) balance = 0;
+            totalPaidWithPrepay = lumpSum;
+            totalInterestWithPrepay = 0;
 
-            if (principalThisMonth > balance) {
-                // Last month — pay only what's needed
-                totalPaidWithPrepay += balance + interestThisMonth;
-                totalInterestWithPrepay += interestThisMonth;
-                balance = 0;
-            } else {
-                balance -= principalThisMonth;
-                totalPaidWithPrepay += emi + monthlyExtra;
-                totalInterestWithPrepay += interestThisMonth;
+            while (balance > 0 && month < n * 2) { // Safety limit
+                month++;
+                const interestThisMonth = balance * r;
+                let principalThisMonth = emi - interestThisMonth + monthlyExtra;
+
+                if (principalThisMonth > balance) {
+                    // Last month — pay only what's needed
+                    totalPaidWithPrepay += balance + interestThisMonth;
+                    totalInterestWithPrepay += interestThisMonth;
+                    balance = 0;
+                } else {
+                    balance -= principalThisMonth;
+                    totalPaidWithPrepay += emi + monthlyExtra;
+                    totalInterestWithPrepay += interestThisMonth;
+                }
             }
         }
 
-        const monthsSaved = n - month;
-        const interestSaved = origTotalInterest - totalInterestWithPrepay;
+        const monthsSaved = Math.max(0, n - month);
+        const interestSaved = Math.max(0, origTotalInterest - totalInterestWithPrepay);
+        const totalSaved = Math.max(0, origTotalPaid - totalPaidWithPrepay);
 
         // Calculate new end date
         const today = new Date();
@@ -396,7 +406,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
         document.getElementById('interestSavedTable').textContent = fmt(Math.round(interestSaved)) + ' saved!';
         document.getElementById('origTotal').textContent = fmt(Math.round(origTotalPaid));
         document.getElementById('newTotal').textContent = fmt(Math.round(totalPaidWithPrepay));
-        document.getElementById('totalSaved').textContent = fmt(Math.round(origTotalPaid - totalPaidWithPrepay)) + ' saved!';
+        document.getElementById('totalSaved').textContent = fmt(Math.round(totalSaved)) + ' saved!';
 
         document.getElementById('results').classList.remove('hidden');
         document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
