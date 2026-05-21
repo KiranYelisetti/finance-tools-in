@@ -311,7 +311,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('prepay_calc');
-        calculatePrepayment();
+        calculatePrepayment(false);
     });
 
     function fmt(amount) {
@@ -320,7 +320,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
         return '₹' + Math.round(amount).toLocaleString('en-IN');
     }
 
-    function calculatePrepayment() {
+    function calculatePrepayment(shouldScroll = true) {
         const P = parseINR(document.getElementById('loanAmount').value) || 0;
         const annualRate = parseINR(document.getElementById('interestRate').value) || 0;
         const tenureYears = parseINR(document.getElementById('loanTenure').value) || 0;
@@ -409,7 +409,9 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
         document.getElementById('totalSaved').textContent = fmt(Math.round(totalSaved)) + ' saved!';
 
         document.getElementById('results').classList.remove('hidden');
-        document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (shouldScroll) {
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
 </script>
 {% endblock %}

@@ -227,11 +227,11 @@ meta_keywords: "SSY calculator, Sukanya Samriddhi Yojana calculator, SSY interes
                         </label>
                         <input type="number" id="annualDeposit" min="250" max="150000" value="100000" step="1000"
                             class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-cyan-500 dark:focus:border-cyan-400 focus:outline-none text-lg transition-colors"
-                            oninput="syncInput('annualDeposit', 'annualDepositSlider')">
+                            oninput="syncInput('annualDeposit', 'annualDepositSlider', event)">
                         <input type="range" id="annualDepositSlider" min="250" max="150000" value="100000"
                             step="1000"
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
-                            oninput="syncInput('annualDeposit', 'annualDepositSlider')">
+                            oninput="syncInput('annualDeposit', 'annualDepositSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
                             Min: ₹250 | Max: ₹1,50,000 per year
                         </p>
@@ -244,10 +244,10 @@ meta_keywords: "SSY calculator, Sukanya Samriddhi Yojana calculator, SSY interes
                         </label>
                         <input type="number" id="interestRate" min="7.6" max="8.8" value="8.2" step="0.1"
                             class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-cyan-500 dark:focus:border-cyan-400 focus:outline-none text-lg transition-colors"
-                            oninput="syncInput('interestRate', 'interestRateSlider')">
+                            oninput="syncInput('interestRate', 'interestRateSlider', event)">
                         <input type="range" id="interestRateSlider" min="7.6" max="8.8" value="8.2" step="0.1"
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
-                            oninput="syncInput('interestRate', 'interestRateSlider')">
+                            oninput="syncInput('interestRate', 'interestRateSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
                             Current govt. rate: 8.2% (Q4 2024-25)
                         </p>
@@ -829,11 +829,11 @@ meta_keywords: "SSY calculator, Sukanya Samriddhi Yojana calculator, SSY interes
 {% block scripts %}
 <script>
     // Input Synchronization
-    function syncInput(inputId, sliderId) {
+    function syncInput(inputId, sliderId, event) {
         const input = document.getElementById(inputId);
         const slider = document.getElementById(sliderId);
 
-        if (event.target === slider) {
+        if (event && event.target === slider) {
             input.value = input.classList.contains('format-inr')
                 ? formatIndianNumber(slider.value)
                 : slider.value;
@@ -876,24 +876,24 @@ meta_keywords: "SSY calculator, Sukanya Samriddhi Yojana calculator, SSY interes
 
     // Validate and Calculate
     function validateAndCalculate() {
-        const currentAge = parseINR(document.getElementById('currentAge').value);
-        const annualDeposit = parseINR(document.getElementById('annualDeposit').value);
-        const interestRate = parseINR(document.getElementById('interestRate').value) / 100;
+        const currentAgeStr = document.getElementById('currentAge').value.trim();
+        const annualDepositStr = document.getElementById('annualDeposit').value.trim();
+        const interestRateStr = document.getElementById('interestRate').value.trim();
+
+        if (currentAgeStr === '' || annualDepositStr === '' || interestRateStr === '') {
+            return;
+        }
+
+        const currentAge = parseINR(currentAgeStr);
+        const annualDeposit = parseINR(annualDepositStr);
+        const interestRate = parseINR(interestRateStr) / 100;
 
         // Validation
         if (currentAge < 0 || currentAge > 10) {
-            alert('Girl child must be under 10 years old to open SSY account');
-            // Reset to max valid age to prevent confusing results
-            if (currentAge > 10) document.getElementById('currentAge').value = 10;
             return;
         }
 
         if (annualDeposit < 250 || annualDeposit > 150000) {
-            alert('Annual deposit must be between ₹250 and ₹1,50,000');
-            return;
-        }
-
-        if (!currentAge || !annualDeposit || !interestRate) {
             return;
         }
 
@@ -968,6 +968,25 @@ meta_keywords: "SSY calculator, Sukanya Samriddhi Yojana calculator, SSY interes
     window.addEventListener('load', function () {
         initAutoSave('ssy_calc');
         validateAndCalculate();
+
+        // Add blur change listeners for validation alerts
+        document.getElementById('currentAge').addEventListener('change', (e) => {
+            const val = parseInt(e.target.value);
+            if (isNaN(val) || val < 0 || val > 10) {
+                alert('Girl child must be under 10 years old to open SSY account');
+                e.target.value = isNaN(val) ? 0 : Math.min(10, Math.max(0, val));
+                validateAndCalculate();
+            }
+        });
+
+        document.getElementById('annualDeposit').addEventListener('change', (e) => {
+            const val = parseINR(e.target.value);
+            if (val < 250 || val > 150000) {
+                alert('Annual deposit must be between ₹250 and ₹1,50,000');
+                e.target.value = formatIndianNumber(Math.min(150000, Math.max(250, val)));
+                validateAndCalculate();
+            }
+        });
     });
 </script>
 {% endblock %}

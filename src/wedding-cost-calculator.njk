@@ -791,7 +791,11 @@ meta_keywords: "wedding cost calculator India, marriage budget planner 2026, Ind
         const hasGold = document.getElementById('goldPurchase').checked;
         const goldAmount = hasGold ? parseINR(document.getElementById('goldAmount').value) : 0;
 
-        if (!baseBudget || !years) return;
+        if (!baseBudget || !years) {
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('placeholder').classList.remove('hidden');
+            return;
+        }
 
         // Calculate wedding cost with inflation
         let futureWeddingCost = baseBudget * Math.pow((1 + inflationRate), years);

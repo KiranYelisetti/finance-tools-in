@@ -340,7 +340,7 @@ meta_keywords: "salary calculator India, CTC to in-hand calculator, take home pa
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('salary_calc');
-        calculateSalary();
+        calculateSalary(false);
     });
 
     function fmt(amount) {
@@ -350,7 +350,7 @@ meta_keywords: "salary calculator India, CTC to in-hand calculator, take home pa
     }
 
     function estimateNewRegimeTax(grossAnnual) {
-        const stdDed = 75000;
+        const stdDed = Math.min(75000, grossAnnual);
         const taxableIncome = Math.max(0, grossAnnual - stdDed);
         let tax = 0;
         if (taxableIncome <= 400000) tax = 0;
@@ -376,7 +376,7 @@ meta_keywords: "salary calculator India, CTC to in-hand calculator, take home pa
         return Math.round(tax);
     }
 
-    function calculateSalary() {
+    function calculateSalary(shouldScroll = true) {
         const annualCTC = parseINR(document.getElementById('annualCTC').value) || 0;
         const cityType = document.getElementById('cityType').value;
         const basicPercent = parseINR(document.getElementById('basicPercent').value) || 40;
@@ -443,7 +443,9 @@ meta_keywords: "salary calculator India, CTC to in-hand calculator, take home pa
         document.getElementById('resEmployerESI').textContent = monthlyEmployerESI > 0 ? fmt(Math.round(monthlyEmployerESI)) : 'N/A';
 
         document.getElementById('results').classList.remove('hidden');
-        document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (shouldScroll) {
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
 </script>
 {% endblock %}
