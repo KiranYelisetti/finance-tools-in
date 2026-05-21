@@ -627,14 +627,20 @@
             return;
         }
 
-        const width = parseInt(document.getElementById('customWidth').value);
-        const height = parseInt(document.getElementById('customHeight').value);
+        const widthVal = document.getElementById('customWidth').value;
+        const heightVal = document.getElementById('customHeight').value;
         const ratio = originalImage.width / originalImage.height;
 
         if (changedDimension === 'width') {
-            document.getElementById('customHeight').value = Math.round(width / ratio);
+            const width = parseInt(widthVal);
+            if (!isNaN(width) && width > 0) {
+                document.getElementById('customHeight').value = Math.round(width / ratio);
+            }
         } else {
-            document.getElementById('customWidth').value = Math.round(height * ratio);
+            const height = parseInt(heightVal);
+            if (!isNaN(height) && height > 0) {
+                document.getElementById('customWidth').value = Math.round(height * ratio);
+            }
         }
 
         resizeImage();

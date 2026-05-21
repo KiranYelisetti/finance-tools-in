@@ -843,7 +843,11 @@
         const inflationRate = parseINR(document.getElementById('inflationRate').value) / 100;
         const depreciationRate = parseINR(document.getElementById('depreciationRate').value) / 100;
 
-        if (!currentCost || !years) return;
+        if (!currentCost || !years) {
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('placeholder').classList.remove('hidden');
+            return;
+        }
 
         const exchangeRate = exchangeRates[currency];
 

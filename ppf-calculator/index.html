@@ -395,11 +395,11 @@
                         <input type="number" id="annualContribution" min="500" max="150000" value="100000"
                             step="1000"
                             class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
-                            oninput="syncInput('annualContribution', 'annualContributionSlider')">
+                            oninput="syncInput('annualContribution', 'annualContributionSlider', event)">
                         <input type="range" id="annualContributionSlider" min="500" max="150000" value="100000"
                             step="1000"
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
-                            oninput="syncInput('annualContribution', 'annualContributionSlider')">
+                            oninput="syncInput('annualContribution', 'annualContributionSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
                             Min: ₹500 | Max: ₹1,50,000 per year
                         </p>
@@ -412,10 +412,10 @@
                         </label>
                         <input type="number" id="investmentPeriod" min="15" max="30" value="15" step="1"
                             class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
-                            oninput="syncInput('investmentPeriod', 'investmentPeriodSlider')">
+                            oninput="syncInput('investmentPeriod', 'investmentPeriodSlider', event)">
                         <input type="range" id="investmentPeriodSlider" min="15" max="30" value="15" step="1"
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
-                            oninput="syncInput('investmentPeriod', 'investmentPeriodSlider')">
+                            oninput="syncInput('investmentPeriod', 'investmentPeriodSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
                             Minimum 15 years, can extend in blocks of 5 years
                         </p>
@@ -428,10 +428,10 @@
                         </label>
                         <input type="number" id="interestRate" min="6.5" max="8.0" value="7.1" step="0.1"
                             class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
-                            oninput="syncInput('interestRate', 'interestRateSlider')">
+                            oninput="syncInput('interestRate', 'interestRateSlider', event)">
                         <input type="range" id="interestRateSlider" min="6.5" max="8.0" value="7.1" step="0.1"
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
-                            oninput="syncInput('interestRate', 'interestRateSlider')">
+                            oninput="syncInput('interestRate', 'interestRateSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
                             Current govt. rate: 7.1% (Q4 2024-25)
                         </p>
@@ -1105,11 +1105,11 @@
 
 <script>
     // Input Synchronization
-    function syncInput(inputId, sliderId) {
+    function syncInput(inputId, sliderId, event) {
         const input = document.getElementById(inputId);
         const slider = document.getElementById(sliderId);
 
-        if (event.target === slider) {
+        if (event && event.target === slider) {
             // Slider drives input — format if input is currency-tagged
             input.value = input.classList.contains('format-inr')
                 ? formatIndianNumber(slider.value)
@@ -1161,12 +1161,10 @@
 
         // Validation
         if (annualContribution < 500 || annualContribution > 150000) {
-            alert('Annual contribution must be between ₹500 and ₹1,50,000');
             return;
         }
 
         if (years < 15) {
-            alert('PPF minimum period is 15 years');
             return;
         }
 
@@ -1231,6 +1229,25 @@
     window.addEventListener('load', function () {
         initAutoSave('ppf_calc');
         calculatePPF();
+
+        // Add blur change listeners for validation alerts
+        document.getElementById('annualContribution').addEventListener('change', (e) => {
+            const val = parseINR(e.target.value);
+            if (val < 500 || val > 150000) {
+                alert('Annual contribution must be between ₹500 and ₹1,50,000');
+                e.target.value = formatIndianNumber(Math.min(150000, Math.max(500, val)));
+                syncInput('annualContribution', 'annualContributionSlider', null);
+            }
+        });
+
+        document.getElementById('investmentPeriod').addEventListener('change', (e) => {
+            const val = parseInt(e.target.value);
+            if (val < 15) {
+                alert('PPF minimum period is 15 years');
+                e.target.value = 15;
+                syncInput('investmentPeriod', 'investmentPeriodSlider', null);
+            }
+        });
     });
 </script>
 
