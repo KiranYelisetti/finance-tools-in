@@ -472,7 +472,15 @@ meta_keywords: "GST calculator, GST state code list 2026, HSN code finder, rever
         const amount = parseINR(document.getElementById('amount').value);
         const gstRateSelect = document.getElementById('gstRate').value;
 
-        if (!amount || amount < 0) {
+        if (!amount || amount <= 0) {
+            document.getElementById('originalAmount').textContent = '₹0.00';
+            document.getElementById('gstAmount').textContent = '₹0.00';
+            document.getElementById('finalAmount').textContent = '₹0.00';
+            document.getElementById('rateDisplay').textContent = '0%';
+            document.getElementById('cgstAmount').textContent = '₹0.00';
+            document.getElementById('sgstAmount').textContent = '₹0.00';
+            document.getElementById('cgstRate').textContent = '0%';
+            document.getElementById('sgstRate').textContent = '0%';
             return;
         }
 

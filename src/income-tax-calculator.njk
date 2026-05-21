@@ -424,7 +424,7 @@ meta_keywords: "income tax calculator 2025-26, new regime tax calculator, old vs
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('income_tax_calc');
-        calculateTax();
+        calculateTax(false);
     });
 
     function fmt(amount) {
@@ -467,7 +467,7 @@ meta_keywords: "income tax calculator 2025-26, new regime tax calculator, old vs
         return tax;
     }
 
-    function calculateTax() {
+    function calculateTax(shouldScroll = true) {
         const grossSalary = parseINR(document.getElementById('grossSalary').value) || 0;
         const otherIncome = parseINR(document.getElementById('otherIncome').value) || 0;
         const d80C = Math.min(parseINR(document.getElementById('deduction80C').value) || 0, 150000);
@@ -480,7 +480,7 @@ meta_keywords: "income tax calculator 2025-26, new regime tax calculator, old vs
         const totalGross = grossSalary + otherIncome;
 
         // ---- OLD REGIME ----
-        const oldStdDed = 50000;
+        const oldStdDed = Math.min(50000, grossSalary);
         const totalOldDeductions = d80C + d80D + hra + homeLoan + nps + otherDed;
         const oldTaxableIncome = Math.max(0, totalGross - oldStdDed - totalOldDeductions);
         let oldTaxBeforeCess = calcOldRegimeTax(oldTaxableIncome);
@@ -495,7 +495,7 @@ meta_keywords: "income tax calculator 2025-26, new regime tax calculator, old vs
         const oldTotalTax = Math.round(oldTaxAfterRebate + oldCess);
 
         // ---- NEW REGIME ----
-        const newStdDed = 75000;
+        const newStdDed = Math.min(75000, grossSalary);
         const newTaxableIncome = Math.max(0, totalGross - newStdDed);
         let newTaxBeforeCess = calcNewRegimeTax(newTaxableIncome);
 
@@ -556,7 +556,9 @@ meta_keywords: "income tax calculator 2025-26, new regime tax calculator, old vs
         document.getElementById('verdictSavings').textContent = 'Old Regime: ' + fmt(oldTotalTax) + '/year (' + fmt(Math.round(oldTotalTax/12)) + '/month) | New Regime: ' + fmt(newTotalTax) + '/year (' + fmt(Math.round(newTotalTax/12)) + '/month)';
 
         document.getElementById('results').classList.remove('hidden');
-        document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (shouldScroll) {
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
 </script>
 {% endblock %}
