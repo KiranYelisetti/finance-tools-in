@@ -44,11 +44,6 @@ layout: base.njk
         
         <div class="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400 space-x-4">
             <div class="flex items-center">
-                <i class="fas fa-user-circle mr-2 text-indigo-500"></i>
-                <span>{{ author | default("QuickTools India Team") }}</span>
-            </div>
-            <span>&bull;</span>
-            <div class="flex items-center">
                 <i class="fas fa-calendar-alt mr-2 text-indigo-500"></i>
                 <time datetime="{{ page.date }}">{{ page.date.toDateString() }}</time>
             </div>
@@ -60,6 +55,9 @@ layout: base.njk
             </div>
             {% endif %}
         </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 italic">
+            Educational article. Not financial advice. Please consult a SEBI-registered investment advisor or chartered accountant before acting on any number in this piece.
+        </p>
     </header>
 
     <!-- Main Content -->
