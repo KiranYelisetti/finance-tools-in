@@ -7,7 +7,7 @@ readTime: 10
 date: 2026-04-20
 ---
 
-An Indian wedding is not just a ceremony — it is an emotion, a spectacle, and often the biggest single expense a family will ever bear (yes, even bigger than a home down payment). According to recent surveys, the average Indian wedding in 2026 costs between **₹15 Lakhs to ₹50 Lakhs**, depending on the city, community, and scale.
+An Indian wedding is not just a ceremony, it is an emotion, a spectacle, and often the biggest single expense a family will ever bear (yes, even bigger than a home down payment). According to recent surveys, the average Indian wedding in 2026 costs between **₹15 Lakhs to ₹50 Lakhs**, depending on the city, community, and scale.
 
 But here's the uncomfortable truth: most families don't plan their wedding budget. They start spending, emotions take over, and by the time the last guest leaves, they've overspent by 30-50% of what they originally intended.
 
@@ -17,19 +17,19 @@ This guide will give you a realistic, data-backed breakdown of Indian wedding co
 
 | Cost Category | Tier-1 (Delhi, Mumbai, Bangalore) | Tier-2 (Jaipur, Lucknow, Pune) | Tier-3 (Smaller Cities) |
 |---------------|-----------------------------------|-------------------------------|------------------------|
-| **Venue & Décor** | ₹5,00,000 – ₹15,00,000 | ₹2,00,000 – ₹6,00,000 | ₹1,00,000 – ₹3,00,000 |
-| **Catering (per plate)** | ₹1,500 – ₹4,000 | ₹800 – ₹2,000 | ₹500 – ₹1,200 |
-| **Photography & Video** | ₹1,50,000 – ₹5,00,000 | ₹80,000 – ₹2,50,000 | ₹40,000 – ₹1,50,000 |
-| **Bridal Clothing** | ₹1,00,000 – ₹10,00,000 | ₹50,000 – ₹3,00,000 | ₹30,000 – ₹1,50,000 |
-| **Groom Clothing** | ₹30,000 – ₹2,00,000 | ₹20,000 – ₹80,000 | ₹15,000 – ₹50,000 |
-| **Jewellery** | ₹3,00,000 – ₹20,00,000 | ₹2,00,000 – ₹8,00,000 | ₹1,00,000 – ₹5,00,000 |
-| **Mehendi Artist** | ₹15,000 – ₹50,000 | ₹8,000 – ₹25,000 | ₹5,000 – ₹15,000 |
-| **Makeup Artist** | ₹30,000 – ₹1,50,000 | ₹15,000 – ₹60,000 | ₹8,000 – ₹30,000 |
-| **Band/DJ/Music** | ₹50,000 – ₹3,00,000 | ₹25,000 – ₹1,00,000 | ₹15,000 – ₹50,000 |
-| **Invitations** | ₹50,000 – ₹2,00,000 | ₹20,000 – ₹80,000 | ₹10,000 – ₹40,000 |
-| **Miscellaneous** | ₹2,00,000 – ₹5,00,000 | ₹1,00,000 – ₹2,00,000 | ₹50,000 – ₹1,00,000 |
+| **Venue & Décor** | ₹5,00,000, ₹15,00,000 | ₹2,00,000, ₹6,00,000 | ₹1,00,000, ₹3,00,000 |
+| **Catering (per plate)** | ₹1,500, ₹4,000 | ₹800, ₹2,000 | ₹500, ₹1,200 |
+| **Photography & Video** | ₹1,50,000, ₹5,00,000 | ₹80,000, ₹2,50,000 | ₹40,000, ₹1,50,000 |
+| **Bridal Clothing** | ₹1,00,000, ₹10,00,000 | ₹50,000, ₹3,00,000 | ₹30,000, ₹1,50,000 |
+| **Groom Clothing** | ₹30,000, ₹2,00,000 | ₹20,000, ₹80,000 | ₹15,000, ₹50,000 |
+| **Jewellery** | ₹3,00,000, ₹20,00,000 | ₹2,00,000, ₹8,00,000 | ₹1,00,000, ₹5,00,000 |
+| **Mehendi Artist** | ₹15,000, ₹50,000 | ₹8,000, ₹25,000 | ₹5,000, ₹15,000 |
+| **Makeup Artist** | ₹30,000, ₹1,50,000 | ₹15,000, ₹60,000 | ₹8,000, ₹30,000 |
+| **Band/DJ/Music** | ₹50,000, ₹3,00,000 | ₹25,000, ₹1,00,000 | ₹15,000, ₹50,000 |
+| **Invitations** | ₹50,000, ₹2,00,000 | ₹20,000, ₹80,000 | ₹10,000, ₹40,000 |
+| **Miscellaneous** | ₹2,00,000, ₹5,00,000 | ₹1,00,000, ₹2,00,000 | ₹50,000, ₹1,00,000 |
 
-## The Biggest Cost Drivers — Where Your Money Actually Goes
+## The Biggest Cost Drivers: Where Your Money Actually Goes
 
 ### 1. Venue & Catering (40-50% of Budget)
 
@@ -71,9 +71,9 @@ The bridal lehenga/saree has become a status symbol. Designer lehengas from Saby
 - **Shop during sales:** End-of-season sales at major stores offer 30-50% discounts
 - **Limit outfit count:** 3-4 outfits (mehendi, sangeet, wedding, reception) instead of 6-8
 
-## The Inflation Factor — Why Planning Early Matters
+## The Inflation Factor: Why Planning Early Matters
 
-Wedding costs in India are inflating at approximately **8-10% annually** — significantly faster than general CPI inflation. This means:
+Wedding costs in India are inflating at approximately **8-10% annually**, significantly faster than general CPI inflation. This means:
 
 | Wedding Date | Estimated Cost (₹20L wedding today) |
 |-------------|--------------------------------------|
@@ -87,7 +87,7 @@ A ₹20 Lakh wedding today will cost nearly **₹60 Lakhs** in 15 years! If your
 
 Use our **[Wedding Cost Calculator](/wedding-cost-calculator/)** to project your specific wedding cost with inflation.
 
-## Building a Wedding Fund — Investment Strategy
+## Building a Wedding Fund: Investment Strategy
 
 Depending on how many years you have before the wedding, here's where to park your wedding fund:
 
@@ -101,7 +101,7 @@ Depending on how many years you have before the wedding, here's where to park yo
 - **Gold SIP/Sovereign Gold Bonds:** Build gold allocation gradually
 
 ### If the wedding is less than 2 years away:
-- **Fixed Deposits:** Capital safety is paramount — don't take equity risk
+- **Fixed Deposits:** Capital safety is paramount, don't take equity risk
 - **Liquid Mutual Funds:** Slightly better returns than savings accounts
 - **Short-term Debt Funds:** 1-3 year horizon funds
 
@@ -139,10 +139,10 @@ The guest list is the single biggest variable. A 500-guest wedding costs 40-60% 
 Vendors charge 20-30% premium for bookings within 2 months of the wedding date. Book all major vendors 6-8 months in advance.
 
 ### 4. Keeping Up With Others
-Social media has created a comparison culture. Remember: the most memorable weddings aren't the most expensive ones — they're the most personal ones.
+Social media has created a comparison culture. Remember: the most memorable weddings aren't the most expensive ones, they're the most personal ones.
 
 ### 5. Ignoring Hidden Costs
-Generator/power backup, valet parking, accommodation for outstation guests, transportation, return gifts — these "small" costs often add up to ₹2-3 Lakhs.
+Generator/power backup, valet parking, accommodation for outstation guests, transportation, return gifts, these "small" costs often add up to ₹2-3 Lakhs.
 
 ## The Bottom Line
 

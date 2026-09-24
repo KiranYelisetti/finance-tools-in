@@ -17,11 +17,11 @@ Understanding the difference between **CTC** (Cost to Company), **Gross Salary**
 
 Think of your salary as a pyramid with three layers:
 
-**1. CTC (Cost to Company)** — The topmost, largest number. This is the total cost the company incurs to employ you for one year. It includes everything — even amounts you never see in your bank account.
+**1. CTC (Cost to Company)**, The topmost, largest number. This is the total cost the company incurs to employ you for one year. It includes everything, even amounts you never see in your bank account.
 
-**2. Gross Salary** — CTC minus employer contributions (EPF employer share, Gratuity, Insurance). This is your salary before tax deductions.
+**2. Gross Salary**, CTC minus employer contributions (EPF employer share, Gratuity, Insurance). This is your salary before tax deductions.
 
-**3. Net/In-Hand Salary** — Gross Salary minus employee deductions (EPF employee share, Professional Tax, Income Tax TDS). This is what actually hits your bank account each month.
+**3. Net/In-Hand Salary**, Gross Salary minus employee deductions (EPF employee share, Professional Tax, Income Tax TDS). This is what actually hits your bank account each month.
 
 ## Breaking Down Each Component
 
@@ -35,7 +35,7 @@ The foundation of your salary structure. Everything else is calculated as a perc
 
 Most companies keep Basic at 40% of CTC to balance PF contributions and tax benefits.
 
-### House Rent Allowance — HRA (40-50% of Basic)
+### House Rent Allowance: HRA (40-50% of Basic)
 
 HRA is designed to help employees pay rent. In metro cities (Delhi, Mumbai, Kolkata, Chennai), HRA is typically 50% of Basic. In non-metro cities, it's 40%.
 
@@ -43,7 +43,7 @@ HRA is designed to help employees pay rent. In metro cities (Delhi, Mumbai, Kolk
 - **Key point:** If you don't pay rent or own your home, HRA is fully taxable
 - **Example:** Basic ₹5,00,000, HRA ₹2,50,000, Rent ₹18,000/month in Bangalore → HRA exemption = ₹1,66,000
 
-### Dearness Allowance — DA
+### Dearness Allowance: DA
 
 Originally introduced to offset inflation, DA is still prevalent in government and PSU jobs. In the private sector, it's less common but some companies include it.
 
@@ -73,7 +73,7 @@ EPF is the most significant deduction from your salary. Both you and your employ
 - Employer's monthly contribution: ₹5,000 (part of CTC)
 - Total annual EPF savings: ₹1,20,000
 
-**Current EPF Interest Rate:** 8.25% p.a. (FY 2024-25) — tax-free up to ₹2.5 Lakh employee contribution.
+**Current EPF Interest Rate:** 8.25% p.a. (FY 2024-25), tax-free up to ₹2.5 Lakh employee contribution.
 
 ### Gratuity (4.81% of Basic)
 
@@ -83,7 +83,7 @@ Gratuity is a lump-sum retirement benefit paid when you leave the company after 
 
 **Example:** Basic ₹5,00,000, 5 years of service → ₹5,00,000 × 15/26 × 5 = ₹1,44,231
 
-Most companies provision 4.81% of Basic annually as gratuity in CTC. You don't receive this monthly — it's a future liability the company sets aside.
+Most companies provision 4.81% of Basic annually as gratuity in CTC. You don't receive this monthly, it's a future liability the company sets aside.
 
 ### Professional Tax (PT)
 
@@ -174,7 +174,7 @@ When evaluating a job offer, always ask for the **complete salary breakup**, not
 
 1. **Basic Salary percentage:** Higher Basic = More PF = Lower in-hand but better retirement savings
 2. **Variable/Bonus component:** A high variable (20-30% of CTC) means lower guaranteed monthly pay
-3. **ESOPs/RSUs:** Stock options in CTC are paper value — not guaranteed cash
+3. **ESOPs/RSUs:** Stock options in CTC are paper value, not guaranteed cash
 4. **Retention bonus:** One-time payments that inflate CTC but aren't recurring
 
 ### Red Flags in Salary Structures:

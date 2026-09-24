@@ -1,13 +1,13 @@
 ---
 layout: article.njk
-title: "How to Save Income Tax in India (FY 2025-26) — A Complete Step-by-Step Guide"
+title: "How to Save Income Tax in India (FY 2025-26): A Complete Step-by-Step Guide"
 meta_description: "Learn how to legally save income tax in India for FY 2025-26. Comprehensive guide covering Section 80C, 80D, HRA, NPS, Old vs New Regime comparison with worked examples for every salary bracket."
 tags: ["post", "Income Tax", "Tax Saving", "Personal Finance"]
 readTime: 12
 date: 2026-05-01
 ---
 
-Every year between January and March, salaried Indians scramble to find ways to "save tax." Most end up making last-minute investments they don't fully understand, purely for the tax benefit. This guide will help you plan proactively — and keep more of your hard-earned money legally.
+Every year between January and March, salaried Indians scramble to find ways to "save tax." Most end up making last-minute investments they don't fully understand, purely for the tax benefit. This guide will help you plan proactively, and keep more of your hard-earned money legally.
 
 Whether you earn ₹5 Lakhs or ₹50 Lakhs per year, understanding the Indian Income Tax Act's deduction provisions can save you anywhere from ₹15,000 to ₹5,00,000+ annually. Let's break it all down.
 
@@ -22,10 +22,10 @@ The New Regime offers lower tax slab rates but **eliminates most deductions and 
 | Income Slab | Tax Rate |
 |------------|----------|
 | Up to ₹3,00,000 | Nil |
-| ₹3,00,001 – ₹7,00,000 | 5% |
-| ₹7,00,001 – ₹10,00,000 | 10% |
-| ₹10,00,001 – ₹12,00,000 | 15% |
-| ₹12,00,001 – ₹15,00,000 | 20% |
+| ₹3,00,001, ₹7,00,000 | 5% |
+| ₹7,00,001, ₹10,00,000 | 10% |
+| ₹10,00,001, ₹12,00,000 | 15% |
+| ₹12,00,001, ₹15,00,000 | 20% |
 | Above ₹15,00,000 | 30% |
 
 **Standard Deduction:** ₹75,000 (from FY 2024-25 onwards).
@@ -39,8 +39,8 @@ The Old Regime has higher slab rates but allows you to claim **all deductions**:
 | Income Slab | Tax Rate |
 |------------|----------|
 | Up to ₹2,50,000 | Nil |
-| ₹2,50,001 – ₹5,00,000 | 5% |
-| ₹5,00,001 – ₹10,00,000 | 20% |
+| ₹2,50,001, ₹5,00,000 | 5% |
+| ₹5,00,001, ₹10,00,000 | 20% |
 | Above ₹10,00,000 | 30% |
 
 **Standard Deduction:** ₹50,000.
@@ -49,9 +49,9 @@ The Old Regime has higher slab rates but allows you to claim **all deductions**:
 
 As a rule of thumb, if your total deductions (80C + 80D + HRA + NPS + Home Loan Interest) exceed **₹3.75 Lakhs**, the Old Regime usually saves you more tax. The higher your deductions, the more the Old Regime benefits you.
 
-> **Use our [Income Tax Calculator](/income-tax-calculator/)** to compare both regimes with your exact salary and deductions — it takes 30 seconds.
+> **Use our [Income Tax Calculator](/income-tax-calculator/)** to compare both regimes with your exact salary and deductions, it takes 30 seconds.
 
-## Section 80C — The ₹1.5 Lakh Foundation (Old Regime Only)
+## Section 80C: The ₹1.5 Lakh Foundation (Old Regime Only)
 
 Section 80C is the most widely used deduction. You can claim up to **₹1,50,000** against your taxable income. Here are the most common 80C instruments:
 
@@ -73,7 +73,7 @@ If you have a daughter below 10 years of age, SSY offers **8.2% p.a.** (the high
 Fixed-income instrument with 5-year lock-in. Current rate: **7.7% p.a.** Interest is reinvested and qualifies for 80C deduction each year (except the final year). Best for conservative investors.
 
 ### 6. Life Insurance Premiums
-Premium paid for life insurance policies (for self, spouse, or children) qualifies under 80C. However, avoid buying insurance purely for tax saving — term insurance is the most cost-effective protection.
+Premium paid for life insurance policies (for self, spouse, or children) qualifies under 80C. However, avoid buying insurance purely for tax saving, term insurance is the most cost-effective protection.
 
 ### 7. Home Loan Principal Repayment
 The principal component of your home loan EMI qualifies under 80C. For a ₹50 Lakh home loan at 9% for 20 years, the first-year principal repayment is approximately ₹1.2 Lakhs.
@@ -81,7 +81,7 @@ The principal component of your home loan EMI qualifies under 80C. For a ₹50 L
 ### 8. Children's Tuition Fees
 Tuition fees (not donations or development fees) paid for up to 2 children studying in India qualifies under 80C.
 
-## Section 80D — Health Insurance Premiums
+## Section 80D: Health Insurance Premiums
 
 Beyond 80C, Section 80D provides additional deductions for health insurance premiums:
 
@@ -96,7 +96,7 @@ Beyond 80C, Section 80D provides additional deductions for health insurance prem
 
 **Example:** If you pay ₹20,000 for your own family's health insurance and ₹30,000 for your senior citizen parents' health insurance, your total 80D deduction is ₹50,000.
 
-## HRA Exemption — For Salaried Employees Paying Rent
+## HRA Exemption: For Salaried Employees Paying Rent
 
 If you receive House Rent Allowance (HRA) as part of your salary and actually pay rent, you can claim an HRA exemption. The exempt amount is the **minimum** of:
 
@@ -113,13 +113,13 @@ If you receive House Rent Allowance (HRA) as part of your salary and actually pa
 Calculation:
 1. Actual HRA = ₹3,00,000
 2. 50% of Basic = ₹3,00,000
-3. Rent – 10% Basic = ₹2,40,000 – ₹60,000 = **₹1,80,000**
+3. Rent, 10% Basic = ₹2,40,000, ₹60,000 = **₹1,80,000**
 
 HRA exemption = ₹1,80,000 (minimum of the three).
 
 > **Pro Tip:** Even if you live with your parents, you can pay them rent and claim HRA exemption. Your parents will need to show this as rental income, but if they are in a lower tax bracket (or have no other income), the family saves tax overall.
 
-## Section 80CCD(1B) — NPS Additional Deduction
+## Section 80CCD(1B): NPS Additional Deduction
 
 The National Pension System (NPS) offers an **additional ₹50,000 deduction** over and above the ₹1.5 Lakh 80C limit. This is one of the most underutilized deductions.
 
@@ -129,7 +129,7 @@ The National Pension System (NPS) offers an **additional ₹50,000 deduction** o
 
 **Caveat:** NPS has a lock-in until age 60, and only 60% of the corpus can be withdrawn tax-free at maturity. The remaining 40% must be used to purchase an annuity.
 
-## Home Loan Interest — Section 24(b)
+## Home Loan Interest: Section 24(b)
 
 If you have a home loan, the **interest component** of your EMI gets a separate deduction under Section 24(b):
 
@@ -166,12 +166,12 @@ Let's calculate tax for a typical salaried professional earning ₹12 LPA CTC:
 - HRA Exemption: ₹1,80,000
 - 80C (EPF + PPF ₹78,000): ₹1,50,000
 - 80D: ₹50,000
-- Taxable Income: ₹12,00,000 – ₹50,000 – ₹1,80,000 – ₹1,50,000 – ₹50,000 = **₹7,70,000**
+- Taxable Income: ₹12,00,000, ₹50,000, ₹1,80,000, ₹1,50,000, ₹50,000 = **₹7,70,000**
 - Tax: ₹0 (0-2.5L) + ₹12,500 (2.5-5L) + ₹54,000 (5-7.7L) = **₹66,500**
 - Less 87A Rebate: Not applicable (income > ₹5L)
 - Plus 4% Cess = **₹69,160**
 
-**Result:** Old Regime saves ₹2,340 more in this scenario. If the person also has a home loan (₹2L interest deduction), the Old Regime saves significantly more — over ₹60,000!
+**Result:** Old Regime saves ₹2,340 more in this scenario. If the person also has a home loan (₹2L interest deduction), the Old Regime saves significantly more, over ₹60,000!
 
 Use our **[Income Tax Calculator](/income-tax-calculator/)** to run your own exact comparison in seconds.
 
@@ -187,7 +187,7 @@ Most people max out 80C and stop. The additional ₹50,000 NPS deduction is esse
 Perfectly legal. Many salaried employees miss out on ₹1-2 Lakh deductions simply because they don't know they can pay rent to parents.
 
 ### 4. Choosing the Wrong Regime Without Calculating
-Don't blindly accept the New Regime default. If you have a home loan, HRA, and investment deductions, the Old Regime could save you ₹50,000–₹1,00,000+ more.
+Don't blindly accept the New Regime default. If you have a home loan, HRA, and investment deductions, the Old Regime could save you ₹50,000, ₹1,00,000+ more.
 
 ### 5. Last-Minute Rush in March
 Plan your tax-saving investments in April (start of the financial year). Spread them across SIPs in ELSS funds rather than dumping ₹1.5 Lakh in March.
@@ -199,7 +199,7 @@ Plan your tax-saving investments in April (start of the financial year). Spread 
 | April 2025 | Start ELSS SIP, pay health insurance premium |
 | May-June | Submit rent receipts (Q1), submit HRA declaration |
 | July | Claim LTA for summer vacation if applicable |
-| October | Mid-year review — are you on track for 80C? |
+| October | Mid-year review, are you on track for 80C? |
 | January 2026 | Submit investment proofs to employer |
 | February | Make final NPS contribution if needed |
 | March | Last chance for any remaining 80C investments |

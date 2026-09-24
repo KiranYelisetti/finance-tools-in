@@ -1,0 +1,102 @@
+---
+title: Site Updates | QuickTools India
+layout: base.njk
+meta_title: Site Updates and Changelog | QuickTools India
+meta_description: "A dated log of every change to QuickTools India: new calculators, corrected tax figures, content rewrites and fixes. Each entry corresponds to a real change in the project."
+meta_keywords: "quicktools india updates, changelog, calculator updates, site maintenance log"
+date: 2026-09-24
+---
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "QuickTools India site updates",
+  "url": "https://www.quicktoolsindia.com/updates/",
+  "dateModified": "2026-09-24",
+  "publisher": { "@type": "Organization", "name": "QuickTools India" }
+}
+</script>
+{% endblock %}
+
+<main class="container mx-auto px-4 py-8 md:py-12">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <div class="flex items-center justify-center gap-4 mb-2">
+                <div class="inline-block bg-gradient-to-br from-indigo-400 to-indigo-600 w-12 h-12 rounded-full flex items-center justify-center">
+                    <i class="fas fa-clock-rotate-left text-xl text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Site Updates</h1>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                What changed on QuickTools India and when. Every entry below maps to a real change in the project, so this page doubles as the maintenance log for the calculators. Spotted an error? Write to <a href="mailto:quicktoolsindiaa@gmail.com" class="text-indigo-600 dark:text-indigo-400 underline">quicktoolsindiaa@gmail.com</a>.
+            </p>
+        </div>
+
+        {% set updates = [
+            { "date": "2026-09-24", "title": "Tax figures brought up to date, deeper reference content", "items": [
+                "GST Calculator now uses the GST 2.0 slabs (0%, 5%, 18% and 40%) in force since 22 September 2025. The retired 12% and 28% rates stay available under a legacy option for checking older invoices.",
+                "Income Tax Calculator relabelled for FY 2025-26 and FY 2026-27, with the rebate, marginal relief and regime comparison explained on the page. Budget 2026 left the slabs unchanged.",
+                "Capital gains figures on the SIP Calculator, PPF Calculator and the SIP beginner's guide corrected to the rates in force since 23 July 2024 (12.5% long-term above Rs 1.25 lakh, 20% short-term).",
+                "Number to Words converter now handles paise and shows the international (million/billion) wording alongside the Indian form.",
+                "Number to Words, Cash Counter, Age Calculator, Image Resizer, SIP Calculator, GST Calculator, Income Tax Calculator and Salary Calculator pages rewritten with practical reference sections and expanded FAQs.",
+                "Removed FAQ structured data from seven calculator pages (home loan, car loan, EMI prepayment, PPF, SSY, study abroad, wedding cost) because those questions and answers were never shown on the page; search engines require FAQ markup to match visible content.",
+                "The About, Contact, Privacy, Terms and Disclaimer pages are now listed in the sitemap, sitemap dates come from the actual edit history, and this updates page was added."
+            ] },
+            { "date": "2026-06-22", "title": "Honesty pass on the About page", "items": [
+                "Removed editorial bios and toned down authority claims so the site describes itself as what it is: a small independent project.",
+                "Dropped an empty advertising slot."
+            ] },
+            { "date": "2026-05-25", "title": "Long-form guides and a disclaimer page", "items": [
+                "Eight long-form guides added to the blog, a dedicated disclaimer page, and FAQ structured data on calculator pages."
+            ] },
+            { "date": "2026-05-21", "title": "Bug fixes", "items": [
+                "EMI Prepayment Calculator no longer shows a negative zero for interest saved and handles very long tenures.",
+                "Fixed browser compatibility problems, jumpy scrolling, stale reset states and blank image dimensions in the Image Resizer."
+            ] },
+            { "date": "2026-05-10", "title": "Four new articles", "items": [
+                "Four new blog posts and expanded versions of the existing ones."
+            ] },
+            { "date": "2026-04-25", "title": "Indian number formatting and marginal relief", "items": [
+                "All rupee inputs now show Indian-style comma separators (1,00,000).",
+                "Income Tax Calculator marginal relief corrected and the static example figures fixed."
+            ] },
+            { "date": "2026-04-14", "title": "Site scan fixes", "items": [
+                "Broken links, overly long titles and missing H1 headings fixed after a Bing site scan."
+            ] },
+            { "date": "2026-04-10", "title": "Three new calculators and a blog", "items": [
+                "Income Tax Calculator (old vs new regime), Salary Calculator (CTC to in-hand) and EMI Prepayment Calculator launched with explanatory content.",
+                "Blog section added; layout fixes on the Age and Car Loan calculators."
+            ] },
+            { "date": "2026-03-30", "title": "Interface fixes", "items": [
+                "A set of critical and medium interface issues fixed across the site; an inaccurate comparison claim removed."
+            ] },
+            { "date": "2026-02-24", "title": "Search indexing fixes", "items": [
+                "Redirects for old page addresses, year references updated, social preview image and collection fixes. Further metadata fixes followed on 11 March 2026."
+            ] },
+            { "date": "2025-12-30", "title": "Persistence, sharing and platform upgrade", "items": [
+                "Calculators remember your last inputs, every calculator gained a reset button and a WhatsApp share option.",
+                "Fixed a Number to Words error on very large numbers and an overflow in the Cash Counter.",
+                "Site moved to Eleventy 3 with dark mode across all pages."
+            ] },
+            { "date": "2025-12-27", "title": "Launch", "items": [
+                "First release with the SIP, GST, Age and Image Resizer tools, followed within days by the Study Abroad and Wedding Cost calculators, the Tools menu, the About, Contact, Privacy and Terms pages and structured data on every page."
+            ] }
+        ] %}
+
+        <div class="space-y-6">
+            {% for entry in updates %}
+            <article class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+                <time datetime="{{ entry.date }}" class="text-sm font-mono text-gray-500 dark:text-gray-400">{{ entry.date }}</time>
+                <h2 class="text-xl font-bold text-gray-800 dark:text-white mt-1 mb-3">{{ entry.title }}</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+                    {% for item in entry.items %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</main>

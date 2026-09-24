@@ -7,7 +7,7 @@ readTime: 6
 date: 2026-04-01
 ---
 
-Before 2017, the Indian indirect taxation system was a deeply complex web. Consumers and businesses had to navigate Service Tax, VAT, Excise Duty, Entry Tax, Octroi, and more. It led to the "cascading effect of taxes"—tax on tax—which ultimately meant the end consumer paid more for goods.
+Before 2017, the Indian indirect taxation system was a deeply complex web. Consumers and businesses had to navigate Service Tax, VAT, Excise Duty, Entry Tax, Octroi, and more. It led to the "cascading effect of taxes", tax on tax, which ultimately meant the end consumer paid more for goods.
 
 The introduction of the **Goods and Services Tax (GST)** under the mantra "One Nation, One Tax" sought to simplify this. For everyday consumers and small business owners, understanding how GST works is crucial for financial literacy.
 

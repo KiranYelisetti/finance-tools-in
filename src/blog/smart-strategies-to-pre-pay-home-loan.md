@@ -25,11 +25,11 @@ As your salary increases annually, your loan EMI should technically consume a sm
 
 Instruct your bank to increase your EMI by just 5% every year. 
 
-**The Impact:** For the same ₹50 Lakh loan, increasing your EMI by 5% annually can bring your 20-year loan down to just **12 years**. The interest savings are colossal—often exceeding **₹20 Lakhs**.
+**The Impact:** For the same ₹50 Lakh loan, increasing your EMI by 5% annually can bring your 20-year loan down to just **12 years**. The interest savings are colossal, often exceeding **₹20 Lakhs**.
 
 ## 3. The "Windfall" Pre-payment
 
-Whenever you receive a financial windfall—an annual performance bonus, tax refund, maturity of an investment, or a significant festive gift—commit to putting at least 50% of it toward your home loan principal.
+Whenever you receive a financial windfall, an annual performance bonus, tax refund, maturity of an investment, or a significant festive gift, commit to putting at least 50% of it toward your home loan principal.
 
 Because early in your loan tenure, the majority of your EMI goes toward the interest component, any lump sum payment directly reduces the principal amount. This directly slashes the interest calculated for all subsequent months.
 
@@ -73,7 +73,7 @@ Let's follow a realistic example to see the dramatic impact of pre-payment:
 - Tenure Reduced: 20 years → approximately 14.5 years
 - **Total Savings: ₹18,34,522**
 
-That's ₹18+ Lakhs saved by investing just ₹1 Lakh extra per year — less than ₹8,500 per month. The Sharmas essentially got 5.5 years of their life back from EMI payments.
+That's ₹18+ Lakhs saved by investing just ₹1 Lakh extra per year, less than ₹8,500 per month. The Sharmas essentially got 5.5 years of their life back from EMI payments.
 
 ## Pre-Payment Rules by Major Banks
 
@@ -100,7 +100,7 @@ This is the most important question. Pre-payment makes sense when:
 1. **Your loan rate > post-tax investment returns**
    - Home loan at 9% → guaranteed 9% return on pre-payment (risk-free)
    - Equity returns of 12% are NOT guaranteed and carry risk
-   - FD returns of 7% post-tax become 4.9% (for 30% slab) — worse than pre-payment
+   - FD returns of 7% post-tax become 4.9% (for 30% slab), worse than pre-payment
 
 2. **You've already built an emergency fund** (6 months of expenses)
 
@@ -127,7 +127,7 @@ In the early years of a home loan, **80-85% of your EMI goes toward interest** a
 | Year 15 | ₹5,33,832 | ₹2,05,700 (39%) | ₹3,28,132 (61%) |
 | Year 20 | ₹5,33,832 | ₹22,740 (4%) | ₹5,11,092 (96%) |
 
-Notice how in Year 1, you pay ₹4.3 Lakhs in interest but only ₹1 Lakh reduces your actual loan. A pre-payment of ₹1 Lakh in Year 1 directly reduces principal, saving you interest on that ₹1 Lakh for the remaining 19 years — which works out to roughly ₹4-5 Lakhs in interest savings from just that one payment!
+Notice how in Year 1, you pay ₹4.3 Lakhs in interest but only ₹1 Lakh reduces your actual loan. A pre-payment of ₹1 Lakh in Year 1 directly reduces principal, saving you interest on that ₹1 Lakh for the remaining 19 years, which works out to roughly ₹4-5 Lakhs in interest savings from just that one payment!
 
 Use our **[EMI Prepayment Calculator](/emi-prepayment-calculator/)** to see the exact month-by-month impact of your pre-payment strategy.
 

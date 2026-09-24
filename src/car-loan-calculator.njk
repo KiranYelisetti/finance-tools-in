@@ -57,46 +57,7 @@ meta_keywords: "car loan EMI calculator, car loan interest rate 2026, vehicle lo
         ]
     }
     </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What is the current car loan interest rate in India?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Car loan interest rates in India (2024-2025) range from 7.60% to 16.00% depending on whether it's a new or used car. New car loans start from 8.70% for top-tier borrowers, while used car loans typically start from 12% onwards. Rates depend on credit score, loan amount, and car age."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How much down payment is required for a car loan?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Banks typically require 10-20% down payment for new cars and 25-35% for used cars. A higher down payment (25-30%) reduces your EMI burden and often qualifies you for better interest rates. Some promotional offers may provide 90% financing, but 20-25% down payment is recommended for financial prudence."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is included in the on-road price of a car?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "On-road price includes: Ex-showroom price + Road Tax/RTO charges (5-20% depending on state) + Insurance (₹15,000-₹50,000 for first year) + Registration charges + Accessories + Extended warranty/AMC (optional). Typically, on-road price is 15-25% higher than ex-showroom price."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Should I choose a shorter or longer car loan tenure?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "For cars (depreciating assets), choose the shortest tenure you can afford. A 3-4 year tenure is optimal - it balances manageable EMI with minimal interest. Avoid 7-year tenures as you'll pay significantly more interest and the car's value will depreciate below loan outstanding, leaving you 'underwater' on the loan."
-                }
-            }
-        ]
-    }
-    </script>
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -785,7 +746,6 @@ meta_keywords: "car loan EMI calculator, car loan interest rate 2026, vehicle lo
     </div>
 </div>
 
-
 {% block scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -879,7 +839,6 @@ meta_keywords: "car loan EMI calculator, car loan interest rate 2026, vehicle lo
         // Loan details
         document.getElementById('totalMonths').textContent = tenureMonths + ' months';
         document.getElementById('downPaymentPercent').textContent = ((downPayment / onRoadPrice) * 100).toFixed(1) + '%';
-
 
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {

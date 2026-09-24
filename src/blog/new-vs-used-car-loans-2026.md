@@ -58,7 +58,7 @@ When you buy a used car, the life-time road tax has already been paid by the fir
 
 To see the exact numbers side-by-side, map out your scenarios using our **[Car Loan EMI Calculator](/car-loan-calculator/)**!
 
-## Total Cost of Ownership: New vs Used — A Real Comparison
+## Total Cost of Ownership: New vs Used: A Real Comparison
 
 Let's run the numbers for a specific, realistic example. Assume you're choosing between a **new Hyundai Creta SX** and a **3-year-old Creta SX**:
 
@@ -89,16 +89,16 @@ Car insurance is another area where used car buyers save significantly:
 | Insurance Component | New Car (Year 1) | Used Car (3 years old) |
 |--------------------|------------------|----------------------|
 | IDV (Insured Declared Value) | ₹16,50,000 | ₹9,90,000 |
-| Own Damage Premium | ₹28,000 – ₹35,000 | ₹16,000 – ₹22,000 |
+| Own Damage Premium | ₹28,000, ₹35,000 | ₹16,000, ₹22,000 |
 | Third-Party Premium | ₹6,521 (fixed by IRDAI) | ₹6,521 (fixed by IRDAI) |
-| Zero Depreciation Add-on | ₹8,000 – ₹12,000 | ₹12,000 – ₹18,000 |
-| **Total Annual Premium** | **₹42,000 – ₹53,000** | **₹34,000 – ₹46,000** |
+| Zero Depreciation Add-on | ₹8,000, ₹12,000 | ₹12,000, ₹18,000 |
+| **Total Annual Premium** | **₹42,000, ₹53,000** | **₹34,000, ₹46,000** |
 
 **Key Points:**
 - Own Damage (OD) premium is directly linked to IDV, which drops with car age
-- Third-Party (TP) premium is fixed by IRDAI — same for new and used cars of the same engine capacity
+- Third-Party (TP) premium is fixed by IRDAI, same for new and used cars of the same engine capacity
 - Zero Depreciation add-on becomes more expensive for older cars but is worth considering for cars up to 5 years old
-- NCB (No Claim Bonus) can reduce premiums by up to 50% if you haven't made claims — this is transferable if you're upgrading
+- NCB (No Claim Bonus) can reduce premiums by up to 50% if you haven't made claims, this is transferable if you're upgrading
 
 ## Hidden Costs Most Buyers Forget
 
@@ -106,13 +106,13 @@ Beyond EMI and insurance, factor in these costs:
 
 ### Extended Warranty (New Cars)
 - Most manufacturers offer 2-3 year warranty standard
-- Extended warranty (4th-5th year): ₹15,000 – ₹30,000
-- For used cars: Third-party warranties from ₹10,000 – ₹25,000 per year
+- Extended warranty (4th-5th year): ₹15,000, ₹30,000
+- For used cars: Third-party warranties from ₹10,000, ₹25,000 per year
 
 ### Service & Maintenance
-- New Car (first 3 years): ₹8,000 – ₹15,000/year (mostly free services)
-- Used Car (4-7 years old): ₹15,000 – ₹30,000/year (parts wear, no free services)
-- After 7 years: ₹25,000 – ₹50,000/year (clutch, AC, suspension replacements)
+- New Car (first 3 years): ₹8,000, ₹15,000/year (mostly free services)
+- Used Car (4-7 years old): ₹15,000, ₹30,000/year (parts wear, no free services)
+- After 7 years: ₹25,000, ₹50,000/year (clutch, AC, suspension replacements)
 
 ### Fuel Efficiency Degradation
 - New cars deliver close to claimed mileage
@@ -129,7 +129,7 @@ Being "underwater" means you owe the bank more money than the car is currently w
 **Avoidance Strategy:**
 - **Minimum 20% down payment** (this gives you an equity cushion against depreciation)
 - **Maximum 4-5 year tenure** (aligns loan payoff with depreciation curve)
-- **Avoid 7-year car loans** — by year 3, you'll be ₹1-2 Lakhs underwater on most cars
+- **Avoid 7-year car loans**, by year 3, you'll be ₹1-2 Lakhs underwater on most cars
 
 If you absolutely must sell the car before the loan ends, you'll have to pay the difference out of pocket. For example: car worth ₹6 Lakhs, loan outstanding ₹7.5 Lakhs → you owe the bank ₹1.5 Lakhs even after selling the car.
 

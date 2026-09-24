@@ -35,15 +35,15 @@ As the table shows, a ₹10 Lakh course today will cost over ₹41 Lakhs by the 
 
 Depending on your risk tolerance, your child's age, and gender, you can combine low-risk government-backed schemes with high-return equity instruments:
 
-### 1. Sukanya Samriddhi Yojana (SSY) — Best for Girl Child
+### 1. Sukanya Samriddhi Yojana (SSY): Best for Girl Child
 If you have a daughter under the age of 10, SSY is arguably the best fixed-income investment tool available in India.
 
 * **Current Interest Rate:** 8.2% per annum (subject to quarterly government revision).
-* **Tax Status:** EEE (Exempt-Exempt-Exempt) — No tax on investment, interest earned, or maturity amount under Section 80C.
+* **Tax Status:** EEE (Exempt-Exempt-Exempt), No tax on investment, interest earned, or maturity amount under Section 80C.
 * **Lock-in:** Maturing when the girl child turns 21, with partial withdrawal allowed for higher education after she turns 18 or completes 10th standard.
 * **Pro Tip:** Calculate potential maturity wealth using our **[SSY Calculator](/ssy-calculator/)**.
 
-### 2. Public Provident Fund (PPF) — Low-Risk, Guaranteed Return
+### 2. Public Provident Fund (PPF): Low-Risk, Guaranteed Return
 For parents seeking safety and guaranteed returns for a son or daughter, PPF is a solid long-term debt tool.
 
 * **Interest Rate:** Currently 7.1% per annum.
@@ -51,7 +51,7 @@ For parents seeking safety and guaranteed returns for a son or daughter, PPF is 
 * **Lock-in:** 15 years, which can be extended in blocks of 5 years.
 * **Why it fits:** The 15-year maturity align perfectly with a child's educational timeline if you start when they are toddlers. Estimate your returns using our **[PPF Calculator](/ppf-calculator/)**.
 
-### 3. Equity Mutual Funds (SIP) — Best for Beating Inflation
+### 3. Equity Mutual Funds (SIP): Best for Beating Inflation
 If your child's college admission is 7 or more years away, fixed-income options like PPF or SSY might struggle to beat educational inflation alone. You need the wealth-generating power of equities.
 
 * **Expected Returns:** 12% to 15% long-term historical average.

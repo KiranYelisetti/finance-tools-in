@@ -30,30 +30,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
     ]
 }
 </script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "Is there a penalty for prepaying a home loan in India?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. As per RBI guidelines, banks cannot charge any prepayment penalty on floating-rate home loans taken by individual borrowers. However, fixed-rate loans or loans taken by entities may attract a penalty of 2-4%."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Should I reduce tenure or reduce EMI when prepaying?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Reducing tenure saves significantly more interest compared to reducing EMI. If your EMI is affordable, always choose to reduce tenure. For a ₹50L loan at 9%, reducing tenure saves 2-3x more interest than reducing EMI."
-            }
-        }
-    ]
-}
-</script>
+
 {% endblock %}
 
 <main class="container mx-auto px-4 py-8 md:py-12">
@@ -209,7 +186,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-lightbulb mr-2 text-amber-500"></i>Why You Should Prepay Your Loan</h2>
                 <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-4">
-                    <p>Most borrowers don't realize that on a 20-year home loan, they end up paying <strong>more in interest than the original loan amount</strong>. For instance, on a ₹50 Lakh loan at 9% for 20 years, your total interest payout is approximately <strong>₹57.9 Lakhs</strong> — more than the principal!</p>
+                    <p>Most borrowers don't realize that on a 20-year home loan, they end up paying <strong>more in interest than the original loan amount</strong>. For instance, on a ₹50 Lakh loan at 9% for 20 years, your total interest payout is approximately <strong>₹57.9 Lakhs</strong>, more than the principal!</p>
                     <p>Even a small monthly extra payment can dramatically reduce this burden. Paying just ₹5,000 extra per month on the above loan saves <strong>₹16+ Lakhs in interest</strong> and closes the loan <strong>5 years early</strong>.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -248,7 +225,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
                         </tbody>
                     </table>
                 </div>
-                <p class="text-sm text-gray-500 mt-3"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i><strong>Insight:</strong> Paying ₹10,000 extra monthly on a ₹50L loan saves ₹26.8 Lakhs — that's enough for a new car!</p>
+                <p class="text-sm text-gray-500 mt-3"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i><strong>Insight:</strong> Paying ₹10,000 extra monthly on a ₹50L loan saves ₹26.8 Lakhs, that's enough for a new car!</p>
             </div>
 
             <!-- RBI Rules -->
@@ -280,7 +257,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
                         <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Should I prepay loan or invest in mutual funds?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">If your loan interest rate is 9% and you expect mutual fund returns of 12-14%, investing may seem better mathematically. However, loan prepayment offers a <strong>guaranteed, risk-free return</strong> equal to your interest rate. For most people, a balanced approach works best — prepay some and invest some.</p>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">If your loan interest rate is 9% and you expect mutual fund returns of 12-14%, investing may seem better mathematically. However, loan prepayment offers a <strong>guaranteed, risk-free return</strong> equal to your interest rate. For most people, a balanced approach works best, prepay some and invest some.</p>
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
                         <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How much should I prepay?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
@@ -358,7 +335,7 @@ meta_keywords: "EMI prepayment calculator, loan prepayment calculator, home loan
                 let principalThisMonth = emi - interestThisMonth + monthlyExtra;
 
                 if (principalThisMonth > balance) {
-                    // Last month — pay only what's needed
+                    // Last month, pay only what's needed
                     totalPaidWithPrepay += balance + interestThisMonth;
                     totalInterestWithPrepay += interestThisMonth;
                     balance = 0;

@@ -7,7 +7,7 @@ readTime: 6
 date: 2026-05-23
 ---
 
-Despite the massive rise of UPI, IMPS, and net banking in India, physical bank cheques remain a fundamental part of the financial ecosystem. Large transactions—such as paying rent advances, buying property, registering a vehicle, or submitting business security deposits—still rely heavily on cheques.
+Despite the massive rise of UPI, IMPS, and net banking in India, physical bank cheques remain a fundamental part of the financial ecosystem. Large transactions, such as paying rent advances, buying property, registering a vehicle, or submitting business security deposits, still rely heavily on cheques.
 
 However, writing a cheque incorrectly can lead to transaction failure, bank penalties, or worse, fraud and financial loss.
 
