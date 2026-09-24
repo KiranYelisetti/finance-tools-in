@@ -87,7 +87,7 @@
 
             <!-- Navigation -->
             <nav class="flex items-center space-x-4">
-                <!-- Home link — visible on all screen sizes -->
+                <!-- Home link - visible on all screen sizes -->
                 <a href="/"
                     class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
                     <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
@@ -239,46 +239,7 @@
         ]
     }
     </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What is the current car loan interest rate in India?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Car loan interest rates in India (2024-2025) range from 7.60% to 16.00% depending on whether it's a new or used car. New car loans start from 8.70% for top-tier borrowers, while used car loans typically start from 12% onwards. Rates depend on credit score, loan amount, and car age."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How much down payment is required for a car loan?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Banks typically require 10-20% down payment for new cars and 25-35% for used cars. A higher down payment (25-30%) reduces your EMI burden and often qualifies you for better interest rates. Some promotional offers may provide 90% financing, but 20-25% down payment is recommended for financial prudence."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is included in the on-road price of a car?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "On-road price includes: Ex-showroom price + Road Tax/RTO charges (5-20% depending on state) + Insurance (₹15,000-₹50,000 for first year) + Registration charges + Accessories + Extended warranty/AMC (optional). Typically, on-road price is 15-25% higher than ex-showroom price."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Should I choose a shorter or longer car loan tenure?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "For cars (depreciating assets), choose the shortest tenure you can afford. A 3-4 year tenure is optimal - it balances manageable EMI with minimal interest. Avoid 7-year tenures as you'll pay significantly more interest and the car's value will depreciate below loan outstanding, leaving you 'underwater' on the loan."
-                }
-            }
-        ]
-    }
-    </script>
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -968,7 +929,6 @@
 </div>
 
 
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('car_loan_calc');
@@ -1062,7 +1022,6 @@
         document.getElementById('totalMonths').textContent = tenureMonths + ' months';
         document.getElementById('downPaymentPercent').textContent = ((downPayment / onRoadPrice) * 100).toFixed(1) + '%';
 
-
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1094,6 +1053,7 @@
                 <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
                 <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
                 <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
+                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
                 <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
                 <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
                 <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>

@@ -87,7 +87,7 @@
 
             <!-- Navigation -->
             <nav class="flex items-center space-x-4">
-                <!-- Home link — visible on all screen sizes -->
+                <!-- Home link - visible on all screen sizes -->
                 <a href="/"
                     class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
                     <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
@@ -214,26 +214,74 @@
 </script>
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "What is the difference between CTC and In-Hand Salary?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "CTC (Cost to Company) is the total amount a company spends on an employee, including employer PF, gratuity, and bonuses. In-Hand salary is what you actually receive in your bank account after deducting employee PF, professional tax, and income tax (TDS)."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "How is in-hand salary calculated from CTC?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "In-Hand = CTC - Employer PF (12% of Basic) - Gratuity (4.81% of Basic) - Employee PF (12% of Basic) - Professional Tax (₹200/month) - Income Tax (TDS). Typically, in-hand salary is 60-75% of CTC depending on the structure."
-            }
-        }
-    ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CTC and in-hand salary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CTC (cost to company) is the total yearly amount the employer books for you: gross salary plus the employer's PF contribution, the gratuity accrual, insurance premiums and often the target variable pay. In-hand salary is what reaches your bank each month after employee PF, professional tax and TDS are deducted from gross. With a standard structure, a ₹10 lakh CTC gives about ₹73,530 a month in hand, not ₹83,333."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is in-hand salary calculated from CTC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Monthly CTC minus the employer PF contribution and the gratuity accrual gives your gross salary. Gross minus employee PF (12% of basic), professional tax and estimated income tax (TDS) gives in-hand. With this calculator's default structure (40% basic, metro HRA, ₹200 professional tax, new tax regime), in-hand is about 88% of monthly CTC at ₹10 lakh, 83% at ₹15 lakh, 80% at ₹20 lakh and 69% at ₹50 lakh, because income tax rises with income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my in-hand salary so much less than the CTC I was offered?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Employer PF (12% of basic) and the gratuity accrual (4.81% of basic) sit inside the CTC but never reach your bank each month. Insurance premiums and variable pay counted at its target value inflate the CTC further. From the gross that remains, employee PF, professional tax and TDS are deducted. Each item is small on its own; together they commonly remove 12% to 30% of the CTC figure, more at higher incomes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I ask for a higher or lower basic pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A higher basic raises both PF contributions and the gratuity accrual, which improves retirement savings but lowers monthly in-hand. A lower basic pushes more money into special allowance, which is fully taxable and increases take-home. HRA is usually set as a percentage of basic, so under the old tax regime with rent to claim, a higher basic also raises the HRA exemption ceiling. Many salaried structures set basic at roughly 40% to 50% of CTC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the PF wage ceiling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The statutory wage ceiling for mandatory EPF is ₹15,000 a month of basic plus dearness allowance, so the minimum employer contribution is 12% of ₹15,000. Of the employer's 12%, 8.33% (₹1,250 at the ceiling) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator use the old or the new tax regime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 87A rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 80C deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is gratuity really part of my salary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is part of your CTC but not of your monthly pay. Under the Payment of Gratuity Act, 1972, gratuity becomes payable when you leave after five years of continuous service, at 15 days of last drawn basic plus DA for every completed year of service (the 15/26 formula). Employers therefore book 4.81% of basic every month as an accrual. If you leave before completing five years, the accrued amount is not paid, so for a short stint that slice of the CTC is notional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is professional tax and why does it vary by state?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional tax is a levy that state governments impose on salaried people and professionals under Article 276 of the Constitution, capped at ₹2,500 a year. Each state sets its own slabs, which is why Maharashtra, Karnataka, Telangana, West Bengal and Tamil Nadu deduct different monthly amounts, and some states and union territories, including Delhi, do not levy it at all. Your employer deducts it from salary, and under the old tax regime it is allowed as a deduction from salary income."
+      }
+    }
+  ]
 }
 </script>
 
@@ -401,64 +449,214 @@
 
         <!-- SEO Content -->
         <div class="mt-12 space-y-8">
-            <!-- CTC Breakdown Explained -->
+            <!-- What the calculator does -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-info-circle mr-2 text-teal-600"></i>Understanding CTC Components</h2>
-                <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
-                    <p>When a company offers you a CTC of ₹10 Lakhs, it does NOT mean you will receive ₹83,333 in your bank every month. CTC includes several components — some reach your bank directly, some go to your PF account, and some are the employer's statutory cost.</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
-                            <h4 class="font-bold text-green-800 dark:text-green-400 mb-2"><i class="fas fa-check-circle mr-1"></i>Direct Components (You Receive)</h4>
-                            <ul class="text-sm space-y-1">
-                                <li><strong>Basic Pay:</strong> 35-50% of CTC — Foundation of your salary</li>
-                                <li><strong>HRA:</strong> 40-50% of Basic — House Rent Allowance</li>
-                                <li><strong>Special Allowance:</strong> Remaining balance to fill CTC</li>
-                                <li><strong>Performance Bonus:</strong> Variable, paid quarterly/annually</li>
-                            </ul>
-                        </div>
-                        <div class="bg-red-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-500">
-                            <h4 class="font-bold text-red-800 dark:text-red-400 mb-2"><i class="fas fa-times-circle mr-1"></i>Indirect Components (You Don't Receive Directly)</h4>
-                            <ul class="text-sm space-y-1">
-                                <li><strong>Employer PF:</strong> 12% of Basic — Goes to PF account</li>
-                                <li><strong>Gratuity:</strong> 4.81% of Basic — Paid after 5 years</li>
-                                <li><strong>Insurance:</strong> Group health/life cover premium</li>
-                                <li><strong>ESIC:</strong> 3.25% if gross ≤ ₹21K/month</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTC Examples Table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-table mr-2 text-teal-600"></i>Typical In-Hand Salary for Popular CTC Ranges</h2>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-info-circle mr-2 text-teal-600"></i>What this calculator does, step by step</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    The calculator rebuilds a typical Indian payslip from the CTC you enter. Basic pay is taken as the
+                    percentage you set (40% by default). HRA is 50% of basic for the four metro cities and 40% elsewhere.
+                    The employer's PF contribution is 12% of basic and the gratuity accrual is 4.81% of basic. Employer ESI
+                    (3.25% of gross) is added only when monthly CTC is ₹21,000 or less. Special allowance is whatever is
+                    left of monthly CTC after those items, so the structure always adds up to your CTC.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Gross salary is basic plus HRA plus special allowance plus any monthly bonus you enter. From gross, the
+                    calculator deducts employee PF (12% of basic), the professional tax you enter, and an estimate of income
+                    tax under the new tax regime: a ₹75,000 standard deduction, the current slabs, the Section 87A rebate for
+                    taxable income up to ₹12 lakh (with marginal relief just above it) and 4% cess, spread over twelve
+                    months as TDS. What remains is your in-hand salary.
+                </p>
+                <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-6">Worked example: CTC ₹10,00,000, metro, 40% basic, no bonus</h3>
                 <div class="overflow-x-auto shadow-md rounded-lg">
                     <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                         <thead class="bg-teal-600 text-white">
                             <tr>
-                                <th class="px-4 py-3 text-left">Annual CTC</th>
-                                <th class="px-4 py-3 text-center">Monthly CTC</th>
-                                <th class="px-4 py-3 text-center">Monthly In-Hand (Est.)</th>
-                                <th class="px-4 py-3 text-center">In-Hand %</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">Line</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Per month</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">How it is derived</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹3 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹25,000</td><td class="px-4 py-3 text-center font-bold text-green-600">₹21,900</td><td class="px-4 py-3 text-center dark:text-gray-300">~88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹5 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹41,667</td><td class="px-4 py-3 text-center font-bold text-green-600">₹36,700</td><td class="px-4 py-3 text-center dark:text-gray-300">~88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹10 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹83,333</td><td class="px-4 py-3 text-center font-bold text-green-600">₹73,500</td><td class="px-4 py-3 text-center dark:text-gray-300">~88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹15 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹1,25,000</td><td class="px-4 py-3 text-center font-bold text-green-600">₹1,03,600</td><td class="px-4 py-3 text-center dark:text-gray-300">~83%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹20 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹1,66,667</td><td class="px-4 py-3 text-center font-bold text-green-600">₹1,33,600</td><td class="px-4 py-3 text-center dark:text-gray-300">~80%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹50 Lakhs</td><td class="px-4 py-3 text-center dark:text-gray-300">₹4,16,667</td><td class="px-4 py-3 text-center font-bold text-green-600">₹2,85,500</td><td class="px-4 py-3 text-center dark:text-gray-300">~69%</td></tr>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Monthly CTC</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹83,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">₹10,00,000 divided by 12</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Basic pay</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹33,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">40% of CTC</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">HRA</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹16,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">50% of basic (metro)</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Employer PF</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">12% of basic, goes to your PF account, not your bank</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Gratuity accrual</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,603</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">4.81% of basic, paid only after five years of service</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Special allowance</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹27,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Balance of monthly CTC</td></tr>
+                            <tr class="bg-green-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Gross salary</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹77,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Basic + HRA + special allowance</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Employee PF</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">12% of basic, deducted</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Professional tax</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹200</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">State levy, deducted</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Income tax (TDS)</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Annual gross ₹9,32,760 less ₹75,000 standard deduction is ₹8,57,760, within the ₹12 lakh rebate limit</td></tr>
+                            <tr class="bg-teal-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">In-hand salary</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-teal-700 dark:text-teal-300">₹73,530</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">88% of monthly CTC</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 mt-2"><i class="fas fa-info-circle mr-1"></i>Estimates assume 40% Basic, Metro HRA (50%), New Tax Regime (FY 2025-26), ₹200 professional tax. Actual in-hand depends on CTC structure and deductions.</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    Real payslips also carry items the calculator leaves out, such as dearness allowance, leave travel
+                    allowance, meal coupons, an employer NPS contribution, or a group insurance premium. Use the bonus
+                    field for variable pay that is actually paid monthly.
+                </p>
+            </div>
+
+            <!-- Components -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-layer-group mr-2 text-teal-600"></i>The components of a CTC</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-400 mb-2"><i class="fas fa-check-circle mr-1"></i>Paid to you every month</h4>
+                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+                            <li><strong>Basic pay:</strong> the base on which PF, gratuity and HRA are computed. Fully taxable.</li>
+                            <li><strong>Dearness allowance (DA):</strong> common in government and public sector pay, rare in private companies. Counts with basic for PF and gratuity.</li>
+                            <li><strong>House rent allowance (HRA):</strong> usually 40% to 50% of basic. Partly exempt under the old tax regime if you pay rent.</li>
+                            <li><strong>Special allowance:</strong> the balancing figure that makes the structure add up to CTC. Fully taxable.</li>
+                            <li><strong>Reimbursements and perks:</strong> meal coupons, leave travel allowance, phone or internet reimbursement, each with its own tax rule.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-400 mb-2"><i class="fas fa-times-circle mr-1"></i>Inside CTC but not in your monthly bank credit</h4>
+                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+                            <li><strong>Employer PF:</strong> 12% of basic plus DA, credited to your EPF and EPS accounts.</li>
+                            <li><strong>Gratuity accrual:</strong> 4.81% of basic, payable only when you leave after five years.</li>
+                            <li><strong>Variable or performance pay:</strong> counted at target in the CTC, paid quarterly or yearly and only to the extent earned.</li>
+                            <li><strong>Insurance premiums:</strong> group health and life cover paid by the employer on your behalf.</li>
+                            <li><strong>Employer ESI:</strong> 3.25% of wages, only when gross is ₹21,000 a month or less (the employee pays 0.75%).</li>
+                            <li><strong>Employer NPS contribution:</strong> where offered, deductible under Section 80CCD(2) within the limits set in the Income Tax Act.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EPF and EPS -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-piggy-bank mr-2 text-teal-600"></i>EPF and EPS: where the two 12% contributions go</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    You contribute 12% of basic plus DA to the Employees' Provident Fund, and your employer contributes
+                    another 12%. The employer's share is split: 8.33% goes to the Employees' Pension Scheme (EPS) and the
+                    rest to your EPF account. The EPS share is calculated on a wage ceiling of ₹15,000 a month, so it is
+                    capped at ₹1,250 a month; anything above that from the employer's 12% flows into EPF. The ₹15,000 ceiling
+                    is also the statutory minimum wage base for mandatory PF, which is why some employers contribute 12% of
+                    ₹15,000 rather than 12% of your full basic. This calculator assumes 12% of full basic on both sides,
+                    which many organised private employers follow.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Your own 12% counts toward the ₹1.5 lakh Section 80C limit under the old tax regime, and you can add a
+                    voluntary provident fund (VPF) contribution above 12% if you want more of your salary in EPF. EPFO
+                    declares the interest rate for each financial year; check the current rate on the EPFO website rather
+                    than relying on last year's figure.
+                </p>
+            </div>
+
+            <!-- Gratuity -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-award mr-2 text-teal-600"></i>Gratuity: the 4.81% explained</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Under the Payment of Gratuity Act, 1972, an employee who leaves after five years of continuous service
+                    is paid 15 days of last drawn basic plus DA for every completed year of service. Because the Act uses a
+                    26-day working month, the formula is 15 divided by 26, multiplied by last drawn basic plus DA, multiplied
+                    by completed years. Spread over a year, 15/26 of one month's basic is 4.81% of basic per month, which is
+                    the accrual employers show in the CTC.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Example: last drawn basic plus DA of ₹40,000 a month and seven completed years gives 15/26 x 40,000 x 7 =
+                    ₹1,61,538. Gratuity received by employees covered by the Act is exempt from income tax up to ₹20 lakh
+                    over a working life. If you leave before completing five years, the accrued amount is not paid, so for a
+                    two-year stint the gratuity line in the CTC is money you will never see.
+                </p>
+            </div>
+
+            <!-- HRA -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-home mr-2 text-teal-600"></i>HRA exemption (old tax regime only)</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Under Section 10(13A) and Rule 2A, the exempt part of HRA is the least of three amounts: the HRA you
+                    actually receive; rent paid minus 10% of basic plus DA; and 50% of basic plus DA if you live in Delhi,
+                    Mumbai, Kolkata or Chennai, or 40% elsewhere. The rest of the HRA is taxable. The exemption is available
+                    only under the old regime; under the new regime HRA is fully taxable, which is why the city selector
+                    here changes only the size of the HRA line, not the tax estimate.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Example: basic ₹40,000 a month, HRA received ₹20,000, rent paid ₹15,000, metro city. The three figures
+                    are ₹20,000; ₹15,000 minus ₹4,000 = ₹11,000; and 50% of ₹40,000 = ₹20,000. The exempt HRA is ₹11,000 a
+                    month and ₹9,000 is taxed. Keep rent receipts, and if annual rent exceeds ₹1 lakh your employer will ask
+                    for the landlord's PAN.
+                </p>
+            </div>
+
+            <!-- Regimes -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-balance-scale mr-2 text-teal-600"></i>New regime, old regime, and your take-home</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    The new tax regime, which this calculator uses, gives a ₹75,000 standard deduction and taxes income in
+                    slabs of 5% (₹4 lakh to ₹8 lakh), 10% (to ₹12 lakh), 15% (to ₹16 lakh), 20% (to ₹20 lakh), 25% (to ₹24
+                    lakh) and 30% above that, with a Section 87A rebate that brings tax to zero when taxable income is ₹12
+                    lakh or less. These slabs apply for FY 2025-26 and continue for FY 2026-27 as of September 2026. The old
+                    regime keeps a ₹50,000 standard deduction and older slabs (5% from ₹2.5 lakh, 20% from ₹5 lakh, 30%
+                    above ₹10 lakh) but allows HRA exemption, Section 80C, Section 80D and home loan interest deductions.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Take the ₹10 lakh example above. Under the new regime the taxable income is ₹8,57,760 and the tax is
+                    zero after the rebate. Under the old regime, with rent of ₹20,000 a month giving a full ₹2,00,000 HRA
+                    exemption and ₹1,50,000 of Section 80C investments (your ₹48,000 of employee PF counts toward it), taxable
+                    income is ₹5,32,760 and the tax is ₹19,814 including cess, about ₹1,651 a month. The new regime wins here.
+                    The old regime tends to come out ahead only when large deductions stack up, typically home loan
+                    interest plus HRA plus 80C plus 80D. Test your own numbers with the
+                    <a href="/income-tax-calculator/" class="text-teal-600 dark:text-teal-400 hover:underline">income tax calculator</a>, which compares both regimes.
+                </p>
+            </div>
+
+            <!-- Reading an offer -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-file-signature mr-2 text-teal-600"></i>Reading and negotiating an offer letter</h2>
+                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed mb-4 space-y-2">
+                    <li><strong>Ask for the fixed monthly gross</strong>, not just the CTC. Two offers with the same CTC can differ by thousands of rupees a month in hand.</li>
+                    <li><strong>Separate fixed from variable.</strong> Variable pay is counted at 100% in the CTC but is paid on performance; assume a partial payout when comparing.</li>
+                    <li><strong>Check what sits in retirals.</strong> Employer PF and gratuity are your money eventually, but they inflate the headline number and gratuity is forfeited before five years.</li>
+                    <li><strong>Watch for one-time items.</strong> Joining bonuses often carry a clawback if you leave within a year, and stock grants are usually shown at a notional value.</li>
+                    <li><strong>Insurance and perks</strong> have real value but are not cash. Ask whether the premium is inside the CTC.</li>
+                    <li><strong>Compare in-hand plus retirals</strong> across offers rather than the CTC figure alone.</li>
+                </ul>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    For a longer walkthrough of a typical offer, read
+                    <a href="/blog/salary-ctc-inhand-explained/" class="text-teal-600 dark:text-teal-400 hover:underline">CTC vs in-hand salary explained</a>.
+                </p>
+            </div>
+
+            <!-- CTC Examples Table -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-table mr-2 text-teal-600"></i>Estimated in-hand salary for common CTC levels</h2>
+                <div class="overflow-x-auto shadow-md rounded-lg">
+                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                        <thead class="bg-teal-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">Annual CTC</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly CTC</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly gross</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Est. TDS</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly in-hand</th>
+                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">In-hand as % of CTC</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹3 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹25,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹23,319</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹21,919</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹5 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹41,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹38,865</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹36,665</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹10 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹83,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹77,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹73,530</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹15 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,25,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,16,595</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹6,814</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹1,03,581</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">83%</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹20 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,66,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,55,460</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹13,702</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹1,33,558</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">80%</td></tr>
+                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹50 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,16,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹3,88,650</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹82,909</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹2,85,541</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">69%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><i class="fas fa-info-circle mr-1"></i>Computed with this calculator's logic: 40% basic, metro HRA, no bonus, ₹200 professional tax, new tax regime slabs for FY 2025-26 and FY 2026-27, 4% cess. Actual in-hand depends on your company's structure and declarations.</p>
             </div>
 
             <!-- Professional Tax Table -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-landmark mr-2 text-teal-600"></i>Professional Tax by State</h2>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-landmark mr-2 text-teal-600"></i>Professional tax by state</h2>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Professional tax is levied by state governments under Article 276 of the Constitution and cannot exceed
+                    ₹2,500 a year. Each state sets its own monthly slabs, and several states and union territories do not
+                    levy it. Change the professional tax field above to match your state.
+                </p>
                 <div class="overflow-x-auto shadow-md rounded-lg">
                     <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                         <thead class="bg-gray-800 text-white">
@@ -479,6 +677,7 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Slabs shown are for the highest salary band in each state as of September 2026; lower bands and exemptions (for example for women or senior citizens in some states) exist. Confirm with your state's commercial tax department.</p>
             </div>
 
             <!-- FAQ Section -->
@@ -486,16 +685,36 @@
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-question-circle mr-2 text-teal-600"></i>Frequently Asked Questions</h2>
                 <div class="space-y-4">
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Why is my in-hand salary so much less than CTC?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">CTC includes employer contributions to PF (12% of Basic), Gratuity (4.81% of Basic), and sometimes insurance premiums and ESIC. These never reach your bank account directly. On top of that, employee PF (12%), Professional Tax, and Income Tax (TDS) are deducted from your gross salary.</p>
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the difference between CTC and in-hand salary?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">CTC (cost to company) is the total yearly amount the employer books for you: gross salary plus the employer's PF contribution, the gratuity accrual, insurance premiums and often the target variable pay. In-hand salary is what reaches your bank each month after employee PF, professional tax and TDS are deducted from gross. With a standard structure, a ₹10 lakh CTC gives about ₹73,530 a month in hand, not ₹83,333.</p>
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Should I opt for higher Basic pay or lower?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Higher Basic = Higher PF contribution (good for retirement savings) but lower in-hand pay. Lower Basic = Higher Special Allowance = Higher in-hand but lower PF. If you're in the Old Tax Regime with HRA benefits, a balanced 40% Basic is usually optimal.</p>
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How is in-hand salary calculated from CTC?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Monthly CTC minus the employer PF contribution and the gratuity accrual gives your gross salary. Gross minus employee PF (12% of basic), professional tax and estimated income tax (TDS) gives in-hand. With this calculator's default structure (40% basic, metro HRA, ₹200 professional tax, new tax regime), in-hand is about 88% of monthly CTC at ₹10 lakh, 83% at ₹15 lakh, 80% at ₹20 lakh and 69% at ₹50 lakh, because income tax rises with income.</p>
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the PF contribution ceiling?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The statutory PF contribution is calculated on Basic pay up to ₹15,000/month. However, many companies voluntarily compute PF on the full Basic salary. This calculator uses 12% of full Basic for both employee and employer contributions.</p>
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Why is my in-hand salary so much less than the CTC I was offered?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Employer PF (12% of basic) and the gratuity accrual (4.81% of basic) sit inside the CTC but never reach your bank each month. Insurance premiums and variable pay counted at its target value inflate the CTC further. From the gross that remains, employee PF, professional tax and TDS are deducted. Each item is small on its own; together they commonly remove 12% to 30% of the CTC figure, more at higher incomes.</p>
+                    </details>
+                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Should I ask for a higher or lower basic pay?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A higher basic raises both PF contributions and the gratuity accrual, which improves retirement savings but lowers monthly in-hand. A lower basic pushes more money into special allowance, which is fully taxable and increases take-home. HRA is usually set as a percentage of basic, so under the old tax regime with rent to claim, a higher basic also raises the HRA exemption ceiling. Many salaried structures set basic at roughly 40% to 50% of CTC.</p>
+                    </details>
+                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the PF wage ceiling?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The statutory wage ceiling for mandatory EPF is ₹15,000 a month of basic plus dearness allowance, so the minimum employer contribution is 12% of ₹15,000. Of the employer's 12%, 8.33% (₹1,250 at the ceiling) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF).</p>
+                    </details>
+                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Does the calculator use the old or the new tax regime?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 87A rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 80C deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here.</p>
+                    </details>
+                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Is gratuity really part of my salary?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It is part of your CTC but not of your monthly pay. Under the Payment of Gratuity Act, 1972, gratuity becomes payable when you leave after five years of continuous service, at 15 days of last drawn basic plus DA for every completed year of service (the 15/26 formula). Employers therefore book 4.81% of basic every month as an accrual. If you leave before completing five years, the accrued amount is not paid, so for a short stint that slice of the CTC is notional.</p>
+                    </details>
+                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
+                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is professional tax and why does it vary by state?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Professional tax is a levy that state governments impose on salaried people and professionals under Article 276 of the Constitution, capped at ₹2,500 a year. Each state sets its own slabs, which is why Maharashtra, Karnataka, Telangana, West Bengal and Tamil Nadu deduct different monthly amounts, and some states and union territories, including Delhi, do not levy it at all. Your employer deducts it from salary, and under the old tax regime it is allowed as a deduction from salary income.</p>
                     </details>
                 </div>
             </div>
@@ -655,6 +874,7 @@
                 <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
                 <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
                 <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
+                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
                 <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
                 <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
                 <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>

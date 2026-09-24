@@ -87,7 +87,7 @@
 
             <!-- Navigation -->
             <nav class="flex items-center space-x-4">
-                <!-- Home link — visible on all screen sizes -->
+                <!-- Home link - visible on all screen sizes -->
                 <a href="/"
                     class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
                     <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
@@ -256,55 +256,6 @@
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "What is Public Provident Fund (PPF)?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "PPF is a government-backed long-term savings scheme offering 7.1% interest (compounded annually) with complete tax exemption (EEE). It has a 15-year lock-in period and qualifies for Section 80C deduction up to ₹1.5 lakh."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "What is the maximum deposit limit in PPF?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The maximum annual deposit in PPF is ₹1,50,000. The minimum is ₹500. You can deposit in one lump sum or in installments (maximum 12 deposits per year)."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "When can I withdraw from PPF?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Full withdrawal is allowed after 15 years maturity. Partial withdrawal (up to 50% of balance) is allowed from the 7th year onwards. Loans against PPF are available from 3rd to 6th year."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "What are the tax benefits of PPF?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "PPF offers triple tax exemption: Deposits qualify for Section 80C deduction (up to ₹1.5L), interest earned is tax-free, and maturity amount is also completely tax-free."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Can I extend my PPF account after 15 years?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, PPF can be extended in blocks of 5 years indefinitely after maturity. You can choose to continue with or without making further deposits while earning interest."
-            }
-        }
-    ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
         {
@@ -433,7 +384,7 @@
                             class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
                             oninput="syncInput('interestRate', 'interestRateSlider', event)">
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                            Current govt. rate: 7.1% (Q4 2024-25)
+                            Current govt. rate: 7.1% (rate for the July to September 2026 quarter, revised quarterly)
                         </p>
                     </div>
 
@@ -586,7 +537,7 @@
                 <div class="flex items-start space-x-3">
                     <i class="fas fa-check-circle text-green-500 mt-1"></i>
                     <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Guaranteed Returns</h3>
+                        <h3 class="font-semibold text-gray-800 dark:text-white">Government-backed Returns</h3>
                         <p class="text-sm text-gray-600 dark:text-gray-400">7.1% p.a. government-backed, risk-free
                         </p>
                     </div>
@@ -711,7 +662,7 @@
                         <div><strong>Interest Earned:</strong> ₹6.1 Lakhs (Tax-Free)</div>
                     </div>
                     <p class="text-orange-800 dark:text-orange-200 text-xs mt-3 italic">
-                        Ideal for risk-free retirement planning with guaranteed government-backed returns
+                        Suited to conservative retirement planning: the scheme is government-backed and the rate is reset every quarter
                     </p>
                 </div>
 
@@ -783,8 +734,8 @@
                     <tbody class="text-gray-700 dark:text-gray-300">
                         <tr class="border-b dark:border-gray-600">
                             <td class="px-4 py-3 font-semibold">Interest Rate</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">7.1% (Fixed)</td>
-                            <td class="px-4 py-3">8.2% (Fixed)</td>
+                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">7.1% (set quarterly)</td>
+                            <td class="px-4 py-3">8.2% (set quarterly)</td>
                             <td class="px-4 py-3">10-15% (Variable)</td>
                         </tr>
                         <tr class="border-b dark:border-gray-600">
@@ -824,7 +775,7 @@
                 </table>
             </div>
             <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 italic">
-                *Interest rates as of Q4 2024-25. PPF and SSY rates are revised quarterly by the Government of
+                *Interest rates for the July to September 2026 quarter (as of September 2026). PPF and SSY rates are revised quarterly by the Government of
                 India.
             </p>
         </div>
@@ -943,8 +894,8 @@
                     <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-600">
                          <tr>
                             <td class="px-4 py-3 font-semibold">Returns</td>
-                            <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">7.1% (Guaranteed)</td>
-                            <td class="px-4 py-3 text-center">6.5% - 7.5% (Fixed)</td>
+                            <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">7.1% (government-set)</td>
+                            <td class="px-4 py-3 text-center">Varies by bank (fixed for the term)</td>
                             <td class="px-4 py-3 text-center font-bold text-blue-600 dark:text-blue-400">12% - 15% (Market Linked)</td>
                         </tr>
                          <tr>
@@ -957,7 +908,7 @@
                             <td class="px-4 py-3 font-semibold">Tax on Returns</td>
                             <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">Tax Free</td>
                             <td class="px-4 py-3 text-center text-red-500">Taxable (as per slab)</td>
-                            <td class="px-4 py-3 text-center text-orange-500">LTCG Tax > ₹1 Lakh</td>
+                            <td class="px-4 py-3 text-center text-orange-500">LTCG 12.5% above ₹1.25 Lakh</td>
                         </tr>
                          <tr>
                             <td class="px-4 py-3 font-semibold">Risk</td>
@@ -991,7 +942,7 @@
                     <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
                     <div>
                         <h3 class="font-semibold text-gray-800 dark:text-white">Current Interest Rates</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Updated with Q4 2024-25 rate (7.1%),
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Uses the July to September 2026 quarter rate (7.1%),
                             adjustable for different scenarios</p>
                     </div>
                 </div>
@@ -1046,7 +997,7 @@
                 </p>
                 <p class="mb-4">
                     The <strong>Public Provident Fund</strong> is India's most popular long-term savings scheme,
-                    offering guaranteed <strong>7.1% annual interest</strong>
+                    offering a government-set rate, <strong>7.1% a year</strong> for the July to September 2026 quarter,
                     with <strong>triple tax exemption (EEE)</strong>. With our PPF maturity calculator, you can plan
                     deposits from ₹500 to ₹1,50,000 annually and visualize
                     how your retirement corpus grows over 15 years or beyond with extensions.
@@ -1110,12 +1061,12 @@
         const slider = document.getElementById(sliderId);
 
         if (event && event.target === slider) {
-            // Slider drives input — format if input is currency-tagged
+            // Slider drives input, format if input is currency-tagged
             input.value = input.classList.contains('format-inr')
                 ? formatIndianNumber(slider.value)
                 : slider.value;
         } else {
-            // Text input drives slider — strip commas before assigning
+            // Text input drives slider, strip commas before assigning
             slider.value = parseINR(input.value);
         }
 
@@ -1275,6 +1226,7 @@
                 <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
                 <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
                 <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
+                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
                 <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
                 <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
                 <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
