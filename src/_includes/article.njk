@@ -47,6 +47,13 @@ layout: base.njk
                 <i class="fas fa-calendar-alt mr-2 text-indigo-500"></i>
                 <time datetime="{{ page.date }}">{{ page.date.toDateString() }}</time>
             </div>
+            {% if updated %}
+            <span>&bull;</span>
+            <div class="flex items-center">
+                <i class="fas fa-rotate mr-2 text-indigo-500"></i>
+                <span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | isoDate }}</time></span>
+            </div>
+            {% endif %}
             {% if readTime %}
             <span>&bull;</span>
             <div class="flex items-center">

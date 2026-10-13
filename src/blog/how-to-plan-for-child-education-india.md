@@ -54,7 +54,7 @@ For parents seeking safety and guaranteed returns for a son or daughter, PPF is 
 ### 3. Equity Mutual Funds (SIP): Best for Beating Inflation
 If your child's college admission is 7 or more years away, fixed-income options like PPF or SSY might struggle to beat educational inflation alone. You need the wealth-generating power of equities.
 
-* **Expected Returns:** 12% to 15% long-term historical average.
+* **Returns:** market-linked with no guaranteed rate. Past returns do not predict future ones, so plan with a conservative assumption.
 * **Investment Style:** Set up a monthly Systematic Investment Plan (SIP) in diversified Equity Mutual Funds (like Large Cap Index Funds or Flexi-Cap Funds).
 * **Risk Management:** As your child approaches college age (say, 2-3 years before admission), systematically transfer the accumulated equity corpus to safer debt funds using a Systematic Transfer Plan (STP) to protect the funds from market crashes.
 

@@ -1,10 +1,11 @@
 ---
 layout: article.njk
 title: "Understanding GST in India: A Practical Guide"
-meta_description: "A simple, practical guide to understanding the Goods and Services Tax (GST) in India. Learn how CGST, SGST, and IGST work, and how it impacts consumers and small businesses."
+meta_description: "A practical guide to GST in India after the GST 2.0 reform of 22 September 2025: the 0%, 5%, 18% and 40% slabs, how CGST, SGST and IGST work, and what it means for consumers and small businesses."
 tags: ["post", "Tax", "Business", "GST"]
 readTime: 6
 date: 2026-04-01
+updated: 2026-10-13
 ---
 
 Before 2017, the Indian indirect taxation system was a deeply complex web. Consumers and businesses had to navigate Service Tax, VAT, Excise Duty, Entry Tax, Octroi, and more. It led to the "cascading effect of taxes", tax on tax, which ultimately meant the end consumer paid more for goods.
@@ -19,15 +20,17 @@ When you look at a restaurant bill or an electronics invoice, you often see the 
 2. **SGST (State GST):** Collected by the State Government on intra-state sales. So a 18% GST intra-state transaction is split into 9% CGST and 9% SGST.
 3. **IGST (Integrated GST):** Collected by the Central Government on inter-state sales (e.g., a seller in Delhi sells to a buyer in Bangalore). The Center then apportions the state's share to the destination state.
 
-## GST Tax Slabs Explained
+## GST Tax Slabs Explained (GST 2.0, from 22 September 2025)
 
-Unlike some countries with a single flat rate, India adopted a multi-tiered slab structure to protect the poor from inflation on essential items while heavily taxing luxury goods.
+India uses a few rate bands instead of a single flat rate, so that essentials are taxed lightly and luxury or harmful goods heavily. The GST Council simplified the structure with effect from 22 September 2025, a change usually called GST 2.0. The old 12% and 28% slabs were retired. Most items that sat at 12% moved down to 5%, and most items at 28% moved down to 18%.
 
-- **0% (Exempt):** Essential goods like loose food grains, fresh fruits, vegetables, milk, and basic banking services.
-- **5% Rate:** Mass-consumption items like packaged food items, footwear (below ₹1,000), apparel (below ₹1,000), and transport services.
-- **12% Rate:** Standard rate items like butter, cheese, cell phones, and movie tickets (below ₹100).
-- **18% Rate:** The most common slab. Applies to most services (IT services, telecom, financial services), electronics, and restaurants (air-conditioned).
-- **28% Rate:** Luxury and "sin" goods like luxury cars, large televisions, aerated drinks, and tobacco products. (Some products in this slab also attract an additional Compensation Cess).
+- **0% (Exempt):** essentials such as fresh fruits, vegetables, loose food grains and milk. Individual life and health insurance premiums also became exempt under GST 2.0.
+- **5%:** mass-consumption goods, including many that were at 12% before, such as butter, ghee and cheese. Standalone restaurant service is also charged at 5% without input tax credit.
+- **18%:** the standard rate for most services (telecom, IT, financial services) and most manufactured goods, including mobile phones and laptops. Small cars (petrol up to 1200cc or diesel up to 1500cc, not longer than 4 metres) moved down to 18% from 28% plus cess.
+- **40%:** a special rate for a narrow list of luxury and harmful goods: tobacco and pan masala, aerated and caffeinated drinks, larger cars and high-capacity motorcycles, yachts and private aircraft, and betting, casinos and online money gaming.
+- **Special rates:** 3% on gold, silver and jewellery, and 0.25% on rough diamonds, continue as before.
+
+Rates are set per HSN code, and the same product can fall in different bands depending on its exact description. Always confirm the rate for your HSN or SAC code in the CBIC rate schedule.
 
 ## Input Tax Credit (ITC) - The Heart of GST
 
@@ -54,25 +57,22 @@ However, if you engage in inter-state supply of goods or sell through E-commerce
 
 If you find yourself manually trying to reverse-calculate the base price from a GST-inclusive invoice, stop stressing. We built a free, lightning-fast **[GST Calculator](/gst-calculator/)** online. Simply input the amount, select your tax slab, and choose whether to 'Add' or 'Remove' GST to get the exact base price, CGST, and SGST breakdown instantly!
 
-## GST Impact on Common Items: What You Actually Pay
+## GST Impact on Common Items: Before and After GST 2.0
 
-Many consumers don't realize how much GST is embedded in their daily purchases. Here's a breakdown of GST on items most Indians buy regularly:
+Here is how the rate changed on some items people buy regularly:
 
-| Item | GST Rate | Pre-GST Tax Burden | Net Effect |
-|------|----------|-------------------|------------|
-| Packaged Atta/Rice | 5% | ~4% (VAT varied by state) | Slight increase |
-| Butter / Cheese | 12% | ~5-6% | Increased |
-| Mobile Phone (< ₹10,000) | 18% | ~13-15% (Excise + VAT) | Slight increase |
-| Laptop / Computer | 18% | ~15-16% | Marginal |
-| Restaurant (AC, non-star) | 5% (no ITC) | ~18-20% (VAT + Service Tax) | Decreased significantly |
-| Movie Ticket (< ₹100) | 12% | ~25-30% (Entertainment Tax) | Decreased significantly |
-| Movie Ticket (> ₹100) | 18% | ~25-30% | Decreased |
-| Car (Small, < 4m) | 28% + 1% Cess | ~28-32% | Similar |
-| Car (Large/SUV) | 28% + 22% Cess | ~42-45% | Increased |
-| Petrol / Diesel | Outside GST | Central Excise + State VAT | No change |
-| Alcohol | Outside GST | State Excise | No change |
+| Item | Before 22 Sep 2025 | From 22 Sep 2025 |
+|------|-------------------|------------------|
+| Butter, ghee, cheese | 12% | 5% |
+| Individual health or life insurance premium | 18% | Exempt |
+| Small car (within the engine and 4 m length limits) | 28% + compensation cess | 18%, no cess |
+| Larger car or SUV | 28% + compensation cess | 40%, no cess |
+| Electric car | 5% | 5% |
+| Mobile phone or laptop | 18% | 18% |
+| Standalone restaurant meal | 5% (no input tax credit) | 5% (no input tax credit) |
+| Petrol, diesel, alcohol for drinking | Outside GST | Outside GST |
 
-**Key Observation:** Essential goods are at 0-5%, reducing the tax burden on lower-income households. Luxury goods attract 28% + cess, maintaining revenue for the government.
+**Key observation:** for cars the headline 40% looks higher than 28%, but the old 28% came with a compensation cess of up to 22% on top. For most larger cars the total tax therefore fell. Check the price list of the specific model rather than the slab alone.
 
 ## Common GST Filing Mistakes by Small Businesses
 
@@ -106,11 +106,11 @@ E-invoicing requires generating an Invoice Reference Number (IRN) from the gover
 
 ## GST Composition Scheme: A Simpler Option for Small Businesses
 
-If your annual turnover is below **₹1.5 Crore** (₹75 Lakhs for service providers in special category states), you can opt for the GST Composition Scheme:
+If your annual turnover is below **₹1.5 crore** (₹75 lakh in some special category states), a supplier of goods can opt for the GST Composition Scheme. Service providers have a separate composition option with a ₹50 lakh limit.
 
 | Feature | Regular GST | Composition Scheme |
 |---------|------------|-------------------|
-| Tax Rate | 5/12/18/28% | 1% (manufacturer), 5% (restaurant), 6% (services) |
+| Tax Rate | 0/5/18/40% (plus special rates) | 1% (manufacturers and traders), 5% (restaurants), 6% (services) |
 | ITC Claim | Yes | No |
 | Inter-state Sales | Allowed | Not allowed |
 | Filing Frequency | Monthly/Quarterly | Quarterly (CMP-08) + Annual |
@@ -118,5 +118,5 @@ If your annual turnover is below **₹1.5 Crore** (₹75 Lakhs for service provi
 
 **When to choose Composition:** If you primarily sell to end consumers (B2C), don't need ITC, and want minimal compliance burden.
 
-*Disclaimer: GST rates and rules are subject to change based on GST Council decisions. The information is current as of May 2026. For specific business decisions, consult a qualified GST practitioner or Chartered Accountant.*
+*Disclaimer: GST rates and rules change with GST Council decisions. This article was updated in October 2026 for the GST 2.0 structure in force since 22 September 2025. For specific business decisions, consult a qualified GST practitioner or chartered accountant.*
 

@@ -15,7 +15,7 @@ In this guide, we'll do a deep, side-by-side comparison of the three most popula
 
 | Feature | PPF | SSY | Fixed Deposit |
 |---------|-----|-----|---------------|
-| **Interest Rate** | 7.1% p.a. | 8.2% p.a. | 6.5%, 7.5% p.a. |
+| **Interest Rate** | 7.1% p.a. | 8.2% p.a. | 6.5% to 7.5% p.a. |
 | **Tax on Deposits** | Exempt (80C) | Exempt (80C) | 80C only for Tax-Saver FD |
 | **Tax on Interest** | Exempt | Exempt | Taxable as per slab |
 | **Tax on Maturity** | Exempt | Exempt | No separate tax |

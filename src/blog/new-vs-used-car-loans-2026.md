@@ -89,10 +89,10 @@ Car insurance is another area where used car buyers save significantly:
 | Insurance Component | New Car (Year 1) | Used Car (3 years old) |
 |--------------------|------------------|----------------------|
 | IDV (Insured Declared Value) | ₹16,50,000 | ₹9,90,000 |
-| Own Damage Premium | ₹28,000, ₹35,000 | ₹16,000, ₹22,000 |
+| Own Damage Premium | ₹28,000 to ₹35,000 | ₹16,000 to ₹22,000 |
 | Third-Party Premium | ₹6,521 (fixed by IRDAI) | ₹6,521 (fixed by IRDAI) |
-| Zero Depreciation Add-on | ₹8,000, ₹12,000 | ₹12,000, ₹18,000 |
-| **Total Annual Premium** | **₹42,000, ₹53,000** | **₹34,000, ₹46,000** |
+| Zero Depreciation Add-on | ₹8,000 to ₹12,000 | ₹12,000 to ₹18,000 |
+| **Total Annual Premium** | **₹42,000 to ₹53,000** | **₹34,000 to ₹46,000** |
 
 **Key Points:**
 - Own Damage (OD) premium is directly linked to IDV, which drops with car age
@@ -106,13 +106,13 @@ Beyond EMI and insurance, factor in these costs:
 
 ### Extended Warranty (New Cars)
 - Most manufacturers offer 2-3 year warranty standard
-- Extended warranty (4th-5th year): ₹15,000, ₹30,000
-- For used cars: Third-party warranties from ₹10,000, ₹25,000 per year
+- Extended warranty (4th-5th year): ₹15,000 to ₹30,000
+- For used cars: Third-party warranties from ₹10,000 to ₹25,000 per year
 
 ### Service & Maintenance
-- New Car (first 3 years): ₹8,000, ₹15,000/year (mostly free services)
-- Used Car (4-7 years old): ₹15,000, ₹30,000/year (parts wear, no free services)
-- After 7 years: ₹25,000, ₹50,000/year (clutch, AC, suspension replacements)
+- New Car (first 3 years): ₹8,000 to ₹15,000/year (mostly free services)
+- Used Car (4-7 years old): ₹15,000 to ₹30,000/year (parts wear, no free services)
+- After 7 years: ₹25,000 to ₹50,000/year (clutch, AC, suspension replacements)
 
 ### Fuel Efficiency Degradation
 - New cars deliver close to claimed mileage

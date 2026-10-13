@@ -7,6 +7,9 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/og-image.png");
     eleventyConfig.addPassthroughCopy("src/js");
 
+    // ISO yyyy-mm-dd for front-matter dates (YAML parses "2026-10-13" into a Date object)
+    eleventyConfig.addFilter("isoDate", (d) => (d instanceof Date ? d : new Date(d)).toISOString().slice(0, 10));
+
     // Watch targets
     eleventyConfig.addWatchTarget("./src/css/");
 

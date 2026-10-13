@@ -55,7 +55,7 @@ $$\text{Years to Double} = \frac{72}{\text{Interest Rate}}$$
 For example:
 * At a fixed return of **6%** (like a standard bank FD), your money will double in: $72 / 6 = \mathbf{12 \text{ years}}$.
 * At an interest rate of **8%** (like the **[PPF Calculator](/ppf-calculator/)** return), your money will double in: $72 / 8 = \mathbf{9 \text{ years}}$.
-* At an expected market return of **12%** (typical long-term equity SIP average), your money will double in: $72 / 12 = \mathbf{6 \text{ years}}$.
+* At an assumed return of **12%** (an illustration, not a forecast), your money will double in: $72 / 12 = \mathbf{6 \text{ years}}$.
 
 ---
 
