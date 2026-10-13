@@ -5,6 +5,10 @@ meta_description: "Learn how to estimate the total cost of studying abroad from 
 tags: ["post", "Study Abroad", "Education Loan", "Financial Planning"]
 readTime: 8
 date: 2026-05-24
+sources:
+  - name: "Reserve Bank of India"
+    url: "https://www.rbi.org.in/"
+    for: "rules on sending money abroad for education"
 ---
 
 Studying abroad is a life-changing opportunity. Countries like the US, UK, Canada, Australia, and Germany offer world-class education, global exposure, and excellent career paths for Indian students.

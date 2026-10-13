@@ -5,6 +5,13 @@ meta_description: "A step-by-step financial guide for Indian parents to plan and
 tags: ["post", "Child Education", "SSY", "PPF", "Financial Planning"]
 readTime: 9
 date: 2026-05-18
+sources:
+  - name: "National Savings Institute"
+    url: "https://www.nsiindia.gov.in/"
+    for: "SSY and PPF rules and rates"
+  - name: "SEBI investor website"
+    url: "https://investor.sebi.gov.in/"
+    for: "investor education on mutual funds"
 ---
 
 For most Indian parents, funding their child’s higher education is one of their most significant financial goals. Whether it's engineering, medicine, management, or studying abroad, the cost of quality higher education is rising at a rate that far outpaces general inflation.

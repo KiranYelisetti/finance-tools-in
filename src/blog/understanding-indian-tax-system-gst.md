@@ -6,6 +6,16 @@ tags: ["post", "Tax", "Business", "GST"]
 readTime: 6
 date: 2026-04-01
 updated: 2026-10-13
+sources:
+  - name: "CBIC GST rate schedule for goods and services"
+    url: "https://cbic-gst.gov.in/gst-goods-services-rates.html"
+    for: "item-wise GST rates"
+  - name: "GST portal"
+    url: "https://www.gst.gov.in/"
+    for: "registration, composition and returns"
+  - name: "GST e-invoice portal"
+    url: "https://einvoice1.gst.gov.in/"
+    for: "e-invoicing rules"
 ---
 
 Before 2017, the Indian indirect taxation system was a deeply complex web. Consumers and businesses had to navigate Service Tax, VAT, Excise Duty, Entry Tax, Octroi, and more. It led to the "cascading effect of taxes", tax on tax, which ultimately meant the end consumer paid more for goods.

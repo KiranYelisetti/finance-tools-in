@@ -5,6 +5,16 @@ meta_description: "In-depth comparison of PPF, Sukanya Samriddhi Yojana, and Fix
 tags: ["post", "Investment", "PPF", "SSY", "Fixed Deposit"]
 readTime: 11
 date: 2026-04-28
+sources:
+  - name: "National Savings Institute"
+    url: "https://www.nsiindia.gov.in/"
+    for: "PPF and SSY rules and rates"
+  - name: "Department of Economic Affairs, Ministry of Finance"
+    url: "https://dea.gov.in/"
+    for: "quarterly rate notifications"
+  - name: "Deposit Insurance and Credit Guarantee Corporation (DICGC)"
+    url: "https://www.dicgc.org.in/"
+    for: "deposit insurance on fixed deposits"
 ---
 
 Indian households have always loved government-backed savings schemes for their safety and guaranteed returns. But with multiple options available, PPF, SSY, Fixed Deposits, NSC, and more, choosing the right one can be confusing.

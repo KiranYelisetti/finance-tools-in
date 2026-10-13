@@ -5,6 +5,13 @@ meta_description: "An operational guide for retail and small business owners in 
 tags: ["post", "Business Operations", "Cash Management", "Cash Counter", "India Retail"]
 readTime: 6
 date: 2026-05-25
+sources:
+  - name: "Reserve Bank of India"
+    url: "https://www.rbi.org.in/"
+    for: "banknote security features"
+  - name: "Income Tax Department e-filing portal"
+    url: "https://www.incometax.gov.in/iec/foportal/"
+    for: "cash transaction limits under income tax law"
 ---
 
 Despite the rapid adoption of digital payments (UPI) in India, cash remains a dominant medium of transaction for local retail outlets, Kirana stores, pharmacies, and restaurants. 

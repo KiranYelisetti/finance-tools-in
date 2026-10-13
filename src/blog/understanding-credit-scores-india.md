@@ -5,6 +5,10 @@ meta_description: "Learn how your CIBIL credit score is calculated in India, how
 tags: ["post", "CIBIL", "Credit Score", "Loans", "Home Loan"]
 readTime: 7
 date: 2026-05-20
+sources:
+  - name: "Reserve Bank of India"
+    url: "https://www.rbi.org.in/"
+    for: "rules on credit information companies and your credit report rights"
 ---
 
 When you apply for a Home Loan, Car Loan, or a Credit Card in India, the very first thing a lender checks is your **Credit Score** (often referred to as your CIBIL score). 

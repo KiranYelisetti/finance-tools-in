@@ -5,6 +5,13 @@ meta_description: "Discover the best practical strategies to pre-pay your home l
 tags: ["post", "Home Loan", "Pre-payment"]
 readTime: 6
 date: 2026-04-10
+sources:
+  - name: "Reserve Bank of India"
+    url: "https://www.rbi.org.in/"
+    for: "rules on prepayment charges"
+  - name: "Income Tax Department e-filing portal"
+    url: "https://www.incometax.gov.in/iec/foportal/"
+    for: "home loan tax deductions"
 ---
 
 When you take out a home loan for 20 years, you often end up paying more in interest than the actual principal amount you borrowed. This is a hard truth of compound interest working against you. However, with disciplined **home loan pre-payment strategies**, you can turn the tables, save lakhs of rupees, and become debt-free years earlier.

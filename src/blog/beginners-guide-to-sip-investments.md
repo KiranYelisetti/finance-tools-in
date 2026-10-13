@@ -6,6 +6,19 @@ tags: ["post", "Investment", "SIP", "Mutual Funds"]
 readTime: 7
 date: 2026-04-05
 updated: 2026-09-24
+sources:
+  - name: "SEBI investor website"
+    url: "https://investor.sebi.gov.in/"
+    for: "investor education"
+  - name: "Association of Mutual Funds in India (AMFI)"
+    url: "https://www.amfiindia.com/"
+    for: "fund categories and scheme data"
+  - name: "Income Tax Department e-filing portal"
+    url: "https://www.incometax.gov.in/iec/foportal/"
+    for: "capital gains tax"
+  - name: "Deposit Insurance and Credit Guarantee Corporation (DICGC)"
+    url: "https://www.dicgc.org.in/"
+    for: "deposit insurance on bank deposits"
 ---
 
 For decades, the Indian middle class relied predominantly on Fixed Deposits (FDs), Public Provident Fund (PPF), and gold for their savings. While these are safe and reliable, they often struggle to beat inflation, meaning your real purchasing power actually decreases over time.

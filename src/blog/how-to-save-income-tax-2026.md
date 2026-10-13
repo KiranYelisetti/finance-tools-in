@@ -6,6 +6,22 @@ tags: ["post", "Income Tax", "Tax Saving", "Personal Finance"]
 readTime: 12
 date: 2026-05-01
 updated: 2026-10-13
+sources:
+  - name: "Income Tax Department: guidance for salaried individuals"
+    url: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
+    for: "slabs, rebate and deductions"
+  - name: "Union Budget documents"
+    url: "https://www.indiabudget.gov.in/"
+    for: "the Finance Act changes for each year"
+  - name: "National Savings Institute"
+    url: "https://www.nsiindia.gov.in/"
+    for: "PPF, SSY and NSC rates"
+  - name: "Pension Fund Regulatory and Development Authority (PFRDA)"
+    url: "https://www.pfrda.org.in/"
+    for: "NPS rules"
+  - name: "Employees' Provident Fund Organisation (EPFO)"
+    url: "https://www.epfo.gov.in/"
+    for: "EPF rules"
 ---
 
 Every year between January and March, salaried Indians scramble to find ways to "save tax." Most end up making last-minute investments they don't fully understand, purely for the tax benefit. This guide will help you plan early and keep more of your income, legally.

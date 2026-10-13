@@ -5,6 +5,16 @@ meta_description: "Understand the difference between CTC, Gross Salary, and In-H
 tags: ["post", "Salary", "Income Tax", "Employment"]
 readTime: 10
 date: 2026-05-05
+sources:
+  - name: "Income Tax Department: guidance for salaried individuals"
+    url: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
+    for: "tax on salary"
+  - name: "Employees' Provident Fund Organisation (EPFO)"
+    url: "https://www.epfo.gov.in/"
+    for: "EPF and EPS rules"
+  - name: "Ministry of Labour and Employment"
+    url: "https://labour.gov.in/"
+    for: "gratuity rules"
 ---
 
 "Your CTC is ₹12 Lakhs per annum."
