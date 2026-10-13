@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/understanding-indian-tax-system-gst/</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -13,7 +13,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/beginners-guide-to-sip-investments/</loc>
-    <lastmod>2026-04-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -58,7 +58,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/how-to-save-income-tax-2026/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -192,15 +192,6 @@
 
   
   <url>
-    <loc>https://www.quicktoolsindia.com/income-tax-calculator/</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
     <loc>https://www.quicktoolsindia.com/number-to-words/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -300,28 +291,10 @@
 
   
   <url>
-    <loc>https://www.quicktoolsindia.com/ppf-calculator/</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
     <loc>https://www.quicktoolsindia.com/privacy-policy/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/ssy-calculator/</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   
 
@@ -347,6 +320,33 @@
   <url>
     <loc>https://www.quicktoolsindia.com/wedding-cost-calculator/</loc>
     <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/income-tax-calculator/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/ppf-calculator/</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/ssy-calculator/</loc>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
