@@ -188,8 +188,8 @@
     
 <div class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
     <!-- Breadcrumb -->
-    <nav class="flex text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <nav class="flex min-w-0 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center min-w-0 max-w-full gap-y-1 space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     <i class="fas fa-home mr-2"></i>Home
@@ -201,10 +201,10 @@
                     <a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a>
                 </div>
             </li>
-            <li aria-current="page">
-                <div class="flex items-center">
+            <li aria-current="page" class="min-w-0 max-w-full">
+                <div class="flex items-center min-w-0">
                     <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <span class="text-gray-700 dark:text-gray-200 truncate max-w-xs sm:max-w-none">Understanding Credit Scores (CIBIL) in India: Why 750+ is Critical</span>
+                    <span class="text-gray-700 dark:text-gray-200 truncate">Understanding Credit Scores (CIBIL) in India: Why 750+ is Critical</span>
                 </div>
             </li>
         </ol>
@@ -252,6 +252,12 @@
                 <time datetime="Wed May 20 2026 00:00:00 GMT+0000 (Coordinated Universal Time)">Wed May 20 2026</time>
             </div>
             
+            <span>&bull;</span>
+            <div class="flex items-center">
+                <i class="fas fa-rotate mr-2 text-indigo-500"></i>
+                <span>Updated <time datetime="2026-10-17">2026-10-17</time></span>
+            </div>
+            
             
             <span>&bull;</span>
             <div class="flex items-center">
@@ -267,20 +273,20 @@
 
     <!-- Main Content -->
     <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 lg:p-12 border-2 border-gray-100 dark:border-gray-700">
-        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 transition-colors">
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 prose-code:before:content-none prose-code:after:content-none prose-table:text-base transition-colors">
             <p>When you apply for a Home Loan, Car Loan, or a Credit Card in India, the very first thing a lender checks is your <strong>Credit Score</strong> (often referred to as your CIBIL score).</p>
 <p>Your credit score is a three-digit numerical summary of your credit history, ranging from <strong>300 to 900</strong>. In simple terms, it tells banks how reliable you are at repaying debts.</p>
 <p>A high credit score can save you lakhs of rupees in interest rates, while a poor score can lead to loan rejections or high interest charges. In this guide, we will look at how credit scores are calculated in India, how they impact your loans, and how to maintain a score of <strong>750 or above</strong>.</p>
 <hr>
 <h2>How Your CIBIL Score Affects Loan Interest Rates</h2>
 <p>Many first-time borrowers do not realize that banks practice <strong>risk-based pricing</strong>. This means that the interest rate you are offered is directly linked to your credit score. Lenders offer their best interest rates to borrowers with excellent credit histories and charge a premium to those with lower scores.</p>
-<p>Let's see how a credit score difference affects a <strong>₹50 Lakh Home Loan</strong> with a 20-year tenure:</p>
+<p>Let's see how a credit score difference affects a <strong>₹50 Lakh Home Loan</strong> with a 20-year tenure. The rates below are examples chosen to show the gap between score bands. Actual rates depend on the lender and move with the RBI repo rate.</p>
 <table>
 <thead>
 <tr>
 <th>CIBIL Score Category</th>
 <th>CIBIL Score</th>
-<th>Typical Interest Rate</th>
+<th>Example Interest Rate</th>
 <th>Monthly EMI</th>
 <th>Total Interest Paid</th>
 </tr>
@@ -318,20 +324,13 @@
 <hr>
 <h2>How is Your Credit Score Calculated?</h2>
 <p>In India, credit bureaus like TransUnion CIBIL, Experian, Equifax, and CRIF High Mark calculate credit scores based on data submitted by banks and financial institutions.</p>
-<p>CIBIL calculates your score using five key factors:</p>
-<pre><code class="language-mermaid">pie title &quot;CIBIL Score Components&quot;
-    &quot;Payment History (Timely repayments)&quot; : 35
-    &quot;Credit Utilization (Debt to limit ratio)&quot; : 30
-    &quot;Credit History Duration (Age of accounts)&quot; : 15
-    &quot;Credit Mix (Secured vs. Unsecured)&quot; : 10
-    &quot;Recent Credit Inquiries&quot; : 10
-</code></pre>
+<p>Your score is driven by five broad factors. CIBIL does not publish exact weights for them. The percentages below are the ones most often quoted, and they come from the published FICO model in the US, so read them as a rough guide to what matters most rather than CIBIL's own formula.</p>
 <ol>
-<li><strong>Payment History (35% weight):</strong> Have you paid your EMIs and credit card bills on time? Even a single payment delayed by more than 30 days can pull your score down significantly.</li>
-<li><strong>Credit Utilization Ratio (30% weight):</strong> How much of your available credit card limit are you using? Ideally, you should keep your utilization <strong>below 30%</strong> of your total limit. Using 90% of your credit card limit signals &quot;credit hunger&quot; and hurts your score.</li>
-<li><strong>Credit History Length (15% weight):</strong> The age of your oldest active credit accounts. A longer history of responsible credit management increases lender confidence.</li>
-<li><strong>Credit Mix (10% weight):</strong> Having a balanced mix of secured loans (like home or car loans) and unsecured credit (like personal loans or credit cards) is viewed positively by bureaus.</li>
-<li><strong>Recent Inquiries (10% weight):</strong> Every time you apply for a loan or credit card, the lender makes a &quot;hard inquiry&quot; on your credit profile. Multiple hard inquiries in a short period suggest financial distress, dropping your score.</li>
+<li><strong>Payment History (about 35%):</strong> Have you paid your EMIs and credit card bills on time? Even a single payment delayed by more than 30 days can pull your score down significantly.</li>
+<li><strong>Credit Utilization Ratio (about 30%):</strong> How much of your available credit card limit are you using? Ideally, you should keep your utilization <strong>below 30%</strong> of your total limit. Using 90% of your credit card limit signals &quot;credit hunger&quot; and hurts your score.</li>
+<li><strong>Credit History Length (about 15%):</strong> The age of your oldest active credit accounts. A longer history of responsible credit management increases lender confidence.</li>
+<li><strong>Credit Mix (about 10%):</strong> Having a balanced mix of secured loans (like home or car loans) and unsecured credit (like personal loans or credit cards) is viewed positively by bureaus.</li>
+<li><strong>Recent Inquiries (about 10%):</strong> Every time you apply for a loan or credit card, the lender makes a &quot;hard inquiry&quot; on your credit profile. Multiple hard inquiries in a short period suggest financial distress, dropping your score.</li>
 </ol>
 <hr>
 <h2>Actionable Tips to Maintain a 750+ CIBIL Score</h2>

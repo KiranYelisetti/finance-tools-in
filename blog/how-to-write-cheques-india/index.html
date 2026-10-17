@@ -188,8 +188,8 @@
     
 <div class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
     <!-- Breadcrumb -->
-    <nav class="flex text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <nav class="flex min-w-0 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center min-w-0 max-w-full gap-y-1 space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     <i class="fas fa-home mr-2"></i>Home
@@ -201,10 +201,10 @@
                     <a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a>
                 </div>
             </li>
-            <li aria-current="page">
-                <div class="flex items-center">
+            <li aria-current="page" class="min-w-0 max-w-full">
+                <div class="flex items-center min-w-0">
                     <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <span class="text-gray-700 dark:text-gray-200 truncate max-w-xs sm:max-w-none">How to Write a Cheque in India: Step-by-Step Security Guide</span>
+                    <span class="text-gray-700 dark:text-gray-200 truncate">How to Write a Cheque in India: Step-by-Step Security Guide</span>
                 </div>
             </li>
         </ol>
@@ -252,6 +252,12 @@
                 <time datetime="Sat May 23 2026 00:00:00 GMT+0000 (Coordinated Universal Time)">Sat May 23 2026</time>
             </div>
             
+            <span>&bull;</span>
+            <div class="flex items-center">
+                <i class="fas fa-rotate mr-2 text-indigo-500"></i>
+                <span>Updated <time datetime="2026-10-17">2026-10-17</time></span>
+            </div>
+            
             
             <span>&bull;</span>
             <div class="flex items-center">
@@ -267,7 +273,7 @@
 
     <!-- Main Content -->
     <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 lg:p-12 border-2 border-gray-100 dark:border-gray-700">
-        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 transition-colors">
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 prose-code:before:content-none prose-code:after:content-none prose-table:text-base transition-colors">
             <p>Despite the massive rise of UPI, IMPS, and net banking in India, physical bank cheques remain a fundamental part of the financial ecosystem. Large transactions, such as paying rent advances, buying property, registering a vehicle, or submitting business security deposits, still rely heavily on cheques.</p>
 <p>However, writing a cheque incorrectly can lead to transaction failure, bank penalties, or worse, fraud and financial loss.</p>
 <p>In this guide, we will provide a step-by-step checklist to write a cheque safely in India, explain the math behind converting numbers to words, and list critical security measures to prevent cheque tampering.</p>
@@ -300,9 +306,9 @@
 <p>When dealing with large figures, spelling out numbers in words can be confusing. For example, is it <em>Fourty</em> or <em>Forty</em>? (The correct spelling is <strong>Forty</strong>).</p>
 <p>Furthermore, the Indian numbering system relies on <strong>Lakhs and Crores</strong> rather than Millions and Billions. Here is the standard conversion reference:</p>
 <ul>
-<li><code>1,00,000</code> $\rightarrow$ One Lakh</li>
-<li><code>10,00,000</code> $\rightarrow$ Ten Lakhs</li>
-<li><code>1,00,000,00</code> ($1$ Crore) $\rightarrow$ One Crore</li>
+<li><code>1,00,000</code> → One Lakh</li>
+<li><code>10,00,000</code> → Ten Lakhs</li>
+<li><code>1,00,00,000</code> (1 Crore) → One Crore</li>
 </ul>
 <p>To avoid spelling errors or confusion when writing cheques for large amounts, you can use our <strong><a href="/number-to-words/">Number to Words Converter</a></strong>. Simply type in the number, and it will instantly generate the correct spelling in English using both the Indian formatting system (Lakhs/Crores) and the Western system (Millions/Billions).</p>
 <hr>

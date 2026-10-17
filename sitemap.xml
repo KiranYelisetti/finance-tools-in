@@ -76,7 +76,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/ultimate-guide-to-compound-interest/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -94,7 +94,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/understanding-credit-scores-india/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -112,7 +112,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/blog/how-to-write-cheques-india/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -300,33 +300,6 @@
 
   
   <url>
-    <loc>https://www.quicktoolsindia.com/car-loan-calculator/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/emi-prepayment-calculator/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/home-loan-calculator/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
     <loc>https://www.quicktoolsindia.com/</loc>
     <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -336,8 +309,35 @@
 
   
   <url>
+    <loc>https://www.quicktoolsindia.com/car-loan-calculator/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/emi-prepayment-calculator/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/home-loan-calculator/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
     <loc>https://www.quicktoolsindia.com/ppf-calculator/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -346,7 +346,7 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/ssy-calculator/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

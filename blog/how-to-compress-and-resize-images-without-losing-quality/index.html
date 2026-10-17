@@ -188,8 +188,8 @@
     
 <div class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
     <!-- Breadcrumb -->
-    <nav class="flex text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <nav class="flex min-w-0 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center min-w-0 max-w-full gap-y-1 space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     <i class="fas fa-home mr-2"></i>Home
@@ -201,10 +201,10 @@
                     <a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a>
                 </div>
             </li>
-            <li aria-current="page">
-                <div class="flex items-center">
+            <li aria-current="page" class="min-w-0 max-w-full">
+                <div class="flex items-center min-w-0">
                     <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <span class="text-gray-700 dark:text-gray-200 truncate max-w-xs sm:max-w-none">How to Resize and Compress Images Without Losing Quality</span>
+                    <span class="text-gray-700 dark:text-gray-200 truncate">How to Resize and Compress Images Without Losing Quality</span>
                 </div>
             </li>
         </ol>
@@ -267,7 +267,7 @@
 
     <!-- Main Content -->
     <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 lg:p-12 border-2 border-gray-100 dark:border-gray-700">
-        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 transition-colors">
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 prose-code:before:content-none prose-code:after:content-none prose-table:text-base transition-colors">
             <p>Whether you are uploading a profile picture, sending photos over email, applying for competitive exams, or optimizing a website to load faster, you have probably run into image size issues.</p>
 <p>Often, you are forced to make a compromise: <strong>either your image is too large to upload, or when you compress it, the result is so blurry and pixelated that it becomes unusable.</strong></p>
 <p>Resizing and compressing images does not have to ruin their quality. In this guide, we will explain the science behind image files, clarify the difference between resizing and compressing, and show you how to get perfect results using our <strong><a href="/image-resizer/">Image Resizer</a></strong>.</p>
@@ -275,9 +275,9 @@
 <h2>Pixels, Resolution, and File Size: The Basics</h2>
 <p>Before we look at compression techniques, let's define the three core elements of a digital image:</p>
 <ul>
-<li><strong>Dimensions (Resolution):</strong> The width and height of an image measured in pixels (e.g., $1920 \times 1080$ px). More pixels generally mean more detail, but also a larger file size.</li>
+<li><strong>Dimensions (Resolution):</strong> The width and height of an image measured in pixels (e.g., 1920 × 1080 px). More pixels generally mean more detail, but also a larger file size.</li>
 <li><strong>File Size:</strong> The storage space the image occupies on your device, measured in Kilobytes (KB) or Megabytes (MB).</li>
-<li><strong>Aspect Ratio:</strong> The proportional relationship between the width and height of an image (e.g., $1:1$ for a square, $16:9$ for widescreen).</li>
+<li><strong>Aspect Ratio:</strong> The proportional relationship between the width and height of an image (e.g., 1:1 for a square, 16:9 for widescreen).</li>
 </ul>
 <hr>
 <h2>Resizing vs. Compressing: What's the Difference?</h2>
@@ -285,8 +285,8 @@
 <h3>1. Image Resizing</h3>
 <p>Resizing changes the <strong>physical dimensions (pixels)</strong> of the image.</p>
 <ul>
-<li><strong>Downsizing:</strong> Reducing a $4000 \times 3000$ px photo to $800 \times 600$ px. This is safe and always reduces the file size because you are discarding unnecessary pixels.</li>
-<li><strong>Upsizing:</strong> Stretching a $200 \times 200$ px photo to $1000 \times 1000$ px. <strong>This will always result in a blurred, pixelated image</strong> because the software has to &quot;guess&quot; and fill in the missing pixel data. Avoid upsizing whenever possible.</li>
+<li><strong>Downsizing:</strong> Reducing a 4000 × 3000 px photo to 800 × 600 px. This is safe and always reduces the file size because you are discarding unnecessary pixels.</li>
+<li><strong>Upsizing:</strong> Stretching a 200 × 200 px photo to 1000 × 1000 px. <strong>This will always result in a blurred, pixelated image</strong> because the software has to &quot;guess&quot; and fill in the missing pixel data. Avoid upsizing whenever possible.</li>
 </ul>
 <h3>2. Image Compression</h3>
 <p>Compression reduces the <strong>file size (KB)</strong> of the image without changing its pixel dimensions. There are two main ways to do this:</p>
@@ -331,7 +331,7 @@
 <h2>Step-by-Step Guide to Resizing Images Safely</h2>
 <p>To get a perfect balance of small file size and crisp image quality, follow this simple workflow:</p>
 <h3>Step 1: Crop First</h3>
-<p>Before resizing, crop your image to the correct aspect ratio. If you need a square $350 \times 350$ px photo for a job portal, crop it to a square aspect ratio ($1:1$) first. If you resize it directly without cropping, your face will appear stretched or distorted.</p>
+<p>Before resizing, crop your image to the correct aspect ratio. If you need a square 350 × 350 px photo for a job portal, crop it to a square aspect ratio (1:1) first. If you resize it directly without cropping, your face will appear stretched or distorted.</p>
 <h3>Step 2: Scale Down to Target Dimensions</h3>
 <p>Open our <strong><a href="/image-resizer/">Image Resizer</a></strong> and enter your desired target width and height in pixels. The resizer automatically calculates the new layout while maintaining your aspect ratio to prevent stretching.</p>
 <h3>Step 3: Fine-Tune the Quality Slider</h3>

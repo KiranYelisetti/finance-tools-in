@@ -188,8 +188,8 @@
     
 <div class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
     <!-- Breadcrumb -->
-    <nav class="flex text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <nav class="flex min-w-0 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center min-w-0 max-w-full gap-y-1 space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     <i class="fas fa-home mr-2"></i>Home
@@ -201,10 +201,10 @@
                     <a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a>
                 </div>
             </li>
-            <li aria-current="page">
-                <div class="flex items-center">
+            <li aria-current="page" class="min-w-0 max-w-full">
+                <div class="flex items-center min-w-0">
                     <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <span class="text-gray-700 dark:text-gray-200 truncate max-w-xs sm:max-w-none">The Ultimate Guide to Understanding Compound Interest: The Eighth Wonder</span>
+                    <span class="text-gray-700 dark:text-gray-200 truncate">The Ultimate Guide to Understanding Compound Interest: The Eighth Wonder</span>
                 </div>
             </li>
         </ol>
@@ -246,6 +246,12 @@
                 <time datetime="Fri May 15 2026 00:00:00 GMT+0000 (Coordinated Universal Time)">Fri May 15 2026</time>
             </div>
             
+            <span>&bull;</span>
+            <div class="flex items-center">
+                <i class="fas fa-rotate mr-2 text-indigo-500"></i>
+                <span>Updated <time datetime="2026-10-17">2026-10-17</time></span>
+            </div>
+            
             
             <span>&bull;</span>
             <div class="flex items-center">
@@ -261,7 +267,7 @@
 
     <!-- Main Content -->
     <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 lg:p-12 border-2 border-gray-100 dark:border-gray-700">
-        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 transition-colors">
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 prose-code:before:content-none prose-code:after:content-none prose-table:text-base transition-colors">
             <p>Albert Einstein famously referred to compound interest as the <strong>&quot;eighth wonder of the world,&quot;</strong> adding, <em>&quot;He who understands it, earns it... he who doesn't, pays it.&quot;</em></p>
 <p>Despite its simplicity, compound interest is one of the most misunderstood concepts in personal finance. Yet, it forms the bedrock of almost every wealth-creation tool we use, from Systematic Investment Plans (SIPs) to Public Provident Funds (PPF).</p>
 <p>In this comprehensive guide, we will break down exactly how compound interest works, compare it to simple interest, introduce handy compounding rules, and show you how to put the power of compounding to work for your financial future in India.</p>
@@ -271,7 +277,7 @@
 <h3>1. Simple Interest (SI)</h3>
 <p>Simple interest is calculated <strong>only on the principal amount</strong> (the initial money you put in). The interest earned does not accumulate to earn more interest in the next cycle.</p>
 <ul>
-<li><strong>Formula:</strong> $SI = P \times R \times T / 100$</li>
+<li><strong>Formula:</strong> SI = P × R × T / 100</li>
 <li><strong>Example:</strong> If you invest ₹1,00,000 at a 10% annual simple interest rate for 3 years:
 <ul>
 <li><strong>Year 1:</strong> You earn 10% of ₹1,00,000 = ₹10,000.</li>
@@ -284,7 +290,7 @@
 <h3>2. Compound Interest (CI)</h3>
 <p>Compound interest is calculated on the <strong>principal amount plus any accumulated interest</strong> from previous periods. In simple terms, you earn <strong>&quot;interest on interest.&quot;</strong></p>
 <ul>
-<li><strong>Formula:</strong> $A = P \times (1 + R/n)^{nt}$
+<li><strong>Formula:</strong> A = P × (1 + R/n)<sup>nt</sup>
 <em>(Where A is the final amount, P is the principal, R is the annual interest rate, n is the compounding frequency per year, and t is the time in years)</em></li>
 <li><strong>Example:</strong> If you invest ₹1,00,000 at a 10% annual compound interest rate (compounded annually) for 3 years:
 <ul>
@@ -300,12 +306,12 @@
 <h2>The Rule of 72: A Quick Mental Calculator</h2>
 <p>How long will it take for your investment to double? Instead of pulling out a complex scientific calculator, you can use the <strong>Rule of 72</strong>.</p>
 <p>The Rule of 72 is a quick, useful shortcut to estimate the number of years required to double your money at a given annual rate of return:</p>
-<p>$$\text{Years to Double} = \frac{72}{\text{Interest Rate}}$$</p>
+<p><strong>Years to Double = 72 ÷ Interest Rate</strong></p>
 <p>For example:</p>
 <ul>
-<li>At a fixed return of <strong>6%</strong> (like a standard bank FD), your money will double in: $72 / 6 = \mathbf{12 \text{ years}}$.</li>
-<li>At an interest rate of <strong>8%</strong> (like the <strong><a href="/ppf-calculator/">PPF Calculator</a></strong> return), your money will double in: $72 / 8 = \mathbf{9 \text{ years}}$.</li>
-<li>At an assumed return of <strong>12%</strong> (an illustration, not a forecast), your money will double in: $72 / 12 = \mathbf{6 \text{ years}}$.</li>
+<li>At a fixed return of <strong>6%</strong> (like a standard bank FD), your money will double in: 72 / 6 = <strong>12 years</strong>.</li>
+<li>At an interest rate of <strong>8%</strong> (close to the 8.2% Sukanya Samriddhi rate, see the <strong><a href="/ssy-calculator/">SSY Calculator</a></strong>), your money will double in: 72 / 8 = <strong>9 years</strong>.</li>
+<li>At an assumed return of <strong>12%</strong> (an illustration, not a forecast), your money will double in: 72 / 12 = <strong>6 years</strong>.</li>
 </ul>
 <hr>
 <h2>How Compounding Frequency Affects Your Wealth</h2>
