@@ -5,6 +5,7 @@ meta_description: "A complete step-by-step guide to writing cheques in India saf
 tags: ["post", "Banking", "Cheque Guide", "Security", "Number to Words"]
 readTime: 6
 date: 2026-05-23
+updated: 2026-10-17
 sources:
   - name: "Reserve Bank of India"
     url: "https://www.rbi.org.in/"
@@ -53,9 +54,9 @@ When dealing with large figures, spelling out numbers in words can be confusing.
 
 Furthermore, the Indian numbering system relies on **Lakhs and Crores** rather than Millions and Billions. Here is the standard conversion reference:
 
-* `1,00,000` $\rightarrow$ One Lakh
-* `10,00,000` $\rightarrow$ Ten Lakhs
-* `1,00,000,00` ($1$ Crore) $\rightarrow$ One Crore
+* `1,00,000` → One Lakh
+* `10,00,000` → Ten Lakhs
+* `1,00,00,000` (1 Crore) → One Crore
 
 To avoid spelling errors or confusion when writing cheques for large amounts, you can use our **[Number to Words Converter](/number-to-words/)**. Simply type in the number, and it will instantly generate the correct spelling in English using both the Indian formatting system (Lakhs/Crores) and the Western system (Millions/Billions).
 

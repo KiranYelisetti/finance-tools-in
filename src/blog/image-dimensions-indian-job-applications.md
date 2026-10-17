@@ -21,31 +21,31 @@ Here are the standard photo and signature requirements for major recruitment and
 
 ### 1. UPSC (Union Public Service Commission)
 * **Photograph:**
-  * **Dimensions:** Minimum $350 \times 350$ pixels, Maximum $1000 \times 1000$ pixels (Width $\times$ Height).
+  * **Dimensions:** Minimum 350 × 350 pixels, Maximum 1000 × 1000 pixels (Width × Height).
   * **File Size:** **20 KB to 300 KB**.
   * **Important:** The photo must show the candidate's name and the date on which the photograph was taken printed at the bottom of the photo.
 * **Signature:**
-  * **Dimensions:** Minimum $350 \times 350$ pixels, Maximum $1000 \times 1000$ pixels.
+  * **Dimensions:** Minimum 350 × 350 pixels, Maximum 1000 × 1000 pixels.
   * **File Size:** **20 KB to 300 KB**.
 
 ### 2. SSC (Staff Selection Commission)
 * **Photograph:**
-  * **Dimensions:** $3.5\text{ cm width} \times 4.5\text{ cm height}$ (approx. $132 \times 170$ pixels).
+  * **Dimensions:** 3.5 cm width × 4.5 cm height (approx. 132 × 170 pixels).
   * **File Size:** **20 KB to 50 KB**.
   * **Important:** Photo must be taken without spectacles and cap, and both ears must be visible.
 * **Signature:**
-  * **Dimensions:** $4.0\text{ cm width} \times 2.0\text{ cm height}$ (approx. $151 \times 75$ pixels).
+  * **Dimensions:** 4.0 cm width × 2.0 cm height (approx. 151 × 75 pixels).
   * **File Size:** **10 KB to 20 KB** (Must be on white paper in black ink).
 
 ### 3. Banking Exams (IBPS / SBI / RBI)
 * **Photograph:**
-  * **Dimensions:** $4.5\text{ cm} \times 3.5\text{ cm}$ (or $200 \times 230$ pixels).
+  * **Dimensions:** 4.5 cm × 3.5 cm (or 200 × 230 pixels).
   * **File Size:** **20 KB to 50 KB**.
 * **Signature:**
-  * **Dimensions:** $140 \times 60$ pixels.
+  * **Dimensions:** 140 × 60 pixels.
   * **File Size:** **10 KB to 20 KB** (Signature in CAPITAL letters is not accepted).
 * **Left Thumb Impression:**
-  * **Dimensions:** $240 \times 240$ pixels (or $3\text{ cm} \times 3\text{ cm}$).
+  * **Dimensions:** 240 × 240 pixels (or 3 cm × 3 cm).
   * **File Size:** **20 KB to 50 KB**.
 
 ---
@@ -77,7 +77,7 @@ Instead of downloading complex offline software or uploading sensitive identity 
 
 1. Drag and drop your photograph or signature.
 2. Select your desired output unit: **Pixels** or **Centimeters (cm)**.
-3. Input the required dimensions (e.g., $200 \text{ width} \times 230 \text{ height}$).
+3. Input the required dimensions (e.g., 200 width × 230 height).
 4. Adjust the **Quality Slider** to limit the file size (e.g., slide it left to reduce the file size below 50 KB for SSC/IBPS).
 5. Click **Download** to save your perfectly resized image, ready for instant upload!
 

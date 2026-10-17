@@ -5,6 +5,7 @@ meta_description: "Understand how compound interest works, how Simple vs Compoun
 tags: ["post", "Compounding", "Finance", "Investment"]
 readTime: 8
 date: 2026-05-15
+updated: 2026-10-17
 ---
 
 Albert Einstein famously referred to compound interest as the **"eighth wonder of the world,"** adding, *"He who understands it, earns it... he who doesn't, pays it."* 
@@ -22,7 +23,7 @@ To appreciate the power of compounding, we must first compare it to its linear c
 ### 1. Simple Interest (SI)
 Simple interest is calculated **only on the principal amount** (the initial money you put in). The interest earned does not accumulate to earn more interest in the next cycle.
 
-* **Formula:** $SI = P \times R \times T / 100$
+* **Formula:** SI = P × R × T / 100
 * **Example:** If you invest ₹1,00,000 at a 10% annual simple interest rate for 3 years:
   * **Year 1:** You earn 10% of ₹1,00,000 = ₹10,000.
   * **Year 2:** You earn 10% of ₹1,00,000 = ₹10,000.
@@ -32,7 +33,7 @@ Simple interest is calculated **only on the principal amount** (the initial mone
 ### 2. Compound Interest (CI)
 Compound interest is calculated on the **principal amount plus any accumulated interest** from previous periods. In simple terms, you earn **"interest on interest."**
 
-* **Formula:** $A = P \times (1 + R/n)^{nt}$
+* **Formula:** A = P × (1 + R/n)<sup>nt</sup>
   *(Where A is the final amount, P is the principal, R is the annual interest rate, n is the compounding frequency per year, and t is the time in years)*
 * **Example:** If you invest ₹1,00,000 at a 10% annual compound interest rate (compounded annually) for 3 years:
   * **Year 1:** You earn 10% of ₹1,00,000 = ₹10,000. Your new principal is ₹1,10,000.
@@ -50,12 +51,12 @@ How long will it take for your investment to double? Instead of pulling out a co
 
 The Rule of 72 is a quick, useful shortcut to estimate the number of years required to double your money at a given annual rate of return:
 
-$$\text{Years to Double} = \frac{72}{\text{Interest Rate}}$$
+**Years to Double = 72 ÷ Interest Rate**
 
 For example:
-* At a fixed return of **6%** (like a standard bank FD), your money will double in: $72 / 6 = \mathbf{12 \text{ years}}$.
-* At an interest rate of **8%** (like the **[PPF Calculator](/ppf-calculator/)** return), your money will double in: $72 / 8 = \mathbf{9 \text{ years}}$.
-* At an assumed return of **12%** (an illustration, not a forecast), your money will double in: $72 / 12 = \mathbf{6 \text{ years}}$.
+* At a fixed return of **6%** (like a standard bank FD), your money will double in: 72 / 6 = **12 years**.
+* At an interest rate of **8%** (close to the 8.2% Sukanya Samriddhi rate, see the **[SSY Calculator](/ssy-calculator/)**), your money will double in: 72 / 8 = **9 years**.
+* At an assumed return of **12%** (an illustration, not a forecast), your money will double in: 72 / 12 = **6 years**.
 
 ---
 

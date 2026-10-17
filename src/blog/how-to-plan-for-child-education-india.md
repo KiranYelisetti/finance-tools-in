@@ -71,8 +71,8 @@ If your child's college admission is 7 or more years away, fixed-income options 
 
 ### Step 1: Define the Timeline and Goal
 Calculate the exact number of years remaining until your child turns 18. Determine the target specialization. If a course costs ₹15 Lakhs today, and college is 12 years away, adjust the target corpus for 10% inflation:
-$$\text{Target Corpus} = \text{Current Cost} \times (1 + 0.10)^{12}$$
-$$\text{Target Corpus} = 15 \times 3.13 = \mathbf{₹47 \text{ Lakhs}}$$
+**Target Corpus = Current Cost × (1 + 0.10)<sup>12</sup>**
+**Target Corpus = 15 × 3.13 = ₹47 Lakhs**
 
 ### Step 2: Determine Your Asset Allocation
 * **Child is 0-5 years old (Long Horizon):** Allocate **70% to Equity Mutual Funds** (via monthly SIPs) and **30% to SSY/PPF** for stability.

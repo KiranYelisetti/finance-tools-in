@@ -5,6 +5,7 @@ meta_description: "Learn how your CIBIL credit score is calculated in India, how
 tags: ["post", "CIBIL", "Credit Score", "Loans", "Home Loan"]
 readTime: 7
 date: 2026-05-20
+updated: 2026-10-17
 sources:
   - name: "Reserve Bank of India"
     url: "https://www.rbi.org.in/"
@@ -23,9 +24,9 @@ A high credit score can save you lakhs of rupees in interest rates, while a poor
 
 Many first-time borrowers do not realize that banks practice **risk-based pricing**. This means that the interest rate you are offered is directly linked to your credit score. Lenders offer their best interest rates to borrowers with excellent credit histories and charge a premium to those with lower scores.
 
-Let's see how a credit score difference affects a **₹50 Lakh Home Loan** with a 20-year tenure:
+Let's see how a credit score difference affects a **₹50 Lakh Home Loan** with a 20-year tenure. The rates below are examples chosen to show the gap between score bands. Actual rates depend on the lender and move with the RBI repo rate.
 
-| CIBIL Score Category | CIBIL Score | Typical Interest Rate | Monthly EMI | Total Interest Paid |
+| CIBIL Score Category | CIBIL Score | Example Interest Rate | Monthly EMI | Total Interest Paid |
 |----------------------|-------------|-----------------------|-------------|---------------------|
 | **Excellent**        | 775 - 900   | **8.40% p.a.**        | ₹43,075     | ₹53.38 Lakhs        |
 | **Good**             | 700 - 774   | **8.85% p.a.**        | ₹44,505     | ₹56.81 Lakhs        |
@@ -43,22 +44,13 @@ By improving your CIBIL score from below 700 to above 775, you save:
 
 In India, credit bureaus like TransUnion CIBIL, Experian, Equifax, and CRIF High Mark calculate credit scores based on data submitted by banks and financial institutions. 
 
-CIBIL calculates your score using five key factors:
+Your score is driven by five broad factors. CIBIL does not publish exact weights for them. The percentages below are the ones most often quoted, and they come from the published FICO model in the US, so read them as a rough guide to what matters most rather than CIBIL's own formula.
 
-```mermaid
-pie title "CIBIL Score Components"
-    "Payment History (Timely repayments)" : 35
-    "Credit Utilization (Debt to limit ratio)" : 30
-    "Credit History Duration (Age of accounts)" : 15
-    "Credit Mix (Secured vs. Unsecured)" : 10
-    "Recent Credit Inquiries" : 10
-```
-
-1. **Payment History (35% weight):** Have you paid your EMIs and credit card bills on time? Even a single payment delayed by more than 30 days can pull your score down significantly.
-2. **Credit Utilization Ratio (30% weight):** How much of your available credit card limit are you using? Ideally, you should keep your utilization **below 30%** of your total limit. Using 90% of your credit card limit signals "credit hunger" and hurts your score.
-3. **Credit History Length (15% weight):** The age of your oldest active credit accounts. A longer history of responsible credit management increases lender confidence.
-4. **Credit Mix (10% weight):** Having a balanced mix of secured loans (like home or car loans) and unsecured credit (like personal loans or credit cards) is viewed positively by bureaus.
-5. **Recent Inquiries (10% weight):** Every time you apply for a loan or credit card, the lender makes a "hard inquiry" on your credit profile. Multiple hard inquiries in a short period suggest financial distress, dropping your score.
+1. **Payment History (about 35%):** Have you paid your EMIs and credit card bills on time? Even a single payment delayed by more than 30 days can pull your score down significantly.
+2. **Credit Utilization Ratio (about 30%):** How much of your available credit card limit are you using? Ideally, you should keep your utilization **below 30%** of your total limit. Using 90% of your credit card limit signals "credit hunger" and hurts your score.
+3. **Credit History Length (about 15%):** The age of your oldest active credit accounts. A longer history of responsible credit management increases lender confidence.
+4. **Credit Mix (about 10%):** Having a balanced mix of secured loans (like home or car loans) and unsecured credit (like personal loans or credit cards) is viewed positively by bureaus.
+5. **Recent Inquiries (about 10%):** Every time you apply for a loan or credit card, the lender makes a "hard inquiry" on your credit profile. Multiple hard inquiries in a short period suggest financial distress, dropping your score.
 
 ---
 
