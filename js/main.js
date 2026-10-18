@@ -125,6 +125,10 @@ function resetForm(pagePrefix) {
         // Reset to default value
         if (input.type === 'checkbox' || input.type === 'radio') {
             input.checked = input.defaultChecked;
+        } else if (input.tagName === 'SELECT') {
+            // Dropdowns have no defaultValue: go back to the option marked selected in the HTML, else the first one
+            const def = Array.from(input.options).find(o => o.defaultSelected) || input.options[0];
+            if (def) input.value = def.value;
         } else {
             // Use defaultValue if available, otherwise try some sensible defaults or empty
             input.value = input.defaultValue;
