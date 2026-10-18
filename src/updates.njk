@@ -35,6 +35,10 @@ date: 2026-09-24
         </div>
 
         {% set updates = [
+            { "date": "2026-10-19", "title": "Reset button and slider fixes", "items": [
+                "The Reset button no longer blanks dropdown menus. On the Study Abroad Calculator this had made every result read \"₹NaN\" after a reset, and on the Salary and EMI Prepayment calculators it emptied the city type and loan type menus.",
+                "PPF and SSY calculators: the deposit slider now moves in steps that land on round amounts, so it can reach the ₹1,50,000 yearly maximum. Before, it stopped at ₹1,49,500 (PPF) and ₹1,49,250 (SSY), and Reset turned the ₹1,00,000 default into ₹1,00,500 or ₹1,00,250."
+            ] },
             { "date": "2026-10-17", "title": "Guides now display properly on every screen", "items": [
                 "All 16 guides were showing as plain unformatted text: headings at body size, lists without numbers or bullets and tables without lines. The article styling is now switched on, so they read as intended.",
                 "Guides no longer run wider than the screen on phones. The breadcrumb wraps and wide tables scroll inside their own box.",
