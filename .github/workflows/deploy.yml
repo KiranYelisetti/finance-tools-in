@@ -33,9 +33,21 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Keep a copy of the currently published site
+        continue-on-error: true
+        run: |
+          mkdir -p /tmp/published
+          git fetch --depth=1 origin gh-pages
+          git archive FETCH_HEAD | tar -x -C /tmp/published
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           cname: www.quicktoolsindia.com
+
+      - name: Tell Bing which pages changed (IndexNow)
+        continue-on-error: true
+        timeout-minutes: 8
+        run: node scripts/indexnow.mjs /tmp/published ./_site
