@@ -1,9 +1,10 @@
 ---
-title: Number to Words Converter - Lakh Crore Calculator | Indian Format
+title: Number to Words, Lakh and Crore to Numbers | QuickTools India
 layout: base.njk
 date: 2026-09-24
-meta_title: Number to Words Converter - Lakh Crore Calculator | Indian Format
-meta_description: "Free number to words converter for India. Turn any amount up to 999 crore into lakh and crore words, cheque wording and the million form, paise included."
+updated: 2026-11-04
+meta_title: Number to Words, Lakh and Crore to Numbers | QuickTools India
+meta_description: "15,00,000 in words is Fifteen Lakh Rupees Only. Type any amount, or 1.5 crore or 270 lakh crore, and get the words, Indian digits and cheque wording."
 meta_keywords: "number to words, lakh crore converter, number converter India, cheque writing, rupees in words, number to Indian format, lakhs to crores, million to lakh, number spelling, amount in words, paise in words"
 sources:
   - name: "Reserve Bank of India"
@@ -58,7 +59,7 @@ sources:
     {
       "@type": "HowToStep",
       "name": "Enter the amount",
-      "text": "Type any amount up to 999,99,99,999 (999 crore). Add paise after a decimal point, for example 1500.50."
+      "text": "Type digits such as 1500000 or 15,00,000, or an amount with units such as 1.5 crore, 270 lakh crore or 2.5 million. Add paise after a decimal point, for example 1500.50."
     },
     {
       "@type": "HowToStep",
@@ -98,6 +99,22 @@ sources:
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "100 lakhs make 1 crore. 1 crore = 1,00,00,000, which is ten million in the international system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you write 1.5 crore in numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1.5 crore is 1,50,00,000 in Indian grouping, which is one crore fifty lakh. In the international system it is 15,000,000, or 15 million. Type 1.5 crore in the box above to see it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many zeros are in 1 lakh crore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One lakh crore has 12 zeros: 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system. That is one trillion, so 270 lakh crore is 270 trillion."
       }
     },
     {
@@ -177,26 +194,32 @@ sources:
 <main class="container mx-auto px-4 py-8 md:py-12">
     <div class="max-w-4xl mx-auto">
         <!-- Title -->
-        <div class="text-center mb-8">
+        <div class="text-center mb-4 md:mb-8">
             <div class="flex items-center justify-center gap-4 mb-2">
                 <div
-                    class="inline-block bg-gradient-to-br from-purple-400 to-purple-600 w-12 h-12 rounded-full flex items-center justify-center">
+                    class="hidden md:flex bg-gradient-to-br from-purple-400 to-purple-600 w-12 h-12 rounded-full items-center justify-center">
                     <i class="fas fa-spell-check text-xl text-white"></i>
                 </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Number to Words Converter</h1>
+                <h1 class="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white">Number to Words and Crore to Numbers</h1>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">Convert numbers to Indian format (Lakhs/Crores) and words, with paise</p>
+            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">Amounts to words, and lakh or crore to digits, with paise</p>
         </div>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-4 md:p-8 transition-colors duration-200">
             <!-- Input Section -->
             <div class="mb-6">
-                <label for="numberInput" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2 text-lg">Enter Number or Amount</label>
-                <input type="text" id="numberInput" value="1500000" inputmode="decimal" autocomplete="off"
+                <label for="numberInput" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2 text-lg">Enter an amount, or lakh and crore</label>
+                <input type="text" id="numberInput" value="1500000" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80"
                     class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-2xl font-mono text-center transition-colors"
-                    oninput="convertNumber()" placeholder="Enter any number, e.g. 1500.50">
-                <p class="text-gray-500 dark:text-gray-400 text-sm mt-2 text-center">Maximum: 999,99,99,999 (999 crore). Add paise after a decimal point, e.g. 1500.50. Commas are ignored.</p>
+                    oninput="convertNumber()" placeholder="1500000, 15,00,000 or 1.5 crore">
+                <div id="answerBox" class="mt-4 rounded-lg bg-purple-700 dark:bg-purple-800 text-white p-4 md:p-5 text-center transition-opacity" aria-live="polite">
+                    <p id="answerMain" class="text-xl md:text-3xl font-bold break-words">Fifteen Lakh Rupees Only</p>
+                    <p id="answerSub" class="mt-1 text-base md:text-lg font-mono break-all">₹15,00,000</p>
+                    <p id="answerMeta" class="mt-1 text-sm text-purple-100">7 digits, 5 zeros · 1 Million 500 Thousand</p>
+                </div>
+                <p id="inputError" class="hidden mt-3 text-center text-sm font-semibold text-red-600 dark:text-red-300"></p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 text-center">Type digits (1500000, 15,00,000, 1500.50) or words: 1.5 crore, 1 cr 30 lakh, 270 lakh crore, 15 hazar crore, 6 arab, 2.5 million. Up to 99,999 lakh crore.</p>
             </div>
 
             <!-- Results Section -->
@@ -273,11 +296,13 @@ sources:
             <div class="mb-6">
                 <p class="text-gray-700 dark:text-gray-300 font-semibold mb-3">Quick Examples:</p>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="setExample(100000)" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Lakh</button>
-                    <button onclick="setExample(500000)" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">5 Lakhs</button>
-                    <button onclick="setExample(1000000)" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">10 Lakhs</button>
-                    <button onclick="setExample(10000000)" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Crore</button>
-                    <button onclick="setExample(50000000)" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">5 Crores</button>
+                    <button onclick="setExample('100000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Lakh</button>
+                    <button onclick="setExample('1500000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">15 Lakh</button>
+                    <button onclick="setExample('10000000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Crore</button>
+                    <button onclick="setExample('1.5 crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1.5 crore to digits</button>
+                    <button onclick="setExample('270 lakh crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">270 lakh crore</button>
+                    <button onclick="setExample('15 hazar crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">15 hazar crore</button>
+                    <button onclick="setExample('2.5 million')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">2.5 million</button>
                     <button onclick="setExample('1250.75')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1,250.75 (with paise)</button>
                 </div>
             </div>
@@ -455,6 +480,20 @@ sources:
                 </details>
                 <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
                     <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                        How do you write 1.5 crore in numbers?
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1.5 crore is 1,50,00,000 in Indian grouping, which is one crore fifty lakh. In the international system it is 15,000,000, or 15 million. Type 1.5 crore in the box above to see it.</p>
+                </details>
+                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                        How many zeros are in 1 lakh crore?
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">One lakh crore has 12 zeros: 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system. That is one trillion, so 270 lakh crore is 270 trillion.</p>
+                </details>
+                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
                         How do you write rupees in words on a cheque?
                         <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                     </summary>
@@ -501,219 +540,82 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/number-words.js"></script>
 <script>
-    const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-    const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
-    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
-    const MAX_RUPEES = 99999999999; // 999,99,99,999 (999 crore)
-
-    function numberToWordsBelow100(num) {
-        if (num === 0) return '';
-        if (num < 10) return ones[num];
-        if (num < 20) return teens[num - 10];
-        return tens[Math.floor(num / 10)] + (num % 10 ? ' ' + ones[num % 10] : '');
+    function setText(id, text) {
+        document.getElementById(id).textContent = text;
     }
 
-    function numberToWordsBelow1000(num) {
-        if (num === 0) return '';
-        if (num < 100) return numberToWordsBelow100(num);
-        const hundreds = Math.floor(num / 100);
-        const remainder = num % 100;
-        return ones[hundreds] + ' Hundred' + (remainder ? ' ' + numberToWordsBelow100(remainder) : '');
-    }
-
-    function numberToIndianWords(num) {
-        if (num === 0) return 'Zero';
-
-        const crore = Math.floor(num / 10000000);
-        const lakh = Math.floor((num % 10000000) / 100000);
-        const thousand = Math.floor((num % 100000) / 1000);
-        const remainder = num % 1000;
-
-        let words = [];
-
-        if (crore > 0) {
-            words.push(numberToIndianWords(crore) + ' Crore');
-        }
-        if (lakh > 0) {
-            words.push(numberToWordsBelow100(lakh) + ' Lakh');
-        }
-        if (thousand > 0) {
-            words.push(numberToWordsBelow1000(thousand) + ' Thousand');
-        }
-        if (remainder > 0) {
-            words.push(numberToWordsBelow1000(remainder));
-        }
-
-        return words.join(' ');
-    }
-
-    function numberToInternationalWords(num) {
-        if (num === 0) return 'Zero';
-
-        const billion = Math.floor(num / 1000000000);
-        const million = Math.floor((num % 1000000000) / 1000000);
-        const thousand = Math.floor((num % 1000000) / 1000);
-        const remainder = num % 1000;
-
-        let words = [];
-        if (billion > 0) words.push(numberToWordsBelow1000(billion) + ' Billion');
-        if (million > 0) words.push(numberToWordsBelow1000(million) + ' Million');
-        if (thousand > 0) words.push(numberToWordsBelow1000(thousand) + ' Thousand');
-        if (remainder > 0) words.push(numberToWordsBelow1000(remainder));
-
-        return words.join(' ');
-    }
-
-    // "15 Lakh", "1 Crore 23 Lakh 45 Thousand 678"
-    function describeIndianNumber(num) {
-        if (num === 0) return '0';
-
-        const crore = Math.floor(num / 10000000);
-        const lakh = Math.floor((num % 10000000) / 100000);
-        const thousand = Math.floor((num % 100000) / 1000);
-        const remainder = num % 1000;
-
-        let parts = [];
-        if (crore > 0) parts.push(crore + ' Crore');
-        if (lakh > 0) parts.push(lakh + ' Lakh');
-        if (thousand > 0) parts.push(thousand + ' Thousand');
-        if (remainder > 0) parts.push(remainder);
-
-        return parts.join(' ') || '0';
-    }
-
-    // "1 Million 500 Thousand"
-    function describeInternationalNumber(num) {
-        if (num === 0) return '0';
-
-        const billion = Math.floor(num / 1000000000);
-        const million = Math.floor((num % 1000000000) / 1000000);
-        const thousand = Math.floor((num % 1000000) / 1000);
-        const remainder = num % 1000;
-
-        let parts = [];
-        if (billion > 0) parts.push(billion + ' Billion');
-        if (million > 0) parts.push(million + ' Million');
-        if (thousand > 0) parts.push(thousand + ' Thousand');
-        if (remainder > 0) parts.push(remainder);
-
-        return parts.join(' ') || '0';
-    }
-
-    // 12345678 -> "1,23,45,678" (last three digits, then groups of two)
-    function groupIndian(num) {
-        const s = String(num);
-        if (s.length <= 3) return s;
-        const last3 = s.slice(-3);
-        let rest = s.slice(0, -3);
-        const parts = [];
-        while (rest.length > 2) {
-            parts.unshift(rest.slice(-2));
-            rest = rest.slice(0, -2);
-        }
-        if (rest) parts.unshift(rest);
-        return parts.join(',') + ',' + last3;
-    }
-
-    // 12345678 -> "12,345,678"
-    function groupInternational(num) {
-        return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
-
-    // "50" -> "Five Zero" (used after the word Point in the international reading)
-    function digitsInWords(str) {
-        const names = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-        return String(str).split('').map(function (d) { return names[parseInt(d, 10)]; }).join(' ');
-    }
-
-    // Parses free text like "15,00,000", "1500.50" or "1.999" into whole rupees and paise.
-    // Paise are rounded to two digits (half up); a lone trailing dot is ignored.
-    function parseAmount(raw) {
-        let cleaned = String(raw).replace(/[^0-9.]/g, '');
-        const firstDot = cleaned.indexOf('.');
-        if (firstDot !== -1) {
-            cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, '');
-        }
-        const dotIndex = cleaned.indexOf('.');
-        const intPart = dotIndex === -1 ? cleaned : cleaned.slice(0, dotIndex);
-        const fracPart = dotIndex === -1 ? '' : cleaned.slice(dotIndex + 1);
-
-        let rupees = parseInt(intPart, 10) || 0;
-        let paise = 0;
-        if (fracPart.length > 0) {
-            paise = parseInt((fracPart + '00').slice(0, 2), 10);
-            if (fracPart.length > 2 && parseInt(fracPart.charAt(2), 10) >= 5) paise += 1;
-            if (paise >= 100) {
-                rupees += 1;
-                paise -= 100;
-            }
-        }
-
-        // Limit to 999 crores
-        let capped = false;
-        if (rupees > MAX_RUPEES) {
-            rupees = MAX_RUPEES;
-            paise = 0;
-            capped = true;
-        }
-        return { rupees: rupees, paise: paise, capped: capped };
-    }
+    var unitsTimer = null;
 
     function convertNumber() {
-        const inputEl = document.getElementById('numberInput');
-        const amount = parseAmount(inputEl.value);
-        if (amount.capped) {
-            inputEl.value = String(amount.rupees);
+        var inputEl = document.getElementById('numberInput');
+        var r = NumberWords.convert(inputEl.value);
+        var err = document.getElementById('inputError');
+        var box = document.getElementById('answerBox');
+        if (r.empty || r.error) {
+            err.textContent = r.error || '';
+            err.classList.toggle('hidden', !r.error);
+            box.classList.add('opacity-40');
+            return;
         }
+        err.classList.add('hidden');
+        box.classList.remove('opacity-40');
 
-        const rupees = amount.rupees;
-        const paise = amount.paise;
-        const paiseDigits = paise > 0 ? String(paise).padStart(2, '0') : '';
-        const rupeeWords = numberToIndianWords(rupees);
-        const paiseText = paise > 0 ? ' and ' + numberToWordsBelow100(paise) + ' Paise' : '';
+        // The answer people came for goes first: digits when they typed lakh or crore, words when they typed digits.
+        var meta = r.digitCount + ' digits, ' + r.zeroCount + ' zeros · ' + r.internationalFormat;
+        if (r.hasUnits) {
+            setText('answerMain', r.indianGrouped);
+            setText('answerSub', r.inWords);
+            meta += ' · ' + r.plain;
+        } else {
+            setText('answerMain', r.inWords);
+            setText('answerSub', '₹' + r.indianGrouped);
+        }
+        setText('answerMeta', meta);
 
-        // Indian Format
-        document.getElementById('indianFormat').textContent = describeIndianNumber(rupees);
-        document.getElementById('indianGrouped').textContent = '₹' + groupIndian(rupees) + (paise > 0 ? '.' + paiseDigits : '');
+        setText('indianFormat', r.indianFormat);
+        setText('indianGrouped', '₹' + r.indianGrouped);
+        setText('internationalFormat', r.internationalFormat);
+        setText('internationalGrouped', r.internationalGrouped);
+        setText('inWords', r.inWords);
+        setText('chequeFormat', r.cheque);
+        setText('internationalWords', r.internationalWords);
 
-        // International Format
-        document.getElementById('internationalFormat').textContent = describeInternationalNumber(rupees);
-        document.getElementById('internationalGrouped').textContent = groupInternational(rupees) + (paise > 0 ? '.' + paiseDigits : '');
-
-        // In Words
-        document.getElementById('inWords').textContent = rupeeWords + ' Rupees' + paiseText + ' Only';
-
-        // Cheque Format
-        document.getElementById('chequeFormat').textContent = 'Rupees ' + rupeeWords + paiseText + ' Only';
-
-        // International Words
-        document.getElementById('internationalWords').textContent = numberToInternationalWords(rupees) + (paise > 0 ? ' Point ' + digitsInWords(paiseDigits) : '');
+        // Count how often people use the new lakh and crore input (one event after they stop typing).
+        clearTimeout(unitsTimer);
+        if (r.hasUnits && typeof trackEvent === 'function') {
+            unitsTimer = setTimeout(function () {
+                trackEvent('number_words_units', { tool_name: 'Number to Words' });
+            }, 1500);
+        }
     }
 
-    function setExample(num) {
-        document.getElementById('numberInput').value = num;
+    function setExample(value) {
+        document.getElementById('numberInput').value = value;
         convertNumber();
+        // On phones the buttons sit below the answer, so bring the answer back into view.
+        var box = document.getElementById('answerBox').getBoundingClientRect();
+        if (box.top < 0 || box.bottom > window.innerHeight) {
+            document.getElementById('answerBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 
     function copyToClipboard(elementId, event) {
-        // GA4 Event Tracking
         trackCalculatorUsage('Number to Words', document.getElementById('numberInput').value);
-
-        const text = document.getElementById(elementId).textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            // Show temporary feedback
-            const button = event.target.closest('button');
-            const originalHTML = button.innerHTML;
+        var text = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(text).then(function () {
+            var button = event.target.closest('button');
+            var originalHTML = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i>';
-            setTimeout(() => {
-                button.innerHTML = originalHTML;
-            }, 1000);
+            setTimeout(function () { button.innerHTML = originalHTML; }, 1000);
         });
     }
 
-    // Calculate on page load
+    // Links such as /number-to-words/?n=1.5%20crore open with that amount filled in.
     window.addEventListener('load', function () {
+        var n = new URLSearchParams(window.location.search).get('n');
+        if (n) document.getElementById('numberInput').value = n.slice(0, 80);
         convertNumber();
     });
 </script>

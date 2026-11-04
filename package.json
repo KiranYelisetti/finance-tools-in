@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node scripts/test-number-words.mjs",
     "build:css": "npx tailwindcss -i ./src/css/styles.css -o ./_site/css/styles.css --minify",
     "build": "npm run build:css && npx @11ty/eleventy",
     "serve": "npx @11ty/eleventy --serve",
