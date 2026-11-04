@@ -276,7 +276,14 @@
         };
     }
 
+    // Rupees expressed in a unit of 10^exp, as a plain decimal: inUnit(9800000000000n, 12) -> "9.8"
+    function inUnit(rupees, exp) {
+        var d = pow10(exp), whole = rupees / d, frac = String(rupees % d).padStart(exp, '0').replace(/0+$/, '');
+        return frac ? whole + '.' + frac : String(whole);
+    }
+
     var api = {
+        inUnit: inUnit,
         convert: convert, parseAmount: parseAmount, indianWords: indianWords, internationalWords: internationalWords,
         groupIndian: groupIndian, groupInternational: groupInternational, describeIndian: describeIndian,
         describeInternational: describeInternational

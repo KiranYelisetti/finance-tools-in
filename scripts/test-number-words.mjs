@@ -101,5 +101,13 @@ for (const bad of ["100000 lakh crore", "abc", "15 50", "1 crore in 5"]) {
 count += 1;
 if (!NW.convert("").empty) { fails += 1; console.log("FAIL empty input should be empty"); }
 
+// inUnit, used by the lakh crore table
+for (const [rupees, exp, want] of [["9800000000000", 12, "9.8"], ["9800000000000", 7, "980000"], ["270000000000000", 12, "270"],
+  ["1000000000000", 9, "1000"], ["150000", 5, "1.5"], ["12345", 3, "12.345"], ["0", 7, "0"]]) {
+  count += 1;
+  const got = NW.inUnit(BigInt(rupees), exp);
+  if (got !== want) { fails += 1; console.log(`FAIL inUnit(${rupees}, ${exp}): expected ${want}, got ${got}`); }
+}
+
 console.log(`number-words: ${count} cases, ${fails} failures`);
 process.exit(fails ? 1 : 0);

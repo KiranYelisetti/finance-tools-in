@@ -13,6 +13,8 @@ But here's the uncomfortable truth: most families don't plan their wedding budge
 
 This guide will give you a realistic, data-backed breakdown of Indian wedding costs in 2026 and practical strategies to manage the budget.
 
+Want your own number first? The **[Wedding Cost Calculator](/wedding-cost-calculator/)** projects your specific wedding cost with inflation.
+
 ## Average Wedding Costs by City Tier (2026)
 
 | Cost Category | Tier-1 (Delhi, Mumbai, Bangalore) | Tier-2 (Jaipur, Lucknow, Pune) | Tier-3 (Smaller Cities) |
