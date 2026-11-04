@@ -1055,66 +1055,7 @@
     </div>
 </footer>
 
-<!-- Cookie Consent Banner -->
-<div id="cookieConsent"
-    class="hidden fixed bottom-0 left-0 right-0 bg-gray-900 bg-opacity-95 text-white p-4 md:p-6 z-50 shadow-2xl border-t-4 border-indigo-500">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-start gap-3 flex-1">
-            <i class="fas fa-cookie-bite text-3xl text-indigo-400 flex-shrink-0"></i>
-            <div>
-                <h3 class="font-bold text-lg mb-1">We Value Your Privacy</h3>
-                <p class="text-sm text-gray-300">
-                    We use cookies and similar technologies to improve your experience, analyze site traffic, and
-                    personalize content.
-                    By clicking "Accept All", you consent to our use of cookies. See our
-                    <a href="/privacy-policy/" class="text-indigo-400 hover:text-indigo-300 underline">Privacy
-                        Policy</a> for details.
-                </p>
-            </div>
-        </div>
-        <div class="flex gap-3 flex-shrink-0">
-            <button onclick="acceptCookies()"
-                class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg font-semibold transition-colors">
-                Accept All
-            </button>
-            <button onclick="rejectCookies()"
-                class="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-semibold transition-colors">
-                Reject
-            </button>
-        </div>
-    </div>
-</div>
-
 <script>
-    // Cookie Consent Management
-    function showCookieConsent() {
-        const consent = localStorage.getItem('cookieConsent');
-        if (!consent) {
-            document.getElementById('cookieConsent').classList.remove('hidden');
-        }
-    }
-
-    function acceptCookies() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        document.getElementById('cookieConsent').classList.add('hidden');
-        if (typeof gtag !== 'undefined') {
-            gtag('consent', 'update', {
-                'analytics_storage': 'granted'
-            });
-        }
-    }
-
-    function rejectCookies() {
-        localStorage.setItem('cookieConsent', 'rejected');
-        document.getElementById('cookieConsent').classList.add('hidden');
-        if (typeof gtag !== 'undefined') {
-            gtag('consent', 'update', {
-                'analytics_storage': 'denied'
-            });
-        }
-    }
-
-    window.addEventListener('load', showCookieConsent);
     // Dark Mode Toggle
     function toggleDarkMode() {
         const html = document.documentElement;
