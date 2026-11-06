@@ -484,6 +484,7 @@ meta_keywords: "age calculator 2026, age as on date calculator, age difference c
 </main>
 
 {% block scripts %}
+<script src="/js/calc/age.js"></script>
 <script>
     // Set today's date on page load
     function setToday() {
@@ -501,98 +502,47 @@ meta_keywords: "age calculator 2026, age as on date calculator, age difference c
         const birthDateInput = document.getElementById('birthDate').value;
         const currentDateInput = document.getElementById('currentDate').value;
 
-        if (!birthDateInput || !currentDateInput) {
+        // The date sums live in /js/calc/age.js (unit tested in tests/unit)
+        const a = QTCalc.age.calculate(birthDateInput, currentDateInput);
+
+        if (a.error === 'missing') {
             alert('Please select both dates');
             return;
         }
 
-        const birthDate = new Date(birthDateInput);
-        const currentDate = new Date(currentDateInput);
-
-        if (birthDate > currentDate) {
+        if (a.error === 'future') {
             alert('Birth date cannot be in the future!');
             document.getElementById('results').classList.add('hidden');
             document.getElementById('placeholder').classList.remove('hidden');
             return;
         }
 
-        // Calculate age
-        let years = currentDate.getFullYear() - birthDate.getFullYear();
-        let months = currentDate.getMonth() - birthDate.getMonth();
-        let days = currentDate.getDate() - birthDate.getDate();
-
-        // Adjust for negative days
-        if (days < 0) {
-            months--;
-            const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
-            days += prevMonth.getDate();
-        }
-
-        // Adjust for negative months
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        // Calculate total values
-        const totalDays = Math.floor((currentDate - birthDate) / (1000 * 60 * 60 * 24));
-        const totalWeeks = Math.floor(totalDays / 7);
-        const totalMonths = years * 12 + months;
-        const totalHours = totalDays * 24;
-        const totalMinutes = totalHours * 60;
-
-        // Calculate next birthday
-        let nextBirthday = new Date(currentDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-        if (nextBirthday < currentDate) {
-            nextBirthday.setFullYear(currentDate.getFullYear() + 1);
-        }
-        const daysUntilBirthday = Math.floor((nextBirthday - currentDate) / (1000 * 60 * 60 * 24));
-
         // Display results
-        document.getElementById('years').textContent = years;
-        document.getElementById('months').textContent = months;
-        document.getElementById('days').textContent = days;
+        document.getElementById('years').textContent = a.years;
+        document.getElementById('months').textContent = a.months;
+        document.getElementById('days').textContent = a.days;
 
-        document.getElementById('totalMonths').textContent = totalMonths.toLocaleString('en-IN');
-        document.getElementById('totalWeeks').textContent = totalWeeks.toLocaleString('en-IN');
-        document.getElementById('totalDays').textContent = totalDays.toLocaleString('en-IN');
-        document.getElementById('totalHours').textContent = totalHours.toLocaleString('en-IN');
-        document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString('en-IN');
+        document.getElementById('totalMonths').textContent = a.totalMonths.toLocaleString('en-IN');
+        document.getElementById('totalWeeks').textContent = a.totalWeeks.toLocaleString('en-IN');
+        document.getElementById('totalDays').textContent = a.totalDays.toLocaleString('en-IN');
+        document.getElementById('totalHours').textContent = a.totalHours.toLocaleString('en-IN');
+        document.getElementById('totalMinutes').textContent = a.totalMinutes.toLocaleString('en-IN');
 
-        // Create age in words
-        let ageText = '';
-        if (years > 0) ageText += years + ' year' + (years > 1 ? 's' : '');
-        if (months > 0) ageText += (ageText ? ', ' : '') + months + ' month' + (months > 1 ? 's' : '');
-        if (days > 0) ageText += (ageText ? ', ' : '') + days + ' day' + (days > 1 ? 's' : '');
-        document.getElementById('ageInWords').textContent = ageText;
+        document.getElementById('ageInWords').textContent = a.text;
 
         // Next birthday text
-        const nextBirthdayText = nextBirthday.toLocaleDateString('en-IN', {
+        const nextBirthdayText = a.nextBirthday.toLocaleDateString('en-IN', {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
-        }) + ' (' + daysUntilBirthday + ' days to go)';
+        }) + ' (' + a.daysUntilBirthday + ' days to go)';
         document.getElementById('nextBirthday').textContent = nextBirthdayText;
 
-        // Generation Calculation
-        let generation = '';
-        const birthYear = birthDate.getFullYear();
-        if (birthYear >= 2013) generation = 'Gen Alpha (The Future!)';
-        else if (birthYear >= 1997) generation = 'Gen Z (Zoomer)';
-        else if (birthYear >= 1981) generation = 'Millennial (Gen Y)';
-        else if (birthYear >= 1965) generation = 'Gen X';
-        else if (birthYear >= 1946) generation = 'Baby Boomer';
-        else generation = 'Silent Generation (Respected!)';
-        document.getElementById('generation').textContent = generation;
+        document.getElementById('generation').textContent = a.generation;
 
-        // 10,000th Day Calculation (or next big milestone)
-        let milestoneDays = 10000;
-        if (totalDays > 10000) milestoneDays = 20000;
-        if (totalDays > 20000) milestoneDays = 30000;
-
-        const milestoneDate = new Date(birthDate.getTime() + milestoneDays * 24 * 60 * 60 * 1000);
-        document.getElementById('tenkDate').textContent = milestoneDate.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) + ' (' + milestoneDays.toLocaleString() + 'th Day)';
+        // 10,000th day (or the next round milestone)
+        document.getElementById('tenkDate').textContent = a.milestoneDate.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) + ' (' + a.milestoneDays.toLocaleString() + 'th Day)';
 
         // Show results, hide placeholder
         document.getElementById('results').classList.remove('hidden');

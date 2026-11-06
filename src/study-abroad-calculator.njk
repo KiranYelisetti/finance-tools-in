@@ -558,16 +558,8 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
 </main>
 
 {% block scripts %}
+<script src="/js/calc/study-abroad.js"></script>
 <script>
-    // Exchange rates (approximate, for calculation purposes)
-    const exchangeRates = {
-        'USD': 83,
-        'GBP': 105,
-        'EUR': 90,
-        'AUD': 55,
-        'CAD': 62
-    };
-
     // Preset values for popular destinations
     const presets = {
         'USA': { currency: 'USD', cost: 200000, years: 10, inflation: 6, depreciation: 4 },
@@ -617,59 +609,34 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
         const currency = document.getElementById('currency').value;
         const currentCost = parseINR(document.getElementById('currentCost').value);
         const years = parseInt(document.getElementById('yearsToStudy').value);
-        const inflationRate = parseINR(document.getElementById('inflationRate').value) / 100;
-        const depreciationRate = parseINR(document.getElementById('depreciationRate').value) / 100;
 
-        if (!currentCost || !years) {
+        // The sums and the exchange rates live in /js/calc/study-abroad.js (unit tested in tests/unit)
+        const r = QTCalc.studyAbroad.calculate({
+            currency,
+            currentCost,
+            years,
+            inflationPct: parseINR(document.getElementById('inflationRate').value),
+            depreciationPct: parseINR(document.getElementById('depreciationRate').value)
+        });
+
+        if (!r) {
             document.getElementById('results').classList.add('hidden');
             document.getElementById('placeholder').classList.remove('hidden');
             return;
         }
 
-        const exchangeRate = exchangeRates[currency];
-
-        // Calculate future cost in foreign currency (with education inflation)
-        const futureCostForeign = currentCost * Math.pow((1 + inflationRate), years);
-
-        // Calculate future exchange rate (with currency depreciation)
-        const futureExchangeRate = exchangeRate * Math.pow((1 + depreciationRate), years);
-
-        // Calculate future cost in INR
-        const futureCostINR = futureCostForeign * futureExchangeRate;
-
-        // Calculate current cost in INR (today's exchange rate)
-        const currentCostINR = currentCost * exchangeRate;
-
-        // Calculate increase
-        const increase = futureCostINR - currentCostINR;
-        const increasePercentage = ((futureCostINR / currentCostINR - 1) * 100).toFixed(1);
-
-        // Calculate individual impacts
-        const costWithJustInflation = currentCost * Math.pow((1 + inflationRate), years) * exchangeRate;
-        const costWithJustDepreciation = currentCost * futureExchangeRate;
-        const inflationImpactAmount = costWithJustInflation - currentCostINR;
-        const depreciationImpactAmount = costWithJustDepreciation - currentCostINR;
-
-        // Combined effective rate
-        const combinedRate = ((Math.pow(futureCostINR / currentCostINR, 1 / years) - 1) * 100).toFixed(2);
-
-        // Calculate SIP required (assuming 12% annual return)
-        const monthlyReturn = Math.pow(1.12, 1 / 12) - 1;
-        const months = years * 12;
-        const sipRequired = (futureCostINR * monthlyReturn) / (Math.pow(1 + monthlyReturn, months) - 1);
-
         // Display results
-        document.getElementById('totalCostINR').textContent = '₹' + futureCostINR.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('totalCostForeign').textContent = currency + ' ' + futureCostForeign.toLocaleString('en-US', { maximumFractionDigits: 0 });
-        document.getElementById('currentCostINR').textContent = '₹' + currentCostINR.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('costIncrease').textContent = '+' + increasePercentage + '%';
+        document.getElementById('totalCostINR').textContent = '₹' + r.futureCostINR.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('totalCostForeign').textContent = currency + ' ' + r.futureCostForeign.toLocaleString('en-US', { maximumFractionDigits: 0 });
+        document.getElementById('currentCostINR').textContent = '₹' + r.currentCostINR.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('costIncrease').textContent = '+' + r.increasePercent.toFixed(1) + '%';
         document.getElementById('resultYears').textContent = years;
 
-        document.getElementById('inflationImpact').textContent = '₹' + inflationImpactAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('depreciationImpact').textContent = '₹' + depreciationImpactAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('combinedRate').textContent = combinedRate + '% per year';
+        document.getElementById('inflationImpact').textContent = '₹' + r.inflationImpact.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('depreciationImpact').textContent = '₹' + r.depreciationImpact.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('combinedRate').textContent = r.combinedRatePercent.toFixed(2) + '% per year';
 
-        document.getElementById('monthlySIP').textContent = '₹' + sipRequired.toLocaleString('en-IN', { maximumFractionDigits: 0 }) + '/month';
+        document.getElementById('monthlySIP').textContent = '₹' + r.monthlySaving.toLocaleString('en-IN', { maximumFractionDigits: 0 }) + '/month';
 
         // Show results, hide placeholder
         document.getElementById('results').classList.remove('hidden');

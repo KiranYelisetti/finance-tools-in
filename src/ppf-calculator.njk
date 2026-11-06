@@ -882,6 +882,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/ppf.js"></script>
 <script>
     // Input Synchronization
     function syncInput(inputId, sliderId, event) {
@@ -936,66 +937,30 @@ sources:
     function calculatePPF() {
         const annualContribution = parseINR(document.getElementById('annualContribution').value);
         const years = parseInt(document.getElementById('investmentPeriod').value);
-        const interestRate = parseINR(document.getElementById('interestRate').value) / 100;
+        const ratePct = parseINR(document.getElementById('interestRate').value);
 
-        // Validation
-        if (annualContribution < 500 || annualContribution > 150000) {
-            return;
-        }
-
-        if (years < 15) {
-            return;
-        }
-
-        if (!annualContribution || !years || !interestRate) {
-            return;
-        }
-
-        let balance = 0;
-        let totalContribution = 0;
-        let balanceAfter7Years = 0;
-
-        // Year-by-year calculation
-        for (let year = 1; year <= years; year++) {
-            // Add annual contribution
-            balance += annualContribution;
-            totalContribution += annualContribution;
-
-            // Add interest (compounded annually)
-            balance += balance * interestRate;
-
-            // Capture balance after 7 years (for partial withdrawal)
-            if (year === 7) {
-                balanceAfter7Years = balance;
-            }
-        }
-
-        const maturityValue = balance;
-        const totalInterest = maturityValue - totalContribution;
-        const partialWithdrawal = balanceAfter7Years * 0.50; // 50% withdrawal allowed
-
-        // Tax benefit (Section 80C)
-        const taxBenefit = Math.min(annualContribution, 150000); // Max ₹1.5L
-        const taxSavings = taxBenefit * 0.30; // 30% tax bracket
+        // The sums and the range checks live in /js/calc/ppf.js (unit tested in tests/unit)
+        const r = QTCalc.ppf.calculate(annualContribution, years, ratePct);
+        if (!r) return;
 
         // GA4 Event Tracking
         trackCalculatorUsage('PPF Calculator', annualContribution);
 
         // Display Results
-        document.getElementById('maturityValue').textContent = formatIndianCurrency(maturityValue);
-        document.getElementById('totalContribution').textContent = formatIndianCurrency(totalContribution);
-        document.getElementById('totalInterest').textContent = formatIndianCurrency(totalInterest);
-        document.getElementById('taxBenefit').textContent = formatIndianCurrency(taxBenefit);
-        document.getElementById('taxSavings').textContent = formatIndianCurrency(taxSavings).replace('₹', '');
-        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(partialWithdrawal);
+        document.getElementById('maturityValue').textContent = formatIndianCurrency(r.maturityValue);
+        document.getElementById('totalContribution').textContent = formatIndianCurrency(r.totalContribution);
+        document.getElementById('totalInterest').textContent = formatIndianCurrency(r.totalInterest);
+        document.getElementById('taxBenefit').textContent = formatIndianCurrency(r.taxBenefit);
+        document.getElementById('taxSavings').textContent = formatIndianCurrency(r.taxSavings).replace('₹', '');
+        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(r.partialWithdrawal);
 
         // Breakdown
         document.getElementById('breakdown').innerHTML = `
             With an annual contribution of <strong>${formatIndianCurrency(annualContribution)}</strong> for ${years} years
-            at <strong>${(interestRate * 100).toFixed(1)}%</strong> interest, your PPF account will mature with
-            <strong>${formatIndianCurrency(maturityValue)}</strong>. This includes
-            <strong>${formatIndianCurrency(totalInterest)}</strong> in completely tax-free interest earnings.
-            You can withdraw up to <strong>${formatIndianCurrency(partialWithdrawal)}</strong>
+            at <strong>${(r.interestRate * 100).toFixed(1)}%</strong> interest, your PPF account will mature with
+            <strong>${formatIndianCurrency(r.maturityValue)}</strong>. This includes
+            <strong>${formatIndianCurrency(r.totalInterest)}</strong> in completely tax-free interest earnings.
+            You can withdraw up to <strong>${formatIndianCurrency(r.partialWithdrawal)}</strong>
             after 7 years for emergencies or specific needs.
         `;
 

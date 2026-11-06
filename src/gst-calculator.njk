@@ -737,6 +737,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/gst.js"></script>
 <script>
     let calculationType = 'add';
     let supplyType = 'intra';
@@ -793,10 +794,7 @@ sources:
 
         if (select.value === 'custom') {
             customRateDiv.classList.remove('hidden');
-            let custom = parseFloat(document.getElementById('customRate').value);
-            if (isNaN(custom) || custom < 0) custom = 0;
-            if (custom > 100) custom = 100;
-            return custom;
+            return QTCalc.gst.clampCustomRate(document.getElementById('customRate').value);
         }
 
         customRateDiv.classList.add('hidden');
@@ -812,7 +810,10 @@ sources:
         const amount = parseINR(document.getElementById('amount').value);
         const gstRate = getSelectedRate();
 
-        if (!amount || amount <= 0) {
+        // The sums live in /js/calc/gst.js (unit tested in tests/unit)
+        const r = QTCalc.gst.calculate(amount, gstRate, calculationType);
+
+        if (!r) {
             ['originalAmount', 'gstAmount', 'finalAmount', 'cgstAmount', 'sgstAmount', 'igstAmount'].forEach(function (id) {
                 document.getElementById(id).textContent = '₹0.00';
             });
@@ -823,41 +824,26 @@ sources:
             return;
         }
 
-        let originalAmount, gstAmount, finalAmount;
-
         if (calculationType === 'add') {
-            // Add GST to a base amount
-            originalAmount = amount;
-            gstAmount = (amount * gstRate) / 100;
-            finalAmount = amount + gstAmount;
-
             document.getElementById('originalLabel').textContent = 'Amount (Before GST)';
             document.getElementById('finalLabel').textContent = 'Total Amount (With GST)';
         } else {
-            // Remove GST from a tax-inclusive amount
-            finalAmount = amount;
-            originalAmount = (amount * 100) / (100 + gstRate);
-            gstAmount = amount - originalAmount;
-
             document.getElementById('originalLabel').textContent = 'Amount (Without GST)';
             document.getElementById('finalLabel').textContent = 'Original Amount (With GST)';
         }
 
-        // Intra-state: CGST and SGST are each half of the GST.
-        // Inter-state: the whole GST is IGST.
-        const halfAmount = gstAmount / 2;
-
-        document.getElementById('originalAmount').textContent = formatIndianCurrency(originalAmount);
-        document.getElementById('gstAmount').textContent = formatIndianCurrency(gstAmount);
-        document.getElementById('finalAmount').textContent = formatIndianCurrency(finalAmount);
+        document.getElementById('originalAmount').textContent = formatIndianCurrency(r.originalAmount);
+        document.getElementById('gstAmount').textContent = formatIndianCurrency(r.gstAmount);
+        document.getElementById('finalAmount').textContent = formatIndianCurrency(r.finalAmount);
         document.getElementById('rateDisplay').textContent = formatRate(gstRate);
 
-        document.getElementById('cgstAmount').textContent = formatIndianCurrency(halfAmount);
-        document.getElementById('sgstAmount').textContent = formatIndianCurrency(halfAmount);
+        // Intra-state: CGST and SGST are each half of the GST. Inter-state: the whole GST is IGST.
+        document.getElementById('cgstAmount').textContent = formatIndianCurrency(r.cgst);
+        document.getElementById('sgstAmount').textContent = formatIndianCurrency(r.sgst);
         document.getElementById('cgstRate').textContent = formatRate(gstRate / 2);
         document.getElementById('sgstRate').textContent = formatRate(gstRate / 2);
 
-        document.getElementById('igstAmount').textContent = formatIndianCurrency(gstAmount);
+        document.getElementById('igstAmount').textContent = formatIndianCurrency(r.igst);
         document.getElementById('igstRate').textContent = formatRate(gstRate);
     }
 

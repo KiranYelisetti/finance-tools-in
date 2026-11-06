@@ -643,6 +643,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/income-tax.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('income_tax_calc');
@@ -655,127 +656,63 @@ sources:
         return '₹' + Math.round(amount).toLocaleString('en-IN');
     }
 
-    function calcOldRegimeTax(taxableIncome) {
-        let tax = 0;
-        if (taxableIncome <= 250000) {
-            tax = 0;
-        } else if (taxableIncome <= 500000) {
-            tax = (taxableIncome - 250000) * 0.05;
-        } else if (taxableIncome <= 1000000) {
-            tax = 12500 + (taxableIncome - 500000) * 0.20;
-        } else {
-            tax = 12500 + 100000 + (taxableIncome - 1000000) * 0.30;
-        }
-        return tax;
-    }
-
-    function calcNewRegimeTax(taxableIncome) {
-        let tax = 0;
-        if (taxableIncome <= 400000) {
-            tax = 0;
-        } else if (taxableIncome <= 800000) {
-            tax = (taxableIncome - 400000) * 0.05;
-        } else if (taxableIncome <= 1200000) {
-            tax = 20000 + (taxableIncome - 800000) * 0.10;
-        } else if (taxableIncome <= 1600000) {
-            tax = 60000 + (taxableIncome - 1200000) * 0.15;
-        } else if (taxableIncome <= 2000000) {
-            tax = 120000 + (taxableIncome - 1600000) * 0.20;
-        } else if (taxableIncome <= 2400000) {
-            tax = 200000 + (taxableIncome - 2000000) * 0.25;
-        } else {
-            tax = 300000 + (taxableIncome - 2400000) * 0.30;
-        }
-        return tax;
-    }
-
     function calculateTax(shouldScroll = true) {
-        const grossSalary = parseINR(document.getElementById('grossSalary').value) || 0;
-        const otherIncome = parseINR(document.getElementById('otherIncome').value) || 0;
-        const d80C = Math.min(parseINR(document.getElementById('deduction80C').value) || 0, 150000);
-        const d80D = parseINR(document.getElementById('deduction80D').value) || 0;
-        const hra = parseINR(document.getElementById('hraExemption').value) || 0;
-        const homeLoan = Math.min(parseINR(document.getElementById('homeLoanInterest').value) || 0, 200000);
-        const nps = Math.min(parseINR(document.getElementById('nps80CCD').value) || 0, 50000);
-        const otherDed = parseINR(document.getElementById('otherDeductions').value) || 0;
+        const value = (id) => parseINR(document.getElementById(id).value) || 0;
 
-        const totalGross = grossSalary + otherIncome;
-
-        // ---- OLD REGIME ----
-        const oldStdDed = Math.min(50000, grossSalary);
-        const totalOldDeductions = d80C + d80D + hra + homeLoan + nps + otherDed;
-        const oldTaxableIncome = Math.max(0, totalGross - oldStdDed - totalOldDeductions);
-        let oldTaxBeforeCess = calcOldRegimeTax(oldTaxableIncome);
-
-        // Rebate u/s 87A (Old): up to ₹12,500 if taxable income ≤ ₹5L
-        let oldRebate = 0;
-        if (oldTaxableIncome <= 500000) {
-            oldRebate = Math.min(oldTaxBeforeCess, 12500);
-        }
-        const oldTaxAfterRebate = Math.max(0, oldTaxBeforeCess - oldRebate);
-        const oldCess = oldTaxAfterRebate * 0.04;
-        const oldTotalTax = Math.round(oldTaxAfterRebate + oldCess);
-
-        // ---- NEW REGIME ----
-        const newStdDed = Math.min(75000, grossSalary);
-        const newTaxableIncome = Math.max(0, totalGross - newStdDed);
-        let newTaxBeforeCess = calcNewRegimeTax(newTaxableIncome);
-
-        // Rebate u/s 87A (New): full rebate if taxable income ≤ ₹12L.
-        // Marginal relief: just above ₹12L, tax after rebate cannot exceed
-        // the amount by which income exceeds ₹12L (Finance Act 2025).
-        let newRebate = 0;
-        if (newTaxableIncome <= 1200000) {
-            newRebate = Math.min(newTaxBeforeCess, 60000);
-        } else {
-            const excessOver12L = newTaxableIncome - 1200000;
-            if (newTaxBeforeCess > excessOver12L) {
-                newRebate = newTaxBeforeCess - excessOver12L;
-            }
-        }
-        const newTaxAfterRebate = Math.max(0, newTaxBeforeCess - newRebate);
-        const newCess = newTaxAfterRebate * 0.04;
-        const newTotalTax = Math.round(newTaxAfterRebate + newCess);
+        // The slabs, rebates, caps and cess live in /js/calc/income-tax.js (unit tested in tests/unit)
+        const t = QTCalc.incomeTax.compare({
+            grossSalary: value('grossSalary'),
+            otherIncome: value('otherIncome'),
+            deduction80C: value('deduction80C'),
+            deduction80D: value('deduction80D'),
+            hraExemption: value('hraExemption'),
+            homeLoanInterest: value('homeLoanInterest'),
+            nps80CCD: value('nps80CCD'),
+            otherDeductions: value('otherDeductions')
+        });
+        const totalGross = t.totalGross;
+        const o = t.old;
+        const n = t.new;
 
         // GA4 Tracking
-        trackCalculatorUsage('Income Tax Calculator', grossSalary);
+        trackCalculatorUsage('Income Tax Calculator', value('grossSalary'));
 
         // ---- Display Old Regime ----
         document.getElementById('oldGrossIncome').textContent = fmt(totalGross);
-        document.getElementById('oldStdDeduction').textContent = '- ' + fmt(oldStdDed);
-        document.getElementById('oldChapterDeductions').textContent = '- ' + fmt(totalOldDeductions);
-        document.getElementById('oldTaxableIncome').textContent = fmt(oldTaxableIncome);
-        document.getElementById('oldTaxBeforeCess').textContent = fmt(Math.round(oldTaxBeforeCess));
-        document.getElementById('oldRebate').textContent = oldRebate > 0 ? '- ' + fmt(oldRebate) : '₹0';
-        document.getElementById('oldCess').textContent = fmt(Math.round(oldCess));
-        document.getElementById('oldTotalTax').textContent = fmt(oldTotalTax);
-        document.getElementById('oldEffectiveRate').textContent = totalGross > 0 ? ((oldTotalTax / totalGross) * 100).toFixed(1) + '%' : '0%';
-        document.getElementById('oldMonthlyTax').textContent = fmt(Math.round(oldTotalTax / 12));
+        document.getElementById('oldStdDeduction').textContent = '- ' + fmt(o.stdDeduction);
+        document.getElementById('oldChapterDeductions').textContent = '- ' + fmt(o.deductions);
+        document.getElementById('oldTaxableIncome').textContent = fmt(o.taxableIncome);
+        document.getElementById('oldTaxBeforeCess').textContent = fmt(Math.round(o.taxBeforeCess));
+        document.getElementById('oldRebate').textContent = o.rebate > 0 ? '- ' + fmt(o.rebate) : '₹0';
+        document.getElementById('oldCess').textContent = fmt(Math.round(o.cess));
+        document.getElementById('oldTotalTax').textContent = fmt(o.totalTax);
+        document.getElementById('oldEffectiveRate').textContent = totalGross > 0 ? ((o.totalTax / totalGross) * 100).toFixed(1) + '%' : '0%';
+        document.getElementById('oldMonthlyTax').textContent = fmt(Math.round(o.totalTax / 12));
 
         // ---- Display New Regime ----
         document.getElementById('newGrossIncome').textContent = fmt(totalGross);
-        document.getElementById('newStdDeduction').textContent = '- ' + fmt(newStdDed);
-        document.getElementById('newTaxableIncome').textContent = fmt(newTaxableIncome);
-        document.getElementById('newTaxBeforeCess').textContent = fmt(Math.round(newTaxBeforeCess));
-        document.getElementById('newRebate').textContent = newRebate > 0 ? '- ' + fmt(newRebate) : '₹0';
-        document.getElementById('newCess').textContent = fmt(Math.round(newCess));
-        document.getElementById('newTotalTax').textContent = fmt(newTotalTax);
-        document.getElementById('newEffectiveRate').textContent = totalGross > 0 ? ((newTotalTax / totalGross) * 100).toFixed(1) + '%' : '0%';
-        document.getElementById('newMonthlyTax').textContent = fmt(Math.round(newTotalTax / 12));
+        document.getElementById('newStdDeduction').textContent = '- ' + fmt(n.stdDeduction);
+        document.getElementById('newTaxableIncome').textContent = fmt(n.taxableIncome);
+        document.getElementById('newTaxBeforeCess').textContent = fmt(Math.round(n.taxBeforeCess));
+        document.getElementById('newRebate').textContent = n.rebate > 0 ? '- ' + fmt(n.rebate) : '₹0';
+        document.getElementById('newCess').textContent = fmt(Math.round(n.cess));
+        document.getElementById('newTotalTax').textContent = fmt(n.totalTax);
+        document.getElementById('newEffectiveRate').textContent = totalGross > 0 ? ((n.totalTax / totalGross) * 100).toFixed(1) + '%' : '0%';
+        document.getElementById('newMonthlyTax').textContent = fmt(Math.round(n.totalTax / 12));
 
         // ---- Verdict ----
-        const diff = Math.abs(oldTotalTax - newTotalTax);
-        if (newTotalTax < oldTotalTax) {
+        const diff = t.difference;
+        if (t.better === 'new') {
             document.getElementById('verdictText').textContent = '✅ New Regime saves you ' + fmt(diff) + '/year!';
             document.getElementById('verdictText').className = 'text-xl font-bold text-emerald-600 mb-2';
-        } else if (oldTotalTax < newTotalTax) {
+        } else if (t.better === 'old') {
             document.getElementById('verdictText').textContent = '✅ Old Regime saves you ' + fmt(diff) + '/year!';
             document.getElementById('verdictText').className = 'text-xl font-bold text-orange-600 mb-2';
         } else {
             document.getElementById('verdictText').textContent = '⚖️ Both regimes result in the same tax!';
             document.getElementById('verdictText').className = 'text-xl font-bold text-blue-600 mb-2';
         }
-        document.getElementById('verdictSavings').textContent = 'Old Regime: ' + fmt(oldTotalTax) + '/year (' + fmt(Math.round(oldTotalTax/12)) + '/month) | New Regime: ' + fmt(newTotalTax) + '/year (' + fmt(Math.round(newTotalTax/12)) + '/month)';
+        document.getElementById('verdictSavings').textContent = 'Old Regime: ' + fmt(o.totalTax) + '/year (' + fmt(Math.round(o.totalTax/12)) + '/month) | New Regime: ' + fmt(n.totalTax) + '/year (' + fmt(Math.round(n.totalTax/12)) + '/month)';
 
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {

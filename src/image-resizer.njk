@@ -513,6 +513,7 @@ meta_keywords: "resize image to 20kb, compress image to 50kb, online photo resiz
 </main>
 
 {% block scripts %}
+<script src="/js/calc/image-resizer.js"></script>
 <script>
     let originalImage = null;
     let canvas = document.getElementById('canvas');
@@ -582,49 +583,39 @@ meta_keywords: "resize image to 20kb, compress image to 50kb, online photo resiz
             return;
         }
 
-        const widthVal = document.getElementById('customWidth').value;
-        const heightVal = document.getElementById('customHeight').value;
-        const ratio = originalImage.width / originalImage.height;
-
+        // The sizing sums live in /js/calc/image-resizer.js (unit tested in tests/unit)
         if (changedDimension === 'width') {
-            const width = parseInt(widthVal);
-            if (!isNaN(width) && width > 0) {
-                document.getElementById('customHeight').value = Math.round(width / ratio);
-            }
+            const height = QTCalc.imageResizer.linkedSide('width', document.getElementById('customWidth').value, originalImage);
+            if (height !== null) document.getElementById('customHeight').value = height;
         } else {
-            const height = parseInt(heightVal);
-            if (!isNaN(height) && height > 0) {
-                document.getElementById('customWidth').value = Math.round(height * ratio);
-            }
+            const width = QTCalc.imageResizer.linkedSide('height', document.getElementById('customHeight').value, originalImage);
+            if (width !== null) document.getElementById('customWidth').value = width;
         }
 
         resizeImage();
     }
 
     function applyPreset() {
-        const preset = document.getElementById('presetSize').value;
+        const preset = QTCalc.imageResizer.parsePreset(document.getElementById('presetSize').value);
         if (!preset) return;
 
-        const [width, height] = preset.split(',').map(Number);
-        document.getElementById('customWidth').value = width;
-        document.getElementById('customHeight').value = height;
+        document.getElementById('customWidth').value = preset.width;
+        document.getElementById('customHeight').value = preset.height;
         resizeImage();
     }
 
     function resizeImage() {
         if (!originalImage) return;
 
-        const mode = document.getElementById('resizeMode').value;
-        let newWidth, newHeight;
-
-        if (mode === 'percentage') {
-            const percentage = parseInt(document.getElementById('percentage').value) / 100;
-            newWidth = Math.round(originalImage.width * percentage);
-            newHeight = Math.round(originalImage.height * percentage);
-        } else {
-            newWidth = parseInt(document.getElementById('customWidth').value) || originalImage.width;
-            newHeight = parseInt(document.getElementById('customHeight').value) || originalImage.height;
-        }
+        const size = QTCalc.imageResizer.targetSize(
+            document.getElementById('resizeMode').value,
+            originalImage,
+            document.getElementById('percentage').value,
+            document.getElementById('customWidth').value,
+            document.getElementById('customHeight').value
+        );
+        const newWidth = size.width;
+        const newHeight = size.height;
 
         // Resize canvas
         canvas.width = newWidth;
@@ -641,9 +632,7 @@ meta_keywords: "resize image to 20kb, compress image to 50kb, online photo resiz
         const quality = parseInt(document.getElementById('quality').value) / 100;
         canvas.toBlob((blob) => {
             if (blob) {
-                const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
-                const sizeKB = (blob.size / 1024).toFixed(2);
-                document.getElementById('fileSize').textContent = sizeMB > 1 ? sizeMB + ' MB' : sizeKB + ' KB';
+                document.getElementById('fileSize').textContent = QTCalc.imageResizer.fileSizeLabel(blob.size);
             }
         }, format, quality);
     }
@@ -661,11 +650,7 @@ meta_keywords: "resize image to 20kb, compress image to 50kb, online photo resiz
             a.href = url;
 
             // Set filename with proper extension
-            let extension = 'png';
-            if (format === 'image/jpeg') extension = 'jpg';
-            else if (format === 'image/webp') extension = 'webp';
-
-            a.download = 'resized-image.' + extension;
+            a.download = 'resized-image.' + QTCalc.imageResizer.extensionFor(format);
             a.click();
             URL.revokeObjectURL(url);
         }, format, quality);

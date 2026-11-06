@@ -788,6 +788,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/ssy.js"></script>
 <script>
     // Input Synchronization
     function syncInput(inputId, sliderId, event) {
@@ -847,76 +848,32 @@ sources:
 
         const currentAge = parseINR(currentAgeStr);
         const annualDeposit = parseINR(annualDepositStr);
-        const interestRate = parseINR(interestRateStr) / 100;
 
-        // Validation
-        if (currentAge < 0 || currentAge > 10) {
-            return;
-        }
-
-        if (annualDeposit < 250 || annualDeposit > 150000) {
-            return;
-        }
-
-        calculateSSY(currentAge, annualDeposit, interestRate);
+        // The sums and the range checks live in /js/calc/ssy.js (unit tested in tests/unit)
+        const r = QTCalc.ssy.calculate(currentAge, annualDeposit, parseINR(interestRateStr));
+        if (!r) return;
+        showSSY(currentAge, annualDeposit, r);
     }
 
-    // Calculate SSY
-    function calculateSSY(currentAge, annualDeposit, interestRate) {
-        const depositYears = 15; // Deposits required for 15 years
-        const maturityYears = 21; // Account matures after 21 years
-
-        let balance = 0;
-        let totalInvestment = 0;
-        let balanceAt18 = 0;
-
-        // Year-by-year calculation
-        for (let year = 1; year <= maturityYears; year++) {
-            // Add annual deposit for first 15 years
-            if (year <= depositYears) {
-                balance += annualDeposit;
-                totalInvestment += annualDeposit;
-            }
-
-            // Add interest (compounded annually)
-            balance += balance * interestRate;
-
-            // Capture balance when girl turns 18 (for partial withdrawal)
-            const girlAge = currentAge + year;
-            if (girlAge === 18) {
-                balanceAt18 = balance;
-            }
-        }
-
-        const maturityValue = balance;
-        const totalInterest = maturityValue - totalInvestment;
-        const partialWithdrawal = balanceAt18 * 0.50; // 50% withdrawal allowed
-
-        // Tax benefit (Section 80C)
-        const taxBenefit = Math.min(annualDeposit, 150000); // Max ₹1.5L
-        const taxSavings = taxBenefit * 0.30; // 30% tax bracket
-
+    function showSSY(currentAge, annualDeposit, r) {
         // GA4 Event Tracking
         trackCalculatorUsage('SSY Calculator', annualDeposit);
 
         // Display Results
-        document.getElementById('maturityValue').textContent = formatIndianCurrency(maturityValue);
-        document.getElementById('totalInvestment').textContent = formatIndianCurrency(totalInvestment);
-        document.getElementById('totalInterest').textContent = formatIndianCurrency(totalInterest);
-        document.getElementById('taxBenefit').textContent = formatIndianCurrency(taxBenefit);
-        document.getElementById('taxSavings').textContent = formatIndianCurrency(taxSavings).replace('₹', '');
-        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(partialWithdrawal);
+        document.getElementById('maturityValue').textContent = formatIndianCurrency(r.maturityValue);
+        document.getElementById('totalInvestment').textContent = formatIndianCurrency(r.totalInvestment);
+        document.getElementById('totalInterest').textContent = formatIndianCurrency(r.totalInterest);
+        document.getElementById('taxBenefit').textContent = formatIndianCurrency(r.taxBenefit);
+        document.getElementById('taxSavings').textContent = formatIndianCurrency(r.taxSavings).replace('₹', '');
+        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(r.partialWithdrawal);
 
         // Breakdown
-        const maturityAge = currentAge + maturityYears;
-        const depositEndAge = currentAge + depositYears;
-
         document.getElementById('breakdown').innerHTML = `
             With an annual deposit of <strong>${formatIndianCurrency(annualDeposit)}</strong> for 15 years
-            (from age ${currentAge} to ${depositEndAge}), your daughter's SSY account will have
-            <strong>${formatIndianCurrency(maturityValue)}</strong> when she turns ${maturityAge}.
-            This includes <strong>${formatIndianCurrency(totalInterest)}</strong> in tax-free interest earnings.
-            At age 18, she can withdraw up to <strong>${formatIndianCurrency(partialWithdrawal)}</strong>
+            (from age ${currentAge} to ${r.depositEndAge}), your daughter's SSY account will have
+            <strong>${formatIndianCurrency(r.maturityValue)}</strong> when she turns ${r.maturityAge}.
+            This includes <strong>${formatIndianCurrency(r.totalInterest)}</strong> in tax-free interest earnings.
+            At age 18, she can withdraw up to <strong>${formatIndianCurrency(r.partialWithdrawal)}</strong>
             for higher education expenses.
         `;
 

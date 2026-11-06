@@ -1,4 +1,5 @@
 // Checks that apply to every built page: tools, about, contact, legal, updates, the blog index and every post.
+import fs from "node:fs";
 import { test, expect } from "./fixtures.mjs";
 import { pages, redirects, servedPaths } from "../lib/site.mjs";
 
@@ -42,6 +43,11 @@ test.describe("site-wide facts (checked once)", () => {
   test("robots.txt, ads.txt and the favicon are served", async ({ request }) => {
     for (const path of ["/robots.txt", "/ads.txt", "/favicon.svg", "/og-image.png", "/js/main.js", "/js/number-words.js", "/css/styles.css"]) {
       expect((await request.get(path)).status(), path).toBe(200);
+    }
+    // Every calculator module in src/js/calc is copied to the site as is
+    const calcDir = new URL("../../src/js/calc/", import.meta.url);
+    for (const file of fs.readdirSync(calcDir).filter((f) => f.endsWith(".js"))) {
+      expect((await request.get("/js/calc/" + file)).status(), "/js/calc/" + file).toBe(200);
     }
     const robots = await (await request.get("/robots.txt")).text();
     expect(robots).toMatch(/sitemap/i);

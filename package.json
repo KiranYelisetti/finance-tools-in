@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node scripts/test-number-words.mjs",
+    "test": "node scripts/test-number-words.mjs && node scripts/run-unit-tests.mjs",
+    "test:unit": "node scripts/run-unit-tests.mjs",
     "test:e2e": "npm run build && npx playwright test",
     "test:e2e:only": "npx playwright test",
     "build:css": "npx tailwindcss -i ./src/css/styles.css -o ./_site/css/styles.css --minify",
