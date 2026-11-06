@@ -104,3 +104,21 @@ test("a large text is counted quickly", () => {
   assert.equal(a.sentences, 20000);
   assert.ok(ms < 4000, `took ${ms} ms`);
 });
+
+// The counter cuts long text into pieces so older engines stay fast (Node 20 hung the deploy on 7 Nov 2026).
+// Cutting must never change the count, even in text with no spaces, emoji families, flags and Hindi conjuncts.
+test("characters: long text is counted in pieces without changing the count", () => {
+  const seg = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+  const direct = (s) => { let n = 0; for (const _ of seg.segment(s)) n++; return n; };
+  const units = ["क्षत्रि👩‍👩‍👧", "x👩‍👩‍👧", "ab🇮🇳", "कि👍🏽", "éz", "line\n", "नमस्ते दुनिया 👍 hello "];
+  for (const u of units) {
+    for (const k of [1, 2999, 3001]) {
+      const text = u.repeat(k);
+      assert.equal(W.graphemes(text), direct(text), `${JSON.stringify(u)} x ${k}`);
+    }
+  }
+  const big = "क्षत्रि👩‍👩‍👧".repeat(70000);
+  const t = Date.now();
+  W.graphemes(big);
+  assert.ok(Date.now() - t < 2000, "a million characters with no spaces in under 2 seconds");
+});

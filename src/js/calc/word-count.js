@@ -40,15 +40,38 @@
     var STOP_SET = {};
     for (var s = 0; s < STOP.length; s++) STOP_SET[STOP[s]] = true;
 
+    // Characters as people see them. Older engines (Node 20, older phone browsers) slow down badly when
+    // Intl.Segmenter walks one huge string, so the text goes in pieces of about 4,000 characters, each cut
+    // just after a space. A grapheme never contains a space, so cutting there never splits one.
+    var PIECE = 4000;
+
     function graphemes(text) {
-        if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-            var seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
-            var n = 0;
-            var it = seg.segment(text)[Symbol.iterator]();
+        if (typeof Intl === 'undefined' || !Intl.Segmenter) return Array.from(text).length;
+        var seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+        var n = 0, start = 0;
+        while (start < text.length) {
+            var end = Math.min(text.length, start + PIECE);
+            if (end < text.length) {
+                // Step back to just after the nearest space, tab or line break. With none nearby, at least
+                // never cut between the two halves of an emoji or other surrogate pair.
+                var cut = end;
+                while (cut > end - 400 && cut > start && !/\s/.test(text.charAt(cut - 1))) cut--;
+                if (cut > start && /\s/.test(text.charAt(cut - 1))) {
+                    end = cut;
+                } else {
+                    // No space nearby: let the segmenter pick the boundary, looking at a small window around the cut
+                    var lo = Math.max(start + 1, end - 64);
+                    var wit = seg.segment(text.slice(lo, Math.min(text.length, end + 64)))[Symbol.iterator]();
+                    var best = 0;
+                    for (var w = wit.next(); !w.done && w.value.index <= end - lo; w = wit.next()) best = w.value.index;
+                    if (lo + best > start) end = lo + best;
+                }
+            }
+            var it = seg.segment(text.slice(start, end))[Symbol.iterator]();
             for (var r = it.next(); !r.done; r = it.next()) n++;
-            return n;
+            start = end;
         }
-        return Array.from(text).length;
+        return n;
     }
 
     function tokens(text) {
