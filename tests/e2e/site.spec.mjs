@@ -1,7 +1,7 @@
 // Checks that apply to every built page: tools, about, contact, legal, updates, the blog index and every post.
 import fs from "node:fs";
 import { test, expect } from "./fixtures.mjs";
-import { pages, redirects, servedPaths } from "../lib/site.mjs";
+import { pages, redirects, servedPaths, TOOL_PAGES } from "../lib/site.mjs";
 
 const SERVED = servedPaths();
 const SITE_HOSTS = new Set(["www.quicktoolsindia.com", "quicktoolsindia.com"]);
@@ -38,6 +38,19 @@ test.describe("site-wide facts (checked once)", () => {
     }
     const listed = new Set(locs.map((l) => l.pathname));
     for (const p of pages) expect(listed.has(p.url), `${p.url} is in the sitemap`).toBe(true);
+  });
+
+  test("every page with form controls is a listed tool with its own spec", () => {
+    const specs = fs.readdirSync(new URL(".", import.meta.url))
+      .filter((f) => f.endsWith(".spec.mjs") && f !== "site.spec.mjs")
+      .map((f) => fs.readFileSync(new URL(f, import.meta.url), "utf8"));
+    for (const p of pages) {
+      const html = fs.readFileSync(p.file, "utf8");
+      if (/<(input|select|textarea)\b/i.test(html)) expect(TOOL_PAGES, `${p.url} has form controls, so list it in TOOL_PAGES and test it`).toContain(p.url);
+    }
+    for (const url of TOOL_PAGES) {
+      expect(specs.some((src) => src.includes(`"${url}"`) || src.includes(`goto("${url}`)), `a spec opens ${url}`).toBe(true);
+    }
   });
 
   test("robots.txt, ads.txt and the favicon are served", async ({ request }) => {
