@@ -1,0 +1,238 @@
+---
+layout: base.njk
+noIconFont: true
+eleventyExcludeFromCollections: true
+permalink: /design-system/
+robots: "noindex, nofollow"
+title: Design system - QuickTools India
+meta_description: "The QuickTools India design system: colour tokens, type scale, components and states, in day and night themes."
+palette:
+  - name: chai
+    note: warm neutrals, paper and ink
+    shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+  - name: haldi
+    note: turmeric yellow, main actions
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+  - name: rani
+    note: rani pink, second accent
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+  - name: mor
+    note: peacock teal, links and focus
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+  - name: mehendi
+    note: henna green, success
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+  - name: neel
+    note: indigo, the everyday group only
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+  - name: sindoor
+    note: vermilion, errors
+    shades: [50, 100, 200, 300, 400, 500, 600, 700]
+roles: [canvas, surface, sunken, ink, ink-2, muted, line, line-soft, shadow, primary, accent, link, focus, success, danger]
+typescale:
+  - [5xl, "Display", "qt-display"]
+  - [4xl, "Page title", "qt-h1"]
+  - [3xl, "Section title", "qt-h2"]
+  - [xl, "Card title", "qt-h3"]
+  - [lg, "Lede paragraph", "qt-lede"]
+---
+
+<main class="qt-wrap pb-10">
+    <section class="qt-toolhead">
+        <div class="flex flex-wrap gap-3">
+            <span class="qt-sticker">Desi Pop v2</span>
+            <span class="qt-stamp">Internal reference, not indexed</span>
+        </div>
+        <h1 class="qt-h1 mt-4">Design system</h1>
+        <p class="qt-lede mt-4">Every colour, size and component QuickTools uses, in one place. Pages use roles and components only, never raw colours. Switch day and night with the button in the header to check both themes. Written up in <code>docs/DESIGN-SYSTEM.md</code>.</p>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-colour">
+        <h2 id="ds-colour" class="qt-h2 mb-2">1. Colour</h2>
+        <p class="text-ink-2 mb-6 max-w-2xl">Raw scales are named after Indian colours. Components never use them directly: they use the roles below, which the night theme swaps.</p>
+        <div class="space-y-5">
+            {% for c in palette %}
+            <div>
+                <p class="font-bold">{{ c.name }} <span class="text-muted font-medium">{{ c.note }}</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    {% for s in c.shades %}
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--{{ c.name }}-{{ s }})"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">{{ s }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h3 class="qt-h3 mt-10 mb-3">Roles</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {% for r in roles %}
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-{{ r }})"></span>
+                <code class="text-sm font-bold">--qt-{{ r }}</code>
+            </div>
+            {% endfor %}
+        </div>
+        <h3 class="qt-h3 mt-10 mb-3">Tool groups</h3>
+        <div class="flex flex-wrap gap-3">
+            {% for g in tools %}<span class="qt-sticker is-{{ g.key }}">.is-{{ g.key }} · {{ g.group }}</span>{% endfor %}
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-type">
+        <h2 id="ds-type" class="qt-h2 mb-2">2. Type</h2>
+        <p class="text-ink-2 mb-6 max-w-2xl">One family, Bricolage Grotesque, variable in weight and optical size. Big sizes get the chunky display cut on their own. Sizes are fluid between a 360 px phone and a 1440 px screen. Figures are tabular wherever money is shown.</p>
+        <div class="qt-card space-y-6">
+            {% for t in typescale %}
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.{{ t[2] }} · {{ t[0] }}</code>
+                <p class="{{ t[2] }}">{{ t[1] }}: ₹15,00,000</p>
+            </div>
+            {% endfor %}
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline">
+                <code class="text-sm text-muted">.qt-eyebrow</code>
+                <p class="qt-eyebrow">Eyebrow label above a title</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-shape">
+        <h2 id="ds-shape" class="qt-h2 mb-6">3. Shape, depth and space</h2>
+        <div class="grid gap-5 md:grid-cols-3">
+            <div class="qt-card"><p class="font-bold mb-3">Radius</p>
+                <div class="flex gap-3 items-end">
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-sm)"></div>
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-md)"></div>
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-lg)"></div>
+                    <div class="w-20 h-9 bg-primary border-2 border-line" style="border-radius: var(--qt-r-pill)"></div>
+                </div>
+                <p class="qt-hint">8, 12, 20 px and pill. Fields use 12, cards 20.</p>
+            </div>
+            <div class="qt-card"><p class="font-bold mb-3">Hard shadow</p>
+                <div class="flex gap-5 items-end">
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-1)"></div>
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-2)"></div>
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-3)"></div>
+                </div>
+                <p class="qt-hint">2, 4, 7 px offsets, no blur. Pressing a button moves it into its shadow.</p>
+            </div>
+            <div class="qt-card"><p class="font-bold mb-3">Space</p>
+                <div class="flex gap-2 items-end">
+                    {% for s in [1, 2, 3, 4, 6, 8, 12] %}<div class="bg-rani-400 border-2 border-line" style="width: {{ s * 4 }}px; height: {{ s * 4 }}px"></div>{% endfor %}
+                </div>
+                <p class="qt-hint">A 4 px grid: 4, 8, 12, 16, 24, 32, 48. Card padding is fluid, 18 to 30 px.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-actions">
+        <h2 id="ds-actions" class="qt-h2 mb-6">4. Buttons and chips</h2>
+        <div class="qt-card space-y-6">
+            <div class="flex flex-wrap gap-3 items-center">
+                <button type="button" class="qt-btn">Primary</button>
+                <button type="button" class="qt-btn qt-btn--secondary">Secondary</button>
+                <button type="button" class="qt-btn qt-btn--ink">Ink</button>
+                <button type="button" class="qt-btn qt-btn--accent">Accent</button>
+                <button type="button" class="qt-btn qt-btn--ghost">Ghost</button>
+                <button type="button" class="qt-btn" disabled>Disabled</button>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center">
+                <button type="button" class="qt-btn qt-btn--sm">Small</button>
+                <button type="button" class="qt-btn">Medium</button>
+                <button type="button" class="qt-btn qt-btn--lg">Large</button>
+            </div>
+            <div class="qt-chips">
+                <button type="button" class="qt-chip">15 lakh</button>
+                <button type="button" class="qt-chip" aria-pressed="true">Pressed</button>
+                <button type="button" class="qt-chip">1.5 crore</button>
+            </div>
+            <div class="qt-seg" role="group" aria-label="Example">
+                <button type="button" aria-pressed="true">New regime</button>
+                <button type="button" aria-pressed="false">Old regime</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-fields">
+        <h2 id="ds-fields" class="qt-h2 mb-6">5. Fields</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+            <div class="qt-card qt-fields">
+                <div>
+                    <label class="qt-label" for="ds-a">Loan amount <span class="qt-label-value">₹50 lakh</span></label>
+                    <div class="qt-affix is-prefix is-xl"><span class="qt-affix-text" aria-hidden="true">₹</span><input id="ds-a" class="qt-input qt-input--xl" value="50,00,000"></div>
+                    <input type="range" class="qt-range" min="0" max="100" value="40" aria-label="Example slider">
+                    <div class="qt-range-ends"><span>₹5 lakh</span><span>₹2 crore</span></div>
+                </div>
+                <div>
+                    <label class="qt-label" for="ds-b">Rate</label>
+                    <div class="qt-affix is-suffix"><input id="ds-b" class="qt-input" value="8.5"><span class="qt-affix-text">% a year</span></div>
+                    <p class="qt-hint">A hint sits under the field it explains.</p>
+                </div>
+            </div>
+            <div class="qt-card qt-fields">
+                <div>
+                    <label class="qt-label" for="ds-c">City</label>
+                    <span class="qt-select"><select id="ds-c" class="qt-input"><option>Hyderabad</option><option>Mumbai</option></select></span>
+                </div>
+                <div>
+                    <label class="qt-label" for="ds-d">With an error</label>
+                    <input id="ds-d" class="qt-input" value="12,,00" aria-invalid="true">
+                    <p class="qt-error">Type the amount in digits, like 12,00,000.</p>
+                </div>
+                <label class="qt-check" for="ds-e"><input type="checkbox" id="ds-e" checked><span>A checkbox with a label you can tap</span></label>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-cards">
+        <h2 id="ds-cards" class="qt-h2 mb-6">6. Cards, results and notes</h2>
+        <div class="grid gap-6 lg:grid-cols-3">
+            <div class="qt-card is-loans">
+                <p class="qt-eyebrow">Monthly EMI</p>
+                <p class="qt-big mt-2">₹43,391</p>
+                <div class="qt-split mt-5"><span class="is-a" style="width:48%"></span><span class="is-b" style="width:52%"></span></div>
+                <p class="qt-legend"><span><i class="bg-haldi-400"></i>Principal</span><span><i class="bg-rani-400"></i>Interest</span></p>
+            </div>
+            <div class="qt-card">
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Indian</span><span class="qt-row-val">15 Lakh<small>₹15,00,000</small></span><button type="button" class="qt-copy" onclick="qt.copy('₹15,00,000', this)">Copy</button></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total</span><span class="qt-row-val">₹97,73,879</span><span></span></div>
+                </div>
+            </div>
+            <div class="qt-card is-amounts">
+                <p class="qt-eyebrow mb-2">Answer in a well</p>
+                <div class="qt-well"><p class="qt-answer"><span class="qt-marker">Fifteen Lakh Rupees Only</span></p></div>
+            </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3 mt-6">
+            <p class="qt-note"><strong>Note</strong>Rates change. Check the official source.</p>
+            <p class="qt-note is-tip"><strong>Tip</strong>Prepay early in the loan, when most of the EMI is interest.</p>
+            <p class="qt-note is-danger"><strong>Careful</strong>The old regime deduction does not apply in the new regime.</p>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 mt-6">
+            <div class="qt-table-wrap"><table class="qt-table"><thead><tr><th>Loan</th><th class="num">EMI</th></tr></thead><tbody><tr><td>₹30 lakh</td><td class="num">₹26,035</td></tr><tr><td>₹50 lakh</td><td class="num">₹43,391</td></tr><tr class="is-total"><td>Total</td><td class="num">₹69,426</td></tr></tbody></table></div>
+            <div class="qt-faq"><details open><summary>Is this a question?</summary><p>Yes, and this is how its answer looks when open.</p></details><details><summary>A closed question</summary><p>Hidden until opened.</p></details></div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-home">
+        <h2 id="ds-home" class="qt-h2 mb-6">7. Home page pieces</h2>
+        <div class="qt-bento">
+            {% for g in tools %}
+            <a href="{{ g.tools[0].url }}" class="qt-tile is-{{ g.key }}">
+                <span class="qt-eyebrow">{{ g.group }}</span>
+                <span class="qt-tile-name">{{ g.tools[0].name }}</span>
+                <span class="qt-tile-desc">A tile in the {{ g.key }} colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button type="button" class="qt-btn qt-btn--ink" onclick="qt.toast('This is a toast')">Show a toast</button>
+            <span class="qt-sticker">Sticker</span>
+            <span class="qt-sticker is-ink">Ink sticker</span>
+            <span class="qt-stamp">Updated 6 Nov 2026</span>
+        </div>
+    </section>
+</main>

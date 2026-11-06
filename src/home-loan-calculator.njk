@@ -91,122 +91,141 @@ sources:
     </script>
 {% endblock %}
 
-<main class="qt-wrap pt-6 md:pt-8">
-    <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Loans</span><span aria-hidden="true">/</span><span>Home Loan EMI</span></nav>
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Loans</span><span aria-hidden="true">/</span><span>Home Loan EMI</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-loans">Loans</span>
+            <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
+        </div>
+        <h1 class="qt-h1 mt-4">Home Loan EMI Calculator</h1>
+        <p class="qt-lede mt-4 hidden sm:block">Your monthly EMI, the interest over the full tenure, and what a yearly prepayment saves. Drag a slider or type a figure and everything updates.</p>
+    </section>
 
-    <header class="mt-4 md:mt-7 max-w-3xl">
-        <h1 class="qt-h1">Home Loan EMI Calculator</h1>
-        <p class="qt-lede mt-4 hidden sm:block">Your monthly EMI, the interest over the full tenure, and what a yearly prepayment saves. Change any figure and the numbers update as you type.</p>
-        <p class="qt-updated mt-3">Updated {{ page.date | humanDate }}</p>
-    </header>
-
-    <div class="grid gap-8 lg:gap-12 lg:grid-cols-12 mt-7 items-start">
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
         <section class="lg:col-span-5" aria-label="Loan details">
-            <div class="qt-sheet p-5 md:p-7 space-y-5">
-                <div>
-                    <label for="loanAmount" class="qt-label">Loan amount</label>
-                    <div class="qt-unit is-prefix">
-                        <input type="number" id="loanAmount" value="5000000" min="100000" step="100000" class="format-inr qt-input qt-input-xl">
-                        <span>₹</span>
-                    </div>
-                    <p class="qt-hint" id="loanAmountWords">Fifty Lakh Rupees</p>
+            <div class="qt-card">
+                <div class="qt-card-head">
+                    <h2 class="qt-card-title">Your loan</h2>
+                    <span class="qt-sticker is-flat is-ink">Step 1</span>
                 </div>
+                <div class="qt-fields">
+                    <div>
+                        <label for="loanAmount" class="qt-label">Loan amount</label>
+                        <div class="qt-affix is-prefix is-xl">
+                            <span class="qt-affix-text" aria-hidden="true">₹</span>
+                            <input type="number" id="loanAmount" value="5000000" min="100000" step="100000" class="format-inr qt-input qt-input--xl">
+                        </div>
+                        <input type="range" class="qt-range" min="500000" max="20000000" step="100000" value="5000000" data-sync="loanAmount" aria-label="Loan amount slider">
+                        <p class="qt-hint" id="loanAmountWords">Fifty Lakh Rupees</p>
+                    </div>
 
-                <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="interestRate" class="qt-label">Interest rate</label>
-                        <div class="qt-unit">
+                        <div class="qt-affix is-suffix">
                             <input type="number" id="interestRate" value="8.5" min="5" max="15" step="0.05" class="qt-input" inputmode="decimal">
-                            <span>% a year</span>
+                            <span class="qt-affix-text">% a year</span>
                         </div>
+                        <input type="range" class="qt-range" min="6" max="14" step="0.05" value="8.5" data-sync="interestRate" aria-label="Interest rate slider">
                     </div>
+
                     <div>
                         <label for="loanTenure" class="qt-label">Tenure</label>
-                        <div class="qt-unit">
+                        <div class="qt-affix is-suffix">
                             <input type="number" id="loanTenure" value="20" min="1" max="30" step="1" class="qt-input" inputmode="numeric">
-                            <span>years</span>
+                            <span class="qt-affix-text">years</span>
                         </div>
+                        <input type="range" class="qt-range" min="1" max="30" step="1" value="20" data-sync="loanTenure" aria-label="Tenure slider">
+                        <p class="qt-hint">Use the rate on your sanction letter or the lender's current quote. It differs by lender, loan size and credit score.</p>
                     </div>
-                </div>
-                <p class="qt-hint -mt-2">Use the rate on your sanction letter or the lender's current quote. It differs by lender, loan size and credit score.</p>
 
-                <div class="pt-4 border-t border-rule">
-                    <label class="qt-check" for="enablePrepayment">
-                        <input type="checkbox" id="enablePrepayment">
-                        <span>Add a prepayment every year</span>
-                    </label>
-                    <div id="prepaymentSection" class="hidden mt-4 grid grid-cols-2 gap-4">
-                        <div>
-                            <label for="prepaymentAmount" class="qt-label">Each year</label>
-                            <div class="qt-unit is-prefix">
-                                <input type="number" id="prepaymentAmount" value="100000" min="0" step="10000" class="format-inr qt-input">
-                                <span>₹</span>
+                    <div class="pt-4 border-t-2 border-dashed border-line-soft">
+                        <label class="qt-check" for="enablePrepayment">
+                            <input type="checkbox" id="enablePrepayment">
+                            <span>Add a prepayment every year</span>
+                        </label>
+                        <div id="prepaymentSection" class="hidden mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="prepaymentAmount" class="qt-label">Each year</label>
+                                <div class="qt-affix is-prefix">
+                                    <span class="qt-affix-text" aria-hidden="true">₹</span>
+                                    <input type="number" id="prepaymentAmount" value="100000" min="0" step="10000" class="format-inr qt-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="prepaymentStartYear" class="qt-label">From year</label>
+                                <input type="number" id="prepaymentStartYear" value="2" min="1" max="30" step="1" class="qt-input" inputmode="numeric">
                             </div>
                         </div>
-                        <div>
-                            <label for="prepaymentStartYear" class="qt-label">Starting in year</label>
-                            <input type="number" id="prepaymentStartYear" value="2" min="1" max="30" step="1" class="qt-input" inputmode="numeric">
-                        </div>
                     </div>
-                </div>
 
-                <div class="flex flex-wrap gap-3 pt-1">
-                    <button type="button" onclick="calculateHomeLoan()" class="qt-btn">Calculate</button>
-                    <button type="button" onclick="resetForm('home_loan_calc')" class="qt-btn qt-btn-quiet">Reset</button>
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" onclick="calculateHomeLoan()" class="qt-btn">Calculate</button>
+                        <button type="button" onclick="resetForm('home_loan_calc')" class="qt-btn qt-btn--secondary">Reset</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="results" class="hidden lg:col-span-7 lg:sticky lg:top-6" aria-label="Results" aria-live="polite">
-            <div class="qt-slip">
-                <p class="qt-kicker">Monthly EMI</p>
-                <p class="qt-big mt-2"><span class="qt-mark" id="monthlyEMI">₹0</span></p>
-                <p class="text-sm text-muted mt-2" id="emiLine">for 240 months</p>
-            </div>
-
-            <div class="mt-6">
-                <div class="qt-split" role="img" id="splitBar" aria-label="Share of principal and interest">
-                    <span class="is-principal" id="splitPrincipal" style="width:48%"></span>
-                    <span class="is-interest" id="splitInterest" style="width:52%"></span>
+        <section id="results" class="hidden lg:col-span-7 qt-sticky" aria-label="Results" aria-live="polite">
+            <div class="qt-card is-loans">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                    <p class="qt-eyebrow">Monthly EMI</p>
+                    <span class="qt-sticker is-haldi" style="--tilt: 3deg">Live</span>
                 </div>
-                <p class="text-xs text-muted mt-1.5"><span class="inline-block w-2.5 h-2.5 align-middle bg-bank mr-1"></span>Principal <span class="inline-block w-2.5 h-2.5 align-middle ml-3 mr-1 border border-stamp" style="background:repeating-linear-gradient(135deg,#A3261B 0 2px,transparent 2px 5px)"></span>Interest <span id="principalInterestRatio" class="ml-2"></span></p>
-            </div>
+                <p class="qt-big mt-2"><span id="monthlyEMI">₹0</span></p>
+                <p class="text-sm font-semibold mt-2" id="emiLine">for 240 months</p>
 
-            <div class="qt-ledger mt-5">
-                <div class="qt-ledger-row"><span class="qt-ledger-key">Principal</span><span class="qt-ledger-val" id="principalAmount">₹0</span><span></span></div>
-                <div class="qt-ledger-row"><span class="qt-ledger-key">Total interest</span><span class="qt-ledger-val" id="totalInterest">₹0</span><span></span></div>
-                <div class="qt-ledger-row is-total"><span class="qt-ledger-key">Total you pay</span><span class="qt-ledger-val" id="totalAmount">₹0</span><span></span></div>
-                <div class="qt-ledger-row"><span class="qt-ledger-key">EMI per lakh</span><span class="qt-ledger-val" id="emiRatio">-</span><span></span></div>
-                <div class="qt-ledger-row"><span class="qt-ledger-key">Months</span><span class="qt-ledger-val" id="totalMonths">-</span><span></span></div>
-            </div>
-
-            <div id="prepaymentResults" class="hidden mt-8">
-                <p class="qt-kicker mb-2">With the yearly prepayment</p>
-                <div class="qt-ledger">
-                    <div class="qt-ledger-row"><span class="qt-ledger-key">Interest saved</span><span class="qt-ledger-val" id="interestSaved">₹0</span><span></span></div>
-                    <div class="qt-ledger-row"><span class="qt-ledger-key">Loan closes</span><span class="qt-ledger-val"><span id="tenureReduced">0 years</span> early</span><span></span></div>
-                    <div class="qt-ledger-row"><span class="qt-ledger-key">New tenure</span><span class="qt-ledger-val" id="newTenure">0 years</span><span></span></div>
+                <div class="mt-6">
+                    <div class="qt-split" role="img" id="splitBar" aria-label="Share of principal and interest">
+                        <span class="is-a" id="splitPrincipal" style="width:48%"></span>
+                        <span class="is-b" id="splitInterest" style="width:52%"></span>
+                    </div>
+                    <p class="qt-legend"><span><i class="bg-haldi-400"></i>Principal</span><span><i class="bg-rani-400"></i>Interest</span><span id="principalInterestRatio" class="tabular"></span></p>
                 </div>
             </div>
 
-            <div class="mt-8">
-                <p class="qt-kicker mb-2">Tax deductions in year one, old regime only</p>
-                <div class="qt-ledger">
-                    <div class="qt-ledger-row"><span class="qt-ledger-key">Interest, section 22</span><span class="qt-ledger-val" id="taxBenefit24b">₹0<small>capped at ₹2,00,000 for a home you live in</small></span><span></span></div>
-                    <div class="qt-ledger-row"><span class="qt-ledger-key">Principal, section 123</span><span class="qt-ledger-val" id="taxBenefit80c">₹0</span><span></span></div>
-                    <div class="qt-ledger-row is-total"><span class="qt-ledger-key">Total deduction</span><span class="qt-ledger-val" id="totalTaxBenefit">₹0</span><span></span></div>
+            <div class="qt-card mt-6">
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Principal</span><span class="qt-row-val" id="principalAmount">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Total interest</span><span class="qt-row-val" id="totalInterest">₹0</span><span></span></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total you pay</span><span class="qt-row-val" id="totalAmount">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">EMI per lakh</span><span class="qt-row-val" id="emiRatio">-</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Months</span><span class="qt-row-val" id="totalMonths">-</span><span></span></div>
                 </div>
-                <p class="qt-hint mt-2">The tax you save is this deduction times your slab rate. The ₹1,50,000 principal limit (section 123, which was 80C) is shared with PPF, ELSS, insurance and the rest. The new regime gives no deduction for the home you live in. Section numbers are from the Income-tax Act, 2025, which applies from 1 April 2026.</p>
             </div>
 
-            <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm qt-no-print">
-                <button type="button" class="qt-copy" onclick="shareResult('Home Loan EMI', document.getElementById('monthlyEMI').innerText)">Share on WhatsApp</button>
-                <button type="button" class="qt-copy" onclick="window.print()">Print</button>
+            <div id="prepaymentResults" class="hidden qt-card is-savings mt-6">
+                <div class="qt-card-head mb-2">
+                    <h3 class="qt-card-title">With the yearly prepayment</h3>
+                    <span class="qt-sticker is-mehendi">Saved</span>
+                </div>
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Interest saved</span><span class="qt-row-val" id="interestSaved">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Loan closes</span><span class="qt-row-val"><span id="tenureReduced">0 years</span> early</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">New tenure</span><span class="qt-row-val" id="newTenure">0 years</span><span></span></div>
+                </div>
+            </div>
+
+            <div class="qt-card qt-card--sunken mt-6">
+                <p class="qt-eyebrow mb-2">Tax deductions in year one, old regime only</p>
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Interest, section 22</span><span class="qt-row-val" id="taxBenefit24b">₹0<small>capped at ₹2,00,000 for a home you live in</small></span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Principal, section 123</span><span class="qt-row-val" id="taxBenefit80c">₹0</span><span></span></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total deduction</span><span class="qt-row-val" id="totalTaxBenefit">₹0</span><span></span></div>
+                </div>
+                <p class="qt-hint mt-3">The tax you save is this deduction times your slab rate. The ₹1,50,000 principal limit (section 123, which was 80C) is shared with PPF, ELSS, insurance and the rest. The new regime gives no deduction for the home you live in. Section numbers are from the Income-tax Act, 2025, which applies from 1 April 2026.</p>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 qt-no-print">
+                <button type="button" class="qt-btn qt-btn--secondary qt-btn--sm" onclick="shareResult('Home Loan EMI', document.getElementById('monthlyEMI').innerText)">Share on WhatsApp</button>
+                <button type="button" class="qt-btn qt-btn--secondary qt-btn--sm" onclick="window.print()">Print</button>
             </div>
         </section>
     </div>
 
-    <article class="qt-article mt-6">
+    <article class="qt-prose qt-section">
         <h2>Understanding home loans in India</h2>
         <p>A home loan (also called a housing loan or mortgage) is a secured loan from a bank or housing finance company to buy, build or renovate a home. The property is the security, and you repay through equal monthly instalments (EMIs) over 5 to 30 years. Each EMI is part interest and part principal. Early on most of it is interest. In the default example above, the first year's EMIs pay about ₹4.2 lakh of interest and only about ₹1 lakh of principal.</p>
 
@@ -216,7 +235,7 @@ sources:
         <p>Your credit score, the loan-to-value ratio, the loan amount and your type of employment all affect the spread you are offered. Lenders change their rates often, so use a current quote from the lender rather than any published table.</p>
 
         <h3>Three worked examples</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>Loan</th><th class="num">Rate</th><th class="num">Tenure</th><th class="num">EMI</th><th class="num">Total interest</th></tr></thead>
                 <tbody>
@@ -230,7 +249,7 @@ sources:
         <p>On the first loan, a prepayment of ₹{{ ex.prepay }} at the end of every year from year {{ ex.startYear }} saves ₹{{ ex.saved }} of interest (about ₹{{ ex.savedShort }}) and closes the loan {{ ex.yearsEarly }} years early. Tick "Add a prepayment every year" above to try your own figures.</p>
 
         <h3>Tax deductions on a home loan</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>Deduction</th><th>What it covers</th><th class="num">Yearly limit</th></tr></thead>
                 <tbody>
@@ -243,7 +262,7 @@ sources:
         <p>From 1 April 2026 the Income-tax Act, 2025 replaced the 1961 Act, so these deductions have new section numbers. The limits did not change. In the new regime there is no deduction for the home you live in. For a home you let out, the interest is deducted from the rent you receive in either regime. If you are in the 30% slab under the old regime and claim the full ₹2,00,000 of interest and ₹1,50,000 of principal, your tax falls by up to ₹1,09,200 a year (31.2% with the 4% cess, before any surcharge). The <a href="/income-tax-calculator/">income tax calculator</a> shows which regime leaves you better off.</p>
 
         <h3>What to compare between home loan offers</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>What to check</th><th>Why it matters</th></tr></thead>
                 <tbody>
@@ -260,7 +279,7 @@ sources:
         <p class="text-sm">General guidance as of November 2026. Confirm current rates and charges with the lender, and see the RBI's website for the rules on loan pricing.</p>
 
         <h3>EMI for common loan amounts at {{ homeLoan.rate }}%</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>Loan</th>{% for t in homeLoan.tenures %}<th class="num">{{ t }} years</th>{% endfor %}</tr></thead>
                 <tbody>
@@ -298,6 +317,7 @@ sources:
 
         <p class="qt-note mt-10">These are estimates from the figures you enter. Your lender's sanction letter and amortisation schedule are what count, and tax rules depend on your full return. This page is for information, not financial or tax advice.</p>
     </article>
+    </div>
 </main>
 
 {% block scripts %}
@@ -313,6 +333,20 @@ sources:
             document.getElementById('prepaymentSection').classList.remove('hidden');
         }
         calculateHomeLoan(false);
+        // Sliders mirror the boxes next to them, both ways
+        document.querySelectorAll('[data-sync]').forEach((range) => {
+            const box = document.getElementById(range.dataset.sync);
+            const fromBox = () => {
+                const v = parseINR(box.value);
+                if (v) { range.value = v; if (window.qt) window.qt.fill(range); }
+            };
+            range.addEventListener('input', () => {
+                box.value = box.classList.contains('format-inr') ? formatIndianNumber(range.value) : range.value;
+                box.dispatchEvent(new Event('input', { bubbles: true }));
+            });
+            box.addEventListener('input', fromBox);
+            fromBox();
+        });
         // Numbers update as you type
         ['loanAmount', 'interestRate', 'loanTenure', 'prepaymentAmount', 'prepaymentStartYear'].forEach((id) => {
             document.getElementById(id).addEventListener('input', () => calculateHomeLoan(false));
@@ -378,9 +412,9 @@ sources:
 
         const emiEl = document.getElementById('monthlyEMI');
         emiEl.textContent = rupees(emi);
-        emiEl.parentElement.classList.remove('qt-ink');
+        emiEl.classList.remove('qt-fresh');
         void emiEl.offsetWidth;
-        emiEl.parentElement.classList.add('qt-ink');
+        emiEl.classList.add('qt-fresh');
         document.getElementById('emiLine').textContent = 'every month for ' + tenureMonths + ' months, at ' + annualRate + '% a year';
         document.getElementById('totalAmount').innerHTML = withShort(totalAmount);
         document.getElementById('principalAmount').innerHTML = withShort(loanAmount);

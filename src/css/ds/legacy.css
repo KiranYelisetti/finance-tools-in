@@ -1,0 +1,25 @@
+/* Bridge for pages that still use stock Tailwind markup. The palette swap happens in tailwind.config.js.
+   This file adds the outlines that make those pages sit in the same family. It shrinks page by page during the
+   rollout and is deleted when the last page uses the components. Nothing new should use these selectors. */
+
+/* Big shadowed surfaces get the system outline, so the hard shadow has an edge to hang from */
+.shadow-lg, .shadow-xl, .shadow-2xl { border: var(--qt-bw) solid var(--qt-line); }
+
+/* Stock form controls: system outline, radius and focus */
+body.qt input[type="text"]:not(.qt-input), body.qt input[type="number"]:not(.qt-input), body.qt input[type="date"]:not(.qt-input),
+body.qt input[type="email"]:not(.qt-input), body.qt select:not(.qt-input), body.qt textarea:not(.qt-input) {
+    border-width: var(--qt-bw);
+    border-color: var(--qt-line);
+    border-radius: var(--qt-r-md);
+    background-color: var(--qt-surface);
+    color: var(--qt-ink);
+}
+body.qt input:not(.qt-input):focus, body.qt select:not(.qt-input):focus, body.qt textarea:not(.qt-input):focus {
+    outline: none;
+    --tw-ring-shadow: 0 0 #0000;
+    box-shadow: 4px 4px 0 0 var(--qt-focus);
+}
+body.qt input[type="range"]:not(.qt-range) { accent-color: var(--haldi-500); }
+
+/* Old article layout: Tailwind Typography headings in the display weight */
+.prose :where(h1, h2, h3, h4) { letter-spacing: -.02em; }

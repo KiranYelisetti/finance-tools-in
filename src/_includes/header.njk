@@ -1,29 +1,34 @@
 <header class="qt-header">
     <div class="qt-wrap qt-header-inner">
         <a href="/" class="qt-brand" aria-label="QuickTools India, home">
-            <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-                <rect x="1" y="1" width="30" height="30" rx="3" fill="#1E5B47"/>
-                <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#FFFDF7" stroke-width="2.1" stroke-linecap="square" stroke-linejoin="round"/>
-            </svg>
-            <span class="qt-brand-name">QuickTools <span>India</span></span>
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
         </a>
 
         <nav class="qt-nav" aria-label="Main">
             <div id="toolsDropdown">
-                <button type="button" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
                     Tools
-                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
             </div>
-            <a href="/blog/" {% if page.url and page.url.startsWith('/blog') %}aria-current="page"{% endif %}>Guides</a>
-            <a href="/updates/" class="qt-wide-only" {% if page.url == '/updates/' %}aria-current="page"{% endif %}>Updates</a>
+            <a href="/blog/" class="qt-nav-link" {% if page.url and page.url.startsWith('/blog') %}aria-current="page"{% endif %}>Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" {% if page.url == '/updates/' %}aria-current="page"{% endif %}>Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
         </nav>
     </div>
 
-    <div id="dropdownMenu" class="qt-panel hidden" role="region" aria-label="All tools">
-        <div class="qt-wrap qt-panel-grid">
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
             {% for g in tools %}
-            <div>
+            <div class="qt-menu-group is-{{ g.key }}">
                 <h3>{{ g.group }}</h3>
                 {% for t in g.tools %}
                 <a href="{{ t.url }}" {% if page.url == t.url %}aria-current="page"{% endif %}>{{ t.name }}</a>

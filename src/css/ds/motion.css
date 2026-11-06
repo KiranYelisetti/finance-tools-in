@@ -1,0 +1,40 @@
+/* QuickTools design system: motion. Transform and opacity only, so it stays smooth on budget phones.
+   Content is visible without JavaScript: reveals apply only once ui.js has put .js on <html>.
+   Everything here switches off for people who ask their device for less motion. */
+
+@keyframes qt-marquee { to { transform: translateX(-50%); } }
+@keyframes qt-pop { 0% { transform: scale(.97); } 55% { transform: scale(1.025); } 100% { transform: none; } }
+@keyframes qt-wiggle { 0%, 100% { transform: rotate(var(--tilt, -2.5deg)); } 30% { transform: rotate(4deg); } 65% { transform: rotate(-5deg); } }
+@keyframes qt-fresh { from { opacity: .3; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.qt-ticker-track { animation: qt-marquee 46s linear infinite; }
+.qt-ticker:hover .qt-ticker-track { animation-play-state: paused; }
+
+.qt-pop { animation: qt-pop var(--qt-dur-3) var(--qt-ease-pop); }
+.qt-fresh { animation: qt-fresh var(--qt-dur-2) var(--qt-ease-out); }
+.qt-sticker:hover { animation: qt-wiggle .5s var(--qt-ease-out); }
+
+/* Scroll reveal. ui.js toggles .is-in both ways, so scrolling back up rewinds an element to where it came from. */
+html.js .qt-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity var(--qt-dur-4) var(--qt-ease-out), transform var(--qt-dur-4) var(--qt-ease-out);
+    transition-delay: calc(var(--i, 0) * 70ms);
+}
+html.js .qt-reveal.from-left { transform: translateX(-36px); }
+html.js .qt-reveal.from-right { transform: translateX(36px); }
+html.js .qt-reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0ms !important; }
+    .qt-ticker-track { animation: none !important; }
+    .qt-ticker-list { white-space: normal; flex-wrap: wrap; }
+    .qt-ticker-list[aria-hidden="true"] { display: none; }
+    html.js .qt-reveal { opacity: 1; transform: none; }
+}
+
+@media print {
+    .qt-header, .qt-footer, .qt-ticker, .qt-no-print, .qt-theme, ins.adsbygoogle { display: none !important; }
+    body.qt { background: #fff; color: #000; }
+    .qt-card, .qt-tile, .qt-cheque { box-shadow: none !important; }
+}

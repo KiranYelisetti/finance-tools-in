@@ -1,10 +1,10 @@
 <footer class="qt-footer">
     <div class="qt-wrap">
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="lg:col-span-1">
-                <p class="font-serif text-ink text-lg font-semibold mb-2">QuickTools India</p>
-                <p class="mb-3">Free calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
-                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="qt-link">quicktoolsindiaa@gmail.com</a></p>
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
             {% for g in tools %}{% if loop.index <= 2 %}
             <div>
@@ -15,14 +15,14 @@
             </div>
             {% endif %}{% endfor %}
             <div>
-                <h2>More</h2>
+                <h2>More tools</h2>
                 <ul class="space-y-1.5">
                     {% for g in tools %}{% if loop.index > 2 %}{% for t in g.tools %}<li><a href="{{ t.url }}">{{ t.name }}</a></li>{% endfor %}{% endif %}{% endfor %}
                 </ul>
             </div>
         </div>
 
-        <div class="mt-10 pt-6 border-t border-rule flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
             <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
             <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
                 <li><a href="/about/">About</a></li>
@@ -35,7 +35,10 @@
             </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
+
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
 <script>
     // Tools menu

@@ -1,0 +1,156 @@
+/* ==========================================================================
+   QuickTools India design system: tokens ("Desi Pop", v2, 2026-11)
+   Three layers. Pages and components use only layer 2 and 3.
+     1. Primitives: raw colour scales named after Indian colours.
+     2. Roles: what a colour is FOR (canvas, ink, primary, danger). Themes swap these.
+     3. Component tokens: sizes, radii, shadows and motion that components share.
+   Docs: docs/DESIGN-SYSTEM.md. Live reference: /design-system/
+   ========================================================================== */
+
+:root {
+    /* ---- 1. Primitives ---------------------------------------------------- */
+    /* chai: warm neutrals, the paper and the ink */
+    --chai-50: #FFFBF3;  --chai-100: #FBF3E4; --chai-200: #F0E4CC; --chai-300: #DDCDB0;
+    --chai-400: #B5A486; --chai-500: #7A6B53; --chai-600: #6B5D48; --chai-700: #4D4234;
+    --chai-800: #2E2720; --chai-900: #1D1914; --chai-950: #13100D;
+    --ink-900: #16120E;
+
+    /* haldi: turmeric yellow, the main action colour */
+    --haldi-50: #FFF9E0;  --haldi-100: #FFF0B3; --haldi-200: #FFE380; --haldi-300: #FFD54D;
+    --haldi-400: #FFC629; --haldi-500: #F5AF00; --haldi-600: #CC8A00; --haldi-700: #9E6800;
+
+    /* rani: rani pink, the second accent */
+    --rani-50: #FFF0F6;  --rani-100: #FFD9E9; --rani-200: #FFB3D2; --rani-300: #FF85B8;
+    --rani-400: #FF5C9E; --rani-500: #F0337F; --rani-600: #C81D63; --rani-700: #9C134C;
+
+    /* mor: peacock teal, links and focus */
+    --mor-50: #E8FAF9;  --mor-100: #C2F0EE; --mor-200: #8EE3E0; --mor-300: #52CFCB;
+    --mor-400: #20B3B0; --mor-500: #0E9594; --mor-600: #0A7779; --mor-700: #0B5D60;
+
+    /* mehendi: henna green, success and the tax group */
+    --mehendi-50: #F1FAE6;  --mehendi-100: #DDF2C2; --mehendi-200: #C0E694; --mehendi-300: #9BD45E;
+    --mehendi-400: #79BE35; --mehendi-500: #5C9E1F; --mehendi-600: #477D17; --mehendi-700: #375F14;
+
+    /* neel: indigo, used only for the everyday group */
+    --neel-50: #EEF1FF;  --neel-100: #D9DFFF; --neel-200: #B6C1FF; --neel-300: #8D9DFF;
+    --neel-400: #6577F6; --neel-500: #4656E0; --neel-600: #3441BC; --neel-700: #283294;
+
+    /* sindoor: vermilion, errors and warnings */
+    --sindoor-50: #FFF1EE;  --sindoor-100: #FFDCD4; --sindoor-200: #FFB6A6; --sindoor-300: #FF8A72;
+    --sindoor-400: #F9603F; --sindoor-500: #E2401F; --sindoor-600: #BB2F14; --sindoor-700: #912411;
+
+    /* ---- 2. Roles, day theme ("Din") ------------------------------------- */
+    --qt-canvas: var(--chai-100);       /* page background */
+    --qt-surface: #FFFDF8;              /* cards, inputs */
+    --qt-sunken: var(--chai-200);       /* wells, table stripes, code */
+    --qt-ink: var(--ink-900);           /* main text, strong lines */
+    --qt-ink-2: var(--chai-700);        /* body copy in long reads */
+    --qt-muted: var(--chai-600);        /* labels, hints. 5.9:1 on canvas */
+    --qt-line: var(--ink-900);          /* outlines of cards, inputs, buttons */
+    --qt-line-soft: var(--chai-300);    /* dividers inside a card */
+    --qt-shadow: var(--ink-900);        /* the hard offset shadow */
+    --qt-primary: var(--haldi-400);     /* main buttons, highlights */
+    --qt-primary-hover: var(--haldi-300);
+    --qt-on-primary: var(--ink-900);    /* 12.9:1 on haldi-400 */
+    --qt-accent: var(--rani-400);
+    --qt-on-accent: var(--ink-900);
+    --qt-link: var(--mor-600);          /* 5.0:1 on canvas */
+    --qt-focus: var(--mor-500);
+    --qt-marker: var(--haldi-300);      /* highlighter behind answers */
+    --qt-success: var(--mehendi-600);
+    --qt-danger: var(--sindoor-600);
+    --qt-danger-bg: var(--sindoor-50);
+    --qt-warn-bg: var(--haldi-50);
+    --qt-tip-bg: var(--mor-50);
+
+    /* Tool groups. Tile backgrounds stay bright in both themes, text on them is always ink. */
+    --qt-cat-amounts: var(--haldi-300);
+    --qt-cat-loans: var(--rani-200);
+    --qt-cat-tax: var(--mehendi-200);
+    --qt-cat-savings: var(--mor-200);
+    --qt-cat-everyday: var(--neel-200);
+
+    /* ---- 3. Component tokens --------------------------------------------- */
+    --qt-font: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, "Noto Sans", "Nirmala UI", "Noto Sans Devanagari", Arial, sans-serif;
+
+    /* Type scale: fluid between a 360 px phone and a 1440 px screen */
+    --qt-text-xs: .78rem;
+    --qt-text-sm: .875rem;
+    --qt-text-base: 1.0625rem;
+    --qt-text-lg: 1.1875rem;
+    --qt-text-xl: 1.375rem;
+    --qt-text-2xl: clamp(1.5rem, 1.25rem + 1.1vw, 1.875rem);
+    --qt-text-3xl: clamp(1.9rem, 1.45rem + 2vw, 2.6rem);
+    --qt-text-4xl: clamp(2.35rem, 1.6rem + 3.4vw, 3.7rem);
+    --qt-text-5xl: clamp(2.8rem, 1.7rem + 5vw, 5.4rem);
+
+    /* Radii, borders, shadows */
+    --qt-r-sm: 8px;
+    --qt-r-md: 12px;
+    --qt-r-lg: 20px;
+    --qt-r-pill: 999px;
+    --qt-bw: 2px;
+    --qt-sh-1: 2px 2px 0 0 var(--qt-shadow);
+    --qt-sh-2: 4px 4px 0 0 var(--qt-shadow);
+    --qt-sh-3: 7px 7px 0 0 var(--qt-shadow);
+
+    /* Card padding grows with the screen */
+    --qt-pad: clamp(1.1rem, .8rem + 1.3vw, 1.85rem);
+
+    /* Motion */
+    --qt-dur-1: 110ms;
+    --qt-dur-2: 200ms;
+    --qt-dur-3: 380ms;
+    --qt-dur-4: 700ms;
+    --qt-ease-out: cubic-bezier(.22, 1, .36, 1);
+    --qt-ease-pop: cubic-bezier(.34, 1.56, .64, 1);
+
+    /* Layers */
+    --qt-z-header: 40;
+    --qt-z-menu: 50;
+    --qt-z-toast: 60;
+
+    color-scheme: light;
+}
+
+/* ---- 2b. Roles, night theme ("Raat") -------------------------------------- */
+html.dark {
+    --qt-canvas: var(--chai-950);
+    --qt-surface: var(--chai-900);
+    --qt-sunken: #241E18;
+    --qt-ink: var(--chai-100);
+    --qt-ink-2: var(--chai-300);
+    --qt-muted: var(--chai-400);         /* 7.6:1 on canvas */
+    --qt-line: var(--chai-300);
+    --qt-line-soft: var(--chai-700);
+    --qt-shadow: var(--chai-700);       /* a warm offset that still shows on the dark canvas */
+    --qt-link: var(--mor-300);
+    --qt-focus: var(--mor-300);
+    --qt-marker: rgba(245, 175, 0, .4);  /* see-through so cream text stays readable */
+    --qt-success: var(--mehendi-300);
+    --qt-danger: var(--sindoor-300);
+    --qt-danger-bg: #3A1A12;
+    --qt-warn-bg: #33270C;
+    --qt-tip-bg: #0D2B2C;
+    color-scheme: dark;
+}
+
+/* ---- 2c. Always-day scope --------------------------------------------------
+   Paper things stay paper at night: the cheque, and anything with a bright colour fill.
+   Wrap other things in .qt-light and every component inside uses the day roles. */
+.qt-light, .qt-cheque,
+.is-haldi, .is-amounts, .is-rani, .is-loans, .is-mehendi, .is-tax, .is-mor, .is-savings, .is-neel, .is-everyday {
+    --qt-surface: #FFFFFF;
+    --qt-sunken: var(--chai-200);
+    --qt-ink: var(--ink-900);
+    --qt-ink-2: var(--chai-700);
+    --qt-muted: var(--chai-600);
+    --qt-line: var(--ink-900);
+    --qt-line-soft: var(--chai-300);
+    --qt-shadow: var(--ink-900);
+    --qt-link: var(--mor-600);
+    --qt-focus: var(--mor-500);
+    --qt-danger: var(--sindoor-600);
+    color-scheme: light;
+}

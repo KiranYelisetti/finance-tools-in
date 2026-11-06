@@ -191,96 +191,108 @@ sources:
 </script>
 {% endblock %}
 
-<main class="qt-wrap pt-6 md:pt-8">
-    <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Number to Words</span></nav>
-
-    <header class="mt-4 md:mt-7 max-w-3xl">
-        <h1 class="qt-h1">Number to Words, and Lakh or Crore to Numbers</h1>
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Number to Words</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-amounts">Amounts and words</span>
+            <span class="qt-stamp">Updated {{ updated | humanDate }}</span>
+        </div>
+        <h1 class="qt-h1 mt-4 max-w-[20ch]">Number to Words, and Lakh or Crore to Numbers</h1>
         <p class="qt-lede mt-4 hidden sm:block">Type an amount in digits to get the words and the cheque wording. Type 1.5 crore or 270 lakh crore to get the digits. Paise included.</p>
-        <p class="qt-updated mt-3">Updated {{ updated | humanDate }}</p>
-    </header>
+    </section>
 
-    <div class="grid gap-8 lg:gap-12 lg:grid-cols-12 mt-8 items-start">
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
         <section class="lg:col-span-7" aria-label="Converter">
-            <div class="qt-sheet p-5 md:p-7">
+            <div class="qt-card is-amounts">
                 <label for="numberInput" class="qt-label">Amount, in digits or in lakh and crore</label>
                 <input type="text" id="numberInput" value="1500000" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80"
-                    class="qt-input qt-input-xl" oninput="convertNumber()" placeholder="1500000, 15,00,000 or 1.5 crore">
-                <div id="answerBox" class="qt-slip mt-4 transition-opacity" aria-live="polite">
-                    <p class="qt-answer"><span id="answerMain" class="qt-mark">Fifteen Lakh Rupees Only</span></p>
-                    <p id="answerSub" class="qt-figure text-lg mt-2 break-all">₹15,00,000</p>
+                    class="qt-input qt-input--xl" oninput="convertNumber()" placeholder="1500000, 15,00,000 or 1.5 crore">
+                <div id="answerBox" class="qt-well mt-4 transition-opacity" aria-live="polite">
+                    <p class="qt-eyebrow mb-1.5">Answer</p>
+                    <p class="qt-answer"><span id="answerMain" class="qt-marker">Fifteen Lakh Rupees Only</span></p>
+                    <p id="answerSub" class="text-lg font-bold mt-2 break-all tabular">₹15,00,000</p>
                     <p id="answerMeta" class="text-sm text-muted mt-1">7 digits, 5 zeros · 1 Million 500 Thousand</p>
                 </div>
-                <p id="inputError" class="hidden mt-3 text-sm font-semibold text-stamp"></p>
+                <p id="inputError" class="qt-error hidden"></p>
                 <p class="qt-hint mt-3">Digits (1500000, 15,00,000, 1500.50) or words: 1.5 crore, 1 cr 30 lakh, 270 lakh crore, 15 hazar crore, 6 arab, 2.5 million. Up to 99,999 lakh crore.</p>
 
-                <div class="mt-6">
-                    <p class="qt-kicker mb-2.5">Try</p>
-                    <div class="qt-try">
-                        <button type="button" onclick="setExample('100000')">1 lakh</button>
-                        <button type="button" onclick="setExample('1500000')">15 lakh</button>
-                        <button type="button" onclick="setExample('10000000')">1 crore</button>
-                        <button type="button" onclick="setExample('1.5 crore')">1.5 crore to digits</button>
-                        <button type="button" onclick="setExample('270 lakh crore')">270 lakh crore</button>
-                        <button type="button" onclick="setExample('15 hazar crore')">15 hazar crore</button>
-                        <button type="button" onclick="setExample('2.5 million')">2.5 million</button>
-                        <button type="button" onclick="setExample('1250.75')">1,250.75 with paise</button>
+                <div class="mt-5">
+                    <p class="qt-eyebrow mb-2.5">Try one</p>
+                    <div class="qt-chips">
+                        <button type="button" class="qt-chip" onclick="setExample('100000')">1 lakh</button>
+                        <button type="button" class="qt-chip" onclick="setExample('1500000')">15 lakh</button>
+                        <button type="button" class="qt-chip" onclick="setExample('10000000')">1 crore</button>
+                        <button type="button" class="qt-chip" onclick="setExample('1.5 crore')">1.5 crore to digits</button>
+                        <button type="button" class="qt-chip" onclick="setExample('270 lakh crore')">270 lakh crore</button>
+                        <button type="button" class="qt-chip" onclick="setExample('15 hazar crore')">15 hazar crore</button>
+                        <button type="button" class="qt-chip" onclick="setExample('2.5 million')">2.5 million</button>
+                        <button type="button" class="qt-chip" onclick="setExample('1250.75')">1,250.75 with paise</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="lg:col-span-5" aria-label="Every format">
-            <div class="qt-ledger is-stacked">
-                <div class="qt-ledger-row">
-                    <span class="qt-ledger-key">Indian</span>
-                    <span class="qt-ledger-val"><span id="indianFormat">15 Lakh</span><small id="indianGrouped">₹15,00,000</small></span>
-                    <button type="button" class="qt-copy" onclick="copyToClipboard('indianGrouped', event)" aria-label="Copy Indian format">Copy</button>
+            <div class="qt-card">
+                <div class="qt-card-head mb-1">
+                    <h2 class="qt-card-title">Every format</h2>
+                    <span class="qt-sticker is-rani" style="--tilt: 3deg">Tap to copy</span>
                 </div>
-                <div class="qt-ledger-row">
-                    <span class="qt-ledger-key">International</span>
-                    <span class="qt-ledger-val"><span id="internationalFormat">1 Million 500 Thousand</span><small id="internationalGrouped">1,500,000</small></span>
-                    <button type="button" class="qt-copy" onclick="copyToClipboard('internationalGrouped', event)" aria-label="Copy international format">Copy</button>
-                </div>
-                <div class="qt-ledger-row">
-                    <span class="qt-ledger-key">In words</span>
-                    <span class="qt-ledger-val" id="inWords">Fifteen Lakh Rupees Only</span>
-                    <button type="button" class="qt-copy" onclick="copyToClipboard('inWords', event)" aria-label="Copy amount in words">Copy</button>
-                </div>
-                <div class="qt-ledger-row">
-                    <span class="qt-ledger-key">On a cheque</span>
-                    <span class="qt-ledger-val" id="chequeFormat">Rupees Fifteen Lakh Only</span>
-                    <button type="button" class="qt-copy" onclick="copyToClipboard('chequeFormat', event)" aria-label="Copy cheque format">Copy</button>
-                </div>
-                <div class="qt-ledger-row">
-                    <span class="qt-ledger-key">International words</span>
-                    <span class="qt-ledger-val" id="internationalWords">One Million Five Hundred Thousand</span>
-                    <button type="button" class="qt-copy" onclick="copyToClipboard('internationalWords', event)" aria-label="Copy international words">Copy</button>
+                <div class="qt-rows is-stacked">
+                    <div class="qt-row">
+                        <span class="qt-row-key">Indian</span>
+                        <span class="qt-row-val"><span id="indianFormat">15 Lakh</span><small id="indianGrouped">₹15,00,000</small></span>
+                        <button type="button" class="qt-copy" onclick="copyToClipboard('indianGrouped', event)" aria-label="Copy Indian format">Copy</button>
+                    </div>
+                    <div class="qt-row">
+                        <span class="qt-row-key">International</span>
+                        <span class="qt-row-val"><span id="internationalFormat">1 Million 500 Thousand</span><small id="internationalGrouped">1,500,000</small></span>
+                        <button type="button" class="qt-copy" onclick="copyToClipboard('internationalGrouped', event)" aria-label="Copy international format">Copy</button>
+                    </div>
+                    <div class="qt-row">
+                        <span class="qt-row-key">In words</span>
+                        <span class="qt-row-val" id="inWords">Fifteen Lakh Rupees Only</span>
+                        <button type="button" class="qt-copy" onclick="copyToClipboard('inWords', event)" aria-label="Copy amount in words">Copy</button>
+                    </div>
+                    <div class="qt-row">
+                        <span class="qt-row-key">On a cheque</span>
+                        <span class="qt-row-val" id="chequeFormat">Rupees Fifteen Lakh Only</span>
+                        <button type="button" class="qt-copy" onclick="copyToClipboard('chequeFormat', event)" aria-label="Copy cheque format">Copy</button>
+                    </div>
+                    <div class="qt-row">
+                        <span class="qt-row-key">International words</span>
+                        <span class="qt-row-val" id="internationalWords">One Million Five Hundred Thousand</span>
+                        <button type="button" class="qt-copy" onclick="copyToClipboard('internationalWords', event)" aria-label="Copy international words">Copy</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-8">
-                <p class="qt-kicker mb-1">The units at a glance</p>
+            <div class="mt-7">
+                <p class="qt-eyebrow mb-2">The units at a glance</p>
+                <div class="qt-table-wrap">
                 <table class="qt-table">
                     <tbody>
-                        <tr><td>1 lakh</td><td class="num">1,00,000</td><td>100 thousand</td></tr>
-                        <tr><td>1 crore</td><td class="num">1,00,00,000</td><td>10 million, or 100 lakh</td></tr>
-                        <tr><td>1 million</td><td class="num">10,00,000</td><td>10 lakh</td></tr>
-                        <tr><td>1 billion</td><td class="num">1,00,00,00,000</td><td>100 crore</td></tr>
-                        <tr><td>1 trillion</td><td class="num">1 lakh crore</td><td>1,000 billion</td></tr>
+                        <tr><td><b>1 lakh</b></td><td class="num">1,00,000</td><td>100 thousand</td></tr>
+                        <tr><td><b>1 crore</b></td><td class="num">1,00,00,000</td><td>10 million, or 100 lakh</td></tr>
+                        <tr><td><b>1 million</b></td><td class="num">10,00,000</td><td>10 lakh</td></tr>
+                        <tr><td><b>1 billion</b></td><td class="num">1,00,00,00,000</td><td>100 crore</td></tr>
+                        <tr><td><b>1 trillion</b></td><td class="num">1 lakh crore</td><td>1,000 billion</td></tr>
                     </tbody>
                 </table>
+                </div>
             </div>
         </section>
     </div>
 
-    <article class="qt-article mt-4">
+    <article class="qt-prose qt-section">
         <h2>How the Indian number system works</h2>
         <p>Indian and international numbers use the same digits. What changes is where the commas go and what the groups are called. The international system puts a comma after every three digits: 1,500,000. The Indian system puts the first comma after three digits and then after every two: 15,00,000. Read the Indian version from the left and the words fall out on their own: 15 lakh.</p>
         <p>The reason is the units themselves. English counts in thousands, millions and billions, each a thousand times the last. Indian counting adds two extra stops, the lakh (one hundred thousand) and the crore (ten million), and those are only a hundred times apart. Grouping in twos after the thousands keeps the commas lined up with lakh and crore.</p>
 
         <h3>The same number, two ways</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>Indian grouping</th><th>Indian words</th><th>International grouping</th><th>International words</th></tr></thead>
                 <tbody>
@@ -298,7 +310,7 @@ sources:
         <p>Where you meet each system: Indian newspapers, the Union Budget and company annual reports use lakh and crore (a budget line of 1.5 lakh crore is 1.5 trillion). Startup funding news, global markets and most software use million and billion. When a US headline says 2 billion dollars, that is 200 crore dollars, and the rupee figure depends on the exchange rate of the day.</p>
 
         <h3>Conversion table with the number of zeros</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>Unit</th><th>Figure (Indian grouping)</th><th>Zeros</th><th>Equivalent</th></tr></thead>
                 <tbody>
@@ -327,7 +339,7 @@ sources:
             <li><strong>Date it right.</strong> A cheque is valid for three months from the date written on it (an RBI instruction in force since 1 April 2012). Write the date in the DD/MM/YYYY boxes printed on the leaf.</li>
         </ul>
         <h3>Examples</h3>
-        <div class="qt-scroll">
+        <div class="qt-table-wrap mb-5">
             <table class="qt-table">
                 <thead><tr><th>In figures</th><th>On the words line</th></tr></thead>
                 <tbody>
@@ -374,6 +386,7 @@ sources:
             <details><summary>What is the difference between the Indian and the international number system?</summary><p>The Indian system groups digits as 3, then 2, 2, 2 from the right and uses thousand, lakh and crore (1,00,00,000). The international system groups digits in threes and uses thousand, million and billion (10,000,000). The digits are the same, only the commas and the words change.</p></details>
         </div>
     </article>
+    </div>
 </main>
 
 {% block scripts %}
@@ -412,9 +425,9 @@ sources:
         setText('answerMeta', meta);
 
         // Let the fresh answer settle in like ink (CSS skips this for reduced motion)
-        box.classList.remove('qt-ink');
+        box.classList.remove('qt-fresh');
         void box.offsetWidth;
-        box.classList.add('qt-ink');
+        box.classList.add('qt-fresh');
 
         setText('indianFormat', r.indianFormat);
         setText('indianGrouped', '₹' + r.indianGrouped);
@@ -447,11 +460,7 @@ sources:
         trackCalculatorUsage('Number to Words', document.getElementById('numberInput').value);
         var text = document.getElementById(elementId).textContent;
         var button = event.target.closest('button');
-        navigator.clipboard.writeText(text).then(function () {
-            button.textContent = 'Copied';
-            button.classList.add('is-done');
-            setTimeout(function () { button.textContent = 'Copy'; button.classList.remove('is-done'); }, 1200);
-        });
+        window.qt.copy(text, button);
     }
 
     // Links such as /number-to-words/?n=1.5%20crore open with that amount filled in.

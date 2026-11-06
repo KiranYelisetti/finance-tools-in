@@ -1,0 +1,51 @@
+/* QuickTools design system: base layer. Fonts, page defaults, focus. */
+
+/* Bricolage Grotesque (SIL Open Font License, /fonts/OFL.txt). Variable: weight 200 to 800, optical size 12 to 96,
+   so big headings get the chunky display cut and small text the open text cut from one file. */
+@font-face {
+    font-family: "Bricolage Grotesque Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200 800;
+    src: url("/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2-variations"),
+         url("/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+        U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* The rupee sign lives in a 1.4 KB file of its own (cut from the latin-ext file), so ₹ matches the digits. */
+@font-face {
+    font-family: "Bricolage Grotesque Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200 800;
+    src: url("/fonts/bricolage-grotesque-rupee-opsz.woff2") format("woff2-variations"),
+         url("/fonts/bricolage-grotesque-rupee-opsz.woff2") format("woff2");
+    unicode-range: U+20B9;
+}
+
+@layer base {
+    html { -webkit-text-size-adjust: 100%; }
+
+    body.qt {
+        background: var(--qt-canvas);
+        color: var(--qt-ink);
+        font-family: var(--qt-font);
+        font-size: var(--qt-text-base);
+        line-height: 1.6;
+        font-optical-sizing: auto;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: clip;
+        transition: background-color var(--qt-dur-3) var(--qt-ease-out), color var(--qt-dur-3) var(--qt-ease-out);
+    }
+
+    body.qt ::selection { background: var(--haldi-400); color: var(--ink-900); }
+
+    body.qt :focus-visible {
+        outline: 3px solid var(--qt-focus);
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    /* Figures line up in columns everywhere money is shown */
+    body.qt .tabular, body.qt table, body.qt input { font-variant-numeric: tabular-nums lining-nums; }
+}

@@ -1,8 +1,9 @@
 {% if sources %}
-<section class="qt-wrap mt-14" aria-labelledby="official-sources">
-    <div class="qt-aside max-w-[44rem]">
-        <h2 id="official-sources" class="font-serif text-ink text-xl font-semibold mb-1">Where to verify</h2>
-        <p class="mb-3">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+<section class="qt-wrap qt-section" aria-labelledby="official-sources">
+    <div class="qt-card qt-card--sunken max-w-[46rem]">
+        <span class="qt-sticker is-mor is-flat">Check the source</span>
+        <h2 id="official-sources" class="qt-h3 mt-3 mb-1">Where to verify</h2>
+        <p class="mb-3 text-ink-2">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
         <ul class="space-y-1.5">
             {% for s in sources %}
             <li><a href="{{ s.url }}" target="_blank" rel="noopener" class="qt-link">{{ s.name }}</a> for {{ s.for }}</li>
