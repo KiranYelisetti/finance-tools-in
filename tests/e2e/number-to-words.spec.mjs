@@ -165,7 +165,8 @@ test.describe("Home page amount-in-words box", () => {
   });
 
   test("the tool index links to all 16 tools", async ({ page }) => {
-    const index = page.locator("main").getByRole("region", { name: "All tools" });
+    // The home page tool grid (v2 design: a section titled "Pick a calculator", one tile per tool)
+    const index = page.locator("main").getByRole("region", { name: "Pick a calculator" });
     const expected = {
       "Number to Words": "/number-to-words/", "Lakh Crore in Numbers": "/lakh-crore-in-numbers/", "Cash Counter": "/cash-counter/",
       "Home Loan EMI": "/home-loan-calculator/", "Car Loan": "/car-loan-calculator/", "EMI Prepayment": "/emi-prepayment-calculator/",

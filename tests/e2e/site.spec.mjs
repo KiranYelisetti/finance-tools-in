@@ -5,6 +5,8 @@ import { pages, redirects, servedPaths, TOOL_PAGES } from "../lib/site.mjs";
 
 const SERVED = servedPaths();
 const SITE_HOSTS = new Set(["www.quicktoolsindia.com", "quicktoolsindia.com"]);
+// Built pages marked noindex (the /design-system/ style guide): not in the sitemap, not a tool
+const NOINDEX = new Set(pages.filter((p) => /<meta name="robots" content="noindex/i.test(fs.readFileSync(p.file, "utf8"))).map((p) => p.url));
 
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
@@ -37,7 +39,9 @@ test.describe("site-wide facts (checked once)", () => {
       expect(SERVED.has(loc.pathname), `${loc.pathname} in the sitemap is a built page`).toBe(true);
     }
     const listed = new Set(locs.map((l) => l.pathname));
-    for (const p of pages) expect(listed.has(p.url), `${p.url} is in the sitemap`).toBe(true);
+    // Pages marked noindex (the /design-system/ style guide) stay out of the sitemap on purpose
+    for (const p of pages.filter((x) => !NOINDEX.has(x.url))) expect(listed.has(p.url), `${p.url} is in the sitemap`).toBe(true);
+    for (const url of NOINDEX) expect(listed.has(url), `${url} is noindex, so not in the sitemap`).toBe(false);
   });
 
   test("every page with form controls is a listed tool with its own spec", () => {
@@ -46,6 +50,7 @@ test.describe("site-wide facts (checked once)", () => {
       .map((f) => fs.readFileSync(new URL(f, import.meta.url), "utf8"));
     for (const p of pages) {
       const html = fs.readFileSync(p.file, "utf8");
+      if (NOINDEX.has(p.url)) continue; // the style guide shows sample controls, it is not a tool
       if (/<(input|select|textarea)\b/i.test(html)) expect(TOOL_PAGES, `${p.url} has form controls, so list it in TOOL_PAGES and test it`).toContain(p.url);
     }
     for (const url of TOOL_PAGES) {
@@ -191,8 +196,10 @@ test.describe("header Tools menu", () => {
 
     await toggle.click();
     await expect(menu).toBeVisible();
-    // The open menu covers the top of the page, so click the footer (scrolled into view) as the "outside" spot.
-    await page.locator("footer").click({ position: { x: 2, y: 2 } });
+    // The header is sticky and the open menu covers the top of the screen (at most 72% of its height),
+    // so tap the strip of page below it, the way a person closes it.
+    const vp = page.viewportSize();
+    await page.mouse.click(8, vp.height - 12);
     await expect(menu).toBeHidden();
 
     await toggle.click();

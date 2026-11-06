@@ -101,10 +101,11 @@ json_ld:
             {% for g in tools %}{% for t in g.tools %}
             {% set tile = homeTiles[t.url] or {} %}
             {% set changed = collections.all | lastChanged(t.url) %}
-            <a href="{{ t.url }}" class="qt-tile qt-reveal is-{{ g.key }}{% if tile.size %} is-{{ tile.size }}{% endif %}" data-group="{{ g.key }}" style="--i: {{ loop.index0 }}">
+            {% set tid = t.url | replace("/", "") %}
+            <a href="{{ t.url }}" class="qt-tile qt-reveal is-{{ g.key }}{% if tile.size %} is-{{ tile.size }}{% endif %}" data-group="{{ g.key }}" style="--i: {{ loop.index0 }}" aria-labelledby="tile-{{ tid }}" aria-describedby="tile-{{ tid }}-desc">
                 <span class="qt-eyebrow">{{ g.group }}</span>
-                <span class="qt-tile-name">{{ t.name }}</span>
-                <span class="qt-tile-desc">{{ t.desc }}</span>
+                <span class="qt-tile-name" id="tile-{{ tid }}">{{ t.name }}</span>
+                <span class="qt-tile-desc" id="tile-{{ tid }}-desc">{{ t.desc }}</span>
                 {% if tile.output %}
                 <span class="qt-tile-sample"><span>{{ tile.input }}</span><b>{{ tile.output }}</b></span>
                 {% elif changed %}
@@ -116,7 +117,7 @@ json_ld:
         </div>
     </section>
 
-    <section class="qt-wrap qt-section">
+    <section class="qt-wrap qt-section overflow-x-clip">
         <div class="grid gap-8 lg:grid-cols-12 items-start">
             <div class="lg:col-span-5 qt-reveal from-left">
                 <span class="qt-sticker is-rani">No guesswork</span>

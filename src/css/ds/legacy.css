@@ -23,3 +23,9 @@ body.qt input[type="range"]:not(.qt-range) { accent-color: var(--haldi-500); }
 
 /* Old article layout: Tailwind Typography headings in the display weight */
 .prose :where(h1, h2, h3, h4) { letter-spacing: -.02em; }
+
+/* Wide tables in old articles scroll inside their own box instead of widening the page */
+.prose table { display: block; max-width: 100%; overflow-x: auto; }
+
+/* Old pages: a long email address in a button may wrap instead of pushing the page sideways */
+body.qt a[href^="mailto:"] { max-width: 100%; overflow-wrap: anywhere; white-space: normal; }

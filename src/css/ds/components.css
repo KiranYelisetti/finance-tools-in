@@ -66,13 +66,15 @@
     }
 
     /* Tools menu: one coloured card per group */
-    .qt-menu { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--qt-z-menu); background: var(--qt-canvas); border-bottom: var(--qt-bw) solid var(--qt-line); padding-block: 1.25rem 1.6rem; max-height: calc(100vh - 4.5rem); overflow-y: auto; }
+    .qt-menu { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--qt-z-menu); background: var(--qt-canvas); border-bottom: var(--qt-bw) solid var(--qt-line); padding-block: 1.25rem 1.6rem; max-height: min(72vh, calc(100vh - 4.5rem)); overflow-y: auto; }
     .qt-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 1rem; }
     .qt-menu-group { background: var(--cat); color: var(--ink-900); border: var(--qt-bw) solid var(--ink-900); border-radius: var(--qt-r-md); padding: .85rem 1rem 1rem; box-shadow: var(--qt-sh-2); }
     .qt-menu-group h3 { font-size: .7rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; margin-bottom: .45rem; }
     .qt-menu-group a { display: block; padding: .26rem 0; font-weight: 650; color: var(--ink-900); text-decoration: none; }
     .qt-menu-group a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-    .qt-menu-group a[aria-current="page"]::before { content: "\2192\00a0"; }
+    /* The arrow is decoration: the empty alt text keeps it out of the link's accessible name */
+    .qt-menu-group a[aria-current="page"] { font-weight: 800; }
+    .qt-menu-group a[aria-current="page"]::before { content: "\2192\00a0" / ""; }
 
     /* ---- Type ------------------------------------------------------------- */
     .qt-display { font-size: var(--qt-text-5xl); font-weight: 800; line-height: .96; letter-spacing: -.04em; }
