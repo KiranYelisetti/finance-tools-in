@@ -15,6 +15,7 @@ sources:
   - name: "Ministry of Labour and Employment"
     url: "https://labour.gov.in/"
     for: "the Payment of Gratuity Act"
+noIconFont: true
 ---
 
 {% block head %}
@@ -115,71 +116,71 @@ sources:
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-5xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div class="inline-block bg-gradient-to-br from-teal-400 to-cyan-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-wallet text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Salary Calculator</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Tax and salary</span><span aria-hidden="true">/</span><span>Salary, CTC to In-hand</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-tax">Tax and salary</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">CTC to In-Hand | Know your real take-home pay</p>
-        </div>
+            <h1 class="qt-h1 mt-4">Salary Calculator</h1>
+            <p class="qt-lede mt-4">CTC to In-Hand | Know your real take-home pay</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8">
+        <div class="qt-card">
             <div class="space-y-6">
-                <h2 class="text-xl font-bold text-gray-800 dark:text-white"><i class="fas fa-briefcase text-teal-600 mr-2"></i>Salary Details</h2>
+                <h2 class="qt-section-title">Salary Details</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Annual CTC (₹)</label>
+                        <label for="annualCTC" class="qt-label mb-2">Annual CTC (₹)</label>
                         <input type="number" id="annualCTC" value="1000000" min="100000" step="10000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
-                        <p class="text-xs text-gray-500 mt-1">Your total Cost to Company per annum</p>
+                            class="qt-input format-inr w-full">
+                        <p class="text-xs mt-1">Your total Cost to Company per annum</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">City Type</label>
+                        <label for="cityType" class="qt-label mb-2">City Type</label>
                         <select id="cityType"
-                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input w-full">
                             <option value="metro">50% city (Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune, Ahmedabad)</option>
                             <option value="nonmetro">Any other city</option>
                         </select>
-                        <p class="text-xs text-gray-500 mt-1">HRA here is 50% of basic in these 8 cities, the list for tax year 2026-27 (rule 279), and 40% elsewhere. Before April 2026 only the first four counted.</p>
+                        <p class="text-xs mt-1">HRA here is 50% of basic in these 8 cities, the list for tax year 2026-27 (rule 279), and 40% elsewhere. Before April 2026 only the first four counted.</p>
                     </div>
                 </div>
 
-                <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-                    <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-4"><i class="fas fa-sliders-h text-teal-600 mr-2"></i>CTC Structure (Customize %)</h3>
+                <div class="pt-6 border-dashed border-line-soft border-t-2">
+                    <h3 class="qt-h3 mb-4">CTC Structure (Customize %)</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Basic Pay (% of CTC)</label>
+                            <label for="basicPercent" class="qt-label mb-2">Basic Pay (% of CTC)</label>
                             <input type="number" id="basicPercent" value="40" min="20" max="60" step="1"
-                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
+                                class="qt-input w-full">
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Monthly Bonus (₹)</label>
+                            <label for="monthlyBonus" class="qt-label mb-2">Monthly Bonus (₹)</label>
                             <input type="number" id="monthlyBonus" value="0" min="0" step="500"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
+                                class="qt-input format-inr w-full">
                         </div>
                         <div>
-                            <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Professional Tax (₹/month)</label>
+                            <label for="profTax" class="qt-label mb-2">Professional Tax (₹/month)</label>
                             <input type="number" id="profTax" value="200" min="0" max="300" step="50"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
+                                class="qt-input format-inr w-full">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex gap-4">
                     <button onclick="calculateSalary()"
-                        class="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-4 rounded-lg font-semibold hover:from-teal-600 hover:to-cyan-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
-                        <i class="fas fa-calculator mr-2"></i>Calculate In-Hand Salary
+                        class="qt-btn flex-1">
+                        Calculate In-Hand Salary
                     </button>
                     <button onclick="resetForm('salary_calc')"
-                        class="px-6 py-4 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md">
-                        <i class="fas fa-undo mr-2"></i>Reset
+                        class="qt-btn">
+                        Reset
                     </button>
                 </div>
             </div>
@@ -188,139 +189,139 @@ sources:
         <!-- Results -->
         <div id="results" class="hidden mt-8 space-y-6">
             <!-- Hero Result -->
-            <div class="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl shadow-xl p-8 text-white text-center">
-                <p class="text-lg opacity-90 mb-1">Your Monthly In-Hand Salary</p>
+            <div class="qt-card is-tax">
+                <p class="text-lg mb-1">Your Monthly In-Hand Salary</p>
                 <p class="text-5xl font-bold mb-2" id="monthlyInHand">₹0</p>
-                <p class="opacity-80 text-sm" id="annualInHand">Annual In-Hand: ₹0</p>
+                <p class="text-sm" id="annualInHand">Annual In-Hand: ₹0</p>
             </div>
 
             <!-- Payslip Breakdown -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Earnings -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 overflow-hidden">
-                    <div class="bg-green-600 p-4">
-                        <h3 class="text-lg font-bold text-white"><i class="fas fa-plus-circle mr-2"></i>Monthly Earnings</h3>
+                <div class="qt-card overflow-hidden">
+                    <div class="p-4">
+                        <h3 class="qt-h3">Monthly Earnings</h3>
                     </div>
                     <div class="p-6 space-y-3">
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Basic Pay</span>
-                            <span class="font-semibold dark:text-white" id="resBasicPay">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Basic Pay</span>
+                            <span class="font-semibold" id="resBasicPay">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">HRA</span>
-                            <span class="font-semibold dark:text-white" id="resHRA">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>HRA</span>
+                            <span class="font-semibold" id="resHRA">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Special Allowance</span>
-                            <span class="font-semibold dark:text-white" id="resSpecialAllowance">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Special Allowance</span>
+                            <span class="font-semibold" id="resSpecialAllowance">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Bonus / Variable</span>
-                            <span class="font-semibold dark:text-white" id="resBonus">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Bonus / Variable</span>
+                            <span class="font-semibold" id="resBonus">₹0</span>
                         </div>
-                        <div class="flex justify-between p-4 bg-green-50 dark:bg-gray-600 rounded-lg border-2 border-green-200 dark:border-green-800">
-                            <span class="font-bold dark:text-white">Gross Monthly Salary</span>
-                            <span class="font-bold text-green-600 text-xl" id="resGrossSalary">₹0</span>
+                        <div class="qt-panel flex justify-between p-4">
+                            <span class="font-bold">Gross Monthly Salary</span>
+                            <span class="font-bold text-xl" id="resGrossSalary">₹0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Deductions -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 overflow-hidden">
-                    <div class="bg-red-600 p-4">
-                        <h3 class="text-lg font-bold text-white"><i class="fas fa-minus-circle mr-2"></i>Monthly Deductions</h3>
+                <div class="qt-card overflow-hidden">
+                    <div class="p-4">
+                        <h3 class="qt-h3">Monthly Deductions</h3>
                     </div>
                     <div class="p-6 space-y-3">
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Employee PF (12% of Basic)</span>
-                            <span class="font-semibold text-red-600" id="resEmployeePF">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Employee PF (12% of Basic)</span>
+                            <span class="font-semibold" id="resEmployeePF">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Professional Tax</span>
-                            <span class="font-semibold text-red-600" id="resProfTax">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Professional Tax</span>
+                            <span class="font-semibold" id="resProfTax">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Income Tax (TDS/month est.)</span>
-                            <span class="font-semibold text-red-600" id="resTDS">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Income Tax (TDS/month est.)</span>
+                            <span class="font-semibold" id="resTDS">₹0</span>
                         </div>
-                        <div class="flex justify-between p-4 bg-red-50 dark:bg-gray-600 rounded-lg border-2 border-red-200 dark:border-red-800">
-                            <span class="font-bold dark:text-white">Total Deductions</span>
-                            <span class="font-bold text-red-600 text-xl" id="resTotalDeductions">₹0</span>
+                        <div class="qt-panel flex justify-between p-4">
+                            <span class="font-bold">Total Deductions</span>
+                            <span class="font-bold text-xl" id="resTotalDeductions">₹0</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Employer Cost -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6">
-                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-building text-teal-600 mr-2"></i>Employer Side (Part of CTC but not in your salary)</h3>
+            <div class="qt-card">
+                <h3 class="qt-h3 mb-4">Employer Side (Part of CTC but not in your salary)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <span class="text-gray-600 dark:text-gray-300">Employer PF</span>
-                        <span class="font-semibold dark:text-white" id="resEmployerPF">₹0</span>
+                    <div class="qt-panel flex justify-between p-3">
+                        <span>Employer PF</span>
+                        <span class="font-semibold" id="resEmployerPF">₹0</span>
                     </div>
-                    <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <span class="text-gray-600 dark:text-gray-300">Gratuity</span>
-                        <span class="font-semibold dark:text-white" id="resGratuity">₹0</span>
+                    <div class="qt-panel flex justify-between p-3">
+                        <span>Gratuity</span>
+                        <span class="font-semibold" id="resGratuity">₹0</span>
                     </div>
-                    <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <span class="text-gray-600 dark:text-gray-300">Employer ESI</span>
-                        <span class="font-semibold dark:text-white" id="resEmployerESI">₹0</span>
+                    <div class="qt-panel flex justify-between p-3">
+                        <span>Employer ESI</span>
+                        <span class="font-semibold" id="resEmployerESI">₹0</span>
                     </div>
                 </div>
             </div>
 
             <button onclick="shareResult('In-Hand Salary', document.getElementById('monthlyInHand').innerText)"
-                class="w-full max-w-md mx-auto block bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                <i class="fab fa-whatsapp text-xl mr-2"></i> Share via WhatsApp
+                class="qt-btn qt-btn--secondary w-full mx-auto flex items-center justify-center">
+                Share via WhatsApp
             </button>
         </div>
 
         <!-- SEO Content -->
         <div class="mt-12 space-y-8">
             <!-- What the calculator does -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-info-circle mr-2 text-teal-600"></i>What this calculator does, step by step</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">What this calculator does, step by step</h2>
+                <p class="leading-relaxed mb-4">
                     The calculator rebuilds a typical Indian payslip from the CTC you enter. Basic pay is taken as the
                     percentage you set (40% by default). HRA is 50% of basic in the eight cities the tax rules name from April 2026 (Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune, Ahmedabad) and 40% elsewhere.
                     The employer's PF contribution is 12% of basic and the gratuity accrual is 4.81% of basic. Employer ESI
                     (3.25% of gross) is added only when monthly CTC is ₹21,000 or less. Special allowance is whatever is
                     left of monthly CTC after those items, so the structure always adds up to your CTC.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Gross salary is basic plus HRA plus special allowance plus any monthly bonus you enter. From gross, the
                     calculator deducts employee PF (12% of basic), the professional tax you enter, and an estimate of income
                     tax under the new tax regime: a ₹75,000 standard deduction, the current slabs, the Section 156 (was 87A) rebate for
                     taxable income up to ₹12 lakh (with marginal relief just above it) and 4% cess, spread over twelve
                     months as TDS. What remains is your in-hand salary.
                 </p>
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-6">Worked example: CTC ₹10,00,000, metro, 40% basic, no bonus</h3>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-teal-600 text-white">
+                <h3 class="qt-h3 mb-3 mt-6">Worked example: CTC ₹10,00,000, metro, 40% basic, no bonus</h3>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">Line</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Per month</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">How it is derived</th>
+                                <th class="text-xs font-semibold">Line</th>
+                                <th class="text-xs font-semibold text-center">Per month</th>
+                                <th class="text-xs font-semibold">How it is derived</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Monthly CTC</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹83,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">₹10,00,000 divided by 12</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Basic pay</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹33,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">40% of CTC</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">HRA</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹16,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">50% of basic (metro)</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Employer PF</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">12% of basic, goes to your PF account, not your bank</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Gratuity accrual</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,603</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">4.81% of basic, paid only after five years of service</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Special allowance</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹27,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Balance of monthly CTC</td></tr>
-                            <tr class="bg-green-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Gross salary</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹77,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Basic + HRA + special allowance</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Employee PF</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">12% of basic, deducted</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Professional tax</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹200</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">State levy, deducted</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Income tax (TDS)</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">Annual gross ₹9,32,760 less ₹75,000 standard deduction is ₹8,57,760, within the ₹12 lakh rebate limit</td></tr>
-                            <tr class="bg-teal-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">In-hand salary</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-teal-700 dark:text-teal-300">₹73,530</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 text-left">88% of monthly CTC</td></tr>
+                        <tbody>
+                            <tr><td class="text-sm font-semibold">Monthly CTC</td><td class="text-sm text-center">₹83,333</td><td class="text-sm text-center">₹10,00,000 divided by 12</td></tr>
+                            <tr><td class="text-sm font-semibold">Basic pay</td><td class="text-sm text-center">₹33,333</td><td class="text-sm text-center">40% of CTC</td></tr>
+                            <tr><td class="text-sm font-semibold">HRA</td><td class="text-sm text-center">₹16,667</td><td class="text-sm text-center">50% of basic (metro)</td></tr>
+                            <tr><td class="text-sm font-semibold">Employer PF</td><td class="text-sm text-center">₹4,000</td><td class="text-sm text-center">12% of basic, goes to your PF account, not your bank</td></tr>
+                            <tr><td class="text-sm font-semibold">Gratuity accrual</td><td class="text-sm text-center">₹1,603</td><td class="text-sm text-center">4.81% of basic, paid only after five years of service</td></tr>
+                            <tr><td class="text-sm font-semibold">Special allowance</td><td class="text-sm text-center">₹27,730</td><td class="text-sm text-center">Balance of monthly CTC</td></tr>
+                            <tr><td class="text-sm font-semibold">Gross salary</td><td class="text-sm text-center">₹77,730</td><td class="text-sm text-center">Basic + HRA + special allowance</td></tr>
+                            <tr><td class="text-sm font-semibold">Employee PF</td><td class="text-sm text-center">₹4,000</td><td class="text-sm text-center">12% of basic, deducted</td></tr>
+                            <tr><td class="text-sm font-semibold">Professional tax</td><td class="text-sm text-center">₹200</td><td class="text-sm text-center">State levy, deducted</td></tr>
+                            <tr><td class="text-sm font-semibold">Income tax (TDS)</td><td class="text-sm text-center">₹0</td><td class="text-sm text-center">Annual gross ₹9,32,760 less ₹75,000 standard deduction is ₹8,57,760, within the ₹12 lakh rebate limit</td></tr>
+                            <tr><td class="text-sm font-semibold">In-hand salary</td><td class="text-sm text-center">₹73,530</td><td class="text-sm text-center">88% of monthly CTC</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                <p class="text-xs mt-2">
                     Real payslips also carry items the calculator leaves out, such as dearness allowance, leave travel
                     allowance, meal coupons, an employer NPS contribution, or a group insurance premium. Use the bonus
                     field for variable pay that is actually paid monthly.
@@ -328,12 +329,12 @@ sources:
             </div>
 
             <!-- Components -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-layer-group mr-2 text-teal-600"></i>The components of a CTC</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">The components of a CTC</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
-                        <h4 class="font-bold text-green-800 dark:text-green-400 mb-2"><i class="fas fa-check-circle mr-1"></i>Paid to you every month</h4>
-                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+                    <div class="qt-note is-tip">
+                        <h4 class="font-bold mb-2">Paid to you every month</h4>
+                        <ul class="text-sm space-y-2">
                             <li><strong>Basic pay:</strong> the base on which PF, gratuity and HRA are computed. Fully taxable.</li>
                             <li><strong>Dearness allowance (DA):</strong> common in government and public sector pay, rare in private companies. Counts with basic for PF and gratuity.</li>
                             <li><strong>House rent allowance (HRA):</strong> usually 40% to 50% of basic. Partly exempt under the old tax regime if you pay rent.</li>
@@ -341,9 +342,9 @@ sources:
                             <li><strong>Reimbursements and perks:</strong> meal coupons, leave travel allowance, phone or internet reimbursement, each with its own tax rule.</li>
                         </ul>
                     </div>
-                    <div class="bg-red-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-500">
-                        <h4 class="font-bold text-red-800 dark:text-red-400 mb-2"><i class="fas fa-times-circle mr-1"></i>Inside CTC but not in your monthly bank credit</h4>
-                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+                    <div class="qt-note is-danger">
+                        <h4 class="font-bold mb-2">Inside CTC but not in your monthly bank credit</h4>
+                        <ul class="text-sm space-y-2">
                             <li><strong>Employer PF:</strong> 12% of basic plus DA, credited to your EPF and EPS accounts.</li>
                             <li><strong>Gratuity accrual:</strong> 4.81% of basic, payable only when you leave after five years.</li>
                             <li><strong>Variable or performance pay:</strong> counted at target in the CTC, paid quarterly or yearly and only to the extent earned.</li>
@@ -356,9 +357,9 @@ sources:
             </div>
 
             <!-- EPF and EPS -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-piggy-bank mr-2 text-teal-600"></i>EPF and EPS: where the two 12% contributions go</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">EPF and EPS: where the two 12% contributions go</h2>
+                <p class="leading-relaxed mb-4">
                     You contribute 12% of basic plus DA to the Employees' Provident Fund, and your employer contributes
                     another 12%. The employer's share is split: 8.33% goes to the Employees' Pension Scheme (EPS) and the
                     rest to your EPF account. The EPS share is calculated on the wage ceiling, which the Government raised from ₹15,000
@@ -368,7 +369,7 @@ sources:
                     ₹15,000 before) rather than 12% of your full basic. This calculator assumes 12% of full basic on both sides,
                     which many organised private employers follow.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Your own 12% counts toward the ₹1.5 lakh Section 123 (was 80C) limit under the old tax regime, and you can add a
                     voluntary provident fund (VPF) contribution above 12% if you want more of your salary in EPF. EPFO
                     declares the interest rate for each financial year; check the current rate on the EPFO website rather
@@ -377,16 +378,16 @@ sources:
             </div>
 
             <!-- Gratuity -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-award mr-2 text-teal-600"></i>Gratuity: the 4.81% explained</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Gratuity: the 4.81% explained</h2>
+                <p class="leading-relaxed mb-4">
                     Under the Payment of Gratuity Act, 1972, an employee who leaves after five years of continuous service
                     is paid 15 days of last drawn basic plus DA for every completed year of service. Because the Act uses a
                     26-day working month, the formula is 15 divided by 26, multiplied by last drawn basic plus DA, multiplied
                     by completed years. Spread over a year, 15/26 of one month's basic is 4.81% of basic per month, which is
                     the accrual employers show in the CTC.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Example: last drawn basic plus DA of ₹40,000 a month and seven completed years gives 15/26 x 40,000 x 7 =
                     ₹1,61,538. Gratuity received by employees covered by the Act is exempt from income tax up to ₹20 lakh
                     over a working life. If you leave before completing five years, the accrued amount is not paid, so for a
@@ -395,16 +396,16 @@ sources:
             </div>
 
             <!-- HRA -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-home mr-2 text-teal-600"></i>HRA exemption (old tax regime only)</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">HRA exemption (old tax regime only)</h2>
+                <p class="leading-relaxed mb-4">
                     Under Section 10(13A) and Rule 2A, the exempt part of HRA is the least of three amounts: the HRA you
                     actually receive; rent paid minus 10% of basic plus DA; and 50% of basic plus DA if you live in Delhi,
                     Mumbai, Kolkata or Chennai, or 40% elsewhere. The rest of the HRA is taxable. The exemption is available
                     only under the old regime; under the new regime HRA is fully taxable, which is why the city selector
                     here changes only the size of the HRA line, not the tax estimate.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Example: basic ₹40,000 a month, HRA received ₹20,000, rent paid ₹15,000, metro city. The three figures
                     are ₹20,000; ₹15,000 minus ₹4,000 = ₹11,000; and 50% of ₹40,000 = ₹20,000. The exempt HRA is ₹11,000 a
                     month and ₹9,000 is taxed. Keep rent receipts, and if annual rent exceeds ₹1 lakh your employer will ask
@@ -413,9 +414,9 @@ sources:
             </div>
 
             <!-- Regimes -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-balance-scale mr-2 text-teal-600"></i>New regime, old regime, and your take-home</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">New regime, old regime, and your take-home</h2>
+                <p class="leading-relaxed mb-4">
                     The new tax regime, which this calculator uses, gives a ₹75,000 standard deduction and taxes income in
                     slabs of 5% (₹4 lakh to ₹8 lakh), 10% (to ₹12 lakh), 15% (to ₹16 lakh), 20% (to ₹20 lakh), 25% (to ₹24
                     lakh) and 30% above that, with a Section 156 (was 87A) rebate that brings tax to zero when taxable income is ₹12
@@ -423,21 +424,21 @@ sources:
                     regime keeps a ₹50,000 standard deduction and older slabs (5% from ₹2.5 lakh, 20% from ₹5 lakh, 30%
                     above ₹10 lakh) but allows HRA exemption, Section 123 (was 80C), Section 126 (was 80D) and home loan interest deductions.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Take the ₹10 lakh example above. Under the new regime the taxable income is ₹8,57,760 and the tax is
                     zero after the rebate. Under the old regime, with rent of ₹20,000 a month giving a full ₹2,00,000 HRA
                     exemption and ₹1,50,000 of Section 123 (was 80C) investments (your ₹48,000 of employee PF counts toward it), taxable
                     income is ₹5,32,760 and the tax is ₹19,814 including cess, about ₹1,651 a month. The new regime wins here.
                     The old regime tends to come out ahead only when large deductions stack up, typically home loan
                     interest plus HRA plus section 123 (was 80C) plus section 126 (was 80D). Test your own numbers with the
-                    <a href="/income-tax-calculator/" class="text-teal-600 dark:text-teal-400 hover:underline">income tax calculator</a>, which compares both regimes.
+                    <a href="/income-tax-calculator/" class="qt-link">income tax calculator</a>, which compares both regimes.
                 </p>
             </div>
 
             <!-- Reading an offer -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-file-signature mr-2 text-teal-600"></i>Reading and negotiating an offer letter</h2>
-                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 leading-relaxed mb-4 space-y-2">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Reading and negotiating an offer letter</h2>
+                <ul class="list-disc list-inside leading-relaxed mb-4 space-y-2">
                     <li><strong>Ask for the fixed monthly gross</strong>, not just the CTC. Two offers with the same CTC can differ by thousands of rupees a month in hand.</li>
                     <li><strong>Separate fixed from variable.</strong> Variable pay is counted at 100% in the CTC but is paid on performance; assume a partial payout when comparing.</li>
                     <li><strong>Check what sits in retirals.</strong> Employer PF and gratuity are your money eventually, but they inflate the headline number and gratuity is forfeited before five years.</li>
@@ -445,106 +446,106 @@ sources:
                     <li><strong>Insurance and perks</strong> have real value but are not cash. Ask whether the premium is inside the CTC.</li>
                     <li><strong>Compare in-hand plus retirals</strong> across offers rather than the CTC figure alone.</li>
                 </ul>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     For a longer walkthrough of a typical offer, read
-                    <a href="/blog/salary-ctc-inhand-explained/" class="text-teal-600 dark:text-teal-400 hover:underline">CTC vs in-hand salary explained</a>.
+                    <a href="/blog/salary-ctc-inhand-explained/" class="qt-link">CTC vs in-hand salary explained</a>.
                 </p>
             </div>
 
             <!-- CTC Examples Table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-table mr-2 text-teal-600"></i>Estimated in-hand salary for common CTC levels</h2>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-teal-600 text-white">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Estimated in-hand salary for common CTC levels</h2>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">Annual CTC</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly CTC</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly gross</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Est. TDS</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Monthly in-hand</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">In-hand as % of CTC</th>
+                                <th class="text-xs font-semibold">Annual CTC</th>
+                                <th class="text-xs font-semibold text-center">Monthly CTC</th>
+                                <th class="text-xs font-semibold text-center">Monthly gross</th>
+                                <th class="text-xs font-semibold text-center">Est. TDS</th>
+                                <th class="text-xs font-semibold text-center">Monthly in-hand</th>
+                                <th class="text-xs font-semibold text-center">In-hand as % of CTC</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹3 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹25,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹23,319</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹21,919</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹5 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹41,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹38,865</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹36,665</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹10 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹83,333</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹77,730</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹0</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹73,530</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">88%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹15 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,25,000</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,16,595</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹6,814</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹1,03,581</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">83%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹20 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,66,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹1,55,460</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹13,702</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹1,33,558</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">80%</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">₹50 lakh</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹4,16,667</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹3,88,650</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">₹82,909</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹2,85,541</td><td class="px-4 py-3 text-sm text-center text-gray-700 dark:text-gray-300">69%</td></tr>
+                        <tbody>
+                            <tr><td class="text-sm font-semibold">₹3 lakh</td><td class="text-sm text-center">₹25,000</td><td class="text-sm text-center">₹23,319</td><td class="text-sm text-center">₹0</td><td class="text-sm text-center font-bold">₹21,919</td><td class="text-sm text-center">88%</td></tr>
+                            <tr><td class="text-sm font-semibold">₹5 lakh</td><td class="text-sm text-center">₹41,667</td><td class="text-sm text-center">₹38,865</td><td class="text-sm text-center">₹0</td><td class="text-sm text-center font-bold">₹36,665</td><td class="text-sm text-center">88%</td></tr>
+                            <tr><td class="text-sm font-semibold">₹10 lakh</td><td class="text-sm text-center">₹83,333</td><td class="text-sm text-center">₹77,730</td><td class="text-sm text-center">₹0</td><td class="text-sm text-center font-bold">₹73,530</td><td class="text-sm text-center">88%</td></tr>
+                            <tr><td class="text-sm font-semibold">₹15 lakh</td><td class="text-sm text-center">₹1,25,000</td><td class="text-sm text-center">₹1,16,595</td><td class="text-sm text-center">₹6,814</td><td class="text-sm text-center font-bold">₹1,03,581</td><td class="text-sm text-center">83%</td></tr>
+                            <tr><td class="text-sm font-semibold">₹20 lakh</td><td class="text-sm text-center">₹1,66,667</td><td class="text-sm text-center">₹1,55,460</td><td class="text-sm text-center">₹13,702</td><td class="text-sm text-center font-bold">₹1,33,558</td><td class="text-sm text-center">80%</td></tr>
+                            <tr><td class="text-sm font-semibold">₹50 lakh</td><td class="text-sm text-center">₹4,16,667</td><td class="text-sm text-center">₹3,88,650</td><td class="text-sm text-center">₹82,909</td><td class="text-sm text-center font-bold">₹2,85,541</td><td class="text-sm text-center">69%</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><i class="fas fa-info-circle mr-1"></i>Computed with this calculator's logic: 40% basic, metro HRA, no bonus, ₹200 professional tax, new tax regime slabs for FY 2025-26 and FY 2026-27, 4% cess. Actual in-hand depends on your company's structure and declarations.</p>
+                <p class="text-xs mt-2">Computed with this calculator's logic: 40% basic, metro HRA, no bonus, ₹200 professional tax, new tax regime slabs for FY 2025-26 and FY 2026-27, 4% cess. Actual in-hand depends on your company's structure and declarations.</p>
             </div>
 
             <!-- Professional Tax Table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-landmark mr-2 text-teal-600"></i>Professional tax by state</h2>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Professional tax by state</h2>
+                <p class="leading-relaxed mb-4">
                     Professional tax is levied by state governments under Article 276 of the Constitution and cannot exceed
                     ₹2,500 a year. Each state sets its own monthly slabs, and several states and union territories do not
                     levy it. Change the professional tax field above to match your state.
                 </p>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-gray-800 text-white">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-left">State</th>
-                                <th class="px-4 py-3 text-center">Monthly Amount</th>
-                                <th class="px-4 py-3 text-center">Annual Max</th>
+                                <th>State</th>
+                                <th class="text-center">Monthly Amount</th>
+                                <th class="text-center">Annual Max</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Maharashtra</td><td class="px-4 py-3 text-center dark:text-gray-300">₹200 (₹300 in Feb)</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,500</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Karnataka</td><td class="px-4 py-3 text-center dark:text-gray-300">₹200</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,400</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">West Bengal</td><td class="px-4 py-3 text-center dark:text-gray-300">₹150 - ₹200</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,400</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Tamil Nadu</td><td class="px-4 py-3 text-center dark:text-gray-300">Up to ₹208</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,500</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Telangana</td><td class="px-4 py-3 text-center dark:text-gray-300">₹200</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,400</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Gujarat</td><td class="px-4 py-3 text-center dark:text-gray-300">₹200</td><td class="px-4 py-3 text-center dark:text-gray-300">₹2,400</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Delhi / UP / Rajasthan</td><td class="px-4 py-3 text-center font-bold text-green-600">NIL</td><td class="px-4 py-3 text-center font-bold text-green-600">NIL</td></tr>
+                        <tbody>
+                            <tr><td class="font-semibold">Maharashtra</td><td class="text-center">₹200 (₹300 in Feb)</td><td class="text-center">₹2,500</td></tr>
+                            <tr><td class="font-semibold">Karnataka</td><td class="text-center">₹200</td><td class="text-center">₹2,400</td></tr>
+                            <tr><td class="font-semibold">West Bengal</td><td class="text-center">₹150 - ₹200</td><td class="text-center">₹2,400</td></tr>
+                            <tr><td class="font-semibold">Tamil Nadu</td><td class="text-center">Up to ₹208</td><td class="text-center">₹2,500</td></tr>
+                            <tr><td class="font-semibold">Telangana</td><td class="text-center">₹200</td><td class="text-center">₹2,400</td></tr>
+                            <tr><td class="font-semibold">Gujarat</td><td class="text-center">₹200</td><td class="text-center">₹2,400</td></tr>
+                            <tr><td class="font-semibold">Delhi / UP / Rajasthan</td><td class="text-center font-bold">NIL</td><td class="text-center font-bold">NIL</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Slabs shown are for the highest salary band in each state as of September 2026; lower bands and exemptions (for example for women or senior citizens in some states) exist. Confirm with your state's commercial tax department.</p>
+                <p class="text-xs mt-2">Slabs shown are for the highest salary band in each state as of September 2026; lower bands and exemptions (for example for women or senior citizens in some states) exist. Confirm with your state's commercial tax department.</p>
             </div>
 
             <!-- FAQ Section -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-question-circle mr-2 text-teal-600"></i>Frequently Asked Questions</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
                 <div class="space-y-4">
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the difference between CTC and in-hand salary?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">CTC (cost to company) is the total yearly amount the employer books for you: gross salary plus the employer's PF contribution, the gratuity accrual, insurance premiums and often the target variable pay. In-hand salary is what reaches your bank each month after employee PF, professional tax and TDS are deducted from gross. With a standard structure, a ₹10 lakh CTC gives about ₹73,530 a month in hand, not ₹83,333.</p>
+                    <details class="qt-faq-item">
+                        <summary>What is the difference between CTC and in-hand salary?</summary>
+                        <p class="mt-3 text-sm">CTC (cost to company) is the total yearly amount the employer books for you: gross salary plus the employer's PF contribution, the gratuity accrual, insurance premiums and often the target variable pay. In-hand salary is what reaches your bank each month after employee PF, professional tax and TDS are deducted from gross. With a standard structure, a ₹10 lakh CTC gives about ₹73,530 a month in hand, not ₹83,333.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How is in-hand salary calculated from CTC?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Monthly CTC minus the employer PF contribution and the gratuity accrual gives your gross salary. Gross minus employee PF (12% of basic), professional tax and estimated income tax (TDS) gives in-hand. With this calculator's default structure (40% basic, metro HRA, ₹200 professional tax, new tax regime), in-hand is about 88% of monthly CTC at ₹10 lakh, 83% at ₹15 lakh, 80% at ₹20 lakh and 69% at ₹50 lakh, because income tax rises with income.</p>
+                    <details class="qt-faq-item">
+                        <summary>How is in-hand salary calculated from CTC?</summary>
+                        <p class="mt-3 text-sm">Monthly CTC minus the employer PF contribution and the gratuity accrual gives your gross salary. Gross minus employee PF (12% of basic), professional tax and estimated income tax (TDS) gives in-hand. With this calculator's default structure (40% basic, metro HRA, ₹200 professional tax, new tax regime), in-hand is about 88% of monthly CTC at ₹10 lakh, 83% at ₹15 lakh, 80% at ₹20 lakh and 69% at ₹50 lakh, because income tax rises with income.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Why is my in-hand salary so much less than the CTC I was offered?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Employer PF (12% of basic) and the gratuity accrual (4.81% of basic) sit inside the CTC but never reach your bank each month. Insurance premiums and variable pay counted at its target value inflate the CTC further. From the gross that remains, employee PF, professional tax and TDS are deducted. Each item is small on its own; together they commonly remove 12% to 30% of the CTC figure, more at higher incomes.</p>
+                    <details class="qt-faq-item">
+                        <summary>Why is my in-hand salary so much less than the CTC I was offered?</summary>
+                        <p class="mt-3 text-sm">Employer PF (12% of basic) and the gratuity accrual (4.81% of basic) sit inside the CTC but never reach your bank each month. Insurance premiums and variable pay counted at its target value inflate the CTC further. From the gross that remains, employee PF, professional tax and TDS are deducted. Each item is small on its own; together they commonly remove 12% to 30% of the CTC figure, more at higher incomes.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Should I ask for a higher or lower basic pay?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A higher basic raises both PF contributions and the gratuity accrual, which improves retirement savings but lowers monthly in-hand. A lower basic pushes more money into special allowance, which is fully taxable and increases take-home. HRA is usually set as a percentage of basic, so under the old tax regime with rent to claim, a higher basic also raises the HRA exemption ceiling. Many salaried structures set basic at roughly 40% to 50% of CTC.</p>
+                    <details class="qt-faq-item">
+                        <summary>Should I ask for a higher or lower basic pay?</summary>
+                        <p class="mt-3 text-sm">A higher basic raises both PF contributions and the gratuity accrual, which improves retirement savings but lowers monthly in-hand. A lower basic pushes more money into special allowance, which is fully taxable and increases take-home. HRA is usually set as a percentage of basic, so under the old tax regime with rent to claim, a higher basic also raises the HRA exemption ceiling. Many salaried structures set basic at roughly 40% to 50% of CTC.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the PF wage ceiling?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The statutory wage ceiling for mandatory EPF is ₹25,000 a month from 17 September 2026 (it was ₹15,000 before), so the minimum employer contribution is 12% of ₹25,000, or ₹3,000. Of the employer's 12%, 8.33% (₹2,083 at the new ceiling, ₹1,250 at the old one) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF).</p>
+                    <details class="qt-faq-item">
+                        <summary>What is the PF wage ceiling?</summary>
+                        <p class="mt-3 text-sm">The statutory wage ceiling for mandatory EPF is ₹25,000 a month from 17 September 2026 (it was ₹15,000 before), so the minimum employer contribution is 12% of ₹25,000, or ₹3,000. Of the employer's 12%, 8.33% (₹2,083 at the new ceiling, ₹1,250 at the old one) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF).</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Does the calculator use the old or the new tax regime?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 156 (was 87A) rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 123 (was 80C) deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here.</p>
+                    <details class="qt-faq-item">
+                        <summary>Does the calculator use the old or the new tax regime?</summary>
+                        <p class="mt-3 text-sm">It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 156 (was 87A) rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 123 (was 80C) deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Is gratuity really part of my salary?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It is part of your CTC but not of your monthly pay. Under the Payment of Gratuity Act, 1972, gratuity becomes payable when you leave after five years of continuous service, at 15 days of last drawn basic plus DA for every completed year of service (the 15/26 formula). Employers therefore book 4.81% of basic every month as an accrual. If you leave before completing five years, the accrued amount is not paid, so for a short stint that slice of the CTC is notional.</p>
+                    <details class="qt-faq-item">
+                        <summary>Is gratuity really part of my salary?</summary>
+                        <p class="mt-3 text-sm">It is part of your CTC but not of your monthly pay. Under the Payment of Gratuity Act, 1972, gratuity becomes payable when you leave after five years of continuous service, at 15 days of last drawn basic plus DA for every completed year of service (the 15/26 formula). Employers therefore book 4.81% of basic every month as an accrual. If you leave before completing five years, the accrued amount is not paid, so for a short stint that slice of the CTC is notional.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is professional tax and why does it vary by state?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Professional tax is a levy that state governments impose on salaried people and professionals under Article 276 of the Constitution, capped at ₹2,500 a year. Each state sets its own slabs, which is why Maharashtra, Karnataka, Telangana, West Bengal and Tamil Nadu deduct different monthly amounts, and some states and union territories, including Delhi, do not levy it at all. Your employer deducts it from salary, and under the old tax regime it is allowed as a deduction from salary income.</p>
+                    <details class="qt-faq-item">
+                        <summary>What is professional tax and why does it vary by state?</summary>
+                        <p class="mt-3 text-sm">Professional tax is a levy that state governments impose on salaried people and professionals under Article 276 of the Constitution, capped at ₹2,500 a year. Each state sets its own slabs, which is why Maharashtra, Karnataka, Telangana, West Bengal and Tamil Nadu deduct different monthly amounts, and some states and union territories, including Delhi, do not levy it at all. Your employer deducts it from salary, and under the old tax regime it is allowed as a deduction from salary income.</p>
                     </details>
                 </div>
             </div>
@@ -552,12 +553,11 @@ sources:
     </div>
 
     <!-- Financial Disclaimer -->
-    <div class="mt-12 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-5xl mx-auto mb-8 rounded-r-lg">
+    <div class="qt-well mt-12 max-w-5xl mx-auto mb-8">
         <div class="flex items-start">
-            <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-            <div>
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <div>
+                <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                <div class="text-sm space-y-2">
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides salary estimates based on a standard CTC structure. Actual salary components vary by company.</p>
                     <p><strong>TDS is Estimated:</strong> Income tax (TDS) shown is a rough estimate using the New Tax Regime. Your actual TDS may differ based on declarations submitted to your employer.</p>
                     <p><strong>No Liability:</strong> QuickTools India assumes no responsibility for any decisions or actions taken based on the salary calculations provided on this tool.</p>

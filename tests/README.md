@@ -126,9 +126,9 @@ A test for a known bug states the right answer and is marked as expected to fail
 | Cash Counter | The words line is digits with unit names | "the total in words is written in words" |
 | Study Abroad | Negative years give a negative monthly saving | "negative years are refused" |
 | Wedding Cost | With a destination wedding the breakdown lines add up to more than the total | "the cost breakdown adds up to the total" |
-| 13 calculator pages | Field labels are not tied to their fields, and SIP has an icon-only Reset button | `KNOWN_UNNAMED_CONTROLS` in `site.spec.mjs` |
+| 13 calculator pages | **Fixed 2026-11-06.** Field labels were not tied to their fields, and SIP had an icon-only Reset button. Labels now use `for=`, sliders and the cash counter fields carry names. | `KNOWN_UNNAMED_CONTROLS` in `site.spec.mjs` (now empty) |
 
-When the redesign fixes the labels on a page, take that page out of `KNOWN_UNNAMED_CONTROLS`.
+`KNOWN_UNNAMED_CONTROLS` is empty. A page that loses a name fails at once.
 
 ## Conventions the pages do not state
 

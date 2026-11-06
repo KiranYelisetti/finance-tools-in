@@ -8,6 +8,7 @@ sources:
   - name: "Reserve Bank of India"
     url: "https://www.rbi.org.in/"
     for: "rules on loan pricing and prepayment"
+noIconFont: true
 ---
 
 {% block head %}
@@ -84,226 +85,228 @@ sources:
     </script>
 {% endblock %}
 
-<div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="text-center mb-8">
-        <div class="inline-block p-4 bg-gradient-to-br from-red-500 to-pink-600 rounded-full mb-4">
-            <i class="fas fa-car text-4xl text-white"></i>
-        </div>
-        <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Car Loan EMI Calculator</h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400">Calculate your car loan EMI, on-road price, and total
-            cost. Get accurate estimates for new and used car loans from all major Indian banks.</p>
-    </div>
+<main class="qt-wrap">
+<div>
+    <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Loans</span><span aria-hidden="true">/</span><span>Car Loan</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-loans">Loans</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
+            </div>
+            <h1 class="qt-h1 mt-4">Car Loan EMI Calculator</h1>
+            <p class="qt-lede mt-4">Calculate your car loan EMI, on-road price, and total cost. Get accurate estimates for new and used car loans from all major Indian banks.</p>
+        </section>
 
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8 mb-8">
+    <div class="qt-card mb-8">
         <div class="space-y-6">
             <div class="flex items-center space-x-4 mb-4">
-                <label class="flex items-center">
-                    <input type="radio" id="carTypeNew" name="carType" value="new" checked class="w-4 h-4 text-red-600">
-                    <span class="ml-2 text-gray-700 dark:text-gray-300 font-semibold">New Car</span>
+                <label class="flex items-center font-semibold">
+                    <input type="radio" id="carTypeNew" name="carType" value="new" checked class="w-4 h-4">
+                    <span class="ml-2 font-semibold">New Car</span>
                 </label>
-                <label class="flex items-center">
-                    <input type="radio" id="carTypeUsed" name="carType" value="used" class="w-4 h-4 text-red-600">
-                    <span class="ml-2 text-gray-700 dark:text-gray-300 font-semibold">Used Car</span>
+                <label class="flex items-center font-semibold">
+                    <input type="radio" id="carTypeUsed" name="carType" value="used" class="w-4 h-4">
+                    <span class="ml-2 font-semibold">Used Car</span>
                 </label>
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-car mr-2 text-red-600"></i>Ex-Showroom Price (₹)
+                <label for="carPrice" class="qt-label mb-2">
+                    Ex-Showroom Price (₹)
                 </label>
                 <input type="number" id="carPrice" value="1000000" min="100000" step="10000"
-                    class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Price of the car before taxes and
+                    class="qt-input format-inr w-full">
+                <p class="text-xs mt-1">Price of the car before taxes and
                     registration</p>
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-money-bill mr-2 text-red-600"></i>Down Payment (₹)
+                <label for="downPayment" class="qt-label mb-2">
+                    Down Payment (₹)
                 </label>
                 <input type="number" id="downPayment" value="200000" min="0" step="10000"
-                    class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Minimum 10% for new, 25% for used cars
+                    class="qt-input format-inr w-full">
+                <p class="text-xs mt-1">Minimum 10% for new, 25% for used cars
                     recommended</p>
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-percent mr-2 text-red-600"></i>Annual Interest Rate (%)
+                <label for="interestRate" class="qt-label mb-2">
+                    Annual Interest Rate (%)
                 </label>
                 <input type="number" id="interestRate" value="9.5" min="5" max="20" step="0.1"
-                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Enter the rate from your lender's quote. Used-car loans are usually priced higher than new-car loans.</p>
+                    class="qt-input w-full">
+                <p class="text-xs mt-1">Enter the rate from your lender's quote. Used-car loans are usually priced higher than new-car loans.</p>
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-calendar-alt mr-2 text-red-600"></i>Loan Tenure (Years)
+                <label for="loanTenure" class="qt-label mb-2">
+                    Loan Tenure (Years)
                 </label>
                 <input type="number" id="loanTenure" value="5" min="1" max="7" step="1"
-                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Choose between 1 to 7 years (3-5 years
+                    class="qt-input w-full">
+                <p class="text-xs mt-1">Choose between 1 to 7 years (3-5 years
                     recommended)</p>
             </div>
 
-            <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-                <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-4">
-                    <i class="fas fa-file-invoice mr-2 text-blue-600"></i>Additional Costs (Optional)
+            <div class="pt-6 border-dashed border-line-soft border-t-2">
+                <h3 class="qt-h3 mb-4">
+                    Additional Costs (Optional)
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Insurance (₹)</label>
+                        <label for="insurance" class="qt-label mb-2">Insurance (₹)</label>
                         <input type="number" id="insurance" value="25000" min="0" step="1000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input format-inr w-full">
                     </div>
                     <div>
-                        <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">RTO/Road Tax (%)</label>
+                        <label for="rtoTax" class="qt-label mb-2">RTO/Road Tax (%)</label>
                         <input type="number" id="rtoTax" value="10" min="0" max="20" step="0.5"
-                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input w-full">
                     </div>
                     <div>
-                        <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Accessories (₹)</label>
+                        <label for="accessories" class="qt-label mb-2">Accessories (₹)</label>
                         <input type="number" id="accessories" value="0" min="0" step="1000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input format-inr w-full">
                     </div>
                     <div>
-                        <label class="block text-sm text-gray-700 dark:text-gray-300 mb-2">Other Charges (₹)</label>
+                        <label for="otherCharges" class="qt-label mb-2">Other Charges (₹)</label>
                         <input type="number" id="otherCharges" value="15000" min="0" step="1000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input format-inr w-full">
                     </div>
                 </div>
             </div>
 
             <div class="flex gap-4">
                 <button onclick="calculateCarLoan()"
-                    class="flex-1 bg-gradient-to-r from-red-500 to-pink-600 text-white py-4 rounded-lg font-semibold hover:from-red-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-calculator mr-2"></i>Calculate EMI
+                    class="qt-btn flex-1">
+                    Calculate EMI
                 </button>
                 <button onclick="resetForm('car_loan_calc')"
-                    class="px-6 py-4 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md">
-                    <i class="fas fa-undo mr-2"></i>Reset
+                    class="qt-btn">
+                    Reset
                 </button>
             </div>
         </div>
     </div>
 
     <div id="results" class="hidden space-y-6">
-        <div class="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl shadow-xl p-8 text-white">
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fas fa-chart-pie mr-3"></i>Your Car Loan Summary
+        <div class="qt-card is-loans">
+            <h2 class="qt-section-title mb-6 flex items-center">
+                Your Car Loan Summary
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Monthly EMI</p>
+                <div class="qt-well">
+                    <p class="text-sm mb-1">Monthly EMI</p>
                     <p class="text-3xl font-bold" id="monthlyEMI">₹0</p>
                 </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">On-Road Price</p>
+                <div class="qt-well">
+                    <p class="text-sm mb-1">On-Road Price</p>
                     <p class="text-2xl font-bold" id="onRoadPrice">₹0</p>
                 </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Loan Amount</p>
+                <div class="qt-well">
+                    <p class="text-sm mb-1">Loan Amount</p>
                     <p class="text-2xl font-bold" id="loanAmount">₹0</p>
                 </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Total Interest</p>
+                <div class="qt-well">
+                    <p class="text-sm mb-1">Total Interest</p>
                     <p class="text-2xl font-bold" id="totalInterest">₹0</p>
                 </div>
             </div>
             
             <button onclick="shareResult('Car Loan EMI', document.getElementById('monthlyEMI').innerText)"
-                class="mt-6 w-full bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                <i class="fab fa-whatsapp text-xl mr-2 text-[#25D366]"></i> Share via WhatsApp
+                class="qt-btn qt-btn--secondary mt-6 w-full flex items-center justify-center">
+                Share via WhatsApp
             </button>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <i class="fas fa-receipt mr-3 text-indigo-600"></i>On-Road Price Breakdown
+        <div class="qt-card">
+            <h3 class="qt-h3 mb-6 flex items-center">
+                On-Road Price Breakdown
             </h3>
             <div class="space-y-3">
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Ex-Showroom Price</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="exShowroomPrice">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Ex-Showroom Price</span>
+                    <span class="font-semibold" id="exShowroomPrice">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">RTO/Road Tax</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="rtoAmount">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>RTO/Road Tax</span>
+                    <span class="font-semibold" id="rtoAmount">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Insurance (1st Year)</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="insuranceAmount">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Insurance (1st Year)</span>
+                    <span class="font-semibold" id="insuranceAmount">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Accessories</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="accessoriesAmount">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Accessories</span>
+                    <span class="font-semibold" id="accessoriesAmount">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Other Charges</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="otherChargesAmount">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Other Charges</span>
+                    <span class="font-semibold" id="otherChargesAmount">₹0</span>
                 </div>
                 <div
-                    class="flex justify-between p-4 bg-gradient-to-r from-red-50 to-pink-50 dark:from-gray-600 dark:to-gray-600 rounded-lg border-2 border-red-200 dark:border-red-800">
-                    <span class="font-bold text-gray-800 dark:text-white">Total On-Road Price</span>
-                    <span class="font-bold text-red-600 text-xl" id="totalOnRoadPrice">₹0</span>
+                    class="qt-card is-loans flex justify-between">
+                    <span class="font-bold">Total On-Road Price</span>
+                    <span class="font-bold text-xl" id="totalOnRoadPrice">₹0</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <i class="fas fa-chart-line mr-3 text-green-600"></i>Total Payment Analysis
+        <div class="qt-card">
+            <h3 class="qt-h3 mb-6 flex items-center">
+                Total Payment Analysis
             </h3>
             <div class="space-y-3">
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Down Payment</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="downPaymentDisplay">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Down Payment</span>
+                    <span class="font-semibold" id="downPaymentDisplay">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Total EMI Payments</span>
-                    <span class="font-semibold text-gray-800 dark:text-white" id="totalEMIPayments">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Total EMI Payments</span>
+                    <span class="font-semibold" id="totalEMIPayments">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Total Interest Paid</span>
-                    <span class="font-semibold text-red-600" id="totalInterestDisplay">₹0</span>
+                <div class="qt-panel flex justify-between p-3">
+                    <span>Total Interest Paid</span>
+                    <span class="font-semibold" id="totalInterestDisplay">₹0</span>
                 </div>
                 <div
-                    class="flex justify-between p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-600 dark:to-gray-600 rounded-lg border-2 border-blue-200 dark:border-blue-800">
-                    <span class="font-bold text-gray-800 dark:text-white">Total Amount You'll Pay</span>
-                    <span class="font-bold text-blue-600 text-xl" id="totalAmountPaid">₹0</span>
+                    class="qt-card is-loans flex justify-between">
+                    <span class="font-bold">Total Amount You'll Pay</span>
+                    <span class="font-bold text-xl" id="totalAmountPaid">₹0</span>
                 </div>
-                <div class="flex justify-between p-3 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 rounded-lg">
-                    <span class="text-gray-700 dark:text-gray-300">Interest as % of Car Price</span>
-                    <span class="font-semibold text-yellow-600" id="interestPercentage">0%</span>
+                <div class="qt-well flex justify-between">
+                    <span>Interest as % of Car Price</span>
+                    <span class="font-semibold" id="interestPercentage">0%</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                <i class="fas fa-info-circle mr-3 text-blue-600"></i>Loan Details
+        <div class="qt-card">
+            <h3 class="qt-h3 mb-4 flex items-center">
+                Loan Details
             </h3>
             <div class="grid grid-cols-2 gap-4">
-                <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Total Months</p>
-                    <p class="font-semibold text-gray-800 dark:text-white" id="totalMonths">-</p>
+                <div class="qt-panel p-3">
+                    <p class="text-sm">Total Months</p>
+                    <p class="font-semibold" id="totalMonths">-</p>
                 </div>
-                <div class="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Down Payment %</p>
-                    <p class="font-semibold text-gray-800 dark:text-white" id="downPaymentPercent">-</p>
+                <div class="qt-panel p-3">
+                    <p class="text-sm">Down Payment %</p>
+                    <p class="font-semibold" id="downPaymentPercent">-</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-            <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>Understanding Car Loans in India
+    <div class="qt-card mt-12">
+        <h2 class="qt-section-title mb-6 flex items-center">
+            Understanding Car Loans in India
         </h2>
 
-        <div class="max-w-none space-y-6 text-gray-700 dark:text-gray-300">
+        <div class="max-w-none space-y-6">
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">What is a Car Loan?</h3>
+                <h3 class="qt-h3 mb-3">What is a Car Loan?</h3>
                 <p>A car loan (also called auto loan or vehicle loan) is a secured loan provided by banks and NBFCs
                     to help you purchase a new or used car. You repay the loan through fixed monthly installments
                     (EMIs) over 1-7 years. Banks typically finance 80-90% of the on-road price for new cars and
@@ -311,8 +314,8 @@ sources:
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">How car loan interest rates are set</h3>
-                <div class="bg-gradient-to-r from-red-50 to-pink-50 dark:from-gray-700 dark:to-gray-700 p-6 rounded-lg space-y-3 text-gray-700 dark:text-gray-300">
+                <h3 class="qt-h3 mb-3">How car loan interest rates are set</h3>
+                <div class="qt-card is-loans space-y-3">
                     <p>A car loan rate depends on the lender, your credit score, your income and employment type, the loan amount and the loan-to-value ratio. Ask whether the quoted rate is fixed for the whole tenure or floating. A floating rate moves with the lender's benchmark, while a fixed rate gives a predictable EMI.</p>
                     <p>Used-car loans usually cost more than new-car loans because the car is worth less as security and its value is harder for the lender to judge. Older cars and longer tenures tend to push the rate up further.</p>
                     <p>Lenders revise rates often and run festive or dealer-linked offers, so compare current written quotes from two or three lenders rather than relying on a published table, including older versions of this page.</p>
@@ -320,106 +323,106 @@ sources:
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Real-Life Examples</h3>
+                <h3 class="qt-h3 mb-3">Real-Life Examples</h3>
 
                 <div class="space-y-4">
-                    <div class="border-l-4 border-red-500 pl-4 py-2 bg-red-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">First-Time Buyer - Hatchback</p>
+                    <div class="qt-note is-danger">
+                        <p class="font-semibold">First-Time Buyer - Hatchback</p>
                         <p class="text-sm mt-1"><strong>Car:</strong> Maruti Swift (Ex-showroom: ₹8 Lac, On-road:
                             ₹9.2 Lac)</p>
                         <p class="text-sm"><strong>Loan:</strong> ₹7.36 Lac at 9.5% for 5 years (20% down payment)
                         </p>
                         <p class="text-sm"><strong>Monthly EMI:</strong> ₹15,498 | <strong>Total Interest:</strong>
                             ₹1.93 Lac</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-lightbulb text-yellow-500 mr-1"></i><strong>Tip:</strong> Choose
+                        <p class="text-sm mt-2"><i
+                                class="mr-1"></i><strong>Tip:</strong> Choose
                             3-year tenure (EMI: ₹23,453) to save ₹72,000 in interest!</p>
                     </div>
 
-                    <div class="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">Upgrading Family - SUV</p>
+                    <div class="qt-note is-tip">
+                        <p class="font-semibold">Upgrading Family - SUV</p>
                         <p class="text-sm mt-1"><strong>Car:</strong> Hyundai Creta (Ex-showroom: ₹15 Lac, On-road:
                             ₹17.5 Lac)</p>
                         <p class="text-sm"><strong>Loan:</strong> ₹12 Lac at 10% for 5 years (30% down payment)</p>
                         <p class="text-sm"><strong>Monthly EMI:</strong> ₹25,485 | <strong>Total Interest:</strong>
                             ₹3.29 Lac</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-trophy text-yellow-500 mr-1"></i><strong>Smart Move:</strong> 30% down
+                        <p class="text-sm mt-2"><i
+                                class="mr-1"></i><strong>Smart Move:</strong> 30% down
                             payment saves ₹1.4 Lac vs 10% down payment!</p>
                     </div>
 
-                    <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">Budget Buyer - Used Car</p>
+                    <div class="qt-note is-tip">
+                        <p class="font-semibold">Budget Buyer - Used Car</p>
                         <p class="text-sm mt-1"><strong>Car:</strong> 3-year-old Honda City (Price: ₹7 Lac)</p>
                         <p class="text-sm"><strong>Loan:</strong> ₹5.25 Lac at 13% for 4 years (25% down payment)
                         </p>
                         <p class="text-sm"><strong>Monthly EMI:</strong> ₹13,989 | <strong>Total Interest:</strong>
                             ₹1.47 Lac</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-exclamation-triangle text-orange-500 mr-1"></i><strong>Caution:</strong>
+                        <p class="text-sm mt-2"><i
+                                class="mr-1"></i><strong>Caution:</strong>
                             Used car rates are 3-4% higher. Check car condition thoroughly!</p>
                     </div>
                 </div>
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Understanding On-Road Price
+                <h3 class="qt-h3 mb-3">Understanding On-Road Price
                     Components</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border border-gray-300 dark:border-gray-600">
-                        <thead class="bg-gray-100 dark:bg-gray-700">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">
+                                <th>
                                     Component</th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Typical
+                                <th>Typical
                                     %</th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Example
+                                <th>Example
                                     (₹10L Car)</th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Notes
+                                <th>Notes
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                <td class="font-semibold">
                                     Ex-Showroom Price</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Base</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹10,00,000</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Price before taxes
+                                <td>Base</td>
+                                <td>₹10,00,000</td>
+                                <td>Price before taxes
                                 </td>
                             </tr>
-                            <tr class="bg-gray-50 dark:bg-gray-800">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">Road
+                            <tr>
+                                <td class="font-semibold">Road
                                     Tax/RTO</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">5-20%</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹1,00,000</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Varies by state
+                                <td>5-20%</td>
+                                <td>₹1,00,000</td>
+                                <td>Varies by state
                                     (Delhi: 10%, Maharashtra: 13-18%)</td>
                             </tr>
                             <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                <td class="font-semibold">
                                     Insurance (1st Year)</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">1.5-3%</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹25,000</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Comprehensive
+                                <td>1.5-3%</td>
+                                <td>₹25,000</td>
+                                <td>Comprehensive
                                     coverage mandatory</td>
                             </tr>
-                            <tr class="bg-gray-50 dark:bg-gray-800">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                            <tr>
+                                <td class="font-semibold">
                                     Registration & Misc</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">1-1.5%</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹12,000</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Number plate,
+                                <td>1-1.5%</td>
+                                <td>₹12,000</td>
+                                <td>Number plate,
                                     handling, etc.</td>
                             </tr>
-                            <tr class="bg-red-50 dark:bg-red-900 dark:bg-opacity-20 font-bold">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Total On-Road
+                            <tr>
+                                <td>Total On-Road
                                     Price</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">~115-125%</td>
+                                <td>~115-125%</td>
                                 <td
-                                    class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-red-600 text-xl">
+                                   >
                                     ₹11,37,000</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm">Actual
+                                <td class="text-sm">Actual
                                     amount you pay</td>
                             </tr>
                         </tbody>
@@ -428,60 +431,60 @@ sources:
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">New Car vs Used Car Loan
+                <h3 class="qt-h3 mb-3">New Car vs Used Car Loan
                     Comparison</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border border-gray-300 dark:border-gray-600">
-                        <thead class="bg-gray-100 dark:bg-gray-700">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Feature
+                                <th>Feature
                                 </th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">New Car
+                                <th>New Car
                                     Loan</th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Used Car
+                                <th>Used Car
                                     Loan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                <td class="font-semibold">
                                     Interest Rate</td>
                                 <td
-                                    class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 font-bold">
+                                    class="font-bold">
                                     8.70% - 12%</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">12% - 16%</td>
+                                <td>12% - 16%</td>
                             </tr>
-                            <tr class="bg-gray-50 dark:bg-gray-800">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">Loan
+                            <tr>
+                                <td class="font-semibold">Loan
                                     Amount</td>
                                 <td
-                                    class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 font-bold">
+                                    class="font-bold">
                                     Up to 90% of on-road price</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Up to 70-75% of
+                                <td>Up to 70-75% of
                                     car value</td>
                             </tr>
                             <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                <td class="font-semibold">
                                     Maximum Tenure</td>
                                 <td
-                                    class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 font-bold">
+                                    class="font-bold">
                                     7 years</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">5 years (depends
+                                <td>5 years (depends
                                     on car age)</td>
                             </tr>
-                            <tr class="bg-gray-50 dark:bg-gray-800">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                            <tr>
+                                <td class="font-semibold">
                                     Processing Fee</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">2.5% - 4%</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">3% - 5%</td>
+                                <td>2.5% - 4%</td>
+                                <td>3% - 5%</td>
                             </tr>
                             <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                <td class="font-semibold">
                                     Documentation</td>
                                 <td
-                                    class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-green-600 font-bold">
+                                    class="font-bold">
                                     Standard</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Extensive
+                                <td>Extensive
                                     (valuation, RC check, etc.)</td>
                             </tr>
                         </tbody>
@@ -490,29 +493,29 @@ sources:
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Smart Car Loan Strategies</h3>
+                <h3 class="qt-h3 mb-3">Smart Car Loan Strategies</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <p class="font-semibold text-blue-800 dark:text-blue-400 mb-2"><i
-                                class="fas fa-hand-holding-usd mr-2"></i>Higher Down Payment</p>
+                    <div class="qt-panel p-4">
+                        <p class="font-semibold mb-2"><i
+                                class="mr-2"></i>Higher Down Payment</p>
                         <p class="text-sm">Pay 25-30% upfront instead of minimum 10-15%. Reduces EMI burden and
                             saves ₹50K-1L in interest for a ₹10L car!</p>
                     </div>
-                    <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <p class="font-semibold text-green-800 dark:text-green-400 mb-2"><i
-                                class="fas fa-clock mr-2"></i>Shorter Tenure</p>
+                    <div class="qt-panel p-4">
+                        <p class="font-semibold mb-2"><i
+                                class="mr-2"></i>Shorter Tenure</p>
                         <p class="text-sm">Choose 3-4 years over 6-7 years. Cars depreciate fast - don't pay for a
                             car longer than it's worth!</p>
                     </div>
-                    <div class="bg-purple-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <p class="font-semibold text-purple-800 dark:text-purple-400 mb-2"><i
-                                class="fas fa-percentage mr-2"></i>Compare Rates</p>
+                    <div class="qt-panel p-4">
+                        <p class="font-semibold mb-2"><i
+                                class="mr-2"></i>Compare Rates</p>
                         <p class="text-sm">1% difference on ₹5L loan = ₹15,000 extra over 5 years. Shop around for
                             best rates!</p>
                     </div>
-                    <div class="bg-orange-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <p class="font-semibold text-orange-800 dark:text-orange-400 mb-2"><i
-                                class="fas fa-chart-line mr-2"></i>Improve Credit Score</p>
+                    <div class="qt-panel p-4">
+                        <p class="font-semibold mb-2"><i
+                                class="mr-2"></i>Improve Credit Score</p>
                         <p class="text-sm">750+ score gets 1-2% lower rates. Pay credit card bills on time for 6
                             months before applying!</p>
                     </div>
@@ -520,24 +523,24 @@ sources:
             </div>
 
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Important Things to Remember
+                <h3 class="qt-h3 mb-3">Important Things to Remember
                 </h3>
                 <div
-                    class="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-gray-700 dark:to-gray-700 p-6 rounded-lg">
+                    class="qt-card is-loans">
                     <ul class="space-y-2">
-                        <li><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i><strong>Cars are
+                        <li><strong>Cars are
                                 depreciating assets</strong> - They lose 15-20% value in first year, 50% in 3 years
                         </li>
-                        <li><i class="fas fa-car-crash text-red-600 mr-2"></i><strong>Insurance renewal
+                        <li><strong>Insurance renewal
                                 costs</strong> - Budget ₹15K-20K annually after 1st year</li>
-                        <li><i class="fas fa-tools text-blue-600 mr-2"></i><strong>Maintenance costs
+                        <li><strong>Maintenance costs
                                 increase</strong> - After warranty (3-5 years), service costs rise significantly
                         </li>
-                        <li><i class="fas fa-gas-pump text-green-600 mr-2"></i><strong>Fuel + maintenance</strong> -
+                        <li><strong>Fuel + maintenance</strong> -
                             Budget ₹3K-8K monthly depending on usage</li>
-                        <li><i class="fas fa-ban text-red-600 mr-2"></i><strong>Avoid 7-year loans</strong> - You'll
+                        <li><strong>Avoid 7-year loans</strong> - You'll
                             be underwater (owe more than car's worth) after 4 years</li>
-                        <li><i class="fas fa-check-circle text-green-600 mr-2"></i><strong>Rule of thumb</strong> -
+                        <li><strong>Rule of thumb</strong> -
                             Car loan EMI should not exceed 15% of monthly income</li>
                     </ul>
                 </div>
@@ -545,68 +548,68 @@ sources:
 
             <!-- What to compare between car loan offers -->
             <div class="mt-12">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">What to Compare Between Car Loan Offers</h3>
-            <div class="overflow-x-auto shadow-md rounded-lg">
-                <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                    <thead class="bg-red-600 text-white">
-                        <tr><th class="px-4 py-3 text-left">What to check</th><th class="px-4 py-3 text-left">Why it matters</th></tr>
+            <h3 class="qt-h3 mb-6">What to Compare Between Car Loan Offers</h3>
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
+                        <tr><th>What to check</th><th>Why it matters</th></tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Rate type and tenure</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">A fixed rate keeps the EMI steady. A longer tenure lowers the EMI but raises the total interest, so check both numbers.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Processing and documentation fees</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Charged once, usually with GST on top. Add them to the cost of the loan when comparing offers.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Prepayment and foreclosure charges</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">RBI rules bar prepayment penalties on floating-rate loans taken by individuals for non-business purposes. Fixed-rate car loans can carry a foreclosure charge, so read the terms if you plan to close early.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Amount financed</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Lenders fund a share of the on-road or valuation price. A larger down payment lowers both the EMI and the total interest.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Dealer-arranged offers</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Low or zero-interest schemes are sometimes paid for through a higher car price or fewer discounts. Compare the final on-road price with and without the scheme.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Bundled add-ons</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Check whether insurance, extended warranty or accessories have been added to the loan amount, since you pay interest on them too.</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">Rate type and tenure</td><td>A fixed rate keeps the EMI steady. A longer tenure lowers the EMI but raises the total interest, so check both numbers.</td></tr>
+                        <tr><td class="font-semibold">Processing and documentation fees</td><td>Charged once, usually with GST on top. Add them to the cost of the loan when comparing offers.</td></tr>
+                        <tr><td class="font-semibold">Prepayment and foreclosure charges</td><td>RBI rules bar prepayment penalties on floating-rate loans taken by individuals for non-business purposes. Fixed-rate car loans can carry a foreclosure charge, so read the terms if you plan to close early.</td></tr>
+                        <tr><td class="font-semibold">Amount financed</td><td>Lenders fund a share of the on-road or valuation price. A larger down payment lowers both the EMI and the total interest.</td></tr>
+                        <tr><td class="font-semibold">Dealer-arranged offers</td><td>Low or zero-interest schemes are sometimes paid for through a higher car price or fewer discounts. Compare the final on-road price with and without the scheme.</td></tr>
+                        <tr><td class="font-semibold">Bundled add-ons</td><td>Check whether insurance, extended warranty or accessories have been added to the loan amount, since you pay interest on them too.</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">General guidance as of October 2026. Confirm current rates and charges with the lender.</p>
+            <p class="text-sm mt-2">General guidance as of October 2026. Confirm current rates and charges with the lender.</p>
         </div>
 
     <!-- Popular Car Loan EMI Table -->
             <div class="mb-12">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Car Loan EMI for Popular Amounts (at 9.5% Interest)</h3>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-gray-800 text-white">
+                <h3 class="qt-h3 mb-4">Car Loan EMI for Popular Amounts (at 9.5% Interest)</h3>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-left">Loan Amount</th>
-                                <th class="px-4 py-3 text-center">3 Years Tenure</th>
-                                <th class="px-4 py-3 text-center">5 Years Tenure</th>
-                                <th class="px-4 py-3 text-center">7 Years Tenure</th>
+                                <th>Loan Amount</th>
+                                <th class="text-center">3 Years Tenure</th>
+                                <th class="text-center">5 Years Tenure</th>
+                                <th class="text-center">7 Years Tenure</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">₹5 Lakhs</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹16,016</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹10,501</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹8,192</td>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">₹5 Lakhs</td>
+                                <td class="text-center">₹16,016</td>
+                                <td class="text-center">₹10,501</td>
+                                <td class="text-center">₹8,192</td>
                             </tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">₹8 Lakhs</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹25,626</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹16,802</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹13,107</td>
+                            <tr>
+                                <td class="font-semibold">₹8 Lakhs</td>
+                                <td class="text-center">₹25,626</td>
+                                <td class="text-center">₹16,802</td>
+                                <td class="text-center">₹13,107</td>
                             </tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">₹10 Lakhs</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹32,033</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹21,002</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹16,384</td>
+                            <tr>
+                                <td class="font-semibold">₹10 Lakhs</td>
+                                <td class="text-center">₹32,033</td>
+                                <td class="text-center">₹21,002</td>
+                                <td class="text-center">₹16,384</td>
                             </tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">₹15 Lakhs</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹48,049</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹31,503</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹24,575</td>
+                            <tr>
+                                <td class="font-semibold">₹15 Lakhs</td>
+                                <td class="text-center">₹48,049</td>
+                                <td class="text-center">₹31,503</td>
+                                <td class="text-center">₹24,575</td>
                             </tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">₹20 Lakhs</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹64,065</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹42,004</td>
-                                <td class="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹32,767</td>
+                            <tr>
+                                <td class="font-semibold">₹20 Lakhs</td>
+                                <td class="text-center">₹64,065</td>
+                                <td class="text-center">₹42,004</td>
+                                <td class="text-center">₹32,767</td>
                             </tr>
                         </tbody>
                     </table>
@@ -615,49 +618,49 @@ sources:
 
             <!-- Documents Required Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-blue-50 dark:bg-gray-700 p-6 rounded-xl border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-briefcase mr-2 text-blue-600"></i>Documents for Salaried</h3>
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Identity Proof:</strong> Aadhar, PAN, Passport, Voters ID</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Address Proof:</strong> Utility Bill, Rent Agreement, Aadhar</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Income Proof:</strong> Last 3 months payslips, Form 16</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Bank Statement:</strong> Last 6 months salary account statement</span></li>
+                <div class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-4">Documents for Salaried</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span><strong>Identity Proof:</strong> Aadhar, PAN, Passport, Voters ID</span></li>
+                        <li class="flex items-start"><span><strong>Address Proof:</strong> Utility Bill, Rent Agreement, Aadhar</span></li>
+                        <li class="flex items-start"><span><strong>Income Proof:</strong> Last 3 months payslips, Form 16</span></li>
+                        <li class="flex items-start"><span><strong>Bank Statement:</strong> Last 6 months salary account statement</span></li>
                     </ul>
                 </div>
-                <div class="bg-green-50 dark:bg-gray-700 p-6 rounded-xl border-l-4 border-green-500">
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-user-tie mr-2 text-green-600"></i>Documents for Self-Employed</h3>
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Identity & Address:</strong> Same as salaried (Aadhar/PAN/etc)</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Income Proof:</strong> ITR for last 2 years, P&L Account, Balance Sheet</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Business Proof:</strong> Gumasta License, GST Registration, MOA</span></li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span><strong>Bank Statement:</strong> Last 6 months current account statement</span></li>
+                <div class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-4">Documents for Self-Employed</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span><strong>Identity & Address:</strong> Same as salaried (Aadhar/PAN/etc)</span></li>
+                        <li class="flex items-start"><span><strong>Income Proof:</strong> ITR for last 2 years, P&L Account, Balance Sheet</span></li>
+                        <li class="flex items-start"><span><strong>Business Proof:</strong> Gumasta License, GST Registration, MOA</span></li>
+                        <li class="flex items-start"><span><strong>Bank Statement:</strong> Last 6 months current account statement</span></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Fixed vs Floating Rate -->
             <div class="mb-12">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Fixed vs Floating Interest Rate: Which is Better?</h3>
-                <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <h3 class="qt-h3 mb-4">Fixed vs Floating Interest Rate: Which is Better?</h3>
+                <div class="overflow-hidden">
                     <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
-                            <h4 class="font-bold text-lg text-indigo-600 mb-2">Floating Interest Rate</h4>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Linked to bank's repo rate (RLLR)</p>
-                            <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                <li class="flex items-center"><i class="fas fa-plus-circle text-green-500 mr-2"></i>Currently cheaper (8.70% - 9.50%)</li>
-                                <li class="flex items-center"><i class="fas fa-plus-circle text-green-500 mr-2"></i>No pre-payment penalty (for individuals)</li>
-                                <li class="flex items-center"><i class="fas fa-minus-circle text-red-500 mr-2"></i>EMI can increase if repo rate rises</li>
-                                <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-2"></i><strong>Recommended</strong> for most borrowers</li>
+                        <div class="p-6 border-dashed border-line-soft border-b-2">
+                            <h4 class="font-bold mb-2">Floating Interest Rate</h4>
+                            <p class="mb-4 text-sm">Linked to bank's repo rate (RLLR)</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">Currently cheaper (8.70% - 9.50%)</li>
+                                <li class="flex items-center">No pre-payment penalty (for individuals)</li>
+                                <li class="flex items-center">EMI can increase if repo rate rises</li>
+                                <li class="flex items-center"><strong>Recommended</strong> for most borrowers</li>
                             </ul>
                         </div>
                         <div class="p-6">
-                            <h4 class="font-bold text-lg text-purple-600 mb-2">Fixed Interest Rate</h4>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Remains constant throughout tenure</p>
-                            <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                <li class="flex items-center"><i class="fas fa-minus-circle text-red-500 mr-2"></i>Slightly higher rates (10% - 12%+)</li>
-                                <li class="flex items-center"><i class="fas fa-minus-circle text-red-500 mr-2"></i>May have foreclosure charges</li>
-                                <li class="flex items-center"><i class="fas fa-plus-circle text-green-500 mr-2"></i>Fixed EMI helps in budgeting</li>
-                                <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i>Good if market rates are expected to rise steeply</li>
+                            <h4 class="font-bold mb-2">Fixed Interest Rate</h4>
+                            <p class="mb-4 text-sm">Remains constant throughout tenure</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center">Slightly higher rates (10% - 12%+)</li>
+                                <li class="flex items-center">May have foreclosure charges</li>
+                                <li class="flex items-center">Fixed EMI helps in budgeting</li>
+                                <li class="flex items-center">Good if market rates are expected to rise steeply</li>
                             </ul>
                         </div>
                     </div>
@@ -665,13 +668,13 @@ sources:
             </div>
 
             <!-- Factors Affecting EMI -->
-            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border-l-4 border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Factors that Affect Your Car Loan EMI</h3>
-                <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                    <li><strong class="text-red-600 dark:text-red-400">1. Credit Score:</strong> 750+ score gets you 0.5-1% lower interest rate. A 800+ score can get you pre-approved offers at lowest market rates.</li>
-                    <li><strong class="text-red-600 dark:text-red-400">2. Loan Tenure:</strong> Longer tenure (7 years) = Lower EMI but Higher Interest. Shorter tenure (3-4 years) = Higher EMI but huge interest savings.</li>
-                    <li><strong class="text-red-600 dark:text-red-400">3. Down Payment:</strong> Higher down payment reduces loan amount and total interest outgo. Aim for at least 20%.</li>
-                    <li><strong class="text-red-600 dark:text-red-400">4. Car Manufacturer:</strong> Banks often have tie-ups with manufacturers (Maruti, Hyundai, Tata) for special lower rates.</li>
+            <div class="qt-note">
+                <h3 class="qt-h3 mb-3">Factors that Affect Your Car Loan EMI</h3>
+                <ul class="space-y-2">
+                    <li><strong>1. Credit Score:</strong> 750+ score gets you 0.5-1% lower interest rate. A 800+ score can get you pre-approved offers at lowest market rates.</li>
+                    <li><strong>2. Loan Tenure:</strong> Longer tenure (7 years) = Lower EMI but Higher Interest. Shorter tenure (3-4 years) = Higher EMI but huge interest savings.</li>
+                    <li><strong>3. Down Payment:</strong> Higher down payment reduces loan amount and total interest outgo. Aim for at least 20%.</li>
+                    <li><strong>4. Car Manufacturer:</strong> Banks often have tie-ups with manufacturers (Maruti, Hyundai, Tata) for special lower rates.</li>
                 </ul>
             </div>
         </div>
@@ -680,12 +683,11 @@ sources:
 
 <!-- Financial Disclaimer -->
 <div
-    class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-7xl mx-auto mb-8">
+    class="qt-well max-w-7xl mx-auto mb-8">
     <div class="flex items-start">
-        <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-        <div>
-            <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-            <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                <div>
+            <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+            <div class="text-sm space-y-2">
                 <p><strong>For Informational Purposes Only:</strong> This calculator provides estimates based on the
                     inputs you provide. Actual loan terms, EMI amounts, interest rates, on-road prices, and
                     additional charges may vary based on lender policies, location, dealer charges, and current
@@ -707,6 +709,7 @@ sources:
 
 {% block scripts %}
 <script src="/js/calc/car-loan.js"></script>
+</main>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('car_loan_calc');

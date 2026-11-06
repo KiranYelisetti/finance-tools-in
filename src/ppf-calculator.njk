@@ -14,6 +14,7 @@ sources:
   - name: "India Post"
     url: "https://www.indiapost.gov.in/"
     for: "opening and operating a PPF account"
+noIconFont: true
 ---
 
 {% block head %}
@@ -103,30 +104,26 @@ sources:
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8">
+<main class="qt-wrap">
     <!-- Title Section -->
-    <div class="text-center mb-8">
-        <div
-            class="inline-flex items-center justify-center w-20 h-20 bg-orange-600 dark:bg-orange-500 rounded-full mb-4">
-            <i class="fas fa-lock text-4xl text-white"></i>
-        </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            PPF Calculator
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-            Public Provident Fund Calculator - Build Your Retirement Corpus
-        </p>
-    </div>
+    <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Savings and plans</span><span aria-hidden="true">/</span><span>PPF</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-savings">Savings and plans</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
+            </div>
+            <h1 class="qt-h1 mt-4">PPF Calculator</h1>
+            <p class="qt-lede mt-4">Public Provident Fund Calculator - Build Your Retirement Corpus</p>
+        </section>
 
     <!-- Info Box -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded">
+        <div class="qt-note is-tip">
             <div class="flex items-start">
-                <i class="fas fa-info-circle text-blue-500 dark:text-blue-400 mt-1 mr-3"></i>
-                <div>
-                    <h3 class="font-bold text-blue-900 dark:text-blue-100 mb-1">What is Public Provident Fund (PPF)?
+                                <div>
+                    <h3 class="qt-h3 mb-1">What is Public Provident Fund (PPF)?
                     </h3>
-                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                    <p class="text-sm">
                         PPF is a long-term government savings scheme with <strong>7.1% tax-free interest</strong>
                         (compounded annually),
                         <strong>15-year lock-in</strong>, and <strong>Section 123 (was 80C) benefits</strong> up to ₹1.5L.
@@ -139,22 +136,22 @@ sources:
 
     <!-- Calculator -->
     <div class="max-w-6xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <!-- Preset Buttons -->
             <div class="mb-6">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Quick Presets:</p>
+                <p class="text-sm font-semibold mb-3">Quick Presets:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <button onclick="loadPreset('conservative')"
-                        class="bg-gradient-to-r from-orange-500 to-amber-500 text-white py-2 px-4 rounded-lg hover:from-orange-600 hover:to-amber-600 transition-all shadow">
-                        <i class="fas fa-shield-alt mr-2"></i>Conservative (₹50,000/year)
+                        class="qt-btn">
+                        Conservative (₹50,000/year)
                     </button>
                     <button onclick="loadPreset('moderate')"
-                        class="bg-gradient-to-r from-orange-600 to-amber-600 text-white py-2 px-4 rounded-lg hover:from-orange-700 hover:to-amber-700 transition-all shadow">
-                        <i class="fas fa-balance-scale mr-2"></i>Moderate (₹1,00,000/year)
+                        class="qt-btn">
+                        Moderate (₹1,00,000/year)
                     </button>
                     <button onclick="loadPreset('maximum')"
-                        class="bg-gradient-to-r from-orange-700 to-amber-700 text-white py-2 px-4 rounded-lg hover:from-orange-800 hover:to-amber-800 transition-all shadow">
-                        <i class="fas fa-crown mr-2"></i>Maximum (₹1,50,000/year)
+                        class="qt-btn">
+                        Maximum (₹1,50,000/year)
                     </button>
                 </div>
             </div>
@@ -162,67 +159,67 @@ sources:
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Input Section -->
                 <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                        <i class="fas fa-edit text-orange-600 dark:text-orange-400 mr-2"></i>Enter Details
+                    <h2 class="qt-section-title mb-4">
+                        Enter Details
                     </h2>
 
                     <!-- Annual Contribution -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="annualContribution" class="qt-label mb-2">
                             Annual Contribution (₹)
                         </label>
                         <input type="number" id="annualContribution" min="500" max="150000" value="100000"
                             step="1000"
-                            class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input format-inr w-full"
                             oninput="syncInput('annualContribution', 'annualContributionSlider', event)">
-                        <input type="range" id="annualContributionSlider" min="500" max="150000" value="100000"
+                        <input type="range" id="annualContributionSlider" aria-label="Annual contribution slider" min="500" max="150000" value="100000"
                             step="500"
-                            class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
+                            class="qt-range w-full mt-2"
                             oninput="syncInput('annualContribution', 'annualContributionSlider', event)">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs mt-1">
                             Min: ₹500 | Max: ₹1,50,000 per year
                         </p>
                     </div>
 
                     <!-- Investment Period -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="investmentPeriod" class="qt-label mb-2">
                             Investment Period (Years)
                         </label>
                         <input type="number" id="investmentPeriod" min="15" max="30" value="15" step="1"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="syncInput('investmentPeriod', 'investmentPeriodSlider', event)">
-                        <input type="range" id="investmentPeriodSlider" min="15" max="30" value="15" step="1"
-                            class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
+                        <input type="range" id="investmentPeriodSlider" aria-label="Investment period slider" min="15" max="30" value="15" step="1"
+                            class="qt-range w-full mt-2"
                             oninput="syncInput('investmentPeriod', 'investmentPeriodSlider', event)">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs mt-1">
                             Minimum 15 years, can extend in blocks of 5 years
                         </p>
                     </div>
 
                     <!-- Interest Rate -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="interestRate" class="qt-label mb-2">
                             Interest Rate (% p.a.)
                         </label>
                         <input type="number" id="interestRate" min="6.5" max="8.0" value="7.1" step="0.1"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="syncInput('interestRate', 'interestRateSlider', event)">
-                        <input type="range" id="interestRateSlider" min="6.5" max="8.0" value="7.1" step="0.1"
-                            class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
+                        <input type="range" id="interestRateSlider" aria-label="Interest rate slider" min="6.5" max="8.0" value="7.1" step="0.1"
+                            class="qt-range w-full mt-2"
                             oninput="syncInput('interestRate', 'interestRateSlider', event)">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs mt-1">
                             Current govt. rate: 7.1% (rate for the October to December 2026 quarter, revised quarterly)
                         </p>
                     </div>
 
                     <!-- Key Rules -->
                     <div
-                        class="bg-orange-50 dark:bg-orange-900 rounded-lg p-4 border border-orange-200 dark:border-orange-700">
-                        <h3 class="font-semibold text-orange-800 dark:text-orange-200 mb-2">
-                            <i class="fas fa-book mr-2"></i>Key Rules
+                        class="qt-panel p-4">
+                        <h3 class="qt-h3 mb-2">
+                            Key Rules
                         </h3>
-                        <div class="space-y-1 text-sm text-orange-700 dark:text-orange-300">
+                        <div class="space-y-1 text-sm">
                             <p><strong>Lock-in:</strong> 15 years (can extend by 5-year blocks)</p>
                             <p><strong>Partial Withdrawal:</strong> After 7 years (up to 50%)</p>
                             <p><strong>Loan:</strong> Available from 3rd to 6th year</p>
@@ -231,80 +228,79 @@ sources:
                     </div>
 
                     <button onclick="resetForm('ppf_calc')"
-                        class="w-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 py-3 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-500 transition-all shadow-md mt-4">
-                        <i class="fas fa-undo mr-2"></i>Reset Calculator
+                        class="qt-btn w-full mt-4">
+                        Reset Calculator
                     </button>
                 </div>
 
                 <!-- Results Section -->
                 <div id="results" class="space-y-4 hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                        <i class="fas fa-chart-pie text-orange-600 dark:text-orange-400 mr-2"></i>Results
+                    <h2 class="qt-section-title mb-4">
+                        Results
                     </h2>
 
                     <!-- Maturity Value -->
                     <div
-                        class="bg-gradient-to-br from-orange-50 to-amber-100 dark:from-orange-900 dark:to-amber-800 rounded-lg p-6 border-2 border-orange-300 dark:border-orange-600">
-                        <p class="text-sm font-semibold text-orange-800 dark:text-orange-200 mb-1">Maturity Value
+                        class="qt-panel p-6">
+                        <p class="text-sm font-semibold mb-1">Maturity Value
                         </p>
-                        <p id="maturityValue" class="text-3xl font-bold text-orange-900 dark:text-orange-100">₹0</p>
+                        <p id="maturityValue" class="text-3xl font-bold">₹0</p>
                     </div>
 
                     <!-- Total Contribution -->
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Total Contributions</p>
-                        <p id="totalContribution" class="text-xl font-bold text-gray-800 dark:text-white">₹0</p>
+                        class="p-4">
+                        <p class="text-sm">Total Contributions</p>
+                        <p id="totalContribution" class="text-xl font-bold">₹0</p>
                     </div>
 
                     <!-- Total Interest -->
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Interest Earned (Tax-Free)</p>
-                        <p id="totalInterest" class="text-xl font-bold text-green-600 dark:text-green-400">₹0</p>
+                        class="p-4">
+                        <p class="text-sm">Interest Earned (Tax-Free)</p>
+                        <p id="totalInterest" class="text-xl font-bold">₹0</p>
                     </div>
 
                     <!-- Tax Benefit -->
                     <div
-                        class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-800 rounded-lg p-4 border border-green-200 dark:border-green-600">
-                        <p class="text-sm text-green-800 dark:text-green-200 flex items-center">
-                            <i class="fas fa-shield-alt mr-2"></i>Annual Tax Benefit (Section 123 (was 80C))
+                        class="qt-panel p-4">
+                        <p class="text-sm flex items-center">
+                            Annual Tax Benefit (Section 123 (was 80C))
                         </p>
-                        <p id="taxBenefit" class="text-xl font-bold text-green-900 dark:text-green-100">₹0</p>
-                        <p class="text-xs text-green-700 dark:text-green-300 mt-1">30% tax bracket saves ₹<span
+                        <p id="taxBenefit" class="text-xl font-bold">₹0</p>
+                        <p class="text-xs mt-1">30% tax bracket saves ₹<span
                                 id="taxSavings">0</span>/year</p>
                     </div>
 
                     <!-- Partial Withdrawal -->
                     <div
-                        class="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-900 dark:to-cyan-800 rounded-lg p-4 border border-blue-200 dark:border-blue-600">
-                        <p class="text-sm text-blue-800 dark:text-blue-200 flex items-center">
-                            <i class="fas fa-hand-holding-usd mr-2"></i>Withdrawal After 7 Years (50% max)
+                        class="qt-panel p-4">
+                        <p class="text-sm flex items-center">
+                            Withdrawal After 7 Years (50% max)
                         </p>
-                        <p id="partialWithdrawal" class="text-xl font-bold text-blue-900 dark:text-blue-100">₹0</p>
-                        <p class="text-xs text-blue-700 dark:text-blue-300 mt-1">Available from year 7 onwards</p>
+                        <p id="partialWithdrawal" class="text-xl font-bold">₹0</p>
+                        <p class="text-xs mt-1">Available from year 7 onwards</p>
                     </div>
 
                     <!-- Breakdown -->
                     <div
-                        class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            <i class="fas fa-info-circle mr-2"></i>Summary
+                        class="qt-panel p-4">
+                        <p class="text-sm font-semibold mb-2">
+                            Summary
                         </p>
-                        <p id="breakdown" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed"></p>
+                        <p id="breakdown" class="text-sm leading-relaxed"></p>
                     </div>
 
                     <button onclick="shareResult('PPF Maturity', document.getElementById('maturityValue').innerText)"
-                        class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                        class="qt-btn w-full flex items-center justify-center">
+                        Share Result
                     </button>
                 </div>
 
                 <!-- Placeholder -->
                 <div id="placeholder" class="flex items-center justify-center">
-                    <div class="text-center text-gray-400">
-                        <i class="fas fa-lock text-6xl mb-4"></i>
-                        <p class="text-lg">Enter details to see results</p>
+                    <div class="text-center">
+                                                <p class="text-lg">Enter details to see results</p>
                     </div>
                 </div>
             </div>
@@ -313,33 +309,33 @@ sources:
 
     <!-- How to Use -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-question-circle text-orange-600 dark:text-orange-400 mr-2"></i>How to Use This
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">
+                How to Use This
                 Calculator
             </h2>
-            <ol class="space-y-3 text-gray-700 dark:text-gray-300">
+            <ol class="space-y-3">
                 <li class="flex items-start">
                     <span
-                        class="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">1</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">1</span>
                     <span><strong>Enter Annual Contribution:</strong> Choose your yearly PPF deposit (₹500 to
                         ₹1,50,000)</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">2</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">2</span>
                     <span><strong>Select Investment Period:</strong> Minimum 15 years (can extend in 5-year
                         blocks)</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">3</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">3</span>
                     <span><strong>Review Interest Rate:</strong> Current rate is 7.1% p.a. (revised quarterly by
                         government)</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">4</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">4</span>
                     <span><strong>View Results:</strong> See maturity value, tax benefits, and withdrawal
                         options</span>
                 </li>
@@ -349,56 +345,50 @@ sources:
 
     <!-- Key Features -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-star text-orange-600 dark:text-orange-400 mr-2"></i>Key Features of PPF
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">
+                Key Features of PPF
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Triple Tax Benefit (EEE)</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Deposits, interest, maturity - all
+                                        <div>
+                        <h3 class="qt-h3">Triple Tax Benefit (EEE)</h3>
+                        <p class="text-sm">Deposits, interest, maturity - all
                             tax-free</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Government-backed Returns</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">7.1% p.a. government-backed, risk-free
+                                        <div>
+                        <h3 class="qt-h3">Government-backed Returns</h3>
+                        <p class="text-sm">7.1% p.a. government-backed, risk-free
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Loan Facility</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Borrow against PPF from 3rd to 6th year
+                                        <div>
+                        <h3 class="qt-h3">Loan Facility</h3>
+                        <p class="text-sm">Borrow against PPF from 3rd to 6th year
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Partial Withdrawal</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Up to 50% after 7 years for emergencies
+                                        <div>
+                        <h3 class="qt-h3">Partial Withdrawal</h3>
+                        <p class="text-sm">Up to 50% after 7 years for emergencies
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Extension Option</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Extend after 15 years in 5-year blocks
+                                        <div>
+                        <h3 class="qt-h3">Extension Option</h3>
+                        <p class="text-sm">Extend after 15 years in 5-year blocks
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Flexible Deposits</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Lump sum or monthly (max 12
+                                        <div>
+                        <h3 class="qt-h3">Flexible Deposits</h3>
+                        <p class="text-sm">Lump sum or monthly (max 12
                             deposits/year)</p>
                     </div>
                 </div>
@@ -408,54 +398,54 @@ sources:
 
     <!-- FAQs -->
     <div class="max-w-4xl mx-auto">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-question-circle text-orange-600 dark:text-orange-400 mr-2"></i>Frequently Asked
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                Frequently Asked
                 Questions
             </h2>
             <div class="space-y-4">
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         How many PPF accounts can I have?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         Only ONE PPF account per individual. You cannot have multiple PPF accounts. Opening a second
                         account can lead to closure with no interest on the second account.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Can I skip deposits in some years?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         Yes, but minimum ₹500 annual deposit is required to keep the account active. If you skip,
                         the account becomes inactive. You can reactivate by paying ₹50 penalty per year plus minimum
                         deposit.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         How does the loan facility work?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         From 3rd to 6th year, you can take a loan up to 25% of the balance at the end of 2nd year.
                         Interest rate is 1% higher than PPF rate. Loan must be repaid within 36 months.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Can I open PPF for my child?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         Yes, you can open a PPF account on behalf of your minor child. Combined contribution in your
                         account and child's account cannot exceed ₹1.5L. Child can operate account after turning 18.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Where can I open a PPF account?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         PPF accounts can be opened at any post office or authorized bank branches (SBI, HDFC, ICICI,
                         Axis, PNB, etc.). Both offer same interest rates and benefits.
                     </p>
@@ -466,21 +456,21 @@ sources:
 
     <!-- Example Scenarios -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-calculator text-orange-600 dark:text-orange-400 mr-2"></i>Real-Life PPF Examples
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                Real-Life PPF Examples
             </h2>
 
             <div class="space-y-6">
                 <!-- Example 1 -->
                 <div
-                    class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900 dark:to-amber-900 rounded-lg p-6 border-l-4 border-orange-500">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-3 flex items-center">
+                    class="qt-note">
+                    <h3 class="qt-h3 mb-3 flex items-center">
                         <span
-                            class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
+                            class="w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
                         Conservative Plan - ₹50,000 Annual Deposit
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                    <p class="text-sm mb-2">
                         <strong>Scenario:</strong> Amit, 30, starts PPF for retirement with ₹50,000 yearly deposit.
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-sm">
@@ -489,20 +479,20 @@ sources:
                         <div><strong>Tax Savings:</strong> ₹15,000/year (30% bracket)</div>
                         <div><strong>Interest Earned:</strong> ₹6.1 Lakhs (Tax-Free)</div>
                     </div>
-                    <p class="text-orange-800 dark:text-orange-200 text-xs mt-3 italic">
+                    <p class="text-xs mt-3 italic">
                         Suited to conservative retirement planning: the scheme is government-backed and the rate is reset every quarter
                     </p>
                 </div>
 
                 <!-- Example 2 -->
                 <div
-                    class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 rounded-lg p-6 border-l-4 border-green-500">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-3 flex items-center">
+                    class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-3 flex items-center">
                         <span
-                            class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
+                            class="w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
                         Maximum Benefit - ₹1.5 Lakh Annual Deposit
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                    <p class="text-sm mb-2">
                         <strong>Scenario:</strong> Sunita, 35, maximizes PPF contributions for 15 years.
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-sm">
@@ -511,20 +501,20 @@ sources:
                         <div><strong>Tax Savings:</strong> ₹45,000/year (30% bracket)</div>
                         <div><strong>Interest Earned:</strong> ₹18.2 Lakhs (Tax-Free)</div>
                     </div>
-                    <p class="text-green-800 dark:text-green-200 text-xs mt-3 italic">
+                    <p class="text-xs mt-3 italic">
                         Build a 40+ lakh retirement corpus with complete tax exemption!
                     </p>
                 </div>
 
                 <!-- Example 3 -->
                 <div
-                    class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900 dark:to-cyan-900 rounded-lg p-6 border-l-4 border-blue-500">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-3 flex items-center">
+                    class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-3 flex items-center">
                         <span
-                            class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
+                            class="w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
                         Extension Strategy - ₹1.5L for 20 years
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                    <p class="text-sm mb-2">
                         <strong>Scenario:</strong> After 15 years, extending PPF for 5 more years with deposits.
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-sm">
@@ -533,7 +523,7 @@ sources:
                         <div><strong>Tax Savings:</strong> ₹9 Lakhs total (20 years)</div>
                         <div><strong>Interest Earned:</strong> ₹31.9 Lakhs (Tax-Free)</div>
                     </div>
-                    <p class="text-blue-800 dark:text-blue-200 text-xs mt-3 italic">
+                    <p class="text-xs mt-3 italic">
                         Power of extension - cross 60 lakhs with just 5 more years!
                     </p>
                 </div>
@@ -543,66 +533,66 @@ sources:
 
     <!-- Comparison Table -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-balance-scale text-orange-600 dark:text-orange-400 mr-2"></i>PPF vs Other
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                PPF vs Other
                 Investment Options
             </h2>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="bg-orange-100 dark:bg-orange-900">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left text-gray-800 dark:text-white">Feature</th>
-                            <th class="px-4 py-3 text-left text-orange-800 dark:text-orange-200">PPF</th>
-                            <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300">SSY</th>
-                            <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300">SIP/Mutual Funds</th>
+                            <th>Feature</th>
+                            <th>PPF</th>
+                            <th>SSY</th>
+                            <th>SIP/Mutual Funds</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300">
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Interest Rate</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">7.1% (set quarterly)</td>
-                            <td class="px-4 py-3">8.2% (set quarterly)</td>
-                            <td class="px-4 py-3">10-15% (Variable)</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Risk Level</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">Zero (Govt Backed)
-                            </td>
-                            <td class="px-4 py-3">Zero (Govt Backed)</td>
-                            <td class="px-4 py-3">Market Risk</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Tax Benefit</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">EEE (Triple)</td>
-                            <td class="px-4 py-3">EEE (Triple)</td>
-                            <td class="px-4 py-3">Only Principal (section 123 (was 80C))</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Lock-in Period</td>
-                            <td class="px-4 py-3">15 years (extendable)</td>
-                            <td class="px-4 py-3">21 years</td>
-                            <td class="px-4 py-3">None (except ELSS)</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Liquidity</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300">Partial (after 7 yrs) + Loan
-                            </td>
-                            <td class="px-4 py-3">Partial (at 18 yrs)</td>
-                            <td class="px-4 py-3">Full anytime</td>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Interest Rate</td>
+                            <td class="font-bold">7.1% (set quarterly)</td>
+                            <td>8.2% (set quarterly)</td>
+                            <td>10-15% (Variable)</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 font-semibold">Best For</td>
-                            <td class="px-4 py-3 text-orange-700 dark:text-orange-300 font-bold">Risk-Free
+                            <td class="font-semibold">Risk Level</td>
+                            <td class="font-bold">Zero (Govt Backed)
+                            </td>
+                            <td>Zero (Govt Backed)</td>
+                            <td>Market Risk</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Tax Benefit</td>
+                            <td class="font-bold">EEE (Triple)</td>
+                            <td>EEE (Triple)</td>
+                            <td>Only Principal (section 123 (was 80C))</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Lock-in Period</td>
+                            <td>15 years (extendable)</td>
+                            <td>21 years</td>
+                            <td>None (except ELSS)</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Liquidity</td>
+                            <td>Partial (after 7 yrs) + Loan
+                            </td>
+                            <td>Partial (at 18 yrs)</td>
+                            <td>Full anytime</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Best For</td>
+                            <td class="font-bold">Risk-Free
                                 Retirement</td>
-                            <td class="px-4 py-3">Girl Child Future</td>
-                            <td class="px-4 py-3">Wealth Creation</td>
+                            <td>Girl Child Future</td>
+                            <td>Wealth Creation</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 italic">
+            <p class="text-xs mt-4 italic">
                 *Interest rates for the October to December 2026 quarter (as of October 2026). PPF and SSY rates are revised quarterly by the Government of
                 India.
             </p>
@@ -611,49 +601,49 @@ sources:
 
     <!-- PPF Loan & Withdrawal Guide -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-hand-holding-usd text-orange-600 dark:text-orange-400 mr-2"></i>PPF Loan &
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                PPF Loan &
                 Withdrawal Rules
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Loan Facility -->
                 <div
-                    class="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-900 dark:to-cyan-900 rounded-lg p-6 border-2 border-blue-300 dark:border-blue-600">
-                    <h3 class="font-bold text-blue-900 dark:text-blue-100 mb-3 flex items-center">
-                        <i class="fas fa-hand-holding-usd text-blue-600 mr-2"></i>Loan Facility (Year 3-6)
+                    class="qt-panel p-6">
+                    <h3 class="qt-h3 mb-3 flex items-center">
+                        Loan Facility (Year 3-6)
                     </h3>
-                    <ul class="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-2"></i>Available
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">Available
                             from 3rd to 6th year</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-2"></i>Up to 25%
+                        <li class="flex items-start">Up to 25%
                             of balance (end of 2nd year)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-2"></i>Interest:
+                        <li class="flex items-start">Interest:
                             PPF rate + 1%</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-2"></i>Repayment:
+                        <li class="flex items-start">Repayment:
                             Within 36 months</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-2"></i>Only one
+                        <li class="flex items-start">Only one
                             active loan at a time</li>
                     </ul>
                 </div>
 
                 <!-- Partial Withdrawal -->
                 <div
-                    class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-lg p-6 border-2 border-green-300 dark:border-green-600">
-                    <h3 class="font-bold text-green-900 dark:text-green-100 mb-3 flex items-center">
-                        <i class="fas fa-piggy-bank text-green-600 mr-2"></i>Partial Withdrawal (After Year 7)
+                    class="qt-panel p-6">
+                    <h3 class="qt-h3 mb-3 flex items-center">
+                        Partial Withdrawal (After Year 7)
                     </h3>
-                    <ul class="space-y-2 text-sm text-green-800 dark:text-green-200">
-                        <li class="flex items-start"><i class="fas fa-check text-green-600 mt-1 mr-2"></i>Available
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">Available
                             from 7th year onwards</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-600 mt-1 mr-2"></i>Up to 50%
+                        <li class="flex items-start">Up to 50%
                             of balance (4 years prior)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-600 mt-1 mr-2"></i>One
+                        <li class="flex items-start">One
                             withdrawal per year allowed</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-600 mt-1 mr-2"></i>For
+                        <li class="flex items-start">For
                             specified purposes (education, medical, etc.)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-600 mt-1 mr-2"></i>Tax-free
+                        <li class="flex items-start">Tax-free
                             withdrawal</li>
                     </ul>
                 </div>
@@ -663,86 +653,86 @@ sources:
 
     <!-- PPF Interest Rate History -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-history text-orange-600 dark:text-orange-400 mr-2"></i>PPF Interest Rate History (Last 5 Years)
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                PPF Interest Rate History (Last 5 Years)
             </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Period</th>
-                            <th class="px-4 py-3 text-center border dark:border-gray-500 text-gray-800 dark:text-gray-200">Interest Rate</th>
+                            <th>Period</th>
+                            <th class="text-center">Interest Rate</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300">
+                    <tbody>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500">April 2020 - Present (2025)</td>
-                            <td class="px-4 py-3 text-center border dark:border-gray-500 font-bold text-orange-600 dark:text-orange-400">7.1%</td>
+                            <td>April 2020 - Present (2025)</td>
+                            <td class="text-center font-bold">7.1%</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500">Jan 2020 - March 2020</td>
-                            <td class="px-4 py-3 text-center border dark:border-gray-500">7.9%</td>
+                            <td>Jan 2020 - March 2020</td>
+                            <td class="text-center">7.9%</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500">July 2019 - Dec 2019</td>
-                            <td class="px-4 py-3 text-center border dark:border-gray-500">7.9%</td>
+                            <td>July 2019 - Dec 2019</td>
+                            <td class="text-center">7.9%</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500">April 2019 - June 2019</td>
-                            <td class="px-4 py-3 text-center border dark:border-gray-500">8.0%</td>
+                            <td>April 2019 - June 2019</td>
+                            <td class="text-center">8.0%</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500">Oct 2018 - March 2019</td>
-                            <td class="px-4 py-3 text-center border dark:border-gray-500">8.0%</td>
+                            <td>Oct 2018 - March 2019</td>
+                            <td class="text-center">8.0%</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">* Interest is calculated on the lowest balance between the 5th and last day of each month.</p>
+            <p class="text-xs mt-2">* Interest is calculated on the lowest balance between the 5th and last day of each month.</p>
         </div>
     </div>
 
     <!-- PPF vs FD vs ELSS Comparison -->
     <div class="max-w-4xl mx-auto mb-8">
-         <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-balance-scale-right text-orange-600 dark:text-orange-400 mr-2"></i>Tax Saving Comparison 2025
+         <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                Tax Saving Comparison 2025
             </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="bg-indigo-100 dark:bg-indigo-900">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left text-indigo-900 dark:text-indigo-100">Parameter</th>
-                            <th class="px-4 py-3 text-center text-indigo-900 dark:text-indigo-100">PPF</th>
-                            <th class="px-4 py-3 text-center text-indigo-900 dark:text-indigo-100">Tax Saving FD</th>
-                            <th class="px-4 py-3 text-center text-indigo-900 dark:text-indigo-100">ELSS (Mutual Funds)</th>
+                            <th>Parameter</th>
+                            <th class="text-center">PPF</th>
+                            <th class="text-center">Tax Saving FD</th>
+                            <th class="text-center">ELSS (Mutual Funds)</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-600">
+                    <tbody>
                          <tr>
-                            <td class="px-4 py-3 font-semibold">Returns</td>
-                            <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">7.1% (government-set)</td>
-                            <td class="px-4 py-3 text-center">Varies by bank (fixed for the term)</td>
-                            <td class="px-4 py-3 text-center font-bold text-blue-600 dark:text-blue-400">12% - 15% (Market Linked)</td>
+                            <td class="font-semibold">Returns</td>
+                            <td class="text-center font-bold">7.1% (government-set)</td>
+                            <td class="text-center">Varies by bank (fixed for the term)</td>
+                            <td class="text-center font-bold">12% - 15% (Market Linked)</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 font-semibold">Lock-in Period</td>
-                            <td class="px-4 py-3 text-center">15 Years</td>
-                            <td class="px-4 py-3 text-center">5 Years</td>
-                            <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">3 Years (Lowest)</td>
+                            <td class="font-semibold">Lock-in Period</td>
+                            <td class="text-center">15 Years</td>
+                            <td class="text-center">5 Years</td>
+                            <td class="text-center font-bold">3 Years (Lowest)</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 font-semibold">Tax on Returns</td>
-                            <td class="px-4 py-3 text-center font-bold text-green-600 dark:text-green-400">Tax Free</td>
-                            <td class="px-4 py-3 text-center text-red-500">Taxable (as per slab)</td>
-                            <td class="px-4 py-3 text-center text-orange-500">LTCG 12.5% above ₹1.25 Lakh</td>
+                            <td class="font-semibold">Tax on Returns</td>
+                            <td class="text-center font-bold">Tax Free</td>
+                            <td class="text-center">Taxable (as per slab)</td>
+                            <td class="text-center">LTCG 12.5% above ₹1.25 Lakh</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 font-semibold">Risk</td>
-                            <td class="px-4 py-3 text-center text-green-600">Zero</td>
-                            <td class="px-4 py-3 text-center text-green-600">Zero</td>
-                            <td class="px-4 py-3 text-center text-orange-500">High</td>
+                            <td class="font-semibold">Risk</td>
+                            <td class="text-center">Zero</td>
+                            <td class="text-center">Zero</td>
+                            <td class="text-center">High</td>
                         </tr>
                     </tbody>
                 </table>
@@ -753,56 +743,50 @@ sources:
     <!-- Why Use This Calculator -->
     <div class="max-w-4xl mx-auto mb-8">
         <div
-            class="bg-gradient-to-br from-orange-50 to-amber-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-6 md:p-8 border-2 border-orange-200 dark:border-orange-700 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>Why Use Our PPF Calculator?
+            class="qt-card is-savings md:p-8">
+            <h2 class="qt-section-title mb-4">
+                Why Use Our PPF Calculator?
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Accurate Compound Interest</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Precise PPF calculations using official
+                                        <div>
+                        <h3 class="qt-h3">Accurate Compound Interest</h3>
+                        <p class="text-sm">Precise PPF calculations using official
                             government formula with annual compounding</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Current Interest Rates</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Uses the October to December 2026 quarter rate (7.1%),
+                                        <div>
+                        <h3 class="qt-h3">Current Interest Rates</h3>
+                        <p class="text-sm">Uses the October to December 2026 quarter rate (7.1%),
                             adjustable for different scenarios</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Extension Planning</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">See how extending PPF beyond 15 years
+                                        <div>
+                        <h3 class="qt-h3">Extension Planning</h3>
+                        <p class="text-sm">See how extending PPF beyond 15 years
                             grows your retirement corpus</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Tax Savings Calculator</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Instant calculation of Section 123 (was 80C)
+                                        <div>
+                        <h3 class="qt-h3">Tax Savings Calculator</h3>
+                        <p class="text-sm">Instant calculation of Section 123 (was 80C)
                             deductions and total tax benefits</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Withdrawal & Loan Calculator</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Calculate partial withdrawal (after 7
+                                        <div>
+                        <h3 class="qt-h3">Withdrawal & Loan Calculator</h3>
+                        <p class="text-sm">Calculate partial withdrawal (after 7
                             years) and loan eligibility (year 3-6)</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-orange-600 dark:text-orange-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">100% Free & Private</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">No signup, no tracking - all
+                                        <div>
+                        <h3 class="qt-h3">100% Free & Private</h3>
+                        <p class="text-sm">No signup, no tracking - all
                             calculations done locally in your browser</p>
                     </div>
                 </div>
@@ -812,10 +796,10 @@ sources:
 
     <!-- SEO-Rich Content Section -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">About Public Provident Fund Calculator
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">About Public Provident Fund Calculator
             </h2>
-            <div class="max-w-none text-gray-600 dark:text-gray-300">
+            <div class="max-w-none">
                 <p class="mb-4">
                     Our <strong>PPF Calculator</strong> is the most comprehensive and accurate <strong>Public
                         Provident Fund calculator</strong> available for Indian investors in 2025.
@@ -842,9 +826,9 @@ sources:
                     Start planning your retirement today with our free PPF calculator. Compare scenarios, understand
                     the power of compounding, and make informed decisions.
                     Also explore our <a href="/ssy-calculator/"
-                        class="text-orange-600 dark:text-orange-400 hover:underline">SSY Calculator</a> for girl
+                        class="qt-link">SSY Calculator</a> for girl
                     child planning or
-                    <a href="/sip-calculator/" class="text-orange-600 dark:text-orange-400 hover:underline">SIP
+                    <a href="/sip-calculator/" class="qt-link">SIP
                         Calculator</a> for higher-return market investments.
                 </p>
             </div>
@@ -853,12 +837,11 @@ sources:
 
     <!-- Financial Disclaimer -->
     <div
-        class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-4xl mx-auto mb-8">
+        class="qt-well max-w-4xl mx-auto mb-8">
         <div class="flex items-start">
-            <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-            <div>
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <div>
+                <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                <div class="text-sm space-y-2">
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides estimates based on the
                         inputs you provide. Actual returns may vary based on changes in government-notified interest
                         rates and policy changes.</p>

@@ -5,6 +5,7 @@ date: 2026-09-24
 meta_title: "Age Calculator Online 2026 - Calculate Exact Age in Seconds"
 meta_description: "Calculate your exact age in years, months and days as on any date. Check age limits for exam and job forms, see how leap-day birthdays are counted, which documents prove date of birth in India, and the legal age milestones from 5 to 80."
 meta_keywords: "age calculator 2026, age as on date calculator, age difference calculator, birthday countdown timer, how many days old am i, age limit calculator for exams, date of birth proof india, age in seconds"
+noIconFont: true
 ---
 
 {% block head %}
@@ -152,246 +153,244 @@ meta_keywords: "age calculator 2026, age as on date calculator, age difference c
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="inline-block bg-gradient-to-br from-purple-400 to-purple-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-calendar-alt text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Age Calculator</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>Age Calculator</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-everyday">Everyday</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">Calculate your exact age in years, months, and days</p>
-        </div>
+            <h1 class="qt-h1 mt-4">Age Calculator</h1>
+            <p class="qt-lede mt-4">Calculate your exact age in years, months, and days</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Input Section -->
                 <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Date Information</h2>
+                    <h2 class="qt-section-title mb-4">Date Information</h2>
 
                     <!-- Date of Birth -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                            <i class="fas fa-birthday-cake text-purple-600 dark:text-purple-400 mr-2"></i>Date of
+                        <label for="birthDate" class="qt-label mb-2">
+                            Date of
                             Birth
                         </label>
                         <input type="date" id="birthDate"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-lg transition-colors">
+                            class="qt-input w-full">
                     </div>
 
                     <!-- Calculate Age As On -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                            <i class="fas fa-calendar-check text-purple-600 dark:text-purple-400 mr-2"></i>Calculate
+                        <label for="currentDate" class="qt-label mb-2">
+                            Calculate
                             Age As On
                         </label>
                         <input type="date" id="currentDate"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-lg transition-colors">
+                            class="qt-input w-full">
                         <button onclick="setToday()"
-                            class="mt-2 text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 text-sm font-semibold transition">
-                            <i class="fas fa-sync-alt mr-1"></i>Set to Today's Date
+                            class="mt-2">
+                            Set to Today's Date
                         </button>
                     </div>
 
                     <div class="flex gap-4">
                         <button onclick="calculateAge(); trackCalculatorUsage('Age Calculator', 'age_calculation')"
-                            class="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-lg font-bold hover:from-purple-600 hover:to-purple-700 transition-all shadow-lg">
-                            <i class="fas fa-calculator mr-2"></i>Calculate Age
+                            class="qt-btn flex-1">
+                            Calculate Age
                         </button>
                         <button onclick="resetForm('age_calc')"
-                            class="px-6 py-3 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-500 transition-all shadow-md">
-                            <i class="fas fa-undo mr-2"></i>Reset
+                            class="qt-btn">
+                            Reset
                         </button>
                     </div>
                 </div>
 
                 <!-- Results Section -->
                 <div id="results" class="space-y-4 hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Your Age</h2>
+                    <h2 class="qt-section-title mb-4">Your Age</h2>
 
                     <div
-                        class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-6 border-2 border-purple-300 dark:border-purple-600 transition-colors duration-200">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">You are</p>
+                        class="qt-panel p-6">
+                        <p class="text-sm mb-2">You are</p>
                         <p id="ageInWords"
-                            class="text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-300"></p>
+                            class="text-2xl md:text-3xl font-bold"></p>
                     </div>
 
                     <div class="grid grid-cols-3 gap-3">
                         <div
-                            class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-4 text-center transition-colors duration-200">
-                            <p id="years" class="text-3xl font-bold text-blue-600 dark:text-blue-300">0</p>
-                            <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Years</p>
+                            class="qt-panel p-4 text-center">
+                            <p id="years" class="text-3xl font-bold">0</p>
+                            <p class="text-xs mt-1">Years</p>
                         </div>
                         <div
-                            class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-4 text-center transition-colors duration-200">
-                            <p id="months" class="text-3xl font-bold text-green-600 dark:text-green-300">0</p>
-                            <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Months</p>
+                            class="qt-panel p-4 text-center">
+                            <p id="months" class="text-3xl font-bold">0</p>
+                            <p class="text-xs mt-1">Months</p>
                         </div>
                         <div
-                            class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-lg p-4 text-center transition-colors duration-200">
-                            <p id="days" class="text-3xl font-bold text-orange-600 dark:text-orange-300">0</p>
-                            <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Days</p>
+                            class="qt-panel p-4 text-center">
+                            <p id="days" class="text-3xl font-bold">0</p>
+                            <p class="text-xs mt-1">Days</p>
                         </div>
                     </div>
 
                     <!-- Additional Stats -->
-                    <div class="bg-gray-50 dark:bg-gray-600 rounded-lg p-4 transition-colors duration-200">
-                        <h4 class="font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center">
-                            <i class="fas fa-chart-bar text-purple-600 dark:text-purple-400 mr-2"></i>Additional
+                    <div class="qt-panel p-4">
+                        <h4 class="font-bold mb-3">
+                            Additional
                             Information
                         </h4>
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Total Months:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="totalMonths">0</span>
+                                <span>Total Months:</span>
+                                <span class="font-semibold" id="totalMonths">0</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Total Weeks:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="totalWeeks">0</span>
+                                <span>Total Weeks:</span>
+                                <span class="font-semibold" id="totalWeeks">0</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Total Days:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="totalDays">0</span>
+                                <span>Total Days:</span>
+                                <span class="font-semibold" id="totalDays">0</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Total Hours:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="totalHours">0</span>
+                                <span>Total Hours:</span>
+                                <span class="font-semibold" id="totalHours">0</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Total Minutes:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="totalMinutes">0</span>
+                                <span>Total Minutes:</span>
+                                <span class="font-semibold" id="totalMinutes">0</span>
                             </div>
                         </div>
                     </div>
 
                     <div
-                        class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 rounded-lg p-4 border-l-4 border-pink-500 dark:border-pink-400 transition-colors duration-200">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm flex items-center mb-1">
-                            <i class="fas fa-gift text-pink-500 dark:text-pink-300 mr-2"></i>Next Birthday
+                        class="qt-note">
+                        <p class="text-sm flex items-center mb-1">
+                            Next Birthday
                         </p>
-                        <p id="nextBirthday" class="text-lg font-semibold text-gray-800 dark:text-white"></p>
+                        <p id="nextBirthday" class="text-lg font-semibold"></p>
                     </div>
 
                     <!-- Fun Milestones (New) -->
-                    <div class="bg-indigo-50 dark:bg-indigo-900 rounded-lg p-4 border-l-4 border-indigo-500 dark:border-indigo-400">
-                        <h4 class="font-bold text-gray-800 dark:text-white mb-2"><i class="fas fa-star text-yellow-500 mr-2"></i>Fun Facts</h4>
-                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-2"><strong>Generation:</strong> <span id="generation" class="font-bold text-indigo-600 dark:text-indigo-300"></span></p>
-                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Next Milestone:</strong> You will be <span class="font-bold">10,000 days</span> old on <span id="tenkDate" class="font-bold text-indigo-600 dark:text-indigo-300"></span></p>
+                    <div class="qt-note is-tip">
+                        <h4 class="font-bold mb-2">Fun Facts</h4>
+                        <p class="text-sm mb-2"><strong>Generation:</strong> <span id="generation" class="font-bold"></span></p>
+                        <p class="text-sm"><strong>Next Milestone:</strong> You will be <span class="font-bold">10,000 days</span> old on <span id="tenkDate" class="font-bold"></span></p>
                     </div>
 
                     <button onclick="shareResult('My Age', document.getElementById('ageInWords').innerText)"
-                        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md mt-4">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                        class="qt-btn w-full flex items-center justify-center mt-4">
+                        Share Result
                     </button>
                 </div>
 
                 <!-- Placeholder when no results -->
                 <div id="placeholder" class="flex items-center justify-center">
-                    <div class="text-center text-gray-400 dark:text-gray-500">
-                        <i class="fas fa-calculator text-6xl mb-4"></i>
-                        <p class="text-lg">Enter dates and calculate to see results</p>
+                    <div class="text-center">
+                                                <p class="text-lg">Enter dates and calculate to see results</p>
                     </div>
                 </div>
             </div>
 
             <!-- Info Section -->
             <div
-                class="mt-8 bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded transition-colors duration-200">
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2"><i
-                        class="fas fa-info-circle text-blue-500 dark:text-blue-400 mr-2"></i>How It
+                class="qt-note is-tip mt-8">
+                <h3 class="qt-h3 mb-2"><i
+                        class="mr-2"></i>How It
                     Works</h3>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">Enter your date of birth and the date you want your age measured on. Leave the second date as today for your current age, or set it to the cut-off date from an exam, job or admission notification to check an age limit. The result shows completed years, months and days, plus the totals in weeks, days, hours and minutes.</p>
+                <p class="text-sm">Enter your date of birth and the date you want your age measured on. Leave the second date as today for your current age, or set it to the cut-off date from an exam, job or admission notification to check an age limit. The result shows completed years, months and days, plus the totals in weeks, days, hours and minutes.</p>
             </div>
         </div>
 
         <!-- How the count works -->
-        <div class="mt-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How the Calculator Counts Years, Months and Days</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-12 p-8">
+            <h2 class="qt-section-title mb-4">How the Calculator Counts Years, Months and Days</h2>
+            <p class="mb-4">
                 Age on official forms is counted in completed calendar units, not in blocks of 365 days, and that is what this page does. It subtracts the years first, then the months, then the days. When the day of the as-on date is smaller than your birth day, it borrows one month and adds the number of days in the month before the as-on date. When the month comes out negative, it borrows one year and adds twelve months. Someone born on 15 August 2000 is therefore 26 years, 1 month and 9 days old on 24 September 2026.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 The totals below the main result come from the exact number of days between the two dates. Total weeks is that figure divided by seven, total months is completed years times twelve plus completed months, and hours and minutes are the day count multiplied out. Only the calendar dates are used, so the time of day and your time zone never change the answer.
             </p>
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Born on 29 February?</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <h3 class="qt-h3 mb-3">Born on 29 February?</h3>
+            <p class="mb-4">
                 A leap-day birthday exists only once every four years. In other years this calculator treats the year as complete on 1 March, the first day after 28 February, which is the convention most organisations follow, and the next-birthday countdown points to 1 March in those years. The total-days figure is unaffected, so nobody loses a day. A few bodies treat 28 February as the birthday instead; if a deadline hinges on it, check the rule with the office concerned.
             </p>
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Age difference between two people</h3>
-            <p class="text-gray-600 dark:text-gray-300">
+            <h3 class="qt-h3 mb-3">Age difference between two people</h3>
+            <p>
                 Enter the older person's date of birth as the Date of Birth and the younger person's date of birth in the As On field. The result is the exact gap between them in years, months and days, which is handy for sibling gaps, school admission pairs and insurance proposals that ask for a spouse's age.
             </p>
         </div>
 
         <!-- Age as on -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Age As On a Cut-off Date: Exam, Job and Admission Forms</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Age As On a Cut-off Date: Exam, Job and Admission Forms</h2>
+            <p class="mb-4">
                 Government exams, recruitment notices and school admissions never ask how old you are today. Each notification fixes one cut-off date and measures every applicant's age on that date, so two people applying on the same day can fall on opposite sides of the limit. The date is different for every exam and can change from year to year, so read it from the notification itself rather than from last year's form. The Civil Services Examination, for example, counts age as on 1 August of the exam year, while voter registration uses four qualifying dates a year (1 January, 1 April, 1 July and 1 October).
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 To check a limit, put the cut-off date in the As On field and read the completed years. A rule written as "must have attained 21 years and must not have attained 32 years as on 1 August 2026" is satisfied by anyone whose completed age on that date is 21 through 31. Most notifications also translate the limits into a window of birth dates ("born not earlier than 2 August 1994 and not later than 1 August 2005"), and checking your birth date against that window is the surest method. Age relaxations for reserved categories, ex-servicemen and persons with disabilities are added to the upper limit, and the notification lists them.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Insurance works the other way round. Some insurers rate a policy on age nearest birthday instead of completed years, so a person aged 34 years and 7 months may be charged the premium for 35. The proposal form says which convention applies.
             </p>
         </div>
 
         <!-- Milestones -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Age Milestones in India (as of September 2026)</h2>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Age Milestones in India (as of September 2026)</h2>
+            <div class="qt-table-wrap mb-4">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Age</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">What changes</th>
+                            <th>Age</th>
+                            <th>What changes</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">5 and 15</td><td class="px-4 py-3 border dark:border-gray-500">Mandatory biometric updates to a child's Aadhaar, since fingerprints and iris scans are not captured below 5.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">6</td><td class="px-4 py-3 border dark:border-gray-500">Entry to Class 1 under the National Education Policy 2020. Each state and board fixes its own cut-off date for the academic year.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">14</td><td class="px-4 py-3 border dark:border-gray-500">Right to free and compulsory education runs from 6 to 14. Employment of children below 14 is prohibited, and 14 to 18 year olds may not work in hazardous occupations.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">16</td><td class="px-4 py-3 border dark:border-gray-500">A learner's licence for a low-powered gearless two-wheeler is possible with a guardian's consent.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">18</td><td class="px-4 py-3 border dark:border-gray-500">Age of majority, the right to vote, a full driving licence, the capacity to sign contracts, a 10-year adult passport, and the legal marriage age for women.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">21</td><td class="px-4 py-3 border dark:border-gray-500">Legal marriage age for men under the Prohibition of Child Marriage Act, 2006, and the drinking age in several states.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">18 to 25</td><td class="px-4 py-3 border dark:border-gray-500">The drinking age is a state subject and varies within this range; some states prohibit alcohol entirely.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">60</td><td class="px-4 py-3 border dark:border-gray-500">Senior citizen for income tax (higher basic exemption under the old regime) and the retirement age for central government employees.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">80</td><td class="px-4 py-3 border dark:border-gray-500">Super senior citizen for income tax purposes.</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">5 and 15</td><td>Mandatory biometric updates to a child's Aadhaar, since fingerprints and iris scans are not captured below 5.</td></tr>
+                        <tr><td class="font-semibold">6</td><td>Entry to Class 1 under the National Education Policy 2020. Each state and board fixes its own cut-off date for the academic year.</td></tr>
+                        <tr><td class="font-semibold">14</td><td>Right to free and compulsory education runs from 6 to 14. Employment of children below 14 is prohibited, and 14 to 18 year olds may not work in hazardous occupations.</td></tr>
+                        <tr><td class="font-semibold">16</td><td>A learner's licence for a low-powered gearless two-wheeler is possible with a guardian's consent.</td></tr>
+                        <tr><td class="font-semibold">18</td><td>Age of majority, the right to vote, a full driving licence, the capacity to sign contracts, a 10-year adult passport, and the legal marriage age for women.</td></tr>
+                        <tr><td class="font-semibold">21</td><td>Legal marriage age for men under the Prohibition of Child Marriage Act, 2006, and the drinking age in several states.</td></tr>
+                        <tr><td class="font-semibold">18 to 25</td><td>The drinking age is a state subject and varies within this range; some states prohibit alcohol entirely.</td></tr>
+                        <tr><td class="font-semibold">60</td><td>Senior citizen for income tax (higher basic exemption under the old regime) and the retirement age for central government employees.</td></tr>
+                        <tr><td class="font-semibold">80</td><td>Super senior citizen for income tax purposes.</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Upper limits matter as much as lower ones. Recruitment notices, term insurance, home loans and visa categories all carry maximum ages, and each is measured on its own cut-off date.
             </p>
         </div>
 
         <!-- Proof of DOB -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Documents That Prove Date of Birth</h2>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Documents That Prove Date of Birth</h2>
+            <ul class="list-disc list-inside space-y-2 mb-4">
                 <li><strong>Birth certificate.</strong> Issued by the municipal or panchayat registrar under the Registration of Births and Deaths Act, 1969. Since the 2023 amendment took effect on 1 October 2023, it is the single accepted proof of date of birth for anyone born on or after that date, for school admission, driving licences, voter registration, passports and government jobs.</li>
                 <li><strong>Class 10 board certificate or marksheet.</strong> The document most authorities ask older applicants for, because the date of birth printed by the board is treated as the school record.</li>
                 <li><strong>Passport.</strong> Accepted as proof of date of birth almost everywhere, and a minor's passport is valid for five years or until age 18.</li>
                 <li><strong>PAN card.</strong> Carries the date of birth and is accepted by banks and many employers.</li>
                 <li><strong>Aadhaar.</strong> Accepted for identity and address, but UIDAI treats it as proof of identity rather than of date of birth, and some authorities stopped accepting it on its own for that purpose in 2024.</li>
             </ul>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Keep the date of birth identical across every document. A mismatch between a school certificate and a birth certificate is a common reason for passport and pension applications being held up, and the correction has to be made at the registrar or the board rather than at the office that spotted it.
             </p>
         </div>
 
         <!-- Date formats -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Date Format Pitfalls</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Date Format Pitfalls</h2>
+            <p class="mb-4">
                 India writes dates as day, month, year (05/08/2000 is 5 August 2000). The United States writes month first, so the same string means 8 May on an American website, and a date like 05/08 is ambiguous the moment it leaves the country. Spreadsheets and databases mostly use the international order year, month, day (2000-08-05), which is also what the date fields on this page store. A few habits avoid the mix-up:
             </p>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+            <ul class="list-disc list-inside space-y-2">
                 <li>Write the month as a word wherever a form allows it: 5 August 2000.</li>
                 <li>On a foreign website, check the placeholder text or a sample date before you type.</li>
                 <li>Do not type a two-digit year. 05/08/00 can be read as 1900, 2000 or 2100 by different systems.</li>
@@ -400,57 +399,50 @@ meta_keywords: "age calculator 2026, age as on date calculator, age difference c
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How does this age calculator count years, months and days?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It uses calendar months, the same way official forms do. It subtracts the years, then the months, then the days, and when the day of the month is smaller than your birth day it borrows the length of the month before the as-on date. Total days, weeks and hours come from the exact number of days between the two dates.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">It uses calendar months, the same way official forms do. It subtracts the years, then the months, then the days, and when the day of the month is smaller than your birth day it borrows the length of the month before the as-on date. Total days, weeks and hours come from the exact number of days between the two dates.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         What is my age if I was born on 29 February?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">In a leap year your birthday is 29 February. In other years this calculator counts the year as complete on 1 March, the first day after 28 February, which is the convention most organisations follow. Your total days are unaffected either way.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">In a leap year your birthday is 29 February. In other years this calculator counts the year as complete on 1 March, the first day after 28 February, which is the convention most organisations follow. Your total days are unaffected either way.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         What does age as on a date mean in exam and job notifications?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Every notification fixes one cut-off date, and your age is measured on that date rather than on the day you apply or sit the exam. Enter that date in the As On field to see your exact age on it. The notification usually also converts the limits into a date-of-birth window, which is the simplest thing to check.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Every notification fixes one cut-off date, and your age is measured on that date rather than on the day you apply or sit the exam. Enter that date in the As On field to see your exact age on it. The notification usually also converts the limits into a date-of-birth window, which is the simplest thing to check.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Which documents prove date of birth in India?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A birth certificate issued under the Registration of Births and Deaths Act is the primary proof, and for anyone born on or after 1 October 2023 it is the single document accepted for school admission, driving licences, voter registration and passports. Older applicants are usually asked for the Class 10 board certificate or marksheet, a passport, or a PAN card, depending on the authority.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">A birth certificate issued under the Registration of Births and Deaths Act is the primary proof, and for anyone born on or after 1 October 2023 it is the single document accepted for school admission, driving licences, voter registration and passports. Older applicants are usually asked for the Class 10 board certificate or marksheet, a passport, or a PAN card, depending on the authority.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Is Aadhaar accepted as proof of date of birth?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Not everywhere. UIDAI has said that Aadhaar is proof of identity rather than proof of date of birth, and some authorities stopped accepting it on its own for date of birth in 2024. Check the document list in the form you are filling, and keep a birth certificate or Class 10 certificate ready.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Not everywhere. UIDAI has said that Aadhaar is proof of identity rather than proof of date of birth, and some authorities stopped accepting it on its own for date of birth in 2024. Check the document list in the form you are filling, and keep a birth certificate or Class 10 certificate ready.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         At what age can I vote, drive and marry in India?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Voting, the age of majority and a driving licence all start at 18. The legal marriage age is 18 for women and 21 for men under the Prohibition of Child Marriage Act, 2006. The drinking age is set by each state and ranges from 18 to 25, with some states prohibiting alcohol entirely.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Voting, the age of majority and a driving licence all start at 18. The legal marriage age is 18 for women and 21 for men under the Prohibition of Child Marriage Act, 2006. The drinking age is set by each state and ranges from 18 to 25, with some states prohibiting alcohol entirely.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Why does my age differ by a day on another website?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Calculators differ on whether the as-on date itself is counted, on how they borrow days in months of 28 to 31 days, and on the time zone they use for today. This page uses calendar dates only, so the time of day and the time zone never change the result.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Calculators differ on whether the as-on date itself is counted, on how they borrow days in months of 28 to 31 days, and on the time zone they use for today. This page uses calendar dates only, so the time of day and the time zone never change the result.</p>
                 </details>
             </div>
         </div>
@@ -458,12 +450,11 @@ meta_keywords: "age calculator 2026, age as on date calculator, age difference c
 
     <!-- Financial Disclaimer -->
     <div
-        class="mt-12 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-4xl mx-auto mb-8 rounded-r-lg">
+        class="qt-well mt-12 max-w-4xl mx-auto mb-8">
         <div class="flex items-start">
-            <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-            <div>
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <div>
+                <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                <div class="text-sm space-y-2">
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides age calculations based
                         on the date of birth you provide. Results are for informational and entertainment purposes only.
                     </p>

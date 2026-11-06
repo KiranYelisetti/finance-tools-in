@@ -4,6 +4,7 @@ layout: base.njk
 meta_title: "Study Abroad Calculator 2026 - Calculate Real Cost (Fees + Living + Inflation)"
 meta_description: "Calculate true cost of Foreign Education in 2026. Covers Tuition, Living Expenses in US, UK, Canada & Australia. Accounts for 7% Inflation & Rupee Depreciation."
 meta_keywords: "study abroad calculator, foreign education cost 2026, education inflation calculator India, MS in US cost calculator, UK living expenses simulator, student visa proof of funds, GIC canada amount 2026, blocked account germany 2026"
+noIconFont: true
 ---
 
 {% block head %}
@@ -94,39 +95,34 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-6xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="inline-block bg-gradient-to-br from-red-400 to-red-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-graduation-cap text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Planning to Send Your Child
-                    Abroad for Studies?</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Savings and plans</span><span aria-hidden="true">/</span><span>Study Abroad</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-savings">Savings and plans</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-2">Find out the REAL cost of foreign education</p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">Most parents are shocked when they
-                discover the actual amount needed. This calculator shows you the true cost considering BOTH rising
-                fees AND weakening rupee.</p>
-        </div>
+            <h1 class="qt-h1 mt-4">Planning to Send Your Child Abroad for Studies?</h1>
+            <p class="qt-lede mt-4">Find out the REAL cost of foreign education</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 mb-8 transition-colors duration-200">
+        <div class="qt-card mb-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Input Section -->
                 <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Tell Us Your Plan</h2>
+                    <h2 class="qt-section-title mb-4">Tell Us Your Plan</h2>
 
                     <!-- Country/Currency Selection -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                            <i class="fas fa-globe text-red-600 dark:text-red-400 mr-2"></i>Which country do you
+                        <label for="currency" class="qt-label mb-2">
+                            Which country do you
                             want to send your child?
                         </label>
                         <select id="currency" onchange="updateCurrencyDefaults()"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-red-500 dark:focus:border-red-400 focus:outline-none text-lg transition-colors">
+                            class="qt-input w-full">
                             <option value="USD">🇺🇸 United States (America)</option>
                             <option value="GBP">🇬🇧 United Kingdom (UK/England)</option>
                             <option value="EUR">🇪🇺 Europe (Germany, France, etc.)</option>
@@ -137,149 +133,148 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
 
                     <!-- Current Cost -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                            <i class="fas fa-dollar-sign text-red-600 dark:text-red-400 mr-2"></i>What does a 4-year
+                        <label for="currentCost" class="qt-label mb-2">
+                            What does a 4-year
                             degree cost TODAY in that country?
                         </label>
                         <input type="number" id="currentCost" value="200000" step="1000"
-                            class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-red-500 dark:focus:border-red-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input format-inr w-full"
                             oninput="calculateCost()">
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Include everything: College fees +
+                        <p class="text-sm mt-1">Include everything: College fees +
                             Food + Rent + Books (for 4 years)</p>
-                        <p class="text-sm text-blue-600 dark:text-blue-400 mt-1">💡 Example: USA degree costs around
+                        <p class="text-sm mt-1">💡 Example: USA degree costs around
                             $200,000 (₹1.6 crore today)</p>
                     </div>
 
                     <!-- Years to Study -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                            <i class="fas fa-calendar text-red-600 dark:text-red-400 mr-2"></i>How many years from
+                        <label for="yearsToStudy" class="qt-label mb-2">
+                            How many years from
                             now will your child start?
                         </label>
                         <input type="number" id="yearsToStudy" value="10" min="1" max="20"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-red-500 dark:focus:border-red-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="calculateCost()">
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Example: If your child is 8 years
+                        <p class="text-sm mt-1">Example: If your child is 8 years
                             old, enter 10 years (they'll go at age 18)</p>
                     </div>
 
                     <!-- Education Inflation Rate -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
+                        <label for="inflationRate" class="qt-label mb-2">
                             How fast are college fees increasing? <span id="inflationValue"
-                                class="text-red-600 dark:text-red-400">6</span>% per year
+                               >6</span>% per year
                         </label>
                         <input type="range" id="inflationRate" min="0" max="15" value="6" step="0.5"
-                            class="w-full accent-red-600" oninput="updateInflation()">
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">📚 College fees go up 5-7% every
+                            class="qt-range w-full" oninput="updateInflation()">
+                        <p class="text-sm mt-1">📚 College fees go up 5-7% every
                             year (you can adjust this slider)</p>
                     </div>
 
                     <!-- Currency Depreciation Rate -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
+                        <label for="depreciationRate" class="qt-label mb-2">
                             How fast is rupee getting weaker? <span id="depreciationValue"
-                                class="text-red-600 dark:text-red-400">4</span>% per year
+                               >4</span>% per year
                         </label>
                         <input type="range" id="depreciationRate" min="0" max="10" value="4" step="0.5"
-                            class="w-full accent-red-600" oninput="updateDepreciation()">
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">💵 Every year, ₹1 buys less
+                            class="qt-range w-full" oninput="updateDepreciation()">
+                        <p class="text-sm mt-1">💵 Every year, ₹1 buys less
                             dollars. Last 20 years average: 3-5% per year</p>
                     </div>
 
                     <div class="flex gap-4">
                         <button onclick="calculateCost(); trackCalculatorUsage('Study Abroad Calculator', document.getElementById('totalCostINR').innerText)"
-                            class="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-6 rounded-lg font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg">
-                            <i class="fas fa-calculator mr-2"></i>Show Me The Real Amount
+                            class="qt-btn flex-1">
+                            Show Me The Real Amount
                         </button>
                         <button onclick="resetForm('study_abroad')"
-                            class="px-6 py-3 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-500 transition-all shadow-md">
-                            <i class="fas fa-undo mr-2"></i>Reset
+                            class="qt-btn">
+                            Reset
                         </button>
                     </div>
                 </div>
 
                 <!-- Results Section -->
                 <div id="results" class="space-y-4 hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">💰 What You Actually Need</h2>
+                    <h2 class="qt-section-title mb-4">💰 What You Actually Need</h2>
 
                     <!-- Main Result Card -->
                     <div
-                        class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900 dark:to-red-800 rounded-lg p-6 border-2 border-red-300 dark:border-red-600 transition-colors duration-200">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">You will need this much money in
+                        class="qt-panel p-6">
+                        <p class="text-sm mb-2">You will need this much money in
                             <span id="resultYears"></span> years:
                         </p>
-                        <p id="totalCostINR" class="text-3xl md:text-4xl font-bold text-red-600 dark:text-red-300">
+                        <p id="totalCostINR" class="text-3xl md:text-4xl font-bold">
                         </p>
-                        <p id="totalCostForeign" class="text-lg text-gray-700 dark:text-gray-300 mt-2"></p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">⚠️ This is what you'll actually pay
+                        <p id="totalCostForeign" class="text-lg mt-2"></p>
+                        <p class="text-sm mt-3">⚠️ This is what you'll actually pay
                             when your child goes abroad</p>
                     </div>
 
                     <!-- Breakdown Cards -->
                     <div class="grid grid-cols-2 gap-3">
                         <div
-                            class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-lg p-4 text-center transition-colors duration-200">
-                            <p class="text-xs text-gray-600 dark:text-gray-300 mb-1">If you sent them today</p>
-                            <p id="currentCostINR" class="text-xl font-bold text-orange-600 dark:text-orange-300">
+                            class="qt-panel p-4 text-center">
+                            <p class="text-xs mb-1">If you sent them today</p>
+                            <p id="currentCostINR" class="text-xl font-bold">
                             </p>
                         </div>
                         <div
-                            class="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900 dark:to-yellow-800 rounded-lg p-4 text-center transition-colors duration-200">
-                            <p class="text-xs text-gray-600 dark:text-gray-300 mb-1">Extra you'll pay</p>
-                            <p id="costIncrease" class="text-xl font-bold text-yellow-600 dark:text-yellow-300"></p>
+                            class="qt-panel p-4 text-center">
+                            <p class="text-xs mb-1">Extra you'll pay</p>
+                            <p id="costIncrease" class="text-xl font-bold"></p>
                         </div>
                     </div>
 
                     <!-- Impact Breakdown -->
-                    <div class="bg-gray-50 dark:bg-gray-600 rounded-lg p-4 transition-colors duration-200">
-                        <h4 class="font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center">
-                            <i class="fas fa-chart-pie text-red-600 dark:text-red-400 mr-2"></i>Why So Much? Here's
+                    <div class="qt-panel p-4">
+                        <h4 class="font-bold mb-3">
+                            Why So Much? Here's
                             Why:
                         </h4>
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Because fees keep rising:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white"
+                                <span>Because fees keep rising:</span>
+                                <span class="font-semibold"
                                     id="inflationImpact"></span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600 dark:text-gray-300">Because rupee keeps falling:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white"
+                                <span>Because rupee keeps falling:</span>
+                                <span class="font-semibold"
                                     id="depreciationImpact"></span>
                             </div>
-                            <div class="flex justify-between pt-2 border-t border-gray-300 dark:border-gray-500">
-                                <span class="text-gray-600 dark:text-gray-300">Your money loses value by:</span>
-                                <span class="font-semibold text-gray-800 dark:text-white" id="combinedRate"></span>
+                            <div class="flex justify-between pt-2 border-dashed border-line-soft border-t-2">
+                                <span>Your money loses value by:</span>
+                                <span class="font-semibold" id="combinedRate"></span>
                             </div>
                         </div>
                     </div>
 
                     <!-- SIP Planning Section -->
                     <div
-                        class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-lg p-4 border-l-4 border-green-500 dark:border-green-400 transition-colors duration-200">
-                        <h4 class="font-semibold text-gray-800 dark:text-white mb-2 flex items-center">
-                            <i class="fas fa-piggy-bank text-green-600 dark:text-green-400 mr-2"></i>💡 Good News:
+                        class="qt-note is-tip">
+                        <h4 class="font-bold mb-2">
+                            💡 Good News:
                             How to Save For This
                         </h4>
-                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">Start a monthly SIP investment now:
+                        <p class="text-sm mb-2">Start a monthly SIP investment now:
                         </p>
-                        <p id="monthlySIP" class="text-2xl font-bold text-green-600 dark:text-green-300"></p>
-                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-2">Assuming 12% annual returns from
+                        <p id="monthlySIP" class="text-2xl font-bold"></p>
+                        <p class="text-xs mt-2">Assuming 12% annual returns from
                             mutual funds</p>
                     </div>
 
                     <button onclick="shareResult('Study Abroad Cost', document.getElementById('totalCostINR').innerText)"
-                        class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                        class="qt-btn w-full flex items-center justify-center">
+                        Share Result
                     </button>
                 </div>
 
                 <!-- Placeholder -->
                 <div id="placeholder" class="flex items-center justify-center">
-                    <div class="text-center text-gray-400 dark:text-gray-500">
-                        <i class="fas fa-graduation-cap text-6xl mb-4"></i>
-                        <p class="text-lg">Fill in your details on the left</p>
+                    <div class="text-center">
+                                                <p class="text-lg">Fill in your details on the left</p>
                         <p class="text-sm mt-2">We'll show you the real cost</p>
                     </div>
                 </div>
@@ -287,13 +282,13 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
 
             <!-- Alert Box -->
             <div
-                class="mt-6 bg-yellow-50 dark:bg-yellow-900 border-l-4 border-yellow-500 dark:border-yellow-400 p-4 rounded transition-colors duration-200">
+                class="qt-note mt-6">
                 <div class="flex items-start">
                     <i
-                        class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400 text-xl mr-3 mt-1"></i>
+                        class="text-xl mr-3 mt-1"></i>
                     <div>
-                        <p class="font-semibold text-yellow-800 dark:text-yellow-200">⚠️ Most Parents Miss This!</p>
-                        <p class="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
+                        <p class="font-semibold">⚠️ Most Parents Miss This!</p>
+                        <p class="text-sm mt-1">
                             They only think about today's cost. But there are TWO problems: <strong>(1)</strong>
                             College fees go up every year, AND <strong>(2)</strong> The rupee becomes weaker every
                             year, so you need MORE rupees to buy the same dollars. Many parents get shocked when the
@@ -305,218 +300,213 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
         </div>
 
         <!-- Preset Examples -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 mb-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-                <i class="fas fa-lightbulb text-yellow-500 dark:text-yellow-400 mr-2"></i>Quick Start - Click Your
+        <div class="qt-card mb-8">
+            <h2 class="qt-section-title mb-2">
+                Quick Start - Click Your
                 Destination
             </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Not sure about costs? Click below to see
+            <p class="text-sm mb-4">Not sure about costs? Click below to see
                 typical amounts for each country</p>
             <div class="grid md:grid-cols-3 gap-4">
                 <button onclick="loadPreset('USA')"
-                    class="text-left p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-red-500 dark:hover:border-red-400 hover:bg-red-50 dark:hover:bg-gray-600 transition">
+                    class="qt-preset">
                     <div class="flex items-center mb-2">
                         <span class="text-2xl mr-2">🇺🇸</span>
-                        <h3 class="font-bold text-gray-800 dark:text-white">America (USA)</h3>
+                        <h3 class="qt-h3">America (USA)</h3>
                     </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">4 years: $200,000</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Harvard, MIT, Stanford etc.</p>
+                    <p class="text-sm">4 years: $200,000</p>
+                    <p class="text-sm">Harvard, MIT, Stanford etc.</p>
                 </button>
 
                 <button onclick="loadPreset('UK')"
-                    class="text-left p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-red-500 dark:hover:border-red-400 hover:bg-red-50 dark:hover:bg-gray-600 transition">
+                    class="qt-preset">
                     <div class="flex items-center mb-2">
                         <span class="text-2xl mr-2">🇬🇧</span>
-                        <h3 class="font-bold text-gray-800 dark:text-white">UK (England)</h3>
+                        <h3 class="qt-h3">UK (England)</h3>
                     </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">3 years: £120,000</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Oxford, Cambridge etc.</p>
+                    <p class="text-sm">3 years: £120,000</p>
+                    <p class="text-sm">Oxford, Cambridge etc.</p>
                 </button>
 
                 <button onclick="loadPreset('Canada')"
-                    class="text-left p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-red-500 dark:hover:border-red-400 hover:bg-red-50 dark:hover:bg-gray-600 transition">
+                    class="qt-preset">
                     <div class="flex items-center mb-2">
                         <span class="text-2xl mr-2">🇨🇦</span>
-                        <h3 class="font-bold text-gray-800 dark:text-white">Canada</h3>
+                        <h3 class="qt-h3">Canada</h3>
                     </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">4 years: CAD 150,000</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Toronto, UBC etc.</p>
+                    <p class="text-sm">4 years: CAD 150,000</p>
+                    <p class="text-sm">Toronto, UBC etc.</p>
                 </button>
             </div>
         </div>
 
         <!-- Average Cost of Education 2025 -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 mb-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-plane-departure text-blue-600 dark:text-blue-400 mr-2"></i>Average Cost of Education Abroad (2025)
+        <div class="qt-card mb-8">
+            <h2 class="qt-section-title mb-6">
+                Average Cost of Education Abroad (2025)
             </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-blue-50 dark:bg-gray-600">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-6 py-4 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Country</th>
-                            <th class="px-6 py-4 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Tuition Fees (Per Year)</th>
-                            <th class="px-6 py-4 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Living Expenses (Per Year)</th>
-                            <th class="px-6 py-4 text-center border dark:border-gray-500 text-gray-800 dark:text-gray-200">Total (4 Years)</th>
+                            <th>Country</th>
+                            <th>Tuition Fees (Per Year)</th>
+                            <th>Living Expenses (Per Year)</th>
+                            <th class="text-center">Total (4 Years)</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
+                    <tbody>
                         <tr>
-                            <td class="px-6 py-4 border dark:border-gray-500 font-bold">🇺🇸 USA</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">$25,000 - $60,000</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">$15,000 - $25,000</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-center font-bold text-red-600 dark:text-red-400">From ₹1.51 crore</td>
+                            <td class="font-bold">🇺🇸 USA</td>
+                            <td>$25,000 - $60,000</td>
+                            <td>$15,000 - $25,000</td>
+                            <td class="text-center font-bold">From ₹1.51 crore</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 border dark:border-gray-500 font-bold">🇬🇧 UK</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">£20,000 - £40,000</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">£14,052 (visa minimum, £1,171 a month outside London, £1,529 in London)</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-center font-bold text-blue-600 dark:text-blue-400">From ₹1.74 crore</td>
+                            <td class="font-bold">🇬🇧 UK</td>
+                            <td>£20,000 - £40,000</td>
+                            <td>£14,052 (visa minimum, £1,171 a month outside London, £1,529 in London)</td>
+                            <td class="text-center font-bold">From ₹1.74 crore</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 border dark:border-gray-500 font-bold">🇨🇦 Canada</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">CAD 20,000 - 40,000</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">CAD 23,448 (study permit minimum from 1 Sep 2026)</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-center font-bold text-red-600 dark:text-red-400">From ₹1.18 crore</td>
+                            <td class="font-bold">🇨🇦 Canada</td>
+                            <td>CAD 20,000 - 40,000</td>
+                            <td>CAD 23,448 (study permit minimum from 1 Sep 2026)</td>
+                            <td class="text-center font-bold">From ₹1.18 crore</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 border dark:border-gray-500 font-bold">🇦🇺 Australia</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">AUD 30,000 - 50,000</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">AUD 29,710 (student visa minimum)</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-center font-bold text-yellow-600 dark:text-yellow-400">From ₹1.57 crore</td>
+                            <td class="font-bold">🇦🇺 Australia</td>
+                            <td>AUD 30,000 - 50,000</td>
+                            <td>AUD 29,710 (student visa minimum)</td>
+                            <td class="text-center font-bold">From ₹1.57 crore</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 border dark:border-gray-500 font-bold">🇩🇪 Germany</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-green-600 font-bold">€0 - €3,000 (Low Fees)</td>
-                            <td class="px-6 py-4 border dark:border-gray-500">€11,904 (blocked account minimum)</td>
-                            <td class="px-6 py-4 border dark:border-gray-500 text-center font-bold text-green-600 dark:text-green-400">From ₹51 lakh</td>
+                            <td class="font-bold">🇩🇪 Germany</td>
+                            <td class="font-bold">€0 - €3,000 (Low Fees)</td>
+                            <td>€11,904 (blocked account minimum)</td>
+                            <td class="text-center font-bold">From ₹51 lakh</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">* Tuition is a typical yearly range. Living cost is the 2026 student visa minimum for a year (UK at the outside-London rate for 12 months). Rupee totals are the low end for 4 years: lowest tuition plus the minimum, at SBI card selling rates of 6 Nov 2026 ($1 = ₹94.45, £1 = ₹127.41, €1 = ₹106.50, CAD 1 = ₹67.63, AUD 1 = ₹65.77). Check the university and the embassy before you plan around a figure.</p>
+            <p class="text-xs mt-4">* Tuition is a typical yearly range. Living cost is the 2026 student visa minimum for a year (UK at the outside-London rate for 12 months). Rupee totals are the low end for 4 years: lowest tuition plus the minimum, at SBI card selling rates of 6 Nov 2026 ($1 = ₹94.45, £1 = ₹127.41, €1 = ₹106.50, CAD 1 = ₹67.63, AUD 1 = ₹65.77). Check the university and the embassy before you plan around a figure.</p>
         </div>
 
         <!-- City-wise Cost of Living -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 mb-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-city text-purple-600 dark:text-purple-400 mr-2"></i>Monthly Living Cost (Major Student Cities)
+        <div class="qt-card mb-8">
+            <h2 class="qt-section-title mb-6">
+                Monthly Living Cost (Major Student Cities)
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm border-collapse">
-                        <thead class="bg-purple-100 dark:bg-gray-600">
-                            <tr><th class="px-4 py-2 text-left border dark:border-gray-500">City (USA/Canada)</th><th class="px-4 py-2 text-center border dark:border-gray-500">Monthly Avg</th></tr>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
+                            <tr><th>City (USA/Canada)</th><th class="text-center">Monthly Avg</th></tr>
                         </thead>
-                        <tbody class="text-gray-700 dark:text-gray-300">
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">New York (USA)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold text-red-600">$1,500 - $2,200</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Boston (USA)</td><td class="px-4 py-2 text-center border dark:border-gray-500">$1,200 - $1,800</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Toronto (Canada)</td><td class="px-4 py-2 text-center border dark:border-gray-500">CAD 1,500 - 2,000</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Vancouver (Canada)</td><td class="px-4 py-2 text-center border dark:border-gray-500">CAD 1,600 - 2,200</td></tr>
+                        <tbody>
+                            <tr><td>New York (USA)</td><td class="text-center font-bold">$1,500 - $2,200</td></tr>
+                            <tr><td>Boston (USA)</td><td class="text-center">$1,200 - $1,800</td></tr>
+                            <tr><td>Toronto (Canada)</td><td class="text-center">CAD 1,500 - 2,000</td></tr>
+                            <tr><td>Vancouver (Canada)</td><td class="text-center">CAD 1,600 - 2,200</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm border-collapse">
-                        <thead class="bg-purple-100 dark:bg-gray-600">
-                            <tr><th class="px-4 py-2 text-left border dark:border-gray-500">City (UK/Europe/Aus)</th><th class="px-4 py-2 text-center border dark:border-gray-500">Monthly Avg</th></tr>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
+                            <tr><th>City (UK/Europe/Aus)</th><th class="text-center">Monthly Avg</th></tr>
                         </thead>
-                        <tbody class="text-gray-700 dark:text-gray-300">
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">London (UK)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold text-red-600">£1,200 - £1,500</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Manchester (UK)</td><td class="px-4 py-2 text-center border dark:border-gray-500">£800 - £1,100</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Berlin (Germany)</td><td class="px-4 py-2 text-center border dark:border-gray-500">€800 - €1,200</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Melbourne (Aus)</td><td class="px-4 py-2 text-center border dark:border-gray-500">AUD 1,800 - 2,500</td></tr>
+                        <tbody>
+                            <tr><td>London (UK)</td><td class="text-center font-bold">£1,200 - £1,500</td></tr>
+                            <tr><td>Manchester (UK)</td><td class="text-center">£800 - £1,100</td></tr>
+                            <tr><td>Berlin (Germany)</td><td class="text-center">€800 - €1,200</td></tr>
+                            <tr><td>Melbourne (Aus)</td><td class="text-center">AUD 1,800 - 2,500</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">* Includes Rent, Food, Travel. Does not include Tuition.</p>
+            <p class="text-xs mt-2">* Includes Rent, Food, Travel. Does not include Tuition.</p>
         </div>
 
         <!-- Financial Checklist -->
-        <div class="bg-blue-50 dark:bg-blue-900 rounded-xl p-8 mb-8 border-l-4 border-blue-500">
-            <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100 mb-4">
-                <i class="fas fa-clipboard-check mr-2"></i>Financial Checklist for Parents
+        <div class="qt-note is-tip mb-8">
+            <h2 class="qt-section-title mb-4">
+                Financial Checklist for Parents
             </h2>
-            <ul class="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>Proof of Funds:</strong> Show liquid funds (FD, Savings) for 1st year expenses.</span></li>
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>GIC (Canada):</strong> CAD 20,635 mandatory deposit for living expenses.</span></li>
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>Blocked Account (Germany):</strong> €11,208 mandatory deposit.</span></li>
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>Health Insurance:</strong> Mandatory for all students (approx $500-$1000/year).</span></li>
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>Forex Card:</strong> Load with foreign currency to save on exchange markup.</span></li>
-                <li class="flex items-start"><i class="fas fa-check-square mt-1 mr-2 text-blue-600"></i><span><strong>Scholarships:</strong> Apply 9-12 months in advance (they close early).</span></li>
+            <ul class="grid md:grid-cols-2 gap-4 text-sm">
+                <li class="flex items-start"><span><strong>Proof of Funds:</strong> Show liquid funds (FD, Savings) for 1st year expenses.</span></li>
+                <li class="flex items-start"><span><strong>GIC (Canada):</strong> CAD 20,635 mandatory deposit for living expenses.</span></li>
+                <li class="flex items-start"><span><strong>Blocked Account (Germany):</strong> €11,208 mandatory deposit.</span></li>
+                <li class="flex items-start"><span><strong>Health Insurance:</strong> Mandatory for all students (approx $500-$1000/year).</span></li>
+                <li class="flex items-start"><span><strong>Forex Card:</strong> Load with foreign currency to save on exchange markup.</span></li>
+                <li class="flex items-start"><span><strong>Scholarships:</strong> Apply 9-12 months in advance (they close early).</span></li>
             </ul>
         </div>
 
         <!-- SEO Content -->
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200 mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Sending Your Child Abroad? Here's What
+        <div class="p-8 mb-8">
+            <h2 class="qt-section-title mb-4">Sending Your Child Abroad? Here's What
                 You Must Know</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 Many parents dream of sending their children to study in America, UK, Canada, or Australia. But most
                 parents only look at today's cost and think "I'll save ₹2 crore". This is a BIG mistake! By the time
                 your child is ready to go, the actual cost will be MUCH higher because of two reasons:
             </p>
 
-            <div class="bg-red-50 dark:bg-red-900 p-4 rounded-lg mb-4">
-                <h3 class="text-lg font-bold text-red-800 dark:text-red-200 mb-2">Real Example That Shocks Parents:
+            <div class="qt-panel p-4 mb-4">
+                <h3 class="qt-h3 mb-2">Real Example That Shocks Parents:
                 </h3>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">
+                <p class="text-sm">
                     A USA degree costs ₹1.6 crore TODAY. But if your child is 8 years old now, you'll need
                     <strong>₹4.8 to ₹5.2 crores</strong> when they turn 18! That's 3X more money! Why? Because
                     college fees go up every year AND rupee becomes weaker every year.
                 </p>
             </div>
 
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 mt-6">The Two Hidden Problems:</h3>
+            <h3 class="qt-h3 mb-3 mt-6">The Two Hidden Problems:</h3>
             <div class="space-y-3 mb-4">
                 <div class="flex items-start">
                     <span class="text-2xl mr-3">📈</span>
                     <div>
-                        <p class="font-semibold text-gray-800 dark:text-white">Problem 1: College Fees Keep Rising
+                        <p class="font-semibold">Problem 1: College Fees Keep Rising
                         </p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Foreign university fees go up 5-7% every
+                        <p class="text-sm">Foreign university fees go up 5-7% every
                             year. In 10 years, a $50,000/year college becomes $100,000/year!</p>
                     </div>
                 </div>
                 <div class="flex items-start">
                     <span class="text-2xl mr-3">💸</span>
                     <div>
-                        <p class="font-semibold text-gray-800 dark:text-white">Problem 2: Rupee Keeps Getting Weaker
+                        <p class="font-semibold">Problem 2: Rupee Keeps Getting Weaker
                         </p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">20 years ago, $1 = ₹45. On 6 Nov 2026 a bank charged ₹94.45 to send $1 abroad.
+                        <p class="text-sm">20 years ago, $1 = ₹45. On 6 Nov 2026 a bank charged ₹94.45 to send $1 abroad.
                             Tomorrow? Maybe ₹120! You need MORE rupees to buy same dollars.</p>
                     </div>
                 </div>
             </div>
 
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 mt-6">How This Calculator Helps You:
+            <h3 class="qt-h3 mb-3 mt-6">How This Calculator Helps You:
             </h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <ul class="space-y-2">
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 mr-2 mt-1"></i>
-                    <span>Shows you the REAL amount you'll need (not just today's cost)</span>
+                                        <span>Shows you the REAL amount you'll need (not just today's cost)</span>
                 </li>
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 mr-2 mt-1"></i>
-                    <span>Works for USA, UK, Canada, Australia, Europe - all countries</span>
+                                        <span>Works for USA, UK, Canada, Australia, Europe - all countries</span>
                 </li>
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 mr-2 mt-1"></i>
-                    <span>Tells you exactly how much to save every month (SIP amount)</span>
+                                        <span>Tells you exactly how much to save every month (SIP amount)</span>
                 </li>
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 mr-2 mt-1"></i>
-                    <span>Simple language - no complicated terms, anyone can understand</span>
+                                        <span>Simple language - no complicated terms, anyone can understand</span>
                 </li>
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-600 dark:text-green-400 mr-2 mt-1"></i>
-                    <span>100% free - no login, no registration needed</span>
+                                        <span>100% free - no login, no registration needed</span>
                 </li>
             </ul>
 
-            <div class="mt-6 bg-green-50 dark:bg-green-900 p-4 rounded-lg border-l-4 border-green-500">
-                <p class="text-sm text-gray-700 dark:text-gray-300">
+            <div class="qt-note is-tip mt-6">
+                <p class="text-sm">
                     <strong>💡 Smart Tip:</strong> Start saving early! Even small monthly investments grow BIG when
                     you have 10-15 years. Use our calculator to find out your monthly SIP amount and start TODAY.
                 </p>
@@ -525,12 +515,11 @@ meta_keywords: "study abroad calculator, foreign education cost 2026, education 
 
         <!-- Financial Disclaimer -->
         <div
-            class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-4xl mx-auto mb-8">
+            class="qt-well max-w-4xl mx-auto mb-8">
             <div class="flex items-start">
-                <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-                <div>
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                    <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                                <div>
+                    <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                    <div class="text-sm space-y-2">
                         <p><strong>For Informational Purposes Only:</strong> This calculator provides cost estimates based
                             on the inputs you provide and assumed inflation/currency depreciation rates. Actual costs may
                             vary significantly based on university, location, lifestyle, exchange rates, and economic

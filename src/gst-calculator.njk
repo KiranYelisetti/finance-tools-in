@@ -15,6 +15,7 @@ sources:
   - name: "GST e-invoice portal"
     url: "https://einvoice1.gst.gov.in/"
     for: "e-invoicing rules"
+noIconFont: true
 ---
 
 {% block head %}
@@ -184,27 +185,25 @@ sources:
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="inline-block bg-gradient-to-br from-blue-400 to-blue-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-percentage text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">GST Calculator</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Tax and salary</span><span aria-hidden="true">/</span><span>GST</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-tax">Tax and salary</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">Add or remove GST with the GST 2.0 rates in force since 22 September 2025</p>
-            <span class="inline-block mt-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-bold px-3 py-1 rounded-full uppercase">Rates checked September 2026</span>
-        </div>
+            <h1 class="qt-h1 mt-4">GST Calculator</h1>
+            <p class="qt-lede mt-4">Add or remove GST with the GST 2.0 rates in force since 22 September 2025</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Input Section -->
                 <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Calculation Details</h2>
+                    <h2 class="qt-section-title mb-4">Calculation Details</h2>
 
                     <!-- Calculation Type -->
                     <div>
@@ -213,30 +212,30 @@ sources:
                         <div class="grid grid-cols-2 gap-4">
                             <button onclick="setCalculationType('add')" id="addBtn"
                                 class="calc-type-btn bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg">
-                                <i class="fas fa-plus-circle mr-2"></i>Add GST
+                                Add GST
                             </button>
                             <button onclick="setCalculationType('remove')" id="removeBtn"
                                 class="calc-type-btn bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 px-6 rounded-lg font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-500">
-                                <i class="fas fa-minus-circle mr-2"></i>Remove GST
+                                Remove GST
                             </button>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Use Remove GST when you already have a tax-inclusive figure such as an MRP or a paid invoice total.</p>
+                        <p class="text-xs mt-2">Use Remove GST when you already have a tax-inclusive figure such as an MRP or a paid invoice total.</p>
                     </div>
 
                     <!-- Amount -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Amount (₹)</label>
+                        <label for="amount" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Amount (₹)</label>
                         <input type="number" id="amount" value="1000" min="0" step="0.01"
-                            class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input format-inr w-full"
                             oninput="calculateGST()">
                     </div>
 
                     <!-- GST Rate -->
                     <div>
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">GST Rate
+                        <label for="gstRate" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">GST Rate
                             (%)</label>
                         <select id="gstRate" onchange="calculateGST()"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none text-lg transition-colors">
+                            class="qt-input w-full">
                             <optgroup label="GST 2.0 rates (from 22 Sep 2025)">
                                 <option value="0">0% - Exempt or nil rated</option>
                                 <option value="5">5% - Merit rate (essentials, most former 12% items)</option>
@@ -253,15 +252,15 @@ sources:
                             </optgroup>
                             <option value="custom">Custom rate</option>
                         </select>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">12% and 28% are kept only for checking invoices dated before 22 September 2025.</p>
+                        <p class="text-xs mt-2">12% and 28% are kept only for checking invoices dated before 22 September 2025.</p>
                     </div>
 
                     <!-- Custom Rate -->
                     <div id="customRateDiv" class="hidden">
-                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Custom GST Rate
+                        <label for="customRate" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Custom GST Rate
                             (%)</label>
                         <input type="number" id="customRate" value="18" min="0" max="100" step="0.01"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="calculateGST()">
                     </div>
 
@@ -271,91 +270,91 @@ sources:
                         <div class="grid grid-cols-2 gap-4">
                             <button onclick="setSupplyType('intra')" id="intraBtn"
                                 class="bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg text-sm md:text-base">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Within state
+                                Within state
                             </button>
                             <button onclick="setSupplyType('inter')" id="interBtn"
                                 class="bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 px-4 rounded-lg font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-500 text-sm md:text-base">
-                                <i class="fas fa-truck mr-2"></i>Between states
+                                Between states
                             </button>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Within state splits the tax into CGST and SGST. Between states charges the whole amount as IGST.</p>
+                        <p class="text-xs mt-2">Within state splits the tax into CGST and SGST. Between states charges the whole amount as IGST.</p>
                     </div>
 
                     <div class="flex gap-4">
                         <button onclick="calculateGST(); trackCalculatorUsage('GST Calculator', document.getElementById('amount').value)"
                             class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-lg font-bold hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg">
-                            <i class="fas fa-calculator mr-2"></i>Calculate GST
+                            Calculate GST
                         </button>
                         <button onclick="resetForm('gst_calc')"
                             class="px-6 py-3 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-500 transition-all shadow-md">
-                            <i class="fas fa-undo mr-2"></i>Reset
+                            Reset
                         </button>
                     </div>
                 </div>
 
                 <!-- Results Section -->
                 <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Calculation Summary</h2>
+                    <h2 class="qt-section-title mb-4">Calculation Summary</h2>
 
                     <div
-                        class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-600 dark:to-gray-500 rounded-lg p-6 transition-colors">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-1" id="originalLabel">Amount (Before GST)
+                        class="qt-card is-tax">
+                        <p class="text-sm mb-1" id="originalLabel">Amount (Before GST)
                         </p>
-                        <p id="originalAmount" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
+                        <p id="originalAmount" class="text-2xl md:text-3xl font-bold">
                             ₹0</p>
                     </div>
 
                     <div
-                        class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-lg p-6 transition-colors">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-1">GST Amount (<span
+                        class="qt-panel p-6">
+                        <p class="text-sm mb-1">GST Amount (<span
                                 id="rateDisplay">18%</span>)</p>
                         <p id="gstAmount"
-                            class="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-300">₹0</p>
+                            class="text-2xl md:text-3xl font-bold">₹0</p>
                     </div>
 
                     <!-- CGST/SGST Breakdown (within state) -->
                     <div id="intraBreakdown" class="grid grid-cols-2 gap-4">
                         <div
-                            class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-4 transition-colors">
-                            <p class="text-gray-600 dark:text-gray-300 text-xs mb-1">CGST (<span
+                            class="qt-panel p-4">
+                            <p class="text-xs mb-1">CGST (<span
                                     id="cgstRate">9%</span>)</p>
-                            <p id="cgstAmount" class="text-lg font-bold text-blue-600 dark:text-blue-300">₹0</p>
+                            <p id="cgstAmount" class="text-lg font-bold">₹0</p>
                         </div>
                         <div
-                            class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 rounded-lg p-4 transition-colors">
-                            <p class="text-gray-600 dark:text-gray-300 text-xs mb-1">SGST (<span
+                            class="qt-panel p-4">
+                            <p class="text-xs mb-1">SGST (<span
                                     id="sgstRate">9%</span>)</p>
-                            <p id="sgstAmount" class="text-lg font-bold text-indigo-600 dark:text-indigo-300">₹0</p>
+                            <p id="sgstAmount" class="text-lg font-bold">₹0</p>
                         </div>
                     </div>
 
                     <!-- IGST Breakdown (between states) -->
                     <div id="interBreakdown"
-                        class="hidden bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900 dark:to-teal-800 rounded-lg p-4 transition-colors">
-                        <p class="text-gray-600 dark:text-gray-300 text-xs mb-1">IGST (<span id="igstRate">18%</span>)</p>
-                        <p id="igstAmount" class="text-lg font-bold text-teal-700 dark:text-teal-300">₹0</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">No CGST or SGST on inter-state supplies.</p>
+                        class="qt-panel hidden p-4">
+                        <p class="text-xs mb-1">IGST (<span id="igstRate">18%</span>)</p>
+                        <p id="igstAmount" class="text-lg font-bold">₹0</p>
+                        <p class="text-xs mt-1">No CGST or SGST on inter-state supplies.</p>
                     </div>
 
                     <div
-                        class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-6 border-2 border-purple-300 dark:border-purple-600 transition-colors">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-1" id="finalLabel">Total Amount (With GST)</p>
+                        class="qt-panel p-6">
+                        <p class="text-sm mb-1" id="finalLabel">Total Amount (With GST)</p>
                         <p id="finalAmount"
-                            class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-300">₹0</p>
+                            class="text-3xl md:text-4xl font-bold">₹0</p>
                     </div>
 
                     <button onclick="shareResult('GST Calculation', document.getElementById('finalAmount').innerText)"
                         class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md mt-4">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                        Share Result
                     </button>
                 </div>
             </div>
 
             <!-- Info Section -->
             <div
-                class="mt-8 bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded transition-colors">
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2"><i
-                        class="fas fa-info-circle text-blue-500 dark:text-blue-400 mr-2"></i>About
+                class="qt-note is-tip mt-8">
+                <h3 class="qt-h3 mb-2"><i
+                        class="mr-2"></i>About
                     GST</h3>
                 <p class="text-gray-700 dark:text-gray-300 text-sm">GST (Goods and Services Tax) is the indirect tax charged on the
                     supply of goods and services in India since 1 July 2017. It replaced excise duty, service tax, VAT and several
@@ -365,66 +364,66 @@ sources:
         </div>
 
         <!-- GST 2.0 Rate Slabs -->
-        <div class="mt-12 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-table text-blue-600 dark:text-blue-400 mr-2"></i>GST 2.0 rate slabs from 22 September 2025
+        <div class="qt-card mt-12">
+            <h2 class="qt-section-title mb-4">
+                GST 2.0 rate slabs from 22 September 2025
             </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 The GST Council rationalised the rate structure at its 56th meeting on 3 September 2025, and the new rates took effect
                 on 22 September 2025. The old five-slab system (0%, 5%, 12%, 18% and 28%) was replaced by four working rates: 0%, 5%,
                 18% and 40%. Most goods and services that were taxed at 12% moved down to 5%, and most that were taxed at 28% moved
                 down to 18%. A new 40% rate was created for a short list of demerit and luxury goods.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
+            <p class="mb-6">
                 Rates are notified against HSN codes for goods and SAC codes for services, so two similar products can carry different
                 rates. Confirm the rate for your exact code in the CBIC GST rate schedule before invoicing. The rates on this page are
                 as of November 2026.
             </p>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200 uppercase tracking-wider">Rate</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200 uppercase tracking-wider">What it covers</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200 uppercase tracking-wider">Notes</th>
+                            <th>Rate</th>
+                            <th>What it covers</th>
+                            <th>Notes</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500 font-bold text-green-600 dark:text-green-400">0%</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Nil-rated and exempt supplies: unprocessed staples such as fresh fruit and vegetables and fresh milk, and services such as school education and health care</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">No GST is charged and no input tax credit can be claimed on inputs used for exempt supplies.</td>
+                            <td class="font-bold">0%</td>
+                            <td>Nil-rated and exempt supplies: unprocessed staples such as fresh fruit and vegetables and fresh milk, and services such as school education and health care</td>
+                            <td>No GST is charged and no input tax credit can be claimed on inputs used for exempt supplies.</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500 font-bold text-blue-600 dark:text-blue-400">5%</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Merit rate: everyday essentials, plus most goods and services that sat at 12% before GST 2.0</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Standalone restaurants charge 5% without input tax credit. Splits as 2.5% CGST + 2.5% SGST.</td>
+                            <td class="font-bold">5%</td>
+                            <td>Merit rate: everyday essentials, plus most goods and services that sat at 12% before GST 2.0</td>
+                            <td>Standalone restaurants charge 5% without input tax credit. Splits as 2.5% CGST + 2.5% SGST.</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500 font-bold text-orange-600 dark:text-orange-400">18%</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Standard rate: most services and most manufactured goods, including many items that were at 28% before GST 2.0</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">The default rate when nothing else applies. Splits as 9% CGST + 9% SGST.</td>
+                            <td class="font-bold">18%</td>
+                            <td>Standard rate: most services and most manufactured goods, including many items that were at 28% before GST 2.0</td>
+                            <td>The default rate when nothing else applies. Splits as 9% CGST + 9% SGST.</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 border dark:border-gray-500 font-bold text-red-600 dark:text-red-400">40%</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Demerit and luxury goods: tobacco and pan masala, aerated and caffeinated drinks, large luxury cars and high-capacity motorcycles, yachts and private aircraft, casinos, betting and online money gaming</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">A narrow list, not a general tax on branded or premium goods.</td>
+                            <td class="font-bold">40%</td>
+                            <td>Demerit and luxury goods: tobacco and pan masala, aerated and caffeinated drinks, large luxury cars and high-capacity motorcycles, yachts and private aircraft, casinos, betting and online money gaming</td>
+                            <td>A narrow list, not a general tax on branded or premium goods.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="grid md:grid-cols-2 gap-4 mt-6">
-                <div class="p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 rounded-lg border border-yellow-200 dark:border-yellow-700">
-                    <h4 class="font-bold text-yellow-800 dark:text-yellow-200 mb-2">Special rates that continue</h4>
-                    <ul class="list-disc list-inside text-sm text-yellow-800 dark:text-yellow-200 space-y-1">
+                <div class="qt-well">
+                    <h4 class="font-bold mb-2">Special rates that continue</h4>
+                    <ul class="list-disc list-inside text-sm space-y-1">
                         <li><strong>3%</strong>: gold, silver and jewellery</li>
                         <li><strong>0.25%</strong>: rough diamonds</li>
                     </ul>
                 </div>
-                <div class="p-4 bg-gray-50 dark:bg-gray-600 rounded-lg border border-gray-200 dark:border-gray-500">
-                    <h4 class="font-bold text-gray-800 dark:text-white mb-2">Legacy rates (12% and 28%)</h4>
+                <div class="qt-panel p-4">
+                    <h4 class="font-bold mb-2">Legacy rates (12% and 28%)</h4>
                     <p class="text-sm text-gray-700 dark:text-gray-200">Retired on 22 September 2025. They remain in the calculator so
                         you can verify invoices, credit notes and returns for supplies made before that date.</p>
                 </div>
@@ -432,15 +431,15 @@ sources:
         </div>
 
         <!-- CGST / SGST / IGST -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 mr-2"></i>CGST, SGST and IGST: which one goes on the invoice
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">
+                CGST, SGST and IGST: which one goes on the invoice
             </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 GST is a destination-based tax shared between the Centre and the states. The place of supply decides which labels
                 appear on the invoice, but the total rate is the same either way.
             </p>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+            <ul class="list-disc list-inside space-y-2 mb-6">
                 <li><strong>Within a state (intra-state):</strong> the supplier and the place of supply are in the same state. The
                     rate is split equally, so 18% becomes 9% CGST plus 9% SGST. In a union territory without its own legislature
                     (Chandigarh, the Andaman and Nicobar Islands, Lakshadweep, Ladakh, and Dadra and Nagar Haveli and Daman and Diu),
@@ -452,13 +451,13 @@ sources:
                     inputs can be claimed as a refund.</li>
             </ul>
             <div class="grid md:grid-cols-2 gap-4">
-                <div class="p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded-lg border border-blue-200 dark:border-blue-700">
-                    <h4 class="font-bold text-gray-800 dark:text-white mb-2">Example 1: within Telangana</h4>
+                <div class="qt-well">
+                    <h4 class="font-bold mb-2">Example 1: within Telangana</h4>
                     <p class="text-sm text-gray-700 dark:text-gray-200">A software firm in Hyderabad bills a client in Warangal
                         ₹10,000 for services at 18%. The invoice shows CGST ₹900 and SGST ₹900, and the client pays ₹11,800.</p>
                 </div>
-                <div class="p-4 bg-teal-50 dark:bg-teal-900 dark:bg-opacity-30 rounded-lg border border-teal-200 dark:border-teal-700">
-                    <h4 class="font-bold text-gray-800 dark:text-white mb-2">Example 2: Telangana to Karnataka</h4>
+                <div class="qt-well">
+                    <h4 class="font-bold mb-2">Example 2: Telangana to Karnataka</h4>
                     <p class="text-sm text-gray-700 dark:text-gray-200">The same firm bills a client in Bengaluru ₹10,000 at 18%.
                         The invoice shows IGST ₹1,800, and the client still pays ₹11,800. Only the head under which the tax is
                         paid changes, and the Karnataka client claims the ₹1,800 as IGST credit.</p>
@@ -467,30 +466,30 @@ sources:
         </div>
 
         <!-- Formulas -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-square-root-alt text-blue-600 dark:text-blue-400 mr-2"></i>Inclusive vs exclusive GST: the formulas with worked examples
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">
+                Inclusive vs exclusive GST: the formulas with worked examples
             </h2>
-            <div class="grid md:grid-cols-2 gap-6 text-gray-600 dark:text-gray-300">
+            <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Add GST (you know the base price)</h3>
-                    <p class="font-mono text-sm bg-gray-100 dark:bg-gray-800 dark:text-gray-200 rounded p-3 mb-2">GST = Base × Rate ÷ 100<br>Total = Base + GST</p>
+                    <h3 class="qt-h3 mb-2">Add GST (you know the base price)</h3>
+                    <p class="font-mono text-sm p-3 mb-2">GST = Base × Rate ÷ 100<br>Total = Base + GST</p>
                     <p class="text-sm">₹1,000 at 18%: GST = ₹180, total = ₹1,180. Within a state that is CGST ₹90 plus SGST ₹90;
                         between states it is IGST ₹180.</p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Remove GST (you know the inclusive price)</h3>
-                    <p class="font-mono text-sm bg-gray-100 dark:bg-gray-800 dark:text-gray-200 rounded p-3 mb-2">Base = Total × 100 ÷ (100 + Rate)<br>GST = Total − Base</p>
+                    <h3 class="qt-h3 mb-2">Remove GST (you know the inclusive price)</h3>
+                    <p class="font-mono text-sm p-3 mb-2">Base = Total × 100 ÷ (100 + Rate)<br>GST = Total − Base</p>
                     <p class="text-sm">₹1,180 at 18%: base = ₹1,000, GST = ₹180. An MRP of ₹599 on a product taxed at 18% contains
                         a base price of ₹507.63 and GST of ₹91.37.</p>
                 </div>
             </div>
-            <div class="mt-6 p-4 bg-red-50 dark:bg-red-900 dark:bg-opacity-20 rounded-lg border border-red-200 dark:border-red-700">
-                <h4 class="font-bold text-red-800 dark:text-red-200 mb-1">The most common mistake</h4>
-                <p class="text-sm text-red-800 dark:text-red-200">Applying the rate to a tax-inclusive price. Taking 18% of ₹1,180
+            <div class="qt-well mt-6">
+                <h4 class="font-bold mb-1">The most common mistake</h4>
+                <p class="text-sm">Applying the rate to a tax-inclusive price. Taking 18% of ₹1,180
                     gives ₹212.40, which overstates the tax by ₹32.40. If the figure you have already includes GST, use Remove GST.</p>
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mt-4">Discounts shown on the invoice reduce the taxable value before
+            <p class="text-sm mt-4">Discounts shown on the invoice reduce the taxable value before
                 GST is applied. Packing, freight and other charges billed by the supplier form part of the taxable value, so GST is
                 charged on them at the rate of the main supply.</p>
         </div>
@@ -498,111 +497,111 @@ sources:
         <!-- HSN Codes & GSTIN / State Codes -->
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- HSN and SAC -->
-            <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">
-                    <i class="fas fa-barcode text-purple-600 dark:text-purple-400 mr-2"></i>HSN and SAC codes
+            <div class="qt-card">
+                <h3 class="qt-h3 mb-3">
+                    HSN and SAC codes
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">HSN (Harmonised System of Nomenclature) codes classify goods
+                <p class="text-sm mb-3">HSN (Harmonised System of Nomenclature) codes classify goods
                     and SAC (Services Accounting Codes) classify services; SAC codes always begin with 99. The rate schedule is written
                     against these codes.</p>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Invoice rule since 1 April 2021: a business with aggregate
+                <p class="text-sm mb-4">Invoice rule since 1 April 2021: a business with aggregate
                     turnover up to ₹5 crore must print at least a 4-digit HSN on B2B invoices (optional on B2C), and a business above
                     ₹5 crore must print a 6-digit HSN on every invoice.</p>
                 <div class="overflow-y-auto max-h-72">
-                    <table class="w-full text-sm border-collapse">
-                        <thead class="bg-purple-100 dark:bg-purple-900 sticky top-0">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-2 text-left border dark:border-gray-500">Item</th>
-                                <th class="px-4 py-2 text-center border dark:border-gray-500">Code</th>
+                                <th>Item</th>
+                                <th class="text-center">Code</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700 dark:text-gray-300">
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Rice / Wheat</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">1006 / 1001</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Medicines</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">3004</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Cement</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">2523</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Footwear</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">6401 to 6405</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Gold jewellery</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">7113</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Laptops and computers</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">8471</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Mobile phones</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">8517</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Cars</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">8703</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Hotels and restaurants (SAC)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">9963</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Goods transport by road (SAC)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">9965</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Financial services (SAC)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">9971</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">Legal and accounting (SAC)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">9982</td></tr>
-                            <tr><td class="px-4 py-2 border dark:border-gray-500">IT and software services (SAC)</td><td class="px-4 py-2 text-center border dark:border-gray-500 font-mono">9983</td></tr>
+                            <tr><td>Rice / Wheat</td><td class="text-center font-mono">1006 / 1001</td></tr>
+                            <tr><td>Medicines</td><td class="text-center font-mono">3004</td></tr>
+                            <tr><td>Cement</td><td class="text-center font-mono">2523</td></tr>
+                            <tr><td>Footwear</td><td class="text-center font-mono">6401 to 6405</td></tr>
+                            <tr><td>Gold jewellery</td><td class="text-center font-mono">7113</td></tr>
+                            <tr><td>Laptops and computers</td><td class="text-center font-mono">8471</td></tr>
+                            <tr><td>Mobile phones</td><td class="text-center font-mono">8517</td></tr>
+                            <tr><td>Cars</td><td class="text-center font-mono">8703</td></tr>
+                            <tr><td>Hotels and restaurants (SAC)</td><td class="text-center font-mono">9963</td></tr>
+                            <tr><td>Goods transport by road (SAC)</td><td class="text-center font-mono">9965</td></tr>
+                            <tr><td>Financial services (SAC)</td><td class="text-center font-mono">9971</td></tr>
+                            <tr><td>Legal and accounting (SAC)</td><td class="text-center font-mono">9982</td></tr>
+                            <tr><td>IT and software services (SAC)</td><td class="text-center font-mono">9983</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Chapter and heading level codes; the full 6 or 8 digit code depends on the exact product.</p>
+                <p class="text-xs mt-2">Chapter and heading level codes; the full 6 or 8 digit code depends on the exact product.</p>
             </div>
 
             <!-- GSTIN and State Codes -->
-            <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">
-                    <i class="fas fa-map-marker-alt text-red-600 dark:text-red-400 mr-2"></i>GSTIN format and state codes
+            <div class="qt-card">
+                <h3 class="qt-h3 mb-3">
+                    GSTIN format and state codes
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">A GSTIN has 15 characters. Characters 1 and 2 are the state
+                <p class="text-sm mb-3">A GSTIN has 15 characters. Characters 1 and 2 are the state
                     code, 3 to 12 are the PAN of the business, 13 is the entity number for that PAN within the state (1 for the first
                     registration), 14 is always the letter Z, and 15 is a check character.</p>
-                <p class="font-mono text-sm bg-gray-100 dark:bg-gray-800 dark:text-gray-200 rounded p-3 mb-4">36 AAAAA1234A 1 Z 5<br><span class="text-xs text-gray-500 dark:text-gray-400">state | PAN | entity | Z | check</span></p>
+                <p class="font-mono text-sm p-3 mb-4">36 AAAAA1234A 1 Z 5<br><span class="text-xs">state | PAN | entity | Z | check</span></p>
                 <div class="overflow-y-auto max-h-72">
-                    <table class="w-full text-sm border-collapse">
-                        <thead class="bg-red-100 dark:bg-red-900 sticky top-0">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-2 text-center border dark:border-gray-500">Code</th>
-                                <th class="px-4 py-2 text-left border dark:border-gray-500">State / UT</th>
+                                <th class="text-center">Code</th>
+                                <th>State / UT</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700 dark:text-gray-300">
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">01</td><td class="px-4 py-2 border dark:border-gray-500">Jammu and Kashmir</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">02</td><td class="px-4 py-2 border dark:border-gray-500">Himachal Pradesh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">03</td><td class="px-4 py-2 border dark:border-gray-500">Punjab</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">04</td><td class="px-4 py-2 border dark:border-gray-500">Chandigarh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">05</td><td class="px-4 py-2 border dark:border-gray-500">Uttarakhand</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">06</td><td class="px-4 py-2 border dark:border-gray-500">Haryana</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">07</td><td class="px-4 py-2 border dark:border-gray-500">Delhi</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">08</td><td class="px-4 py-2 border dark:border-gray-500">Rajasthan</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">09</td><td class="px-4 py-2 border dark:border-gray-500">Uttar Pradesh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">10</td><td class="px-4 py-2 border dark:border-gray-500">Bihar</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">11</td><td class="px-4 py-2 border dark:border-gray-500">Sikkim</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">12</td><td class="px-4 py-2 border dark:border-gray-500">Arunachal Pradesh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">13</td><td class="px-4 py-2 border dark:border-gray-500">Nagaland</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">14</td><td class="px-4 py-2 border dark:border-gray-500">Manipur</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">15</td><td class="px-4 py-2 border dark:border-gray-500">Mizoram</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">16</td><td class="px-4 py-2 border dark:border-gray-500">Tripura</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">17</td><td class="px-4 py-2 border dark:border-gray-500">Meghalaya</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">18</td><td class="px-4 py-2 border dark:border-gray-500">Assam</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">19</td><td class="px-4 py-2 border dark:border-gray-500">West Bengal</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">20</td><td class="px-4 py-2 border dark:border-gray-500">Jharkhand</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">21</td><td class="px-4 py-2 border dark:border-gray-500">Odisha</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">22</td><td class="px-4 py-2 border dark:border-gray-500">Chhattisgarh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">23</td><td class="px-4 py-2 border dark:border-gray-500">Madhya Pradesh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">24</td><td class="px-4 py-2 border dark:border-gray-500">Gujarat</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">26</td><td class="px-4 py-2 border dark:border-gray-500">Dadra and Nagar Haveli and Daman and Diu</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">27</td><td class="px-4 py-2 border dark:border-gray-500">Maharashtra</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">29</td><td class="px-4 py-2 border dark:border-gray-500">Karnataka</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">30</td><td class="px-4 py-2 border dark:border-gray-500">Goa</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">31</td><td class="px-4 py-2 border dark:border-gray-500">Lakshadweep</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">32</td><td class="px-4 py-2 border dark:border-gray-500">Kerala</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">33</td><td class="px-4 py-2 border dark:border-gray-500">Tamil Nadu</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">34</td><td class="px-4 py-2 border dark:border-gray-500">Puducherry</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">35</td><td class="px-4 py-2 border dark:border-gray-500">Andaman and Nicobar Islands</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">36</td><td class="px-4 py-2 border dark:border-gray-500">Telangana</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">37</td><td class="px-4 py-2 border dark:border-gray-500">Andhra Pradesh</td></tr>
-                            <tr><td class="px-4 py-2 text-center border dark:border-gray-500 font-bold">38</td><td class="px-4 py-2 border dark:border-gray-500">Ladakh</td></tr>
+                            <tr><td class="text-center font-bold">01</td><td>Jammu and Kashmir</td></tr>
+                            <tr><td class="text-center font-bold">02</td><td>Himachal Pradesh</td></tr>
+                            <tr><td class="text-center font-bold">03</td><td>Punjab</td></tr>
+                            <tr><td class="text-center font-bold">04</td><td>Chandigarh</td></tr>
+                            <tr><td class="text-center font-bold">05</td><td>Uttarakhand</td></tr>
+                            <tr><td class="text-center font-bold">06</td><td>Haryana</td></tr>
+                            <tr><td class="text-center font-bold">07</td><td>Delhi</td></tr>
+                            <tr><td class="text-center font-bold">08</td><td>Rajasthan</td></tr>
+                            <tr><td class="text-center font-bold">09</td><td>Uttar Pradesh</td></tr>
+                            <tr><td class="text-center font-bold">10</td><td>Bihar</td></tr>
+                            <tr><td class="text-center font-bold">11</td><td>Sikkim</td></tr>
+                            <tr><td class="text-center font-bold">12</td><td>Arunachal Pradesh</td></tr>
+                            <tr><td class="text-center font-bold">13</td><td>Nagaland</td></tr>
+                            <tr><td class="text-center font-bold">14</td><td>Manipur</td></tr>
+                            <tr><td class="text-center font-bold">15</td><td>Mizoram</td></tr>
+                            <tr><td class="text-center font-bold">16</td><td>Tripura</td></tr>
+                            <tr><td class="text-center font-bold">17</td><td>Meghalaya</td></tr>
+                            <tr><td class="text-center font-bold">18</td><td>Assam</td></tr>
+                            <tr><td class="text-center font-bold">19</td><td>West Bengal</td></tr>
+                            <tr><td class="text-center font-bold">20</td><td>Jharkhand</td></tr>
+                            <tr><td class="text-center font-bold">21</td><td>Odisha</td></tr>
+                            <tr><td class="text-center font-bold">22</td><td>Chhattisgarh</td></tr>
+                            <tr><td class="text-center font-bold">23</td><td>Madhya Pradesh</td></tr>
+                            <tr><td class="text-center font-bold">24</td><td>Gujarat</td></tr>
+                            <tr><td class="text-center font-bold">26</td><td>Dadra and Nagar Haveli and Daman and Diu</td></tr>
+                            <tr><td class="text-center font-bold">27</td><td>Maharashtra</td></tr>
+                            <tr><td class="text-center font-bold">29</td><td>Karnataka</td></tr>
+                            <tr><td class="text-center font-bold">30</td><td>Goa</td></tr>
+                            <tr><td class="text-center font-bold">31</td><td>Lakshadweep</td></tr>
+                            <tr><td class="text-center font-bold">32</td><td>Kerala</td></tr>
+                            <tr><td class="text-center font-bold">33</td><td>Tamil Nadu</td></tr>
+                            <tr><td class="text-center font-bold">34</td><td>Puducherry</td></tr>
+                            <tr><td class="text-center font-bold">35</td><td>Andaman and Nicobar Islands</td></tr>
+                            <tr><td class="text-center font-bold">36</td><td>Telangana</td></tr>
+                            <tr><td class="text-center font-bold">37</td><td>Andhra Pradesh</td></tr>
+                            <tr><td class="text-center font-bold">38</td><td>Ladakh</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Codes 25 (Daman and Diu) and 28 (undivided Andhra Pradesh) are no longer issued.</p>
+                <p class="text-xs mt-2">Codes 25 (Daman and Diu) and 28 (undivided Andhra Pradesh) are no longer issued.</p>
             </div>
         </div>
 
         <!-- Registration, composition, e-invoicing -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-id-card text-blue-600 dark:text-blue-400 mr-2"></i>Who must register, the composition scheme and e-invoicing
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">
+                Who must register, the composition scheme and e-invoicing
             </h2>
-            <div class="text-gray-600 dark:text-gray-300 space-y-4">
+            <div class="space-y-4">
                 <p><strong>Registration thresholds (as of November 2026).</strong> A business must register once its aggregate
                     annual turnover crosses ₹40 lakh for goods or ₹20 lakh for services in most states. Lower limits apply in the
                     special category states (₹10 lakh in Manipur, Mizoram, Nagaland and Tripura, ₹20 lakh in the others), and a few
@@ -624,11 +623,11 @@ sources:
         </div>
 
         <!-- ITC, reverse charge, returns -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-file-invoice text-blue-600 dark:text-blue-400 mr-2"></i>Input tax credit, reverse charge and return filing
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">
+                Input tax credit, reverse charge and return filing
             </h2>
-            <div class="text-gray-600 dark:text-gray-300 space-y-4">
+            <div class="space-y-4">
                 <p><strong>Input tax credit (ITC)</strong> is the mechanism that stops tax being charged on tax. A registered
                     business subtracts the GST it paid on business purchases from the GST it collected on sales and deposits only the
                     difference. If you collected ₹18,000 on sales and paid ₹11,000 on eligible purchases in the same month, you pay
@@ -650,65 +649,64 @@ sources:
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-question-circle text-blue-600 dark:text-blue-400 mr-2"></i>Frequently Asked Questions
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-6">
+                Frequently Asked Questions
             </h2>
             <div class="space-y-4">
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What are the GST rates in India after GST 2.0?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">From 22 September 2025, GST in India has four main rates: 0%, 5%, 18% and 40%. The earlier 12% and 28% slabs were retired, with most 12% items moving to 5% and most 28% items moving to 18%. The 40% rate applies to a short list of demerit and luxury goods. Special rates of 3% (gold, silver and jewellery) and 0.25% (rough diamonds) continue. Always confirm the rate for your HSN or SAC code in the CBIC rate schedule.</p>
+                <details class="qt-faq-item">
+                    <summary>What are the GST rates in India after GST 2.0?</summary>
+                    <p class="mt-3 text-sm">From 22 September 2025, GST in India has four main rates: 0%, 5%, 18% and 40%. The earlier 12% and 28% slabs were retired, with most 12% items moving to 5% and most 28% items moving to 18%. The 40% rate applies to a short list of demerit and luxury goods. Special rates of 3% (gold, silver and jewellery) and 0.25% (rough diamonds) continue. Always confirm the rate for your HSN or SAC code in the CBIC rate schedule.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How do I calculate GST on an amount?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">To add GST, multiply the base amount by the rate and divide by 100, then add the result to the base. For example, 18% GST on ₹1,000 is ₹180, so the invoice total is ₹1,180. To remove GST from a tax-inclusive price, divide the total by (100 + rate) and multiply by 100 to get the base amount. For ₹1,180 at 18%, the base is ₹1,000 and the GST inside it is ₹180.</p>
+                <details class="qt-faq-item">
+                    <summary>How do I calculate GST on an amount?</summary>
+                    <p class="mt-3 text-sm">To add GST, multiply the base amount by the rate and divide by 100, then add the result to the base. For example, 18% GST on ₹1,000 is ₹180, so the invoice total is ₹1,180. To remove GST from a tax-inclusive price, divide the total by (100 + rate) and multiply by 100 to get the base amount. For ₹1,180 at 18%, the base is ₹1,000 and the GST inside it is ₹180.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the difference between CGST, SGST and IGST?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">For a sale within one state, the GST is split equally between the Centre (CGST) and the State (SGST), so 18% becomes 9% CGST plus 9% SGST. For a sale from one state to another, or an import, the full rate is charged as IGST (Integrated GST), which the Centre later shares with the destination state. The total tax is the same either way; only the labels on the invoice change.</p>
+                <details class="qt-faq-item">
+                    <summary>What is the difference between CGST, SGST and IGST?</summary>
+                    <p class="mt-3 text-sm">For a sale within one state, the GST is split equally between the Centre (CGST) and the State (SGST), so 18% becomes 9% CGST plus 9% SGST. For a sale from one state to another, or an import, the full rate is charged as IGST (Integrated GST), which the Centre later shares with the destination state. The total tax is the same either way; only the labels on the invoice change.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Can I still use the 12% and 28% GST rates?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">Only for supplies made before 22 September 2025, for example when checking an old invoice, issuing a credit note against an old invoice, or reconciling returns for that period. The calculator keeps both rates under a Legacy group for this purpose. Invoices for supplies made on or after 22 September 2025 should use the GST 2.0 rates.</p>
+                <details class="qt-faq-item">
+                    <summary>Can I still use the 12% and 28% GST rates?</summary>
+                    <p class="mt-3 text-sm">Only for supplies made before 22 September 2025, for example when checking an old invoice, issuing a credit note against an old invoice, or reconciling returns for that period. The calculator keeps both rates under a Legacy group for this purpose. Invoices for supplies made on or after 22 September 2025 should use the GST 2.0 rates.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Is GST charged on top of the MRP?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">No. For packaged goods sold to consumers, the printed MRP (maximum retail price) already includes all taxes, so a shop cannot add GST above the MRP. To see how much tax sits inside an MRP, choose Remove GST, enter the MRP and select the rate that applies to the product.</p>
+                <details class="qt-faq-item">
+                    <summary>Is GST charged on top of the MRP?</summary>
+                    <p class="mt-3 text-sm">No. For packaged goods sold to consumers, the printed MRP (maximum retail price) already includes all taxes, so a shop cannot add GST above the MRP. To see how much tax sits inside an MRP, choose Remove GST, enter the MRP and select the rate that applies to the product.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Who needs to register for GST?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">As of November 2026, a business must register once its aggregate annual turnover crosses ₹40 lakh for goods or ₹20 lakh for services in most states. Lower limits (₹20 lakh or ₹10 lakh) apply in the special category states, and a few other states kept the ₹20 lakh limit for goods. Some businesses must register regardless of turnover, for example those making inter-state supplies of goods, those liable to pay tax under reverse charge, and e-commerce operators. Voluntary registration is also allowed.</p>
+                <details class="qt-faq-item">
+                    <summary>Who needs to register for GST?</summary>
+                    <p class="mt-3 text-sm">As of November 2026, a business must register once its aggregate annual turnover crosses ₹40 lakh for goods or ₹20 lakh for services in most states. Lower limits (₹20 lakh or ₹10 lakh) apply in the special category states, and a few other states kept the ₹20 lakh limit for goods. Some businesses must register regardless of turnover, for example those making inter-state supplies of goods, those liable to pay tax under reverse charge, and e-commerce operators. Voluntary registration is also allowed.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is input tax credit (ITC)?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">Input tax credit lets a registered business subtract the GST it paid on business purchases from the GST it collects on sales, and deposit only the difference. If you collected ₹18,000 of GST on sales and paid ₹11,000 of GST on eligible purchases in the same period, you pay ₹7,000. The credit is available only when the supplier has reported the invoice and it appears in your GSTR-2B, and it is blocked for items such as motor vehicles for personal use, food and beverages, and goods used for personal consumption.</p>
+                <details class="qt-faq-item">
+                    <summary>What is input tax credit (ITC)?</summary>
+                    <p class="mt-3 text-sm">Input tax credit lets a registered business subtract the GST it paid on business purchases from the GST it collects on sales, and deposit only the difference. If you collected ₹18,000 of GST on sales and paid ₹11,000 of GST on eligible purchases in the same period, you pay ₹7,000. The credit is available only when the supplier has reported the invoice and it appears in your GSTR-2B, and it is blocked for items such as motor vehicles for personal use, food and beverages, and goods used for personal consumption.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How do I read a GSTIN?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-200 text-sm">A GSTIN is the 15-character registration number printed on every tax invoice. The first two digits are the state code (for example 27 for Maharashtra and 36 for Telangana), the next ten characters are the PAN of the business, the thirteenth character is the entity number for that PAN within the state, the fourteenth is always the letter Z, and the fifteenth is a check character used to detect typing errors.</p>
+                <details class="qt-faq-item">
+                    <summary>How do I read a GSTIN?</summary>
+                    <p class="mt-3 text-sm">A GSTIN is the 15-character registration number printed on every tax invoice. The first two digits are the state code (for example 27 for Maharashtra and 36 for Telangana), the next ten characters are the PAN of the business, the thirteenth character is the entity number for that PAN within the state, the fourteenth is always the letter Z, and the fifteenth is a check character used to detect typing errors.</p>
                 </details>
             </div>
         </div>
 
         <!-- Related tools -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-link text-blue-600 dark:text-blue-400 mr-2"></i>Related tools and guides
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">
+                Related tools and guides
             </h2>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                <li><a href="/number-to-words/" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Number to Words converter</a>: write the invoice total in words, in lakh and crore format, exactly as tax invoices and cheques require.</li>
-                <li><a href="/income-tax-calculator/" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Income Tax Calculator</a>: GST is paid by the business; income tax is paid on what is left. Compare the old and new regimes for FY 2025-26 and FY 2026-27.</li>
-                <li><a href="/blog/understanding-indian-tax-system-gst/" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Understanding GST in India: a practical guide</a>: a longer walk-through of how GST works from registration to filing.</li>
+            <ul class="list-disc list-inside space-y-2">
+                <li><a href="/number-to-words/" class="qt-link">Number to Words converter</a>: write the invoice total in words, in lakh and crore format, exactly as tax invoices and cheques require.</li>
+                <li><a href="/income-tax-calculator/" class="qt-link">Income Tax Calculator</a>: GST is paid by the business; income tax is paid on what is left. Compare the old and new regimes for FY 2025-26 and FY 2026-27.</li>
+                <li><a href="/blog/understanding-indian-tax-system-gst/" class="qt-link">Understanding GST in India: a practical guide</a>: a longer walk-through of how GST works from registration to filing.</li>
             </ul>
         </div>
 
         <!-- Financial Disclaimer -->
         <div
-            class="mt-8 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 mb-8">
+            class="qt-well mt-8 mb-8">
             <div class="flex items-start">
-                <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-                <div>
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
+                                <div>
+                    <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
                     <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
                         <p><strong>For Informational Purposes Only:</strong> This calculator provides estimates based on the
                             inputs you provide. Actual GST liability may vary based on specific goods/services

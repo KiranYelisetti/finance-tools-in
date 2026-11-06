@@ -138,11 +138,9 @@ for (const p of pages) {
 // KNOWN BUG (accessibility): on these pages the visible field labels are not tied to their fields (no for=, not
 // wrapping the field), so screen readers announce unnamed fields. The SIP page also has an icon-only Reset button
 // with no name. Remove a page from this list once its markup is fixed; the test then has to pass.
-const KNOWN_UNNAMED_CONTROLS = new Set([
-  "/age-calculator/", "/car-loan-calculator/", "/cash-counter/", "/emi-prepayment-calculator/", "/gst-calculator/",
-  "/image-resizer/", "/income-tax-calculator/", "/ppf-calculator/", "/salary-calculator/", "/sip-calculator/",
-  "/ssy-calculator/", "/study-abroad-calculator/", "/wedding-cost-calculator/",
-]);
+// All fixed on 2026-11-06 (labels tied with for=, sliders and the cash counter fields named). Kept as an empty
+// list so a page that regresses has to be named here on purpose.
+const KNOWN_UNNAMED_CONTROLS = new Set([]);
 
 for (const p of pages) {
   test(`page ${p.url}: every button and form field has an accessible name`, async ({ page }, testInfo) => {

@@ -29,3 +29,6 @@ body.qt input[type="range"]:not(.qt-range) { accent-color: var(--haldi-500); }
 
 /* Old pages: a long email address in a button may wrap instead of pushing the page sideways */
 body.qt a[href^="mailto:"] { max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
+
+/* Checkboxes and radios on pages moved from the old markup */
+body.qt input[type="checkbox"]:not(.qt-check input), body.qt input[type="radio"] { accent-color: var(--haldi-500); width: 1.15rem; height: 1.15rem; }

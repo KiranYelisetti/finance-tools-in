@@ -118,6 +118,16 @@
     .qt-btn--lg { font-size: 1.1rem; padding: 1.05rem 1.7rem; }
     .qt-btn--block { width: 100%; }
 
+    /* Preset card: a button that holds a small card (country presets, sample plans) */
+    .qt-preset {
+        display: block; width: 100%; text-align: left; font: inherit; color: var(--qt-ink); background: var(--qt-surface);
+        border: var(--qt-bw) solid var(--qt-line); border-radius: var(--qt-r-md); padding: .95rem 1.05rem; box-shadow: var(--qt-sh-1); cursor: pointer;
+        transition: transform var(--qt-dur-2) var(--qt-ease-pop), box-shadow var(--qt-dur-2), background-color var(--qt-dur-2);
+    }
+    .qt-preset:hover { transform: translate(-2px, -2px); box-shadow: var(--qt-sh-2); background: var(--cat, var(--qt-primary)); color: var(--ink-900); }
+    .qt-preset:active { transform: translate(2px, 2px); box-shadow: none; }
+    .qt-preset .qt-h3 { font-size: var(--qt-text-lg); }
+
     /* Chips: quick examples and filters */
     .qt-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
     .qt-chip {
@@ -152,12 +162,15 @@
     .qt-affix.is-suffix > .qt-input { padding-right: 3.6rem; }
     .qt-affix.is-xl > .qt-affix-text { font-size: clamp(1.4rem, 1rem + 1.8vw, 2rem); left: 1.1rem; color: var(--qt-ink); }
     .qt-affix.is-xl > .qt-input { padding-left: 2.6rem; }
-    .qt-select { position: relative; display: block; }
-    .qt-select > select { padding-right: 2.7rem; cursor: pointer; }
-    .qt-select::after {
-        content: ""; position: absolute; right: 1.05rem; top: 50%; width: .55rem; height: .55rem; pointer-events: none;
-        border-right: 2.5px solid var(--qt-ink); border-bottom: 2.5px solid var(--qt-ink); transform: translateY(-70%) rotate(45deg);
+    /* Dropdowns draw their own arrow, in the ink colour of the theme */
+    select.qt-input {
+        padding-right: 2.7rem; cursor: pointer; background-repeat: no-repeat; background-position: right 1rem center; background-size: .85rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1.5 1.5 6 6l4.5-4.5' fill='none' stroke='%2316120E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     }
+    html.dark select.qt-input:not(.qt-light select):not(.qt-cheque select):not(.qt-card[class*=" is-"] select) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1.5 1.5 6 6l4.5-4.5' fill='none' stroke='%23FBF3E4' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .qt-select { display: block; }
 
     /* Slider. ui.js keeps --fill in step with the value. */
     .qt-range { --fill: 50%; -webkit-appearance: none; appearance: none; width: 100%; height: 1.7rem; margin-top: .5rem; background: transparent; cursor: pointer; }
@@ -270,6 +283,25 @@
     }
     .qt-faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); background: var(--qt-primary); color: var(--ink-900); border-color: var(--ink-900); }
     .qt-faq details > :not(summary) { padding: 0 1.1rem 1.1rem; margin: 0; color: var(--qt-ink-2); }
+
+    /* FAQ items used one by one (pages moved from the old markup) */
+    details.qt-faq-item { background: var(--qt-surface); border: var(--qt-bw) solid var(--qt-line); border-radius: var(--qt-r-md); transition: box-shadow var(--qt-dur-2) var(--qt-ease-out); }
+    details.qt-faq-item[open] { box-shadow: var(--qt-sh-2); }
+    details.qt-faq-item > summary { position: relative; list-style: none; cursor: pointer; padding: 1rem 3.4rem 1rem 1.1rem; font-weight: 750; line-height: 1.35; }
+    details.qt-faq-item > summary::-webkit-details-marker { display: none; }
+    details.qt-faq-item > summary::after {
+        content: "+"; position: absolute; right: .9rem; top: 50%; width: 1.8rem; height: 1.8rem; display: grid; place-items: center;
+        font-weight: 800; font-size: 1.15rem; line-height: 1; border: var(--qt-bw) solid var(--qt-line); border-radius: 50%; transform: translateY(-50%);
+        transition: transform var(--qt-dur-2) var(--qt-ease-pop), background-color var(--qt-dur-2);
+    }
+    details.qt-faq-item[open] > summary::after { transform: translateY(-50%) rotate(45deg); background: var(--qt-primary); color: var(--ink-900); border-color: var(--ink-900); }
+    details.qt-faq-item > :not(summary) { padding: 0 1.1rem 1.1rem; margin: 0; color: var(--qt-ink-2); }
+
+    /* Section title inside a page, and an inset panel inside a card */
+    .qt-section-title { font-size: var(--qt-text-2xl); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 1rem; color: var(--on-cat, var(--qt-ink)); }
+    .qt-panel { background: var(--qt-sunken); color: var(--qt-ink); border-radius: var(--qt-r-md); }
+    .qt-card .qt-card { box-shadow: var(--qt-sh-1); }
+    .qt-card > .qt-table-wrap, .qt-panel > .qt-table-wrap { margin-top: .5rem; }
 
     /* ---- Notes ------------------------------------------------------------ */
     .qt-note { background: var(--qt-warn-bg); border: var(--qt-bw) solid var(--qt-line); border-radius: var(--qt-r-md); padding: .9rem 1.1rem; font-size: .95rem; line-height: 1.5; }

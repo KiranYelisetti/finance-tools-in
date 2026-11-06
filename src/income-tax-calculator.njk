@@ -18,6 +18,7 @@ sources:
   - name: "Employees' Provident Fund Organisation (EPFO)"
     url: "https://www.epfo.gov.in/"
     for: "the EPF interest rate"
+noIconFont: true
 ---
 
 {% block head %}
@@ -118,90 +119,89 @@ sources:
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-5xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div class="inline-block bg-gradient-to-br from-emerald-400 to-emerald-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-file-invoice-dollar text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Income Tax Calculator</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Tax and salary</span><span aria-hidden="true">/</span><span>Income Tax</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-tax">Tax and salary</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">FY 2025-26 (AY 2026-27) and FY 2026-27 (AY 2027-28) | Compare Old vs New Regime</p>
-            <span class="inline-block mt-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Slabs unchanged in Budget 2026</span>
-        </div>
+            <h1 class="qt-h1 mt-4">Income Tax Calculator</h1>
+            <p class="qt-lede mt-4">FY 2025-26 (AY 2026-27) and FY 2026-27 (AY 2027-28) | Compare Old vs New Regime</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8">
+        <div class="qt-card">
             <div class="space-y-6">
                 <!-- Income Inputs -->
-                <h2 class="text-xl font-bold text-gray-800 dark:text-white"><i class="fas fa-rupee-sign text-emerald-600 mr-2"></i>Income Details</h2>
+                <h2 class="qt-section-title">Income Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Annual Gross Salary (₹)</label>
+                        <label for="grossSalary" class="qt-label mb-2">Annual Gross Salary (₹)</label>
                         <input type="number" id="grossSalary" value="1200000" min="0" step="10000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
-                        <p class="text-xs text-gray-500 mt-1">Your total CTC or gross annual income</p>
+                            class="qt-input format-inr w-full">
+                        <p class="text-xs mt-1">Your total CTC or gross annual income</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Other Income (₹) <span class="font-normal text-gray-400">(FD interest, rent, etc.)</span></label>
+                        <label for="otherIncome" class="qt-label mb-2">Other Income (₹) <span class="font-normal">(FD interest, rent, etc.)</span></label>
                         <input type="number" id="otherIncome" value="0" min="0" step="1000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
+                            class="qt-input format-inr w-full">
                     </div>
                 </div>
 
                 <!-- Old Regime Deductions -->
-                <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-1"><i class="fas fa-hand-holding-usd text-emerald-600 mr-2"></i>Deductions (Old Regime Only)</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">These deductions only apply under the Old Tax Regime</p>
+                <div class="pt-6 border-dashed border-line-soft border-t-2">
+                    <h2 class="qt-section-title mb-1">Deductions (Old Regime Only)</h2>
+                    <p class="text-xs mb-4">These deductions only apply under the Old Tax Regime</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Section 123 (was 80C) (₹) <span class="font-normal text-gray-400">Max ₹1.5L</span></label>
+                            <label for="deduction80C" class="qt-label mb-2">Section 123 (was 80C) (₹) <span class="font-normal">Max ₹1.5L</span></label>
                             <input type="number" id="deduction80C" value="150000" min="0" max="150000" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
-                            <p class="text-xs text-gray-500 mt-1">EPF, PPF, ELSS, LIC, NPS Tier-I, SSY</p>
+                                class="qt-input format-inr w-full">
+                            <p class="text-xs mt-1">EPF, PPF, ELSS, LIC, NPS Tier-I, SSY</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Section 126 (was 80D) - Health Insurance (₹)</label>
+                            <label for="deduction80D" class="qt-label mb-2">Section 126 (was 80D) - Health Insurance (₹)</label>
                             <input type="number" id="deduction80D" value="25000" min="0" max="100000" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
-                            <p class="text-xs text-gray-500 mt-1">Self: ₹25K | Self+Parents: ₹50K | Senior Parents: ₹75K-₹1L</p>
+                                class="qt-input format-inr w-full">
+                            <p class="text-xs mt-1">Self: ₹25K | Self+Parents: ₹50K | Senior Parents: ₹75K-₹1L</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">HRA Exemption (₹)</label>
+                            <label for="hraExemption" class="qt-label mb-2">HRA Exemption (₹)</label>
                             <input type="number" id="hraExemption" value="0" min="0" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
-                            <p class="text-xs text-gray-500 mt-1">If you live in rented accommodation and receive HRA</p>
+                                class="qt-input format-inr w-full">
+                            <p class="text-xs mt-1">If you live in rented accommodation and receive HRA</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Home loan interest, section 22 (was 24(b)) (₹) <span class="font-normal text-gray-400">Max ₹2L</span></label>
+                            <label for="homeLoanInterest" class="qt-label mb-2">Home loan interest, section 22 (was 24(b)) (₹) <span class="font-normal">Max ₹2L</span></label>
                             <input type="number" id="homeLoanInterest" value="0" min="0" max="200000" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
+                                class="qt-input format-inr w-full">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">NPS - section 124(3) (was 80CCD(1B)) (₹) <span class="font-normal text-gray-400">Max ₹50K</span></label>
+                            <label for="nps80CCD" class="qt-label mb-2">NPS - section 124(3) (was 80CCD(1B)) (₹) <span class="font-normal">Max ₹50K</span></label>
                             <input type="number" id="nps80CCD" value="0" min="0" max="50000" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
+                                class="qt-input format-inr w-full">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Other Deductions (₹)</label>
+                            <label for="otherDeductions" class="qt-label mb-2">Other Deductions (₹)</label>
                             <input type="number" id="otherDeductions" value="0" min="0" step="1000"
-                                class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white">
-                            <p class="text-xs text-gray-500 mt-1">Education loan interest (section 129 (was 80E)), Donations (section 133 (was 80G)), etc.</p>
+                                class="qt-input format-inr w-full">
+                            <p class="text-xs mt-1">Education loan interest (section 129 (was 80E)), Donations (section 133 (was 80G)), etc.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex gap-4">
                     <button onclick="calculateTax()"
-                        class="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 text-white py-4 rounded-lg font-semibold hover:from-emerald-600 hover:to-green-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
-                        <i class="fas fa-calculator mr-2"></i>Compare Tax: Old vs New
+                        class="qt-btn flex-1">
+                        Compare Tax: Old vs New
                     </button>
                     <button onclick="resetForm('income_tax_calc')"
-                        class="px-6 py-4 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md">
-                        <i class="fas fa-undo mr-2"></i>Reset
+                        class="qt-btn">
+                        Reset
                     </button>
                 </div>
             </div>
@@ -212,123 +212,123 @@ sources:
             <!-- Regime Comparison -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Old Regime -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 overflow-hidden">
-                    <div class="bg-gradient-to-r from-orange-500 to-amber-600 p-4">
-                        <h3 class="text-xl font-bold text-white flex items-center"><i class="fas fa-landmark mr-2"></i>Old Regime</h3>
+                <div class="qt-card overflow-hidden">
+                    <div class="qt-panel p-4">
+                        <h3 class="qt-h3 flex items-center">Old Regime</h3>
                     </div>
                     <div class="p-6 space-y-3">
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Gross Income</span>
-                            <span class="font-semibold dark:text-white" id="oldGrossIncome">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Gross Income</span>
+                            <span class="font-semibold" id="oldGrossIncome">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Standard Deduction</span>
-                            <span class="font-semibold text-green-600" id="oldStdDeduction">- ₹50,000</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Standard Deduction</span>
+                            <span class="font-semibold" id="oldStdDeduction">- ₹50,000</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Chapter VI-A Deductions</span>
-                            <span class="font-semibold text-green-600" id="oldChapterDeductions">- ₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Chapter VI-A Deductions</span>
+                            <span class="font-semibold" id="oldChapterDeductions">- ₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-orange-50 dark:bg-gray-600 rounded-lg border border-orange-200 dark:border-orange-800">
-                            <span class="font-bold dark:text-white">Taxable Income</span>
-                            <span class="font-bold text-orange-600" id="oldTaxableIncome">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span class="font-bold">Taxable Income</span>
+                            <span class="font-bold" id="oldTaxableIncome">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Tax Before Cess</span>
-                            <span class="font-semibold dark:text-white" id="oldTaxBeforeCess">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Tax Before Cess</span>
+                            <span class="font-semibold" id="oldTaxBeforeCess">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Rebate under section 156 (was 87A)</span>
-                            <span class="font-semibold text-green-600" id="oldRebate">- ₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Rebate under section 156 (was 87A)</span>
+                            <span class="font-semibold" id="oldRebate">- ₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Education Cess (4%)</span>
-                            <span class="font-semibold dark:text-white" id="oldCess">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Education Cess (4%)</span>
+                            <span class="font-semibold" id="oldCess">₹0</span>
                         </div>
-                        <div class="flex justify-between p-4 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-gray-600 dark:to-gray-600 rounded-lg border-2 border-orange-300 dark:border-orange-700">
-                            <span class="font-bold text-gray-800 dark:text-white text-lg">Total Tax</span>
-                            <span class="font-bold text-orange-600 text-2xl" id="oldTotalTax">₹0</span>
+                        <div class="qt-card is-tax flex justify-between">
+                            <span class="font-bold text-lg">Total Tax</span>
+                            <span class="font-bold text-2xl" id="oldTotalTax">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Effective Tax Rate</span>
-                            <span class="font-semibold dark:text-white" id="oldEffectiveRate">0%</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Effective Tax Rate</span>
+                            <span class="font-semibold" id="oldEffectiveRate">0%</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Monthly Tax</span>
-                            <span class="font-semibold dark:text-white" id="oldMonthlyTax">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Monthly Tax</span>
+                            <span class="font-semibold" id="oldMonthlyTax">₹0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- New Regime -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 overflow-hidden">
-                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4">
-                        <h3 class="text-xl font-bold text-white flex items-center"><i class="fas fa-leaf mr-2"></i>New Regime</h3>
+                <div class="qt-card overflow-hidden">
+                    <div class="qt-panel p-4">
+                        <h3 class="qt-h3 flex items-center">New Regime</h3>
                     </div>
                     <div class="p-6 space-y-3">
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Gross Income</span>
-                            <span class="font-semibold dark:text-white" id="newGrossIncome">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Gross Income</span>
+                            <span class="font-semibold" id="newGrossIncome">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Standard Deduction</span>
-                            <span class="font-semibold text-green-600" id="newStdDeduction">- ₹75,000</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Standard Deduction</span>
+                            <span class="font-semibold" id="newStdDeduction">- ₹75,000</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Chapter VI-A Deductions</span>
-                            <span class="font-semibold text-gray-400">Not Applicable</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Chapter VI-A Deductions</span>
+                            <span class="font-semibold">Not Applicable</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-emerald-50 dark:bg-gray-600 rounded-lg border border-emerald-200 dark:border-emerald-800">
-                            <span class="font-bold dark:text-white">Taxable Income</span>
-                            <span class="font-bold text-emerald-600" id="newTaxableIncome">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span class="font-bold">Taxable Income</span>
+                            <span class="font-bold" id="newTaxableIncome">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Tax Before Cess</span>
-                            <span class="font-semibold dark:text-white" id="newTaxBeforeCess">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Tax Before Cess</span>
+                            <span class="font-semibold" id="newTaxBeforeCess">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Rebate under section 156 (was 87A)</span>
-                            <span class="font-semibold text-green-600" id="newRebate">- ₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Rebate under section 156 (was 87A)</span>
+                            <span class="font-semibold" id="newRebate">- ₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Education Cess (4%)</span>
-                            <span class="font-semibold dark:text-white" id="newCess">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Education Cess (4%)</span>
+                            <span class="font-semibold" id="newCess">₹0</span>
                         </div>
-                        <div class="flex justify-between p-4 bg-gradient-to-r from-emerald-100 to-green-100 dark:from-gray-600 dark:to-gray-600 rounded-lg border-2 border-emerald-300 dark:border-emerald-700">
-                            <span class="font-bold text-gray-800 dark:text-white text-lg">Total Tax</span>
-                            <span class="font-bold text-emerald-600 text-2xl" id="newTotalTax">₹0</span>
+                        <div class="qt-card is-tax flex justify-between">
+                            <span class="font-bold text-lg">Total Tax</span>
+                            <span class="font-bold text-2xl" id="newTotalTax">₹0</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Effective Tax Rate</span>
-                            <span class="font-semibold dark:text-white" id="newEffectiveRate">0%</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Effective Tax Rate</span>
+                            <span class="font-semibold" id="newEffectiveRate">0%</span>
                         </div>
-                        <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <span class="text-gray-600 dark:text-gray-300">Monthly Tax</span>
-                            <span class="font-semibold dark:text-white" id="newMonthlyTax">₹0</span>
+                        <div class="qt-panel flex justify-between p-3">
+                            <span>Monthly Tax</span>
+                            <span class="font-semibold" id="newMonthlyTax">₹0</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Verdict -->
-            <div id="verdictBox" class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 text-center">
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2"><i class="fas fa-trophy text-yellow-500 mr-2"></i>Verdict</h3>
-                <p id="verdictText" class="text-xl font-bold text-emerald-600 mb-2"></p>
-                <p id="verdictSavings" class="text-gray-600 dark:text-gray-300"></p>
+            <div id="verdictBox" class="qt-card">
+                <h3 class="qt-h3 mb-2">Verdict</h3>
+                <p id="verdictText" class="text-xl font-bold mb-2"></p>
+                <p id="verdictSavings"></p>
             </div>
 
             <button onclick="shareResult('Income Tax', document.getElementById('verdictText').innerText)"
-                class="w-full max-w-md mx-auto block bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result via WhatsApp
+                class="qt-btn qt-btn--secondary w-full mx-auto flex items-center justify-center">
+                Share Result via WhatsApp
             </button>
         </div>
 
         <!-- SEO Content -->
         <div class="mt-12 space-y-8">
             <!-- Which years -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-calendar-check mr-2 text-emerald-600"></i>Which years does this calculator cover?</h2>
-                <div class="text-gray-600 dark:text-gray-300 space-y-3">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Which years does this calculator cover?</h2>
+                <div class="space-y-3">
                     <p>Both FY 2025-26 (the return you file in 2026) and FY 2026-27 (the year running from 1 April 2026). The Budget for
                         FY 2026-27 left the new regime slabs, the Section 156 (was 87A) rebate and the standard deduction exactly where Budget
                         2025 put them, so one set of slabs serves both years. The rates and rules on this page were checked again on
@@ -345,64 +345,64 @@ sources:
             </div>
 
             <!-- Tax Slabs Table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-table mr-2 text-emerald-600"></i>Income Tax Slabs FY 2025-26 and FY 2026-27</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Income Tax Slabs FY 2025-26 and FY 2026-27</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- New Regime Table -->
                     <div>
-                        <h3 class="text-lg font-bold text-emerald-700 dark:text-emerald-400 mb-3">New Tax Regime (Default)</h3>
-                        <div class="overflow-x-auto shadow-md rounded-lg">
-                            <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                                <thead class="bg-emerald-600 text-white">
+                        <h3 class="qt-h3 mb-3">New Tax Regime (Default)</h3>
+                        <div class="qt-table-wrap">
+                            <table class="qt-table">
+                                <thead>
                                     <tr>
-                                        <th class="px-4 py-3 text-left">Income Slab</th>
-                                        <th class="px-4 py-3 text-center">Tax Rate</th>
+                                        <th>Income Slab</th>
+                                        <th class="text-center">Tax Rate</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">Up to ₹4,00,000</td><td class="px-4 py-3 text-center font-bold text-green-600">Nil</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹4,00,001 to ₹8,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">5%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹8,00,001 to ₹12,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">10%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹12,00,001 to ₹16,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">15%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹16,00,001 to ₹20,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">20%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹20,00,001 to ₹24,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">25%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">Above ₹24,00,000</td><td class="px-4 py-3 text-center font-bold text-red-600">30%</td></tr>
+                                <tbody>
+                                    <tr><td>Up to ₹4,00,000</td><td class="text-center font-bold">Nil</td></tr>
+                                    <tr><td>₹4,00,001 to ₹8,00,000</td><td class="text-center font-bold">5%</td></tr>
+                                    <tr><td>₹8,00,001 to ₹12,00,000</td><td class="text-center font-bold">10%</td></tr>
+                                    <tr><td>₹12,00,001 to ₹16,00,000</td><td class="text-center font-bold">15%</td></tr>
+                                    <tr><td>₹16,00,001 to ₹20,00,000</td><td class="text-center font-bold">20%</td></tr>
+                                    <tr><td>₹20,00,001 to ₹24,00,000</td><td class="text-center font-bold">25%</td></tr>
+                                    <tr><td>Above ₹24,00,000</td><td class="text-center font-bold">30%</td></tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><i class="fas fa-info-circle mr-1"></i>Standard deduction ₹75,000. Rebate under section 156 (was 87A) up to ₹60,000 when taxable income is ₹12 lakh or less, with marginal relief just above it. Same slabs for every age group.</p>
+                        <p class="text-xs mt-2">Standard deduction ₹75,000. Rebate under section 156 (was 87A) up to ₹60,000 when taxable income is ₹12 lakh or less, with marginal relief just above it. Same slabs for every age group.</p>
                     </div>
 
                     <!-- Old Regime Table -->
                     <div>
-                        <h3 class="text-lg font-bold text-orange-700 dark:text-orange-400 mb-3">Old Tax Regime</h3>
-                        <div class="overflow-x-auto shadow-md rounded-lg">
-                            <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                                <thead class="bg-orange-600 text-white">
+                        <h3 class="qt-h3 mb-3">Old Tax Regime</h3>
+                        <div class="qt-table-wrap">
+                            <table class="qt-table">
+                                <thead>
                                     <tr>
-                                        <th class="px-4 py-3 text-left">Income Slab</th>
-                                        <th class="px-4 py-3 text-center">Tax Rate</th>
+                                        <th>Income Slab</th>
+                                        <th class="text-center">Tax Rate</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">Up to ₹2,50,000</td><td class="px-4 py-3 text-center font-bold text-green-600">Nil</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹2,50,001 to ₹5,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">5%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">₹5,00,001 to ₹10,00,000</td><td class="px-4 py-3 text-center font-bold dark:text-white">20%</td></tr>
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 dark:text-gray-300">Above ₹10,00,000</td><td class="px-4 py-3 text-center font-bold text-red-600">30%</td></tr>
+                                <tbody>
+                                    <tr><td>Up to ₹2,50,000</td><td class="text-center font-bold">Nil</td></tr>
+                                    <tr><td>₹2,50,001 to ₹5,00,000</td><td class="text-center font-bold">5%</td></tr>
+                                    <tr><td>₹5,00,001 to ₹10,00,000</td><td class="text-center font-bold">20%</td></tr>
+                                    <tr><td>Above ₹10,00,000</td><td class="text-center font-bold">30%</td></tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2"><i class="fas fa-info-circle mr-1"></i>Standard deduction ₹50,000. Rebate under section 156 (was 87A) up to ₹12,500 when taxable income is ₹5 lakh or less (no marginal relief). Basic exemption rises to ₹3 lakh for ages 60 to 79 and ₹5 lakh for 80 and above.</p>
+                        <p class="text-xs mt-2">Standard deduction ₹50,000. Rebate under section 156 (was 87A) up to ₹12,500 when taxable income is ₹5 lakh or less (no marginal relief). Basic exemption rises to ₹3 lakh for ages 60 to 79 and ₹5 lakh for 80 and above.</p>
                     </div>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-6">Health and education cess of 4% is added to the tax under both regimes. Surcharge applies above ₹50 lakh of income (10%, 15%, 25% and, in the old regime only, 37% at the top), which this calculator leaves out.</p>
+                <p class="text-sm mt-6">Health and education cess of 4% is added to the tax under both regimes. Surcharge applies above ₹50 lakh of income (10%, 15%, 25% and, in the old regime only, 37% at the top), which this calculator leaves out.</p>
             </div>
 
             <!-- Rebate and marginal relief -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-percent mr-2 text-emerald-600"></i>How the ₹12 lakh rebate and marginal relief work</h2>
-                <div class="text-gray-600 dark:text-gray-300 space-y-3">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">How the ₹12 lakh rebate and marginal relief work</h2>
+                <div class="space-y-3">
                     <p>Under the new regime, Section 156 (was 87A) wipes out the tax when taxable income (gross salary minus the ₹75,000 standard
                         deduction, plus any other income) is ₹12,00,000 or less. The tax on exactly ₹12 lakh works out to ₹60,000,
                         which is why the rebate is capped at that figure. A salaried person with no other income therefore pays nothing
@@ -412,9 +412,9 @@ sources:
                         The relief tapers off at about ₹12,70,588 of taxable income, where the normal slab tax and the excess income
                         become equal.</p>
                 </div>
-                <div class="mt-4 border-l-4 border-emerald-500 pl-4 py-3 bg-emerald-50 dark:bg-gray-700 rounded-r-lg">
-                    <p class="font-bold text-gray-800 dark:text-white">Worked example: taxable income of ₹12,10,000</p>
-                    <ul class="text-sm text-gray-600 dark:text-gray-300 mt-2 space-y-1 list-disc list-inside">
+                <div class="qt-note is-tip mt-4">
+                    <p class="font-bold">Worked example: taxable income of ₹12,10,000</p>
+                    <ul class="text-sm mt-2 space-y-1 list-disc list-inside">
                         <li>Slab tax: ₹60,000 on the first ₹12 lakh plus 15% of ₹10,000 = ₹61,500</li>
                         <li>Income above ₹12 lakh: ₹10,000</li>
                         <li>Marginal relief caps the tax at ₹10,000, so ₹51,500 is rebated</li>
@@ -422,38 +422,38 @@ sources:
                         <li><strong>Tax payable: ₹10,400</strong>, instead of ₹63,960 without relief</li>
                     </ul>
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-4">Two limits to remember. First, the rebate is for resident
+                <p class="text-sm mt-4">Two limits to remember. First, the rebate is for resident
                     individuals only. Second, as of November 2026 it does not cover income taxed at special rates, such as short-term
                     equity gains under section 196 (was 111A) or long-term equity gains under section 198 (was 112A), so a person with an ₹11 lakh salary
                     and ₹2 lakh of equity gains still pays tax on the gains even though the salary alone would be tax-free.</p>
             </div>
 
             <!-- Break-even guide -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-balance-scale mr-2 text-emerald-600"></i>When does the old regime win? Break-even deductions by salary</h2>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">The table shows the minimum old-regime deductions, beyond the ₹50,000
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">When does the old regime win? Break-even deductions by salary</h2>
+                <p class="mb-4">The table shows the minimum old-regime deductions, beyond the ₹50,000
                     standard deduction, that a salaried person with no other income needs before the old regime costs less than the
                     new one. The figures come straight from the slab formulas used by this calculator.</p>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-gray-800 text-white">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-left">Gross salary</th>
-                                <th class="px-4 py-3 text-center">New regime tax (with cess)</th>
-                                <th class="px-4 py-3 text-center">Old regime wins only if deductions exceed</th>
+                                <th>Gross salary</th>
+                                <th class="text-center">New regime tax (with cess)</th>
+                                <th class="text-center">Old regime wins only if deductions exceed</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹10,00,000</td><td class="px-4 py-3 text-center text-green-600 font-bold">₹0</td><td class="px-4 py-3 text-center dark:text-gray-300">₹4,50,000</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹12,75,000</td><td class="px-4 py-3 text-center text-green-600 font-bold">₹0</td><td class="px-4 py-3 text-center dark:text-gray-300">₹7,25,000</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹15,00,000</td><td class="px-4 py-3 text-center dark:text-gray-300">₹97,500</td><td class="px-4 py-3 text-center dark:text-gray-300">about ₹5,45,000</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹18,00,000</td><td class="px-4 py-3 text-center dark:text-gray-300">₹1,50,800</td><td class="px-4 py-3 text-center dark:text-gray-300">about ₹6,40,000</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹20,00,000</td><td class="px-4 py-3 text-center dark:text-gray-300">₹1,92,400</td><td class="px-4 py-3 text-center dark:text-gray-300">about ₹7,10,000</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">₹25,00,000 and above</td><td class="px-4 py-3 text-center dark:text-gray-300">₹3,19,800 at ₹25 lakh</td><td class="px-4 py-3 text-center dark:text-gray-300">₹8,00,000</td></tr>
+                        <tbody>
+                            <tr><td class="font-semibold">₹10,00,000</td><td class="text-center font-bold">₹0</td><td class="text-center">₹4,50,000</td></tr>
+                            <tr><td class="font-semibold">₹12,75,000</td><td class="text-center font-bold">₹0</td><td class="text-center">₹7,25,000</td></tr>
+                            <tr><td class="font-semibold">₹15,00,000</td><td class="text-center">₹97,500</td><td class="text-center">about ₹5,45,000</td></tr>
+                            <tr><td class="font-semibold">₹18,00,000</td><td class="text-center">₹1,50,800</td><td class="text-center">about ₹6,40,000</td></tr>
+                            <tr><td class="font-semibold">₹20,00,000</td><td class="text-center">₹1,92,400</td><td class="text-center">about ₹7,10,000</td></tr>
+                            <tr><td class="font-semibold">₹25,00,000 and above</td><td class="text-center">₹3,19,800 at ₹25 lakh</td><td class="text-center">₹8,00,000</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="text-gray-600 dark:text-gray-300 space-y-3 mt-4 text-sm">
+                <div class="space-y-3 mt-4 text-sm">
                     <p>Two patterns stand out. Because the new regime charges nothing up to ₹12.75 lakh of salary, the deductions needed
                         to beat it are highest around that level, not lowest. And above ₹24 lakh both regimes sit in the 30% slab, so
                         the gap settles at a fixed ₹8 lakh of deductions no matter how high the salary goes.</p>
@@ -465,11 +465,11 @@ sources:
             </div>
 
             <!-- What you can claim -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-list-check mr-2 text-emerald-600"></i>What you can still claim: new regime vs old regime</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-600 dark:text-gray-300">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">What you can still claim: new regime vs old regime</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
                     <div>
-                        <h3 class="text-lg font-bold text-emerald-700 dark:text-emerald-400 mb-3">Allowed in the new regime</h3>
+                        <h3 class="qt-h3 mb-3">Allowed in the new regime</h3>
                         <ul class="list-disc list-inside space-y-2">
                             <li><strong>Standard deduction</strong> of ₹75,000 against salary or pension.</li>
                             <li><strong>Employer NPS contribution</strong> under Section 124(1) (was 80CCD(2)), up to 14% of basic salary plus dearness allowance.</li>
@@ -479,7 +479,7 @@ sources:
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-orange-700 dark:text-orange-400 mb-3">Old regime only</h3>
+                        <h3 class="qt-h3 mb-3">Old regime only</h3>
                         <ul class="list-disc list-inside space-y-2">
                             <li><strong>Section 123 (was 80C)</strong> up to ₹1.5 lakh: EPF, PPF, ELSS, life insurance premiums, SSY, NSC, 5-year tax-saver FD, home loan principal, tuition fees.</li>
                             <li><strong>Section 124(3) (was 80CCD(1B))</strong>: an extra ₹50,000 for your own NPS contribution.</li>
@@ -493,35 +493,35 @@ sources:
             </div>
 
             <!-- Real Life Examples -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-users mr-2 text-emerald-600"></i>Worked comparisons at three salary levels</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Worked comparisons at three salary levels</h2>
                 <div class="space-y-4">
-                    <div class="border-l-4 border-emerald-500 pl-4 py-3 bg-emerald-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-bold text-gray-800 dark:text-white">Fresher with a ₹8 lakh salary</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Old regime tax:</strong> ₹28,600 (with ₹1.5 lakh under section 123 (was 80C) and ₹25,000 under section 126 (was 80D))</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300"><strong>New regime tax:</strong> ₹0 (taxable income of ₹7.25 lakh is under ₹12 lakh, so the full rebate applies)</p>
-                        <p class="text-sm font-bold text-emerald-600 mt-1"><i class="fas fa-check-circle mr-1"></i>New regime saves ₹28,600</p>
+                    <div class="qt-note is-tip">
+                        <p class="font-bold">Fresher with a ₹8 lakh salary</p>
+                        <p class="text-sm mt-1"><strong>Old regime tax:</strong> ₹28,600 (with ₹1.5 lakh under section 123 (was 80C) and ₹25,000 under section 126 (was 80D))</p>
+                        <p class="text-sm"><strong>New regime tax:</strong> ₹0 (taxable income of ₹7.25 lakh is under ₹12 lakh, so the full rebate applies)</p>
+                        <p class="text-sm font-bold mt-1">New regime saves ₹28,600</p>
                     </div>
-                    <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-bold text-gray-800 dark:text-white">Mid-career with a ₹15 lakh salary</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Old regime tax:</strong> ₹1,32,600 (with ₹1.5 lakh under section 123 (was 80C), ₹50,000 under section 126 (was 80D) and ₹2 lakh of HRA exemption)</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300"><strong>New regime tax:</strong> ₹97,500</p>
-                        <p class="text-sm font-bold text-emerald-600 mt-1"><i class="fas fa-check-circle mr-1"></i>New regime saves ₹35,100. The old regime would need about ₹5.45 lakh of deductions to catch up.</p>
+                    <div class="qt-note is-tip">
+                        <p class="font-bold">Mid-career with a ₹15 lakh salary</p>
+                        <p class="text-sm mt-1"><strong>Old regime tax:</strong> ₹1,32,600 (with ₹1.5 lakh under section 123 (was 80C), ₹50,000 under section 126 (was 80D) and ₹2 lakh of HRA exemption)</p>
+                        <p class="text-sm"><strong>New regime tax:</strong> ₹97,500</p>
+                        <p class="text-sm font-bold mt-1">New regime saves ₹35,100. The old regime would need about ₹5.45 lakh of deductions to catch up.</p>
                     </div>
-                    <div class="border-l-4 border-purple-500 pl-4 py-3 bg-purple-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-bold text-gray-800 dark:text-white">Senior professional with a ₹30 lakh salary and every deduction maxed out</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Old regime tax:</strong> ₹4,52,400 (₹1.5 lakh section 123 (was 80C), ₹75,000 section 126 (was 80D), ₹4 lakh HRA, ₹2 lakh section 22 (was 24(b)) and ₹50,000 NPS, ₹8.75 lakh in all)</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-300"><strong>New regime tax:</strong> ₹4,75,800</p>
-                        <p class="text-sm font-bold text-orange-600 mt-1"><i class="fas fa-check-circle mr-1"></i>Old regime saves ₹23,400, but only because deductions crossed the ₹8 lakh break-even.</p>
+                    <div class="qt-note">
+                        <p class="font-bold">Senior professional with a ₹30 lakh salary and every deduction maxed out</p>
+                        <p class="text-sm mt-1"><strong>Old regime tax:</strong> ₹4,52,400 (₹1.5 lakh section 123 (was 80C), ₹75,000 section 126 (was 80D), ₹4 lakh HRA, ₹2 lakh section 22 (was 24(b)) and ₹50,000 NPS, ₹8.75 lakh in all)</p>
+                        <p class="text-sm"><strong>New regime tax:</strong> ₹4,75,800</p>
+                        <p class="text-sm font-bold mt-1">Old regime saves ₹23,400, but only because deductions crossed the ₹8 lakh break-even.</p>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">All three figures include 4% cess and exclude surcharge. They are produced by the same formulas as the calculator above.</p>
+                <p class="text-xs mt-4">All three figures include 4% cess and exclude surcharge. They are produced by the same formulas as the calculator above.</p>
             </div>
 
             <!-- Gross vs taxable, TDS, advance tax -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-layer-group mr-2 text-emerald-600"></i>Gross income, taxable income and tax payable</h2>
-                <div class="text-gray-600 dark:text-gray-300 space-y-3">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Gross income, taxable income and tax payable</h2>
+                <div class="space-y-3">
                     <p><strong>Gross total income</strong> is everything you earned in the year across the five heads: salary, house
                         property, business or profession, capital gains and other sources such as interest. <strong>Taxable income</strong>
                         (the law calls it total income) is what is left after the standard deduction and, in the old regime, the Chapter
@@ -532,8 +532,8 @@ sources:
                         top slab rate because the lower slabs are taxed at lower rates, and it is the more honest number when you compare
                         job offers or plan a raise.</p>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800 dark:text-white mt-6 mb-2">TDS, advance tax and filing</h3>
-                <div class="text-gray-600 dark:text-gray-300 space-y-3">
+                <h3 class="qt-h3 mt-6 mb-2">TDS, advance tax and filing</h3>
+                <div class="space-y-3">
                     <p>An employer deducts tax at source on salary every month under section 192, using the regime you declare at the
                         start of the year. The new regime is the default, so tell your payroll team if you want the old one, and ask for
                         Form 16 in June to check the figures. You can still pick the other regime when you file the return, as long as
@@ -548,90 +548,89 @@ sources:
             </div>
 
             <!-- Section 123 (was 80C) Breakdown -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-list-alt mr-2 text-emerald-600"></i>Section 123 (was 80C) Investment Options (Old Regime)</h2>
-                <div class="overflow-x-auto shadow-md rounded-lg">
-                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                        <thead class="bg-gray-800 text-white">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Section 123 (was 80C) Investment Options (Old Regime)</h2>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-left">Investment</th>
-                                <th class="px-4 py-3 text-center">Lock-in</th>
-                                <th class="px-4 py-3 text-center">Returns</th>
-                                <th class="px-4 py-3 text-center">Risk</th>
+                                <th>Investment</th>
+                                <th class="text-center">Lock-in</th>
+                                <th class="text-center">Returns</th>
+                                <th class="text-center">Risk</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">EPF (Employee PF)</td><td class="px-4 py-3 text-center dark:text-gray-300">Till retirement</td><td class="px-4 py-3 text-center text-green-600 font-bold">8.25% (the rate for FY 2024-25 and again for FY 2025-26, EPFO sets it each year)</td><td class="px-4 py-3 text-center dark:text-gray-300">Low</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">PPF</td><td class="px-4 py-3 text-center dark:text-gray-300">15 years</td><td class="px-4 py-3 text-center text-green-600 font-bold">7.1%</td><td class="px-4 py-3 text-center dark:text-gray-300">Government backed</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">ELSS Mutual Funds</td><td class="px-4 py-3 text-center dark:text-gray-300">3 years</td><td class="px-4 py-3 text-center dark:text-gray-300">Market-linked (equity)</td><td class="px-4 py-3 text-center text-orange-600">Medium to high</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">NPS (Tier-I)</td><td class="px-4 py-3 text-center dark:text-gray-300">Till 60</td><td class="px-4 py-3 text-center dark:text-gray-300">Market-linked (mixed)</td><td class="px-4 py-3 text-center text-orange-600">Medium</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">Life insurance premium</td><td class="px-4 py-3 text-center dark:text-gray-300">Policy term</td><td class="px-4 py-3 text-center dark:text-gray-300">Depends on the policy</td><td class="px-4 py-3 text-center dark:text-gray-300">Low</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">SSY (Sukanya Samriddhi)</td><td class="px-4 py-3 text-center dark:text-gray-300">21 years</td><td class="px-4 py-3 text-center text-green-600 font-bold">8.2%</td><td class="px-4 py-3 text-center dark:text-gray-300">Government backed</td></tr>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700"><td class="px-4 py-3 font-semibold dark:text-white">NSC</td><td class="px-4 py-3 text-center dark:text-gray-300">5 years</td><td class="px-4 py-3 text-center dark:text-gray-300">7.7%</td><td class="px-4 py-3 text-center dark:text-gray-300">Government backed</td></tr>
+                        <tbody>
+                            <tr><td class="font-semibold">EPF (Employee PF)</td><td class="text-center">Till retirement</td><td class="text-center font-bold">8.25% (the rate for FY 2024-25 and again for FY 2025-26, EPFO sets it each year)</td><td class="text-center">Low</td></tr>
+                            <tr><td class="font-semibold">PPF</td><td class="text-center">15 years</td><td class="text-center font-bold">7.1%</td><td class="text-center">Government backed</td></tr>
+                            <tr><td class="font-semibold">ELSS Mutual Funds</td><td class="text-center">3 years</td><td class="text-center">Market-linked (equity)</td><td class="text-center">Medium to high</td></tr>
+                            <tr><td class="font-semibold">NPS (Tier-I)</td><td class="text-center">Till 60</td><td class="text-center">Market-linked (mixed)</td><td class="text-center">Medium</td></tr>
+                            <tr><td class="font-semibold">Life insurance premium</td><td class="text-center">Policy term</td><td class="text-center">Depends on the policy</td><td class="text-center">Low</td></tr>
+                            <tr><td class="font-semibold">SSY (Sukanya Samriddhi)</td><td class="text-center">21 years</td><td class="text-center font-bold">8.2%</td><td class="text-center">Government backed</td></tr>
+                            <tr><td class="font-semibold">NSC</td><td class="text-center">5 years</td><td class="text-center">7.7%</td><td class="text-center">Government backed</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 mt-2">PPF, SSY and NSC rates as notified for the October to December 2026 quarter; the EPF rate is the one declared for FY 2025-26. Market-linked returns are not guaranteed. Try the <a href="/ppf-calculator/" class="text-emerald-600 hover:underline">PPF</a> and <a href="/ssy-calculator/" class="text-emerald-600 hover:underline">SSY</a> calculators for maturity values.</p>
+                <p class="text-xs mt-2">PPF, SSY and NSC rates as notified for the October to December 2026 quarter; the EPF rate is the one declared for FY 2025-26. Market-linked returns are not guaranteed. Try the <a href="/ppf-calculator/" class="qt-link">PPF</a> and <a href="/ssy-calculator/" class="qt-link">SSY</a> calculators for maturity values.</p>
             </div>
 
             <!-- FAQ Section -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"><i class="fas fa-question-circle mr-2 text-emerald-600"></i>Frequently Asked Questions</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
                 <div class="space-y-4">
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Which tax regime is better, Old or New, for FY 2025-26 and FY 2026-27?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">For most salaried people the new regime wins because of the ₹75,000 standard deduction and the Section 156 (was 87A) rebate that makes tax zero up to ₹12 lakh of taxable income. The old regime only wins when your deductions beyond the standard deduction are large: about ₹5.4 lakh at a ₹15 lakh salary, about ₹7.1 lakh at ₹20 lakh, and ₹8 lakh at ₹25 lakh or more. Enter your own numbers above to see the exact comparison.</p>
+                    <details class="qt-faq-item">
+                        <summary>Which tax regime is better, Old or New, for FY 2025-26 and FY 2026-27?</summary>
+                        <p class="mt-3 text-sm">For most salaried people the new regime wins because of the ₹75,000 standard deduction and the Section 156 (was 87A) rebate that makes tax zero up to ₹12 lakh of taxable income. The old regime only wins when your deductions beyond the standard deduction are large: about ₹5.4 lakh at a ₹15 lakh salary, about ₹7.1 lakh at ₹20 lakh, and ₹8 lakh at ₹25 lakh or more. Enter your own numbers above to see the exact comparison.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the standard deduction for FY 2025-26 and FY 2026-27?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The standard deduction is ₹75,000 under the new regime and ₹50,000 under the old regime in both years. It is available only against salary and pension income, needs no proof or investment, and cannot exceed the salary itself.</p>
+                    <details class="qt-faq-item">
+                        <summary>What is the standard deduction for FY 2025-26 and FY 2026-27?</summary>
+                        <p class="mt-3 text-sm">The standard deduction is ₹75,000 under the new regime and ₹50,000 under the old regime in both years. It is available only against salary and pension income, needs no proof or investment, and cannot exceed the salary itself.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">How does the ₹12 lakh rebate under Section 156 (was 87A) work?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Under the new regime, if your taxable income after the standard deduction is up to ₹12,00,000, Section 156 (was 87A) rebates the entire tax (up to ₹60,000), so a salary of up to ₹12,75,000 pays zero tax. Just above ₹12 lakh, marginal relief limits the tax to the amount by which your income exceeds ₹12 lakh, and the relief fades out at about ₹12.71 lakh of taxable income. As of November 2026 the rebate does not cover income taxed at special rates, such as capital gains under sections 196 and 198 (were 111A and 112A).</p>
+                    <details class="qt-faq-item">
+                        <summary>How does the ₹12 lakh rebate under Section 156 (was 87A) work?</summary>
+                        <p class="mt-3 text-sm">Under the new regime, if your taxable income after the standard deduction is up to ₹12,00,000, Section 156 (was 87A) rebates the entire tax (up to ₹60,000), so a salary of up to ₹12,75,000 pays zero tax. Just above ₹12 lakh, marginal relief limits the tax to the amount by which your income exceeds ₹12 lakh, and the relief fades out at about ₹12.71 lakh of taxable income. As of November 2026 the rebate does not cover income taxed at special rates, such as capital gains under sections 196 and 198 (were 111A and 112A).</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Did Budget 2026 change the income tax slabs?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">No. The Budget for FY 2026-27 kept the new regime slabs, the ₹60,000 rebate under Section 156 (was 87A) and the ₹75,000 standard deduction exactly as they were for FY 2025-26. The Income-tax Act, 2025 replaced the 1961 Act from 1 April 2026 and uses the term tax year instead of previous year and assessment year, but the slab structure is the same, so this calculator applies to both years.</p>
+                    <details class="qt-faq-item">
+                        <summary>Did Budget 2026 change the income tax slabs?</summary>
+                        <p class="mt-3 text-sm">No. The Budget for FY 2026-27 kept the new regime slabs, the ₹60,000 rebate under Section 156 (was 87A) and the ₹75,000 standard deduction exactly as they were for FY 2025-26. The Income-tax Act, 2025 replaced the 1961 Act from 1 April 2026 and uses the term tax year instead of previous year and assessment year, but the slab structure is the same, so this calculator applies to both years.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Can I switch between the old and new regime every year?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Salaried individuals without business income can choose either regime each year when filing the return, whatever they told their employer. A person with business or professional income must file Form 10-IEA before the return due date to opt out of the new regime, and can come back to the new regime only once; after that, they cannot opt out again.</p>
+                    <details class="qt-faq-item">
+                        <summary>Can I switch between the old and new regime every year?</summary>
+                        <p class="mt-3 text-sm">Salaried individuals without business income can choose either regime each year when filing the return, whatever they told their employer. A person with business or professional income must file Form 10-IEA before the return due date to opt out of the new regime, and can come back to the new regime only once; after that, they cannot opt out again.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Which deductions can I still claim under the new regime?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The standard deduction of ₹75,000 on salary or pension, the employer's contribution to NPS under Section 124(1) (was 80CCD(2)) up to 14% of basic salary plus dearness allowance, the family pension deduction of up to ₹25,000, and interest on a housing loan for a let-out property under Section 22 (was 24(b)), which can be set off only against that rental income. Section 123 (was 80C), section 126 (was 80D), section 124(3) (was 80CCD(1B)), HRA and home loan interest on a self-occupied house are available only in the old regime.</p>
+                    <details class="qt-faq-item">
+                        <summary>Which deductions can I still claim under the new regime?</summary>
+                        <p class="mt-3 text-sm">The standard deduction of ₹75,000 on salary or pension, the employer's contribution to NPS under Section 124(1) (was 80CCD(2)) up to 14% of basic salary plus dearness allowance, the family pension deduction of up to ₹25,000, and interest on a housing loan for a let-out property under Section 22 (was 24(b)), which can be set off only against that rental income. Section 123 (was 80C), section 126 (was 80D), section 124(3) (was 80CCD(1B)), HRA and home loan interest on a self-occupied house are available only in the old regime.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Is there a surcharge on high incomes?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. A surcharge applies on income above ₹50 lakh: 10% between ₹50 lakh and ₹1 crore, 15% between ₹1 crore and ₹2 crore, and 25% between ₹2 crore and ₹5 crore. Above ₹5 crore the old regime charges 37% while the new regime caps the surcharge at 25%. Marginal relief applies at each threshold. This calculator shows the slab tax and 4% cess without surcharge.</p>
+                    <details class="qt-faq-item">
+                        <summary>Is there a surcharge on high incomes?</summary>
+                        <p class="mt-3 text-sm">Yes. A surcharge applies on income above ₹50 lakh: 10% between ₹50 lakh and ₹1 crore, 15% between ₹1 crore and ₹2 crore, and 25% between ₹2 crore and ₹5 crore. Above ₹5 crore the old regime charges 37% while the new regime caps the surcharge at 25%. Marginal relief applies at each threshold. This calculator shows the slab tax and 4% cess without surcharge.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Does this calculator work for senior citizens?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The calculator assumes a resident individual below 60. Under the old regime, the basic exemption is ₹3 lakh for people aged 60 to 79 and ₹5 lakh for people aged 80 or more, so their old regime tax will be lower than shown here. The new regime has the same slabs for every age group, so its result is unaffected.</p>
+                    <details class="qt-faq-item">
+                        <summary>Does this calculator work for senior citizens?</summary>
+                        <p class="mt-3 text-sm">The calculator assumes a resident individual below 60. Under the old regime, the basic exemption is ₹3 lakh for people aged 60 to 79 and ₹5 lakh for people aged 80 or more, so their old regime tax will be lower than shown here. The new regime has the same slabs for every age group, so its result is unaffected.</p>
                     </details>
                 </div>
             </div>
 
             <!-- Related tools -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-link mr-2 text-emerald-600"></i>Related tools and guides</h2>
-                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                    <li><a href="/salary-calculator/" class="text-emerald-600 dark:text-emerald-400 hover:underline font-semibold">Salary Calculator (CTC to in-hand)</a>: see how PF, professional tax and the income tax computed here turn a CTC into a monthly take-home figure.</li>
-                    <li><a href="/blog/how-to-save-income-tax-2026/" class="text-emerald-600 dark:text-emerald-400 hover:underline font-semibold">How to save income tax in India</a>: a step-by-step guide to the deductions listed above and when each one is worth using.</li>
-                    <li><a href="/gst-calculator/" class="text-emerald-600 dark:text-emerald-400 hover:underline font-semibold">GST Calculator</a>: for freelancers and business owners who also collect GST on their invoices.</li>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Related tools and guides</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><a href="/salary-calculator/" class="qt-link">Salary Calculator (CTC to in-hand)</a>: see how PF, professional tax and the income tax computed here turn a CTC into a monthly take-home figure.</li>
+                    <li><a href="/blog/how-to-save-income-tax-2026/" class="qt-link">How to save income tax in India</a>: a step-by-step guide to the deductions listed above and when each one is worth using.</li>
+                    <li><a href="/gst-calculator/" class="qt-link">GST Calculator</a>: for freelancers and business owners who also collect GST on their invoices.</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <!-- Financial Disclaimer -->
-    <div class="mt-12 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-5xl mx-auto mb-8 rounded-r-lg">
+    <div class="qt-well mt-12 max-w-5xl mx-auto mb-8">
         <div class="flex items-start">
-            <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-            <div>
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <div>
+                <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                <div class="text-sm space-y-2">
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides tax estimates based on the inputs you provide and the published slabs for FY 2025-26 and FY 2026-27, as checked on 6 November 2026. Actual tax liability may differ based on your specific financial situation.</p>
                     <p><strong>Not Tax Advice:</strong> The calculations and explanations provided here are education, NOT professional tax advice. Do not file your income tax return based solely on these calculations.</p>
                     <p><strong>Consult a CA:</strong> Always consult a qualified Chartered Accountant or tax professional for accurate tax planning and filing. Tax laws are subject to changes and interpretations.</p>
