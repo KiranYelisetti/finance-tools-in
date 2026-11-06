@@ -1,5 +1,5 @@
 /**
- * QuickTools India Main JavaScript
+ * QuickTools Plus Main JavaScript
  * Handles Persistence (Auto-Save) and Social Sharing
  */
 
@@ -205,7 +205,7 @@ function resetForm(pagePrefix) {
 // WhatsApp Share Functionality
 // WhatsApp Share Functionality
 function shareResult(title, amountString) {
-    const text = `I just calculated my ${title} on QuickTools India! Result: ${amountString}. Check it out here:`;
+    const text = `I just calculated my ${title} on QuickTools Plus! Result: ${amountString}. Check it out here:`;
     const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent(window.location.href)}`;
 
     // Track Share Event

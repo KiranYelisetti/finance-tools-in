@@ -1,4 +1,4 @@
-// QuickTools India Tailwind config. The design system is in src/css/ds (docs/DESIGN-SYSTEM.md).
+// QuickTools Plus Tailwind config. The design system is in src/css/ds (docs/DESIGN-SYSTEM.md).
 //
 // Two jobs:
 // 1. Expose the design tokens as utilities (bg-surface, text-muted, border-line and so on).

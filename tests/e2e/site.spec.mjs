@@ -4,7 +4,7 @@ import { test, expect } from "./fixtures.mjs";
 import { pages, redirects, servedPaths, TOOL_PAGES } from "../lib/site.mjs";
 
 const SERVED = servedPaths();
-const SITE_HOSTS = new Set(["www.quicktoolsindia.com", "quicktoolsindia.com"]);
+const SITE_HOSTS = new Set(["www.quicktoolsplus.com", "quicktoolsplus.com"]);
 // Built pages marked noindex (the /design-system/ style guide): not in the sitemap, not a tool
 const NOINDEX = new Set(pages.filter((p) => /<meta name="robots" content="noindex/i.test(fs.readFileSync(p.file, "utf8"))).map((p) => p.url));
 

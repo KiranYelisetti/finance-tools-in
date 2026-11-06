@@ -1,5 +1,5 @@
 /*
- * Number to Words engine for quicktoolsindia.com/number-to-words/.
+ * Number to Words engine for quicktoolsplus.com/number-to-words/.
  * Reads plain amounts ("1500000", "15,00,000", "1500.50") and amounts written with units
  * ("1.5 crore", "1 cr 30 lakh", "270 lakh crore", "15 hazar crore", "6 arab", "2.5 million"),
  * and returns the digits, the Indian and international words and the cheque wording.

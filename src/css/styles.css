@@ -1,4 +1,4 @@
-/* QuickTools India stylesheet entry. The design system lives in ./ds (docs/DESIGN-SYSTEM.md).
+/* QuickTools Plus stylesheet entry. The design system lives in ./ds (docs/DESIGN-SYSTEM.md).
    Order matters: tokens, then Tailwind's reset, our base, components, Tailwind utilities, motion last. */
 @import "./ds/tokens.css";
 @import "tailwindcss/base";

@@ -1,4 +1,4 @@
-# Tests for QuickTools India
+# Tests for QuickTools Plus
 
 Three suites check the site. Two of them run in a second without a browser. The third drives the built site in Chromium, the way a visitor would.
 
@@ -175,7 +175,7 @@ tests/unit/*.test.mjs         unit tests for src/js/calc
 After a deploy, run the same browser suite against production. No local server is started, and analytics and ad
 requests are answered locally, so test visits never count as real users.
 
-- Git Bash: `BASE_URL=https://www.quicktoolsindia.com npx playwright test`
-- PowerShell: `$env:BASE_URL = "https://www.quicktoolsindia.com"; npx playwright test; Remove-Item Env:BASE_URL`
+- Git Bash: `BASE_URL=https://www.quicktoolsplus.com npx playwright test`
+- PowerShell: `$env:BASE_URL = "https://www.quicktoolsplus.com"; npx playwright test; Remove-Item Env:BASE_URL`
 
 First live run: 2026-11-06, right after the redesign went live. Every test passed.

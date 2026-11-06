@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const CHART_JS = fs.readFileSync(fileURLToPath(new URL("../../node_modules/chart.js/dist/chart.umd.min.js", import.meta.url)));
 
-// BASE_URL=https://www.quicktoolsindia.com runs the suite against the live site: its host then counts as "the site",
+// BASE_URL=https://www.quicktoolsplus.com runs the suite against the live site: its host then counts as "the site",
 // and third parties (AdSense, Analytics) are still stubbed, so test visits never reach Google Analytics.
 const SITE_HOSTS = new Set(["127.0.0.1", "localhost"]);
 if (process.env.BASE_URL) {

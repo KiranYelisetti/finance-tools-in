@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.quicktoolsindia.com/sitemap.xml
+Sitemap: https://www.quicktoolsplus.com/sitemap.xml

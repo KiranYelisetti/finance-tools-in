@@ -1,4 +1,4 @@
-# QuickTools India design system: Desi Pop (v2, November 2026)
+# QuickTools Plus design system: Desi Pop (v2, November 2026)
 
 Live reference page: `/design-system/` (built with every deploy, marked noindex, not in the sitemap).
 Source: `src/css/ds/` for styles, `src/js/ui.js` for behaviour, `tailwind.config.js` for utilities.

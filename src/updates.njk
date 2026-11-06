@@ -1,8 +1,8 @@
 ---
-title: Site Updates | QuickTools India
+title: Site Updates | QuickTools Plus
 layout: base.njk
-meta_title: Site Updates and Changelog | QuickTools India
-meta_description: "A dated log of every change to QuickTools India: new calculators, corrected tax figures, content rewrites and fixes. Each entry corresponds to a real change in the project."
+meta_title: Site Updates and Changelog | QuickTools Plus
+meta_description: "A dated log of every change to QuickTools Plus: new calculators, corrected tax figures, content rewrites and fixes. Each entry corresponds to a real change in the project."
 meta_keywords: "quicktools india updates, changelog, calculator updates, site maintenance log"
 date: 2026-11-06
 noIconFont: true
@@ -13,10 +13,10 @@ noIconFont: true
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "QuickTools India site updates",
-  "url": "https://www.quicktoolsindia.com/updates/",
+  "name": "QuickTools Plus site updates",
+  "url": "https://www.quicktoolsplus.com/updates/",
   "dateModified": "2026-11-06",
-  "publisher": { "@type": "Organization", "name": "QuickTools India" }
+  "publisher": { "@type": "Organization", "name": "QuickTools Plus" }
 }
 </script>
 {% endblock %}
@@ -30,10 +30,15 @@ noIconFont: true
                 <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
             <h1 class="qt-h1 mt-4">Site Updates</h1>
-            <p class="qt-lede mt-4">What changed on QuickTools India and when. Every entry below maps to a real change in the project, so this page doubles as the maintenance log for the calculators. Spotted an error? Write to <a href="mailto:quicktoolsindiaa@gmail.com" class="qt-link">quicktoolsindiaa@gmail.com</a>.</p>
+            <p class="qt-lede mt-4">What changed on QuickTools Plus and when. Every entry below maps to a real change in the project, so this page doubles as the maintenance log for the calculators. Spotted an error? Write to <a href="mailto:quicktoolsindiaa@gmail.com" class="qt-link">quicktoolsindiaa@gmail.com</a>.</p>
         </section>
 
         {% set updates = [
+            { "date": "2026-11-07", "title": "New name: QuickTools Plus", "items": [
+                "QuickTools India is now QuickTools Plus, at www.quicktoolsplus.com. The site is growing beyond Indian calculators, so the name no longer says India. Every Indian calculator stays, with the same figures.",
+                "Every page kept its path, so an old quicktoolsindia.com link forwards to the same page here.",
+                "Corrections still go to quicktoolsindiaa@gmail.com."
+            ] },
             { "date": "2026-11-06", "title": "Every figure checked against the latest official numbers", "items": [
                 "Study Abroad: exchange rates updated to SBI's card selling rates of 6 November 2026 ($1 = ₹94.45, £1 = ₹127.41, €1 = ₹106.50, CAD 1 = ₹67.63, AUD 1 = ₹65.77). The old ₹83 to the dollar was well out of date. Living costs now start from each country's 2026 student visa minimum (Canada CAD 23,448 from 1 September 2026, Australia AUD 29,710, Germany a €11,904 blocked account, UK £1,171 a month outside London), and the rupee totals were recalculated.",
                 "Salary: the EPF wage ceiling is ₹25,000 a month from 17 September 2026 (it was ₹15,000), so the pension share is now capped at ₹2,083 a month. The 50% HRA city list for tax year 2026-27 has eight cities: Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune and Ahmedabad.",

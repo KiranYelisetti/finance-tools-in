@@ -10,7 +10,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const HOST = 'www.quicktoolsindia.com';
+const HOST = 'www.quicktoolsplus.com';
 const KEY = '38e120ba4a50d48ae164b86f9aaebed2';
 const dry = process.argv.includes('--dry');
 const args = process.argv.slice(2).filter((a) => a !== '--dry');

@@ -16,7 +16,7 @@ export default defineConfig({
   expect: { timeout: 5_000 },
   reporter: [["list"], ["json", { outputFile: "test-results/e2e-results.json" }]],
   use: {
-    // BASE_URL runs the same suite against a deployed site, for example BASE_URL=https://www.quicktoolsindia.com
+    // BASE_URL runs the same suite against a deployed site, for example BASE_URL=https://www.quicktoolsplus.com
     baseURL: process.env.BASE_URL || `http://127.0.0.1:${PORT}`,
     locale: "en-IN",
     timezoneId: "Asia/Kolkata",
