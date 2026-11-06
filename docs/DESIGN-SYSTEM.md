@@ -106,6 +106,20 @@ format)` (for decoration only).
 
 ## Legacy bridge
 
-Pages not yet moved still use stock Tailwind classes. `tailwind.config.js` points the stock palettes at the Desi Pop
-scales and `src/css/ds/legacy.css` adds outlines, so those pages already look related. Each page moves to the
-components during the rollout. When none is left, delete `legacy.css` and the palette re-pointing.
+Every page moved to the components on 2026-11-06 (the converter kept IDs, scripts and Nunjucks tags as they were).
+Two small pieces of the bridge stay on purpose:
+
+- `tailwind.config.js` still points the stock palettes at the Desi Pop scales, because a few page scripts set stock
+  classes at run time (the income tax verdict colours). Any stock class therefore stays on the palette.
+- `src/css/ds/legacy.css` keeps outlines for stock form controls and tables inside old blog HTML.
+
+New work never uses stock colour classes. When no script sets one any more, delete both.
+
+## Pages and their parts
+
+- Tool pages: `.qt-toolhead` (crumbs, group sticker, updated stamp, h1, lede), then `.qt-card` for inputs, a result
+  card in the tool's group colour (`.qt-card.is-<group>`), `.qt-well` and `.qt-panel` inside it, `.qt-table-wrap`
+  for tables, `details.qt-faq-item` for questions, `.qt-note` for callouts, `.qt-preset` for preset cards.
+- Toggles are `.qt-seg` with `aria-pressed`. The script sets `aria-pressed`, the style follows it.
+- Guides use `src/_includes/article.njk`: the first tag picks the colour (filter `tagKey` in eleventy.config.js),
+  the body is `.qt-prose`, and the closing card lists the tools of the same group.

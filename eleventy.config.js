@@ -20,6 +20,15 @@ module.exports = function (eleventyConfig) {
         asDate(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" }));
 
     // The date a page last changed: its `updated` front matter, else the git date Eleventy gives it
+    // Blog tag to design system group colour (docs/DESIGN-SYSTEM.md): tax green, loans pink, savings teal, everyday blue
+    eleventyConfig.addFilter("tagKey", (tag) => {
+        const s = String(tag).toLowerCase();
+        if (/tax|gst|salary|employment|business/.test(s)) return "tax";
+        if (/loan|pre-payment|credit/.test(s)) return "loans";
+        if (/invest|sip|ppf|ssy|deposit|mutual|wedding|budget|study|education|saving|planning|finance/.test(s)) return "savings";
+        if (/image|job|upsc|ssc|web|compression/.test(s)) return "everyday";
+        return "amounts";
+    });
     eleventyConfig.addFilter("lastChanged", (all, url) => {
         const p = (all || []).find((x) => x.url === url);
         if (!p) return null;

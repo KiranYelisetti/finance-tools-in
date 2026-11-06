@@ -5,6 +5,7 @@ date: 2026-11-04
 meta_title: Lakh Crore in Numbers, with Zeros and Trillions | QuickTools India
 meta_description: "1 lakh crore is 10,00,00,00,00,000: 12 zeros, or one trillion. Type any figure such as 9.8 or 270 lakh crore and get the digits, crore and trillion."
 meta_keywords: "lakh crore in numbers, 1 lakh crore zeros, lakh crore to trillion, lakh crore to crore, 270 lakh crore in numbers, lakh crore in words"
+noIconFont: true
 ---
 
 {% set one = lakhCrore.by['1'] %}
@@ -59,49 +60,48 @@ meta_keywords: "lakh crore in numbers, 1 lakh crore zeros, lakh crore to trillio
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-        <nav class="text-sm text-gray-500 dark:text-gray-400 mb-4" aria-label="Breadcrumb">
-            <a href="/" class="hover:text-purple-600 dark:hover:text-purple-400">Home</a>
-            <span class="mx-1">/</span>
-            <a href="/number-to-words/" class="hover:text-purple-600 dark:hover:text-purple-400">Number to Words</a>
-            <span class="mx-1">/</span>
-            <span class="text-gray-700 dark:text-gray-200">Lakh Crore in Numbers</span>
-        </nav>
+<main>
+    <div class="qt-wrap">
+        
 
-        <div class="text-center mb-4 md:mb-8">
-            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Lakh Crore in Numbers</h1>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">1 lakh crore = {{ one.crore }} crore = {{ one.indian }} = one trillion</p>
-        </div>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Amounts and words</span><span aria-hidden="true">/</span><span>Lakh Crore in Numbers</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-amounts">Amounts and words</span>
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
+            </div>
+            <h1 class="qt-h1 mt-4">Lakh Crore in Numbers</h1>
+            <p class="qt-lede mt-4">1 lakh crore = {{ one.crore }} crore = {{ one.indian }} = one trillion</p>
+        </section>
 
         <!-- Converter -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-4 md:p-8 transition-colors duration-200">
-            <label for="lcInput" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2 text-lg">How many lakh crore?</label>
+        <div class="qt-card">
+            <label for="lcInput" class="qt-label mb-2">How many lakh crore?</label>
             <div class="flex items-center gap-2">
                 <input type="text" id="lcInput" value="9.8" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="40"
-                    class="flex-1 min-w-0 px-4 py-4 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-2xl font-mono text-center transition-colors"
+                    class="qt-input"
                     oninput="convertLakhCrore()" placeholder="9.8">
-                <span class="text-lg font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap">lakh crore</span>
+                <span class="text-lg font-semibold whitespace-nowrap">lakh crore</span>
             </div>
-            <div id="lcBox" class="mt-4 rounded-lg bg-purple-700 dark:bg-purple-800 text-white p-4 md:p-5 text-center transition-opacity" aria-live="polite">
-                <p id="lcDigits" class="text-xl md:text-3xl font-bold font-mono break-all">{{ nine8.indian }}</p>
+            <div id="lcBox" class="qt-card is-amounts mt-4 md:p-5" aria-live="polite">
+                <p id="lcDigits" class="text-xl md:text-3xl font-extrabold tabular break-all tracking-tight">{{ nine8.indian }}</p>
                 <p id="lcWords" class="mt-1 text-base md:text-lg">{{ nine8.words }}</p>
-                <p id="lcMeta" class="mt-1 text-sm text-purple-100">{{ nine8.crore }} crore · {{ nine8.trillion }} trillion · {{ nine8.digits }} digits, {{ nine8.zeros }} zeros</p>
+                <p id="lcMeta" class="mt-1 text-sm">{{ nine8.crore }} crore · {{ nine8.trillion }} trillion · {{ nine8.digits }} digits, {{ nine8.zeros }} zeros</p>
             </div>
-            <p id="lcError" class="hidden mt-3 text-center text-sm font-semibold text-red-600 dark:text-red-300"></p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 text-center">Type the number in front of "lakh crore", for example 270, 9.08 or 1.44. For any other amount use the <a href="/number-to-words/" class="text-purple-700 dark:text-purple-300 underline">Number to Words converter</a>.</p>
+            <p id="lcError" class="hidden mt-3 text-center text-sm font-semibold"></p>
+            <p class="text-sm mt-3 text-center">Type the number in front of "lakh crore", for example 270, 9.08 or 1.44. For any other amount use the <a href="/number-to-words/" class="qt-link">Number to Words converter</a>.</p>
         </div>
 
         <!-- Rule -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">The rule that does the work</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">The rule that does the work</h2>
+            <p class="mb-4">
                 A lakh crore is a lakh of crores. One lakh is 1,00,000 and one crore is 1,00,00,000, so one lakh crore is 1 followed by 5 zeros and then 7 more: {{ one.zeros }} zeros in all. That is exactly one trillion.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 Because the two are equal, you never need to convert. A figure in lakh crore is the same figure in trillion. 9.8 lakh crore is 9.8 trillion and 270 lakh crore is 270 trillion.
             </p>
-            <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-2">
+            <ul class="list-disc pl-6 space-y-2">
                 <li><strong>To crore:</strong> multiply by 1,00,000. 9.8 lakh crore is {{ nine8.crore }} crore.</li>
                 <li><strong>To billion:</strong> multiply by 1,000. 9.8 lakh crore is {{ nine8.billion }} billion.</li>
                 <li><strong>To digits:</strong> move the decimal point 12 places to the right. 9.8 becomes {{ nine8.international }}, which in Indian grouping is {{ nine8.indian }}.</li>
@@ -109,28 +109,28 @@ meta_keywords: "lakh crore in numbers, 1 lakh crore zeros, lakh crore to trillio
         </div>
 
         <!-- Table -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Lakh crore table</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">The figures people look up most, plus round numbers. Tap a figure to open it in the full converter with the words and cheque wording.</p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-2">Lakh crore table</h2>
+            <p class="mb-4">The figures people look up most, plus round numbers. Tap a figure to open it in the full converter with the words and cheque wording.</p>
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Lakh crore</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Crore</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">In digits (Indian grouping)</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Trillion</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Zeros</th>
+                            <th>Lakh crore</th>
+                            <th>Crore</th>
+                            <th>In digits (Indian grouping)</th>
+                            <th>Trillion</th>
+                            <th>Zeros</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
+                    <tbody>
                         {% for r in lakhCrore.rows %}
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n={{ r.query }}" class="text-purple-700 dark:text-purple-300 underline">{{ r.value }} lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">{{ r.crore }}</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">{{ r.indian }}</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">{{ r.trillion }}</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">{{ r.zeros }}</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n={{ r.query }}" class="qt-link">{{ r.value }} lakh crore</a></td>
+                            <td class="font-mono">{{ r.crore }}</td>
+                            <td class="font-mono whitespace-nowrap">{{ r.indian }}</td>
+                            <td>{{ r.trillion }}</td>
+                            <td>{{ r.zeros }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -139,44 +139,44 @@ meta_keywords: "lakh crore in numbers, 1 lakh crore zeros, lakh crore to trillio
         </div>
 
         <!-- News -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Reading a lakh crore figure in the news</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Reading a lakh crore figure in the news</h2>
+            <p class="mb-4">
                 Budget speeches, Reserve Bank reports and Indian newspapers often write large rupee amounts in lakh crore. International reports write the same amounts in trillion. Since one lakh crore is one trillion, the number in front stays the same when you switch between the two.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 Watch the currency. A headline that says an economy is worth 4 trillion dollars is talking about dollars. To compare it with a rupee figure in lakh crore, first convert dollars to rupees at the exchange rate of that day, then compare. The unit (lakh crore or trillion) and the currency (rupees or dollars) are two separate questions.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Watch the decimals too. 9.08 lakh crore and 9.8 lakh crore look close but differ by {{ lakhCrore.gap908 }} crore. Read the figure in crore when the gap matters.
             </p>
         </div>
 
         <!-- Per person -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Per person: dividing lakh crore by crore</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Per person: dividing lakh crore by crore</h2>
+            <p class="mb-4">
                 A common question is how much a national figure works out to per person, where the population is also in crore. There is a shortcut: lakh crore divided by crore leaves lakh. So divide the two front numbers and read the answer in lakh rupees.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Example of the arithmetic only: 205 lakh crore divided among 140 crore people is 205 ÷ 140 = 1.4643 lakh, which is ₹{{ lakhCrore.perPerson }} per person.
             </p>
         </div>
 
         <!-- Words and bigger -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Lakh crore in words, and what comes after</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Lakh crore in words, and what comes after</h2>
+            <p class="mb-4">
                 In Indian English, 1 lakh crore is written "One Lakh Crore" and 270 lakh crore is "{{ t270.words }}". In international English the same amounts are one trillion and two hundred seventy trillion.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Indian English has no common word above crore, so amounts keep growing in lakh crore. 100 lakh crore ({{ h100.indian }}, {{ h100.zeros }} zeros) is a crore crore, or 100 trillion, but newspapers still write it as 100 lakh crore.
             </p>
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
                 {% set faqs = [
                     ["How many zeros are in 1 lakh crore?", "1 lakh crore has " ~ one.zeros ~ " zeros. Written out it is " ~ one.indian ~ " in Indian grouping, or " ~ one.international ~ " in the international system."],
@@ -186,12 +186,11 @@ meta_keywords: "lakh crore in numbers, 1 lakh crore zeros, lakh crore to trillio
                     ["How much is 1 lakh crore in billion?", "1 lakh crore is " ~ one.billion ~ " billion. Multiply a lakh crore figure by 1,000 to get billions: 270 lakh crore is " ~ t270.billion ~ " billion."]
                 ] %}
                 {% for f in faqs %}
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         {{ f[0] }}
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">{{ f[1] }}</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">{{ f[1] }}</p>
                 </details>
                 {% endfor %}
             </div>

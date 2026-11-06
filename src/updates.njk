@@ -5,6 +5,7 @@ meta_title: Site Updates and Changelog | QuickTools India
 meta_description: "A dated log of every change to QuickTools India: new calculators, corrected tax figures, content rewrites and fixes. Each entry corresponds to a real change in the project."
 meta_keywords: "quicktools india updates, changelog, calculator updates, site maintenance log"
 date: 2026-11-06
+noIconFont: true
 ---
 
 {% block head %}
@@ -20,19 +21,17 @@ date: 2026-11-06
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-10">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div class="inline-block bg-gradient-to-br from-indigo-400 to-indigo-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-clock-rotate-left text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Site Updates</h1>
+<main>
+    <div class="qt-wrap">
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Site Updates</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                What changed on QuickTools India and when. Every entry below maps to a real change in the project, so this page doubles as the maintenance log for the calculators. Spotted an error? Write to <a href="mailto:quicktoolsindiaa@gmail.com" class="text-indigo-600 dark:text-indigo-400 underline">quicktoolsindiaa@gmail.com</a>.
-            </p>
-        </div>
+            <h1 class="qt-h1 mt-4">Site Updates</h1>
+            <p class="qt-lede mt-4">What changed on QuickTools India and when. Every entry below maps to a real change in the project, so this page doubles as the maintenance log for the calculators. Spotted an error? Write to <a href="mailto:quicktoolsindiaa@gmail.com" class="qt-link">quicktoolsindiaa@gmail.com</a>.</p>
+        </section>
 
         {% set updates = [
             { "date": "2026-11-06", "title": "Every figure checked against the latest official numbers", "items": [
@@ -120,10 +119,10 @@ date: 2026-11-06
 
         <div class="space-y-6">
             {% for entry in updates %}
-            <article class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-                <time datetime="{{ entry.date }}" class="text-sm font-mono text-gray-500 dark:text-gray-400">{{ entry.date }}</time>
-                <h2 class="text-xl font-bold text-gray-800 dark:text-white mt-1 mb-3">{{ entry.title }}</h2>
-                <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <article class="qt-card">
+                <time datetime="{{ entry.date }}" class="text-sm font-mono">{{ entry.date }}</time>
+                <h2 class="qt-section-title mt-1 mb-3">{{ entry.title }}</h2>
+                <ul class="list-disc list-inside space-y-2 text-sm">
                     {% for item in entry.items %}
                     <li>{{ item }}</li>
                     {% endfor %}

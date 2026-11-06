@@ -4,32 +4,37 @@ layout: base.njk
 meta_title: About Us | QuickTools India
 meta_description: "About QuickTools India: a small independent project offering free, privacy-friendly financial calculators and educational guides built for Indian users."
 meta_keywords: "about quicktools india, online calculators india, free tools india, indian financial calculators"
+noIconFont: true
 ---
 
-<section class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
+<main class="qt-wrap">
+<section class="mx-auto px-4 py-8 md:py-12">
+    <div class="max-w-4xl">
         <!-- Hero Section -->
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 mb-8 p-8 transition-colors duration-200">
-            <div class="text-center mb-8">
-                <i class="fas fa-tools text-6xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">About QuickTools India
-                </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Free, privacy-friendly financial calculators
-                    and everyday tools, built for Indian users</p>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>About QuickTools India</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
+            <h1 class="qt-h1 mt-4">About QuickTools India</h1>
+            <p class="qt-lede mt-4">Free, privacy-friendly financial calculators and everyday tools, built for Indian users</p>
+        </section>
+        <div class="qt-card mb-8">
+            
 
             <!-- Our Mission -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-bullseye text-indigo-600 dark:text-indigo-400 mr-3"></i>Our Mission
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Our Mission
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     QuickTools India was founded with a clear mission: to <strong>democratize financial planning</strong>
                     for every Indian, whether you're a first-generation investor in a small town or a seasoned
                     professional in a metro city. We believe that access to accurate, easy-to-use financial calculators
                     should not require expensive software, sign-ups, or sharing your personal data.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300">
+                <p>
                     Every tool we build runs <strong>100% in your browser</strong>. Your numbers stay on your device. We
                     don't ask for your phone number, email, or any personal information. We simply want to help Indians
                     make better financial decisions, quickly and privately.
@@ -38,51 +43,51 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
             <!-- What Makes Us Different -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-star text-indigo-600 dark:text-indigo-400 mr-3"></i>What Makes Us Different
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    What Makes Us Different
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     Most online calculators give you a basic EMI result and stop there. We go deeper, because real
                     financial decisions require real context:
                 </p>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div
-                        class="bg-orange-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-orange-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2"></i>Home Loan Calculator
+                        class="qt-note">
+                        <h3 class="qt-h3 mb-2">
+                            Home Loan Calculator
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Shows pre-payment impact (how ₹1 Lakh
+                        <p class="text-sm">Shows pre-payment impact (how ₹1 Lakh
                             extra/year saves ₹15-20 Lakhs in interest), tax benefits under section 22 (was 24(b)) and section 123 (was 80C), and
                             bank rate comparisons, features that generic calculators skip entirely.</p>
                     </div>
 
                     <div
-                        class="bg-red-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-red-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2"></i>Car Loan Calculator
+                        class="qt-note is-danger">
+                        <h3 class="qt-h3 mb-2">
+                            Car Loan Calculator
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Goes beyond EMI to show complete on-road
+                        <p class="text-sm">Goes beyond EMI to show complete on-road
                             price including RTO tax, insurance, and accessories. Compares new vs used car economics so
                             you don't end up "underwater" on your loan.</p>
                     </div>
 
                     <div
-                        class="bg-green-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-green-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2"></i>Investment
+                        class="qt-note is-tip">
+                        <h3 class="qt-h3 mb-2">
+                            Investment
                             Calculators
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">SIP, PPF, SSY calculators with inflation
+                        <p class="text-sm">SIP, PPF, SSY calculators with inflation
                             adjustment, step-up SIP projections, and year-wise growth tables, helping you visualize
                             long-term wealth creation.</p>
                     </div>
 
                     <div
-                        class="bg-blue-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-blue-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-rupee-sign text-blue-600 dark:text-blue-400 mr-2"></i>Tax & Salary Tools
+                        class="qt-note is-tip">
+                        <h3 class="qt-h3 mb-2">
+                            Tax & Salary Tools
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Income Tax Calculator comparing Old vs New
+                        <p class="text-sm">Income Tax Calculator comparing Old vs New
                             Regime, CTC-to-In-Hand Salary Calculator, and GST Calculator with CGST/SGST breakdown, all updated for FY 2026-27 (see the Site Updates page for the dated change log).</p>
                     </div>
                 </div>
@@ -90,41 +95,41 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
             <!-- How Our Calculators Work -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-flask text-indigo-600 dark:text-indigo-400 mr-3"></i>How Our Calculators Work
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    How Our Calculators Work
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     Each calculator uses publicly documented formulas. Here is how we approach them:
                 </p>
                 <div class="space-y-3">
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">1</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">1</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Public Formulas</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">EMI uses the standard reducing-balance formula. PPF, SSY, NPS, and tax calculations follow rules published by the Income Tax Department, the RBI, and the relevant scheme notifications. Default interest rates shown reflect publicly listed rates at the time we last updated the page, and may not match your bank or the current government rate.</p>
+                            <h4 class="font-bold">Public Formulas</h4>
+                            <p class="text-sm">EMI uses the standard reducing-balance formula. PPF, SSY, NPS, and tax calculations follow rules published by the Income Tax Department, the RBI, and the relevant scheme notifications. Default interest rates shown reflect publicly listed rates at the time we last updated the page, and may not match your bank or the current government rate.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">2</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">2</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Spot Checks</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">We compare output against bank EMI calculators and manual spreadsheet computations during development. If you spot a discrepancy, please email us so we can investigate.</p>
+                            <h4 class="font-bold">Spot Checks</h4>
+                            <p class="text-sm">We compare output against bank EMI calculators and manual spreadsheet computations during development. If you spot a discrepancy, please email us so we can investigate.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">3</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">3</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Estimates, Not Advice</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Results are estimates for planning and learning. Before acting on a number, please consult a SEBI-registered investment advisor, chartered accountant, or your bank. We are not financial advisors.</p>
+                            <h4 class="font-bold">Estimates, Not Advice</h4>
+                            <p class="text-sm">Results are estimates for planning and learning. Before acting on a number, please consult a SEBI-registered investment advisor, chartered accountant, or your bank. We are not financial advisors.</p>
                         </div>
                     </div>
                 </div>
@@ -132,18 +137,17 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
             <!-- Our Values -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-heart text-indigo-600 dark:text-indigo-400 mr-3"></i>Our Values
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Our Values
                 </h2>
                 <div class="space-y-4">
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-lock text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Privacy First</h3>
-                            <p class="text-gray-700 dark:text-gray-300">All calculations happen in your browser. We
+                            <h3 class="qt-h3 mb-1">Privacy First</h3>
+                            <p>All calculations happen in your browser. We
                                 don't collect, store, or transmit your financial data. No registration, no phone number,
                                 no email, ever.</p>
                         </div>
@@ -151,25 +155,23 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-gift text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Always Free</h3>
-                            <p class="text-gray-700 dark:text-gray-300">No hidden fees, no premium tiers, no
+                            <h3 class="qt-h3 mb-1">Always Free</h3>
+                            <p>No hidden fees, no premium tiers, no
                                 feature-gating. Every tool is 100% free to use, unlimited times.</p>
                         </div>
                     </div>
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-graduation-cap text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Education-First
+                            <h3 class="qt-h3 mb-1">Education-First
                                 Approach</h3>
-                            <p class="text-gray-700 dark:text-gray-300">Every calculator page includes detailed
+                            <p>Every calculator page includes detailed
                                 explanations, FAQs, and real-world examples. We don't just give you a number, we help
                                 you understand what it means for your financial life.</p>
                         </div>
@@ -177,12 +179,11 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-flag text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Made for India</h3>
-                            <p class="text-gray-700 dark:text-gray-300">Rupee formatting (Lakhs/Crores), Indian tax
+                            <h3 class="qt-h3 mb-1">Made for India</h3>
+                            <p>Rupee formatting (Lakhs/Crores), Indian tax
                                 slabs, GST rates, government scheme rules, everything is tailored for the Indian
                                 context. No generic international calculators here.</p>
                         </div>
@@ -192,33 +193,33 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
 
             <!-- About This Site -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-circle-info text-indigo-600 dark:text-indigo-400 mr-3"></i>About This Site
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    About This Site
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                <p class="mb-3">
                     QuickTools India is a small, independent project. There is no large editorial team behind it &mdash; just a handful of calculators and explainer articles built carefully and offered free of cost. We are not financial advisors, not affiliated with any bank, mutual fund house, insurance company, or government body, and we do not earn commissions on any product mentioned in our content.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                <p class="mb-3">
                     Articles on this site are educational. We try to keep the numbers accurate and the language plain, but tax laws and interest rates change, and we may not update every page immediately. Before making a financial decision, please verify the latest rules with your bank, a chartered accountant, or a SEBI-registered investment advisor.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300">
+                <p>
                     If you find an error in a calculation or want to suggest a tool, write to us &mdash; the email below is checked by a real person.
                 </p>
             </div>
 
             <!-- Contact Section -->
             <div
-                class="bg-indigo-50 dark:bg-indigo-900 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400 transition-colors duration-200">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-envelope text-indigo-600 dark:text-indigo-400 mr-3"></i>Get in Touch
+                class="qt-note is-tip">
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Get in Touch
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     We'd love to hear from you! Whether you have a suggestion for a new tool, found an error in a
                     calculation, or want to contribute a guest article, feel free to reach out.
                 </p>
                 <a href="mailto:quicktoolsindiaa@gmail.com"
-                    class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    <i class="fas fa-paper-plane mr-2"></i>Email Us: quicktoolsindiaa@gmail.com
+                    class="qt-btn inline-flex items-center">
+                    Email Us: quicktoolsindiaa@gmail.com
                 </a>
             </div>
         </div>
@@ -226,9 +227,11 @@ meta_keywords: "about quicktools india, online calculators india, free tools ind
         <!-- Back to Home -->
         <div class="text-center">
             <a href="{{ '/' | url }}"
-                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition text-lg">
-                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                class="qt-link inline-flex items-center">
+                Back to Home
             </a>
         </div>
     </div>
 </section>
+
+</main>

@@ -4,68 +4,70 @@ layout: base.njk
 meta_title: Contact Us | QuickTools India
 meta_description: "Get in touch with QuickTools India. Have a suggestion for a new calculator, found an error, or want to share feedback? We'd love to hear from you."
 meta_keywords: "contact quicktools india, feedback, suggestion, online calculator support"
+noIconFont: true
 ---
 
-<section class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-        <div
-            class="bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-
-            <div class="text-center mb-10">
-                <i class="fas fa-envelope-open-text text-6xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Contact Us</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300">We'd love to hear from you!</p>
+<main class="qt-wrap">
+<section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Contact Us</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                
+                <span class="qt-stamp">Updated {{ page.date | humanDate }}</span>
             </div>
+            <h1 class="qt-h1 mt-4">Contact Us</h1>
+            <p class="qt-lede mt-4">We'd love to hear from you!</p>
+        </section>
+<section class="pb-8">
+    <div class="max-w-4xl">
+        <div
+            class="qt-card">
+
+            
 
             <!-- Contact Options -->
             <div class="grid md:grid-cols-2 gap-6 mb-10">
-                <div class="bg-indigo-50 dark:bg-gray-600 rounded-xl p-6 text-center transition-colors">
+                <div class="qt-panel p-6 text-center">
                     <div
-                        class="bg-indigo-100 dark:bg-indigo-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-envelope text-indigo-600 dark:text-indigo-300 text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Email Us</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">For suggestions, feedback, bug reports, or
+                        class="qt-panel w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                            </div>
+                    <h3 class="qt-h3 mb-2">Email Us</h3>
+                    <p class="text-sm mb-4">For suggestions, feedback, bug reports, or
                         any questions about our tools.</p>
                     <a href="mailto:quicktoolsindiaa@gmail.com"
-                        class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-semibold transition-colors text-sm">
-                        <i class="fas fa-paper-plane mr-2"></i>quicktoolsindiaa@gmail.com
+                        class="qt-btn qt-btn--sm inline-flex items-center">
+                        quicktoolsindiaa@gmail.com
                     </a>
                 </div>
 
-                <div class="bg-green-50 dark:bg-gray-600 rounded-xl p-6 text-center transition-colors">
+                <div class="qt-panel p-6 text-center">
                     <div
-                        class="bg-green-100 dark:bg-green-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-lightbulb text-green-600 dark:text-green-300 text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Suggest a Tool</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Have an idea for a calculator or tool we
+                        class="qt-panel w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                            </div>
+                    <h3 class="qt-h3 mb-2">Suggest a Tool</h3>
+                    <p class="text-sm mb-4">Have an idea for a calculator or tool we
                         should build? We're always looking to add more useful tools.</p>
                     <a href="mailto:quicktoolsindiaa@gmail.com?subject=Tool%20Suggestion%20-%20QuickTools%20India"
-                        class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-semibold transition-colors text-sm">
-                        <i class="fas fa-lightbulb mr-2"></i>Send Suggestion
+                        class="qt-btn qt-btn--sm inline-flex items-center">
+                        Send Suggestion
                     </a>
                 </div>
             </div>
 
             <!-- What to Expect -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-clock text-indigo-600 dark:text-indigo-400 mr-3"></i>What to Expect
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    What to Expect
                 </h2>
-                <div class="space-y-3 text-gray-700 dark:text-gray-300">
+                <div class="space-y-3">
                     <div class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                        <p>We typically respond to emails within <strong>24-48 hours</strong> on working days.</p>
+                                                <p>We typically respond to emails within <strong>24-48 hours</strong> on working days.</p>
                     </div>
                     <div class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                        <p>Bug reports and calculation errors are treated as <strong>high priority</strong> and
+                                                <p>Bug reports and calculation errors are treated as <strong>high priority</strong> and
                             addressed promptly.</p>
                     </div>
                     <div class="flex items-start">
-                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
-                        <p>Tool suggestions are reviewed and added to our development roadmap if they benefit the
+                                                <p>Tool suggestions are reviewed and added to our development roadmap if they benefit the
                             Indian user community.</p>
                     </div>
                 </div>
@@ -73,57 +75,57 @@ meta_keywords: "contact quicktools india, feedback, suggestion, online calculato
 
             <!-- FAQs -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-question-circle text-indigo-600 dark:text-indigo-400 mr-3"></i>Frequently Asked
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Frequently Asked
                     Questions
                 </h2>
                 <div class="space-y-3">
-                    <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <details class="qt-faq-item">
                         <summary
-                            class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                           >
                             Is my data safe when I use your calculators?
                             <i
-                                class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                               ></i>
                         </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">
+                        <p class="mt-3 text-sm">
                             Absolutely. All calculations happen 100% in your browser. We do not collect, store, or
                             transmit any of your financial data. Your numbers never leave your device.
                         </p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <details class="qt-faq-item">
                         <summary
-                            class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                           >
                             Do I need to create an account?
                             <i
-                                class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                               ></i>
                         </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">
+                        <p class="mt-3 text-sm">
                             No. All tools on QuickTools India are completely free and require no registration, email, or
                             phone number.
                         </p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <details class="qt-faq-item">
                         <summary
-                            class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                           >
                             I found an error in one of your calculators. What should I do?
                             <i
-                                class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                               ></i>
                         </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">
+                        <p class="mt-3 text-sm">
                             Please email us immediately at <a href="mailto:quicktoolsindiaa@gmail.com"
-                                class="text-indigo-600 dark:text-indigo-400 hover:underline">quicktoolsindiaa@gmail.com</a>
+                                class="qt-link">quicktoolsindiaa@gmail.com</a>
                             with details of the error, your input values, and the expected result. We take accuracy very
                             seriously and will investigate promptly.
                         </p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
+                    <details class="qt-faq-item">
                         <summary
-                            class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                           >
                             Can I use your tools on my mobile phone?
                             <i
-                                class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                               ></i>
                         </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">
+                        <p class="mt-3 text-sm">
                             Yes! All our tools are fully responsive and work perfectly on smartphones, tablets, and
                             desktop computers. No app download required.
                         </p>
@@ -133,10 +135,9 @@ meta_keywords: "contact quicktools india, feedback, suggestion, online calculato
 
             <!-- Disclaimer -->
             <div
-                class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-400 p-4 rounded-r-lg">
-                <p class="text-sm text-yellow-800 dark:text-yellow-300">
-                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                    <strong>Disclaimer:</strong> QuickTools India provides free online calculators for educational and
+                class="qt-well">
+                <p class="text-sm">
+                                        <strong>Disclaimer:</strong> QuickTools India provides free online calculators for educational and
                     informational purposes only. Our tools do not constitute financial, tax, or legal advice. Please
                     consult a qualified professional for decisions specific to your situation.
                 </p>
@@ -146,9 +147,11 @@ meta_keywords: "contact quicktools india, feedback, suggestion, online calculato
         <!-- Back to Home -->
         <div class="text-center mt-8">
             <a href="{{ '/' | url }}"
-                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition text-lg">
-                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                class="qt-link inline-flex items-center">
+                Back to Home
             </a>
         </div>
     </div>
 </section>
+
+</main>

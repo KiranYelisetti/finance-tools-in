@@ -1,60 +1,35 @@
 ---
 layout: base.njk
+noIconFont: true
 title: Blog & Financial Guides | QuickTools India
 meta_title: Personal Finance Blog & Guides | QuickTools India
 meta_description: "Read our guides on personal finance, loans, SIPs, and taxes in India. Plain-language explainers and money-saving strategies for everyday financial decisions."
 ---
 
-<div class="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
-    <!-- Header -->
-    <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Financial Guides & Articles</h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Plain-language guides to saving money, understanding taxes, and planning investments in India.
-        </p>
-    </div>
+<main class="qt-wrap">
+    <section class="qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Guides</span></nav>
+        <div class="flex flex-wrap gap-3 mt-5">
+            <span class="qt-sticker is-rani">Guides</span>
+            <span class="qt-stamp">{{ collections.post | length }} guides</span>
+        </div>
+        <h1 class="qt-h1 mt-4 max-w-[18ch]">Financial Guides &amp; Articles</h1>
+        <p class="qt-lede mt-4">Plain-language guides to saving money, understanding taxes, and planning investments in India.</p>
+    </section>
 
-    <!-- Blog Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-4">
         {%- for post in collections.post | reverse -%}
-        <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-300 overflow-hidden flex flex-col">
-            <div class="p-6 md:p-8 flex flex-col flex-1">
-                <!-- Tags -->
-                <div class="mb-4">
-                    {% for tag in post.data.tags %}
-                        {% if tag != "post" %}
-                        <span class="inline-block bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">
-                            {{ tag }}
-                        </span>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                
-                <!-- Title & Excerpt -->
-                <a href="{{ post.url }}" class="block mb-4 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white line-clamp-2 leading-snug">
-                        {{ post.data.title }}
-                    </h2>
-                </a>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-6 flex-1 line-clamp-3">
-                    {{ post.data.meta_description }}
-                </p>
-                
-                <!-- Footer (Date & Read time) -->
-                <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                    <div class="flex items-center">
-                        <i class="fas fa-calendar-day mr-2"></i>
-                        <span>{{ post.date.toISOString().split('T')[0] }}</span>
-                    </div>
-                    {% if post.data.readTime %}
-                    <div class="flex items-center font-medium">
-                        {{ post.data.readTime }} min read
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </article>
+        {% set key = "amounts" %}
+        {% for tag in post.data.tags %}{% if tag != "post" and key == "amounts" %}{% set key = tag | tagKey %}{% endif %}{% endfor %}
+        <a href="{{ post.url }}" class="qt-tile is-{{ key }} qt-reveal" style="--i: {{ loop.index0 % 3 }}">
+            <span class="flex flex-wrap gap-1.5">
+                {% for tag in post.data.tags %}{% if tag != "post" and loop.index <= 3 %}<span class="qt-eyebrow">{{ tag }}{% if not loop.last %} ·{% endif %}</span>{% endif %}{% endfor %}
+            </span>
+            <span class="qt-tile-name">{{ post.data.title }}</span>
+            <span class="qt-tile-desc">{{ post.data.meta_description }}</span>
+            <span class="qt-tile-date mt-auto">{{ post.date | humanDate }}{% if post.data.readTime %} · {{ post.data.readTime }} min read{% endif %}</span>
+            <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
         {%- endfor -%}
     </div>
-</div>
+</main>

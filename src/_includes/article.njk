@@ -1,87 +1,43 @@
 ---
 layout: base.njk
+noIconFont: true
 ---
+{# Guide layout on the Desi Pop components (docs/DESIGN-SYSTEM.md). The first real tag picks the colour. #}
+{% set key = "amounts" %}
+{% for tag in tags %}{% if tag != "post" and loop.index <= 2 and key == "amounts" %}{% set key = tag | tagKey %}{% endif %}{% endfor %}
 
-<div class="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
-    <!-- Breadcrumb -->
-    <nav class="flex min-w-0 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
-        <ol class="flex flex-wrap items-center min-w-0 max-w-full gap-y-1 space-x-1 md:space-x-3">
-            <li class="inline-flex items-center">
-                <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                    <i class="fas fa-home mr-2"></i>Home
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a>
-                </div>
-            </li>
-            <li aria-current="page" class="min-w-0 max-w-full">
-                <div class="flex items-center min-w-0">
-                    <i class="fas fa-chevron-right text-xs mx-2"></i>
-                    <span class="text-gray-700 dark:text-gray-200 truncate">{{ title }}</span>
-                </div>
-            </li>
-        </ol>
-    </nav>
-
-    <!-- Article Header -->
-    <header class="mb-10 text-center">
+<main class="qt-wrap">
+    <section class="qt-toolhead max-w-[50rem]">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog/">Guides</a><span aria-hidden="true">/</span><span class="truncate max-w-[60vw]">{{ title }}</span></nav>
         {% if tags %}
-        <div class="flex flex-wrap justify-center gap-2 mb-4">
-            {% for tag in tags %}
-                {% if tag != "post" %}
-                <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded uppercase">
-                    {{ tag }}
-                </span>
-                {% endif %}
-            {% endfor %}
+        <div class="flex flex-wrap gap-2.5 mt-5">
+            {% for tag in tags %}{% if tag != "post" %}
+            <span class="qt-sticker is-{{ tag | tagKey }}" style="--tilt: {{ '-2deg' if loop.index % 2 else '2deg' }}">{{ tag }}</span>
+            {% endif %}{% endfor %}
         </div>
         {% endif %}
-        
-        <h1 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">{{ title }}</h1>
-        
-        <div class="flex items-center justify-center text-sm text-gray-600 dark:text-gray-400 space-x-4">
-            <div class="flex items-center">
-                <i class="fas fa-calendar-alt mr-2 text-indigo-500"></i>
-                <time datetime="{{ page.date }}">{{ page.date.toDateString() }}</time>
-            </div>
-            {% if updated %}
-            <span>&bull;</span>
-            <div class="flex items-center">
-                <i class="fas fa-rotate mr-2 text-indigo-500"></i>
-                <span>Updated <time datetime="{{ updated | isoDate }}">{{ updated | isoDate }}</time></span>
-            </div>
-            {% endif %}
-            {% if readTime %}
-            <span>&bull;</span>
-            <div class="flex items-center">
-                <i class="fas fa-clock mr-2 text-indigo-500"></i>
-                <span>{{ readTime }} min read</span>
-            </div>
-            {% endif %}
+        <h1 class="qt-h1 mt-5">{{ title }}</h1>
+        <div class="flex flex-wrap gap-2 mt-5">
+            <span class="qt-stamp">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | humanDate }}</time></span>
+            {% if updated %}<span class="qt-stamp">Updated <time datetime="{{ updated | isoDate }}">{{ updated | humanDate }}</time></span>{% endif %}
+            {% if readTime %}<span class="qt-stamp">{{ readTime }} min read</span>{% endif %}
         </div>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 italic">
-            Educational article. Not financial advice. Please consult a SEBI-registered investment advisor or chartered accountant before acting on any number in this piece.
-        </p>
-    </header>
+        <p class="qt-note mt-6 max-w-[44rem]">Educational article. Not financial advice. Please consult a SEBI-registered investment advisor or chartered accountant before acting on any number in this piece.</p>
+    </section>
 
-    <!-- Main Content -->
-    <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-10 lg:p-12 border-2 border-gray-100 dark:border-gray-700">
-        <div class="prose prose-lg dark:prose-invert max-w-none prose-indigo prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-a:text-indigo-600 dark:prose-a:text-indigo-400 hover:prose-a:text-indigo-800 prose-code:before:content-none prose-code:after:content-none prose-table:text-base transition-colors">
-            {{ content | safe }}
-        </div>
+    <article class="qt-prose mt-4">
+        {{ content | safe }}
     </article>
 
-    <!-- Author/Newsletter Section (Optional) -->
-    <div class="mt-12 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg p-8 border-l-4 border-indigo-500">
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Explore Our Free Tools</h3>
-        <p class="text-gray-700 dark:text-gray-300 mb-4">
-            Did you enjoy this article? We build completely free, privacy-friendly calculators for Indians. Check out our <a href="/home-loan-calculator/" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Home Loan Calculator</a>, <a href="/car-loan-calculator/" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Car Loan Calculator</a>, and <a href="/sip-calculator/" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">SIP Calculator</a>.
-        </p>
-        <a href="/" class="inline-flex items-center bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition shadow-md">
-            View All Tools <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-    </div>
-</div>
+    <aside class="qt-card is-{{ key }} qt-section max-w-[50rem]" aria-labelledby="try-tools">
+        <span class="qt-sticker is-flat is-ink">Free tools</span>
+        <h2 id="try-tools" class="qt-h3 mt-3 mb-2">Work out your own numbers</h2>
+        <p class="mb-4">Every calculator here is free, works in Indian formats and runs on your phone, so nothing you type is sent anywhere.</p>
+        <div class="qt-chips">
+            {% for g in tools %}{% if g.key == key %}{% for t in g.tools %}
+            <a class="qt-chip" href="{{ t.url }}">{{ t.name }}</a>
+            {% endfor %}{% endif %}{% endfor %}
+            <a class="qt-chip" href="/" aria-pressed="true">All tools</a>
+        </div>
+    </aside>
+</main>
