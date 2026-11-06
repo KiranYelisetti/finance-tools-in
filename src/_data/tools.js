@@ -41,6 +41,7 @@ module.exports = [
         tools: [
             { name: "Age Calculator", url: "/age-calculator/", desc: "Exact age in years, months and days on any date." },
             { name: "Image Resizer", url: "/image-resizer/", desc: "Resize a photo or signature to an exact size in KB for online forms." },
+            { name: "Word Counter", url: "/word-counter/", desc: "Words, characters, reading time and the limits for posts, texts and titles." },
         ],
     },
 ];

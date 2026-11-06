@@ -3,6 +3,7 @@
 // never typed by hand. Tools whose answer depends on a notified rate or a date carry no figure,
 // so nothing on the home page can go stale between deploys.
 const NW = require("../js/number-words.js");
+const WC = require("../js/calc/word-count.js");
 
 const inr = (x) => "₹" + Math.round(x).toLocaleString("en-IN");
 const lakh = (x) => "₹" + (x / 1e5).toFixed(x % 1e5 === 0 ? 0 : 2).replace(/\.?0+$/, "") + " lakh";
@@ -22,6 +23,8 @@ function sipValue(monthly, ratePct, years) {
 }
 
 const words = NW.convert("150000").inWords;
+const wcSample = "Ship it today. Fix it tomorrow.";
+const wc = WC.analyse(wcSample);
 const lakhCrore = NW.convert("9.8 lakh crore").indianGrouped;
 
 module.exports = {
@@ -41,4 +44,5 @@ module.exports = {
     "/wedding-cost-calculator/": {},
     "/age-calculator/": {},
     "/image-resizer/": { size: "full" },
+    "/word-counter/": { input: `"${wcSample}"`, output: `${wc.words} words, ${wc.characters} characters` },
 };
