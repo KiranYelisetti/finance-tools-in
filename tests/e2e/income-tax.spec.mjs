@@ -151,9 +151,8 @@ test.describe("Income Tax calculator", () => {
   });
 
   test("a typed salary is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs). Every field on this page is
+    // FIXED 2026-11-06 in main.js, kept as a regression test. Was a known bug: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs). Every field on this page is
     // an Indian-format field, so nothing typed here survives a reload.
-    test.fail();
     await typeInto(page.locator("#grossSalary"), "1800000");
     await page.locator("#otherIncome").click();
     await page.reload();

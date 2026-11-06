@@ -184,11 +184,11 @@ test.describe("Home Loan EMI calculator", () => {
   });
 
   test("a typed loan amount is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG (auto-save loses Indian-formatted amounts). The page's own <script> renders before /js/main.js, so
+    // FIXED 2026-11-06 in main.js, kept as a regression test. Was a known bug (auto-save lost Indian-formatted amounts). The page's own <script> renders before /js/main.js, so
     // initAutoSave (run on DOMContentLoaded) restores "30,00,000" while the field is still type=number, before
     // setupIndianInputs turns it into a text field. The number field rejects the commas and the amount comes back
     // empty, so no results show. Same on Car Loan, EMI Prepayment, SIP, Income Tax and Salary.
-    test.fail();
+    // initAutoSave now upgrades the Indian-format fields first and strips commas for any number field.
     await typeInto(page.locator("#loanAmount"), "3000000");
     await page.locator("#interestRate").click();
     await page.reload();

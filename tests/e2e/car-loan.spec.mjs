@@ -131,8 +131,7 @@ test.describe("Car Loan calculator", () => {
   });
 
   test("a typed car price is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs for the cause).
-    test.fail();
+    // FIXED 2026-11-06 in main.js, kept as a regression test. Was a known bug: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs for the cause).
     await typeInto(page.locator("#carPrice"), "1500000");
     await page.locator("#loanTenure").click();
     await page.reload();

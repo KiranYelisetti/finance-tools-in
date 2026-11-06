@@ -108,8 +108,7 @@ test.describe("SIP calculator", () => {
   });
 
   test("a typed monthly amount is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs for the cause).
-    test.fail();
+    // FIXED 2026-11-06 in main.js, kept as a regression test. Was a known bug: auto-save loses Indian-formatted amounts (see home-loan.spec.mjs for the cause).
     await typeInto(page.locator("#monthlyInvestment"), "15000");
     await page.locator("#returnRate").click();
     await page.reload();

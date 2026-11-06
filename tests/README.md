@@ -106,7 +106,7 @@ A test for a known bug states the right answer and is marked as expected to fail
 
 | Page | Known bug | Test |
 |---|---|---|
-| Home Loan, Car Loan, EMI Prepayment, SIP, Income Tax, Salary | A typed amount with Indian commas comes back empty after a reload. The page's own script runs before `main.js`, so auto-save writes "30,00,000" into a number field. | "a typed ... is saved and comes back after a reload" |
+| Home Loan, Car Loan, EMI Prepayment, SIP, Income Tax, Salary | **Fixed 2026-11-06.** A typed amount with Indian commas came back empty after a reload. The page's own script ran before `main.js`, so auto-save wrote "30,00,000" into a number field. `initAutoSave` now upgrades the fields first. | "a typed ... is saved and comes back after a reload" (now a regression test) |
 | Car Loan | 0% interest shows ₹NaN | "0% interest gives an EMI of loan / months" |
 | Car Loan | A down payment above the on-road price gives a negative loan and EMI | "a down payment above the on-road price ..." |
 | Car Loan | The Used Car choice is not restored after a reload, while the rate is | "the Used Car choice is saved ..." |
