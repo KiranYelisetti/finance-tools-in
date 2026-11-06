@@ -164,7 +164,7 @@ test.describe("Home page amount-in-words box", () => {
     await expect(page.locator("#chequeFormat")).toHaveText("Rupees One Crore Fifty Lakh Only");
   });
 
-  test("the tool index links to all 16 tools", async ({ page }) => {
+  test("the tool index links to all 20 tools", async ({ page }) => {
     // The home page tool grid (v2 design: a section titled "Pick a calculator", one tile per tool)
     const index = page.locator("main").getByRole("region", { name: "Pick a calculator" });
     const expected = {
@@ -174,6 +174,7 @@ test.describe("Home page amount-in-words box", () => {
       "SIP": "/sip-calculator/", "PPF": "/ppf-calculator/", "Sukanya Samriddhi": "/ssy-calculator/",
       "Study Abroad": "/study-abroad-calculator/", "Wedding Cost": "/wedding-cost-calculator/",
       "Age Calculator": "/age-calculator/", "Image Resizer": "/image-resizer/",
+      "Word Counter": "/word-counter/", "QR Code Generator": "/qr-code-generator/", "JPG to PDF": "/jpg-to-pdf/", "Merge PDF": "/merge-pdf/",
     };
     const hrefs = await index.getByRole("link").evaluateAll((as) => as.map((a) => a.getAttribute("href")));
     expect(new Set(hrefs)).toEqual(new Set(Object.values(expected)));

@@ -45,5 +45,7 @@ module.exports = {
     "/age-calculator/": {},
     "/image-resizer/": { size: "full" },
     "/qr-code-generator/": {},
+    "/jpg-to-pdf/": {},
+    "/merge-pdf/": {},
     "/word-counter/": { input: `"${wcSample}"`, output: `${wc.words} words, ${wc.characters} characters` },
 };

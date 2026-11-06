@@ -1,0 +1,302 @@
+---
+title: "JPG to PDF: Turn Photos and Images into One PDF"
+layout: base.njk
+date: 2026-11-07
+updated: 2026-11-07
+meta_title: "JPG to PDF Converter: Images to One PDF, A4 or Letter, No Upload"
+meta_description: "Turn JPG and PNG images into one PDF in your browser. Put the pages in order, choose A4, US Letter or the image size, portrait or landscape and a margin. Phone photos come out upright. Nothing is uploaded."
+meta_keywords: "jpg to pdf, image to pdf, png to pdf, photos to pdf, convert jpg to pdf, combine images into pdf, jpg to pdf without upload"
+noIconFont: true
+faqs:
+  - q: "Are my photos uploaded to a server?"
+    a: "No. The PDF is built by your browser with an open-source library called pdf-lib, which runs on this page. Your images never leave your device, which is why the tool works even after you switch off the internet once the page has loaded."
+  - q: "Does converting reduce the quality of my photos?"
+    a: "Usually not at all. JPG and PNG files are placed into the PDF exactly as they are, without being compressed again. Only photos that need turning upright, and formats a PDF cannot hold such as WebP or GIF, are redrawn and saved as high quality JPEG first."
+  - q: "Should I pick A4 or Letter?"
+    a: "A4 is the standard paper size in India and most of the world, and it is what government portals, banks and colleges in India expect. US Letter is slightly wider and shorter and is the standard in the United States and Canada. Fit to image makes every page exactly the size of its picture, with no white border unless you add a margin."
+  - q: "Why was my phone photo sideways in other converters?"
+    a: "Phones often save a photo sideways and add a small tag that tells viewers to turn it. Many converters ignore the tag. This page reads it and turns the picture upright before it goes into the PDF."
+  - q: "How do I make the PDF smaller for an upload limit?"
+    a: "The PDF is roughly the size of the images inside it. Resize or compress the photos first with the Image Resizer, then convert them here. Choosing fewer pages or cropping out empty space helps too."
+  - q: "Can I convert iPhone HEIC photos?"
+    a: "Safari can read HEIC, so on an iPhone or a Mac the photos convert directly. Most other browsers cannot open HEIC, and the page tells you which files it could not read. Set the iPhone camera to Most Compatible, or share the photo as JPG, and it will work everywhere."
+---
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JPG to PDF",
+  "url": "https://www.quicktoolsplus.com/jpg-to-pdf/",
+  "description": "Turns JPG, PNG and other images into one PDF in the browser, with page order, page size, orientation and margin choices. Nothing is uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "inLanguage": "en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{% for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.quicktoolsplus.com/" },
+    { "@type": "ListItem", "position": 2, "name": "JPG to PDF", "item": "https://www.quicktoolsplus.com/jpg-to-pdf/" }
+  ]
+}
+</script>
+{% endblock %}
+
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>JPG to PDF</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-everyday">Everyday</span>
+            <span class="qt-stamp">Updated {{ updated | humanDate }}</span>
+        </div>
+        <h1 class="qt-h1 mt-4">JPG to PDF</h1>
+        <p class="qt-lede mt-4">Turn one photo or a stack of them into a single PDF. Put the pages in order, pick the paper size, and download. Everything happens in your browser.</p>
+    </section>
+
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-7 min-w-0" aria-label="Your images">
+            <div class="qt-card">
+                <div id="dropZone" class="qt-panel p-6 sm:p-8 text-center">
+                    <p class="qt-h3">Choose images or drop them here</p>
+                    <p class="qt-hint mt-2">JPG and PNG, plus WebP, GIF and other images your browser can open. Add as many as you need.</p>
+                    <label for="imageInput" class="qt-btn mt-4 inline-flex cursor-pointer">Choose images</label>
+                    <input type="file" id="imageInput" class="sr-only" accept="image/*" multiple>
+                </div>
+                <p id="fileErrors" class="qt-error mt-3" role="alert" hidden></p>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-6">
+                    <h2 class="qt-card-title" id="listTitle">Pages <span id="imageCount" class="text-muted">0</span></h2>
+                    <button type="button" id="clearImages" class="qt-btn qt-btn--ghost qt-btn--sm" disabled>Remove all</button>
+                </div>
+                <p id="emptyList" class="qt-hint mt-2">Your images appear here in page order. Drag them, or use the arrows, to change the order.</p>
+                <ol id="imageList" class="mt-3 grid gap-3" aria-labelledby="listTitle"></ol>
+            </div>
+        </section>
+
+        <section class="lg:col-span-5 min-w-0" aria-label="PDF settings">
+            <div class="qt-card is-everyday">
+                <p class="qt-eyebrow">Your PDF</p>
+                <div class="qt-well mt-3">
+                    <div class="qt-fields">
+                        <div>
+                            <label for="pageSize" class="qt-label">Page size</label>
+                            <div class="qt-select"><select id="pageSize" class="qt-input">
+                                <option value="a4" selected>A4 (210 x 297 mm)</option>
+                                <option value="letter">US Letter (8.5 x 11 in)</option>
+                                <option value="fit">Fit to each image</option>
+                            </select></div>
+                        </div>
+                        <div>
+                            <label for="orientation" class="qt-label">Orientation</label>
+                            <div class="qt-select"><select id="orientation" class="qt-input">
+                                <option value="auto" selected>Automatic, follows each image</option>
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select></div>
+                        </div>
+                        <div>
+                            <label for="margin" class="qt-label">Margin</label>
+                            <div class="qt-select"><select id="margin" class="qt-input">
+                                <option value="none">None</option>
+                                <option value="small" selected>Small (6 mm)</option>
+                                <option value="large">Large (13 mm)</option>
+                            </select></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="makePdf" class="qt-btn qt-btn--block mt-5" disabled>Create PDF</button>
+                <p id="pdfStatus" class="mt-3 text-sm font-semibold text-center" aria-live="polite">Add images to begin.</p>
+            </div>
+        </section>
+    </div>
+
+    <article class="qt-prose qt-section">
+        <h2>How to turn images into a PDF</h2>
+        <ol>
+            <li>Choose your images, or drag them from a folder onto the box. You can add more in several goes.</li>
+            <li>Put them in order. Each image becomes one page, from the top of the list down. Drag a row to move it, or use the up and down arrows, which also work with a keyboard and on phones.</li>
+            <li>Pick the page size, the orientation and the margin. Automatic orientation turns the page sideways for wide pictures and keeps it upright for tall ones.</li>
+            <li>Press Create PDF. The file downloads straight away. Open it once to check the pages before you send it.</li>
+        </ol>
+
+        <h2>Which settings to use</h2>
+        <p>For documents you will upload to an Indian portal, such as an application form, a KYC submission or a college admission, A4 with a small margin is the safe choice. A4 is the paper size used across India and in most countries, and it prints without anything being cut off. US Letter is the standard in the United States and Canada, so pick it when the PDF will be printed there. Fit to each image makes every page exactly the size of its picture. That suits a set of screenshots, a photo album or a design file, where a white border would only get in the way.</p>
+        <p>The margin adds white space around each image. A small margin keeps the edge of a scanned page away from the very edge of the paper, which helps when the PDF is printed, because most printers cannot print right to the edge. Choose no margin when the picture should fill the whole page.</p>
+
+        <h3>Photos that come out sideways elsewhere</h3>
+        <p>Phone cameras often store a photo the way the sensor saw it and add a small tag that tells viewers which way is up. Gallery apps read the tag, so the photo looks right on your phone, but many PDF converters ignore it and the page comes out sideways or upside down. This page reads the tag and turns each photo upright before it is placed, so the PDF looks the way the photo looks in your gallery.</p>
+
+        <h3>Image quality and file size</h3>
+        <p>JPG and PNG images go into the PDF exactly as they are. They are not squeezed again, so no detail is lost and the PDF ends up close to the combined size of the pictures. Photos that need turning, and formats a PDF cannot hold such as WebP and GIF, are redrawn and stored as high quality JPEG. If a portal limits the upload to a few hundred kilobytes, make the photos smaller first with the <a href="/image-resizer/">Image Resizer</a>, then convert them here. A photo of a printed page usually stays easy to read at a much smaller size than the camera saved it at, so check the text after resizing.</p>
+
+        <h3>Private by design</h3>
+        <p>The PDF is assembled on this page by pdf-lib, an open-source library that runs in your browser. Your photos are never uploaded, so ID cards, certificates and bank statements stay on your device. Once the page has loaded, the tool keeps working with the internet switched off.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            {% for f in faqs %}<details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+            {% endfor %}
+        </div>
+    </article>
+    </div>
+</main>
+
+{% block scripts %}
+<script src="/js/vendor/pdf-lib-1.17.1.min.js"></script>
+<script src="/js/calc/pdf-tools.js"></script>
+<script>
+(function () {
+    var PT = QTCalc.pdfTools;
+    var items = []; // { id, name, size, file, url }
+    var nextId = 1;
+    var $ = function (id) { return document.getElementById(id); };
+    var list = $('imageList'), status = $('pdfStatus'), errors = $('fileErrors');
+    var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
+
+    function render() {
+        list.textContent = '';
+        items.forEach(function (it, i) {
+            var li = document.createElement('li');
+            li.className = 'qt-panel flex items-center gap-3 p-3';
+            li.draggable = true;
+            li.dataset.index = String(i);
+            li.innerHTML = '<span class="qt-row-key w-6 text-center"></span><img alt="" class="w-14 h-14 object-cover rounded-md border border-line shrink-0">' +
+                '<span class="min-w-0 flex-1"><span class="block font-semibold break-all"></span><span class="block qt-hint mt-0"></span></span>' +
+                '<span class="flex gap-1 shrink-0"></span>';
+            li.children[0].textContent = String(i + 1);
+            li.children[1].src = it.url;
+            li.children[2].children[0].textContent = it.name;
+            li.children[2].children[1].textContent = kb(it.size);
+            var btns = li.children[3];
+            [['up', '↑', 'Move ' + it.name + ' up', i === 0], ['down', '↓', 'Move ' + it.name + ' down', i === items.length - 1], ['remove', '×', 'Remove ' + it.name, false]].forEach(function (b) {
+                var el = document.createElement('button');
+                el.type = 'button';
+                el.className = 'qt-btn qt-btn--secondary qt-btn--sm';
+                el.textContent = b[1];
+                el.setAttribute('aria-label', b[2]);
+                el.disabled = b[3];
+                el.dataset.act = b[0];
+                btns.appendChild(el);
+            });
+            list.appendChild(li);
+        });
+        $('imageCount').textContent = String(items.length);
+        $('emptyList').hidden = items.length > 0;
+        $('makePdf').disabled = items.length === 0;
+        $('clearImages').disabled = items.length === 0;
+        if (!items.length) status.textContent = 'Add images to begin.';
+        else status.textContent = items.length + (items.length === 1 ? ' image, one page.' : ' images, one page each.');
+    }
+
+    function add(files) {
+        var bad = [];
+        Array.prototype.forEach.call(files, function (f) {
+            if (!/^image\//.test(f.type) && !/\.(jpe?g|png|webp|gif|bmp|avif|heic|heif)$/i.test(f.name)) { bad.push(f.name); return; }
+            items.push({ id: nextId++, name: f.name, size: f.size, file: f, url: URL.createObjectURL(f) });
+        });
+        errors.hidden = bad.length === 0;
+        errors.textContent = bad.length ? 'Not an image, so left out: ' + bad.join(', ') + '.' : '';
+        render();
+    }
+
+    list.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button[data-act]');
+        if (!b) return;
+        var i = Number(b.closest('li').dataset.index);
+        if (b.dataset.act === 'up') items = PT.move(items, i, i - 1);
+        else if (b.dataset.act === 'down') items = PT.move(items, i, i + 1);
+        else { URL.revokeObjectURL(items[i].url); items.splice(i, 1); }
+        render();
+        var again = list.querySelector('li[data-index="' + Math.min(b.dataset.act === 'up' ? i - 1 : b.dataset.act === 'down' ? i + 1 : i, items.length - 1) + '"] button[data-act="' + b.dataset.act + '"]');
+        if (again && !again.disabled) again.focus();
+    });
+
+    // Drag a row onto another to move it there
+    var dragFrom = null;
+    list.addEventListener('dragstart', function (ev) { var li = ev.target.closest('li'); if (li) { dragFrom = Number(li.dataset.index); ev.dataTransfer.effectAllowed = 'move'; } });
+    list.addEventListener('dragover', function (ev) { if (dragFrom !== null) ev.preventDefault(); });
+    list.addEventListener('drop', function (ev) {
+        var li = ev.target.closest('li');
+        if (dragFrom === null || !li) return;
+        ev.preventDefault();
+        items = PT.move(items, dragFrom, Number(li.dataset.index));
+        dragFrom = null;
+        render();
+    });
+    list.addEventListener('dragend', function () { dragFrom = null; });
+
+    var zone = $('dropZone');
+    zone.addEventListener('dragover', function (ev) { if (ev.dataTransfer && Array.prototype.indexOf.call(ev.dataTransfer.types, 'Files') >= 0) ev.preventDefault(); });
+    zone.addEventListener('drop', function (ev) { if (ev.dataTransfer && ev.dataTransfer.files.length) { ev.preventDefault(); add(ev.dataTransfer.files); } });
+    $('imageInput').addEventListener('change', function (ev) { add(ev.target.files); ev.target.value = ''; });
+    $('clearImages').addEventListener('click', function () { items.forEach(function (it) { URL.revokeObjectURL(it.url); }); items = []; errors.hidden = true; render(); });
+
+    /** JPG and PNG go in as they are. Rotated photos and other formats are redrawn upright as JPEG. */
+    async function prepare(it) {
+        var bytes = new Uint8Array(await it.file.arrayBuffer());
+        var type = PT.sniff(bytes);
+        if (type === 'png' || (type === 'jpg' && PT.exifOrientation(bytes) === 1)) return { bytes: bytes, type: type };
+        var bmp;
+        try { bmp = await createImageBitmap(it.file, { imageOrientation: 'from-image' }); }
+        catch (e) { throw new Error('This browser cannot open ' + it.name + '. Save it as JPG or PNG and add it again.'); }
+        var c = document.createElement('canvas');
+        c.width = bmp.width; c.height = bmp.height;
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; // JPEG has no transparency: put see-through parts on white, not black
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(bmp, 0, 0);
+        var blob = await new Promise(function (res) { c.toBlob(res, 'image/jpeg', 0.92); });
+        return { bytes: new Uint8Array(await blob.arrayBuffer()), type: 'jpg' };
+    }
+
+    function save(bytes, name) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }
+
+    $('makePdf').addEventListener('click', async function () {
+        var btn = this;
+        btn.disabled = true;
+        errors.hidden = true;
+        try {
+            var ready = [];
+            for (var i = 0; i < items.length; i++) {
+                status.textContent = 'Reading image ' + (i + 1) + ' of ' + items.length + '...';
+                ready.push(await prepare(items[i]));
+            }
+            var opts = { size: $('pageSize').value, orientation: $('orientation').value, margin: $('margin').value };
+            var bytes = await PT.imagesToPdf(PDFLib, ready, opts, function (done, total) { status.textContent = 'Adding page ' + done + ' of ' + total + '...'; });
+            save(bytes, items.length === 1 ? items[0].name.replace(/\.[^.]+$/, '') + '.pdf' : 'images.pdf');
+            status.textContent = 'Done: ' + ready.length + (ready.length === 1 ? ' page, ' : ' pages, ') + kb(bytes.length) + '. Check your downloads.';
+        } catch (e) {
+            errors.hidden = false;
+            errors.textContent = e && e.message && /cannot open/.test(e.message) ? e.message : 'Something went wrong while making the PDF. Try fewer or smaller images.';
+            status.textContent = 'The PDF was not made.';
+        } finally {
+            btn.disabled = items.length === 0;
+        }
+    });
+    render();
+})();
+</script>
+{% endblock %}

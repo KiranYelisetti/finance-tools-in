@@ -1,0 +1,277 @@
+---
+title: "Merge PDF: Join PDF Files into One, in Your Browser"
+layout: base.njk
+date: 2026-11-07
+updated: 2026-11-07
+meta_title: "Merge PDF Files Online: Combine PDFs in Order, No Upload"
+meta_description: "Combine two or more PDF files into one in your browser. See how many pages each file has, put the files in order and download the merged PDF. Nothing is uploaded, and there is no file limit or watermark."
+meta_keywords: "merge pdf, combine pdf, join pdf files, merge pdf online free, combine pdf without upload, merge pdf files into one"
+noIconFont: true
+faqs:
+  - q: "Are my PDFs uploaded anywhere?"
+    a: "No. The files are read and joined by your browser with pdf-lib, an open-source PDF library that runs on this page. Nothing is sent to a server, so bank statements, contracts and ID documents stay on your device."
+  - q: "Is there a limit on files or pages?"
+    a: "There is no set limit and no watermark. The only limit is your device's memory, because the files are held in the browser while they are joined. Most phones and laptops handle dozens of ordinary PDFs without trouble."
+  - q: "Why does it say my PDF is password protected?"
+    a: "The file is encrypted, and its pages cannot be copied without the password. Open it in a PDF reader with the password, then use Print and choose Save as PDF, which makes an unlocked copy. Merge that copy here."
+  - q: "Do links, bookmarks and form fields survive?"
+    a: "The pages, text, images and page sizes are copied exactly, and the text stays searchable. Bookmarks from the original files are not carried over, and filled form fields and links that point to other pages may not work in the merged file. Check the result if those matter."
+  - q: "Can I merge only some pages of a file?"
+    a: "This tool joins whole files. To keep only certain pages, open the PDF in a reader, print those pages with Save as PDF, and merge the smaller file here."
+  - q: "Will the merged file be larger than the originals?"
+    a: "It is usually close to the size of the files added together. The pages are not compressed again, so their quality does not change."
+---
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Merge PDF",
+  "url": "https://www.quicktoolsplus.com/merge-pdf/",
+  "description": "Joins PDF files into one in the browser, in the order you choose, with page counts and clear messages for locked or damaged files. Nothing is uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "inLanguage": "en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{% for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.quicktoolsplus.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merge PDF", "item": "https://www.quicktoolsplus.com/merge-pdf/" }
+  ]
+}
+</script>
+{% endblock %}
+
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>Merge PDF</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-everyday">Everyday</span>
+            <span class="qt-stamp">Updated {{ updated | humanDate }}</span>
+        </div>
+        <h1 class="qt-h1 mt-4">Merge PDF</h1>
+        <p class="qt-lede mt-4">Join two or more PDF files into one, in the order you choose. The files are combined in your browser, with no upload, no limit and no watermark.</p>
+    </section>
+
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-7 min-w-0" aria-label="Your PDF files">
+            <div class="qt-card">
+                <div id="dropZone" class="qt-panel p-6 sm:p-8 text-center">
+                    <p class="qt-h3">Choose PDF files or drop them here</p>
+                    <p class="qt-hint mt-2">Add at least two. You can add more in several goes.</p>
+                    <label for="pdfInput" class="qt-btn mt-4 inline-flex cursor-pointer">Choose PDF files</label>
+                    <input type="file" id="pdfInput" class="sr-only" accept="application/pdf,.pdf" multiple>
+                </div>
+                <div id="fileErrors" class="qt-note is-danger mt-4" role="alert" hidden></div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-6">
+                    <h2 class="qt-card-title" id="listTitle">Files <span id="fileCount" class="text-muted">0</span></h2>
+                    <button type="button" id="clearFiles" class="qt-btn qt-btn--ghost qt-btn--sm" disabled>Remove all</button>
+                </div>
+                <p id="emptyList" class="qt-hint mt-2">Your files appear here in the order they will be joined. Drag them, or use the arrows, to change the order.</p>
+                <ol id="pdfList" class="mt-3 grid gap-3" aria-labelledby="listTitle"></ol>
+            </div>
+        </section>
+
+        <section class="lg:col-span-5 min-w-0" aria-label="Merged PDF">
+            <div class="qt-card is-everyday">
+                <p class="qt-eyebrow">Merged PDF</p>
+                <div class="qt-well mt-3">
+                    <div class="qt-rows">
+                        <div class="qt-row"><span class="qt-row-key">Files</span><span class="qt-row-val" id="summaryFiles">0</span></div>
+                        <div class="qt-row"><span class="qt-row-key">Pages</span><span class="qt-row-val" id="totalPages">0</span></div>
+                        <div class="qt-row"><span class="qt-row-key">Combined size</span><span class="qt-row-val" id="totalSize">0 KB</span></div>
+                    </div>
+                </div>
+                <button type="button" id="mergePdf" class="qt-btn qt-btn--block mt-5" disabled>Merge PDFs</button>
+                <p id="pdfStatus" class="mt-3 text-sm font-semibold text-center" aria-live="polite">Add two or more PDF files.</p>
+            </div>
+        </section>
+    </div>
+
+    <article class="qt-prose qt-section">
+        <h2>How to merge PDF files</h2>
+        <ol>
+            <li>Choose your PDF files, or drag them from a folder onto the box. Each file shows its page count as soon as it is read.</li>
+            <li>Put the files in the order you want. The first file's pages come first. Drag a row to move it, or use the up and down arrows, which also work with a keyboard and on phones.</li>
+            <li>Press Merge PDFs. The joined file downloads as merged.pdf. Open it once and flick through to check the order before you send it.</li>
+        </ol>
+
+        <h2>What merging keeps, and what it does not</h2>
+        <p>Every page is copied as it is: the text, the images, the fonts and the page size. Text stays searchable and selectable, and pages are not compressed again, so a scanned document looks exactly as sharp as before. Files with different page sizes can be joined, and each page keeps its own size, so an A4 letter and a US Letter form can sit in the same PDF.</p>
+        <p>A few things belong to a whole document rather than to its pages. Bookmarks and the outline panel of the original files are not carried across. Form fields filled in a PDF reader and links that jump to another page may stop working in the merged file. If you need those, keep the original files alongside the merged copy.</p>
+
+        <h3>Password-protected and damaged files</h3>
+        <p>A PDF with a password to open it, or with copying blocked, is encrypted, and its pages cannot be copied into another file without unlocking it first. The page tells you which file is locked instead of making a broken PDF. To unlock a file you are allowed to open, open it with its password in any PDF reader or browser, choose Print, pick Save as PDF as the printer, and merge the new copy. Files that are damaged, cut short by an interrupted download, or not really PDFs are named in the same way, so you know exactly which one to replace.</p>
+
+        <h3>Common reasons to merge</h3>
+        <ul>
+            <li>Sending one file for an application: a form, an ID proof, an address proof and a photo page, in the order the office asks for.</li>
+            <li>Joining monthly bank or card statements into one file for a loan, a visa or a tax return.</li>
+            <li>Putting scanned pages that came out as separate files back into one document.</li>
+            <li>Combining a report with its appendix, or a quote with its terms, before emailing them.</li>
+        </ul>
+        <p>Turning photos of documents into a PDF first? Use <a href="/jpg-to-pdf/">JPG to PDF</a>, then merge the result with your other files here.</p>
+
+        <h3>Private by design</h3>
+        <p>The files are read and joined on this page by pdf-lib, an open-source library that runs in your browser. Nothing is uploaded, nothing is stored, and there is no account, so it is safe for statements, contracts and identity documents. Once the page has loaded, merging works with the internet switched off.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            {% for f in faqs %}<details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+            {% endfor %}
+        </div>
+    </article>
+    </div>
+</main>
+
+{% block scripts %}
+<script src="/js/vendor/pdf-lib-1.17.1.min.js"></script>
+<script src="/js/calc/pdf-tools.js"></script>
+<script>
+(function () {
+    var PT = QTCalc.pdfTools;
+    var files = []; // { name, size, doc, pages }
+    var $ = function (id) { return document.getElementById(id); };
+    var list = $('pdfList'), status = $('pdfStatus'), errorBox = $('fileErrors');
+    var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
+    var fmt = function (n) { return Number(n).toLocaleString('en-IN'); };
+    var REASONS = {
+        encrypted: 'is password protected. Open it with its password, use Print and Save as PDF to make an unlocked copy, and add that.',
+        broken: 'could not be read. It may be damaged or only partly downloaded.',
+        'not-pdf': 'is not a PDF file.',
+        empty: 'has no pages.'
+    };
+
+    function render() {
+        list.textContent = '';
+        files.forEach(function (f, i) {
+            var li = document.createElement('li');
+            li.className = 'qt-panel flex items-center gap-3 p-3';
+            li.draggable = true;
+            li.dataset.index = String(i);
+            li.innerHTML = '<span class="qt-row-key w-6 text-center"></span>' +
+                '<span class="min-w-0 flex-1"><span class="block font-semibold break-all"></span><span class="block qt-hint mt-0"></span></span>' +
+                '<span class="flex gap-1 shrink-0"></span>';
+            li.children[0].textContent = String(i + 1);
+            li.children[1].children[0].textContent = f.name;
+            li.children[1].children[1].textContent = fmt(f.pages) + (f.pages === 1 ? ' page, ' : ' pages, ') + kb(f.size);
+            [['up', '↑', 'Move ' + f.name + ' up', i === 0], ['down', '↓', 'Move ' + f.name + ' down', i === files.length - 1], ['remove', '×', 'Remove ' + f.name, false]].forEach(function (b) {
+                var el = document.createElement('button');
+                el.type = 'button';
+                el.className = 'qt-btn qt-btn--secondary qt-btn--sm';
+                el.textContent = b[1];
+                el.setAttribute('aria-label', b[2]);
+                el.disabled = b[3];
+                el.dataset.act = b[0];
+                li.children[2].appendChild(el);
+            });
+            list.appendChild(li);
+        });
+        var pages = files.reduce(function (s, f) { return s + f.pages; }, 0);
+        var size = files.reduce(function (s, f) { return s + f.size; }, 0);
+        $('fileCount').textContent = String(files.length);
+        $('summaryFiles').textContent = fmt(files.length);
+        $('totalPages').textContent = fmt(pages);
+        $('totalSize').textContent = kb(size);
+        $('emptyList').hidden = files.length > 0;
+        $('mergePdf').disabled = files.length < 2;
+        $('clearFiles').disabled = files.length === 0;
+        status.textContent = files.length < 2 ? (files.length ? 'Add one more PDF to merge.' : 'Add two or more PDF files.') : 'Ready to merge ' + files.length + ' files into ' + fmt(pages) + ' pages.';
+    }
+
+    async function add(fileList) {
+        var problems = [];
+        var incoming = Array.prototype.slice.call(fileList);
+        for (var i = 0; i < incoming.length; i++) {
+            var f = incoming[i];
+            status.textContent = 'Reading ' + f.name + '...';
+            var opened = await PT.openPdf(PDFLib, new Uint8Array(await f.arrayBuffer()));
+            if (opened.ok) files.push({ name: f.name, size: f.size, doc: opened.doc, pages: opened.pages });
+            else problems.push({ name: f.name, kind: opened.kind });
+        }
+        errorBox.textContent = '';
+        problems.forEach(function (p) {
+            var line = document.createElement('p');
+            var strong = document.createElement('strong');
+            strong.textContent = p.name;
+            line.appendChild(strong);
+            line.appendChild(document.createTextNode(' ' + REASONS[p.kind] + ' It was left out.'));
+            errorBox.appendChild(line);
+        });
+        errorBox.hidden = problems.length === 0;
+        render();
+    }
+
+    list.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button[data-act]');
+        if (!b) return;
+        var i = Number(b.closest('li').dataset.index);
+        if (b.dataset.act === 'up') files = PT.move(files, i, i - 1);
+        else if (b.dataset.act === 'down') files = PT.move(files, i, i + 1);
+        else files.splice(i, 1);
+        render();
+        var again = list.querySelector('li[data-index="' + Math.min(b.dataset.act === 'up' ? i - 1 : b.dataset.act === 'down' ? i + 1 : i, files.length - 1) + '"] button[data-act="' + b.dataset.act + '"]');
+        if (again && !again.disabled) again.focus();
+    });
+
+    var dragFrom = null;
+    list.addEventListener('dragstart', function (ev) { var li = ev.target.closest('li'); if (li) { dragFrom = Number(li.dataset.index); ev.dataTransfer.effectAllowed = 'move'; } });
+    list.addEventListener('dragover', function (ev) { if (dragFrom !== null) ev.preventDefault(); });
+    list.addEventListener('drop', function (ev) {
+        var li = ev.target.closest('li');
+        if (dragFrom === null || !li) return;
+        ev.preventDefault();
+        files = PT.move(files, dragFrom, Number(li.dataset.index));
+        dragFrom = null;
+        render();
+    });
+    list.addEventListener('dragend', function () { dragFrom = null; });
+
+    var zone = $('dropZone');
+    zone.addEventListener('dragover', function (ev) { if (ev.dataTransfer && Array.prototype.indexOf.call(ev.dataTransfer.types, 'Files') >= 0) ev.preventDefault(); });
+    zone.addEventListener('drop', function (ev) { if (ev.dataTransfer && ev.dataTransfer.files.length) { ev.preventDefault(); add(ev.dataTransfer.files); } });
+    $('pdfInput').addEventListener('change', function (ev) { var fl = ev.target.files; add(fl).then(function () { ev.target.value = ''; }); });
+    $('clearFiles').addEventListener('click', function () { files = []; errorBox.hidden = true; render(); });
+
+    $('mergePdf').addEventListener('click', async function () {
+        var btn = this;
+        btn.disabled = true;
+        try {
+            var bytes = await PT.mergeDocs(PDFLib, files.map(function (f) { return f.doc; }), function (done, total) { status.textContent = 'Joining file ' + done + ' of ' + total + '...'; });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+            a.download = 'merged.pdf';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+            var pages = files.reduce(function (s, f) { return s + f.pages; }, 0);
+            status.textContent = 'Done: ' + fmt(pages) + ' pages, ' + kb(bytes.length) + '. Check your downloads.';
+        } catch (e) {
+            errorBox.hidden = false;
+            errorBox.textContent = 'Something went wrong while joining the files. Try merging fewer at a time.';
+            status.textContent = 'The PDF was not made.';
+        } finally {
+            btn.disabled = files.length < 2;
+        }
+    });
+    render();
+})();
+</script>
+{% endblock %}

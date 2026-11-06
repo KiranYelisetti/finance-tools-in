@@ -61,5 +61,5 @@ export const TOOL_PAGES = [
   "/", "/number-to-words/", "/lakh-crore-in-numbers/", "/home-loan-calculator/", "/car-loan-calculator/",
   "/emi-prepayment-calculator/", "/sip-calculator/", "/ppf-calculator/", "/ssy-calculator/", "/gst-calculator/",
   "/income-tax-calculator/", "/salary-calculator/", "/age-calculator/", "/cash-counter/", "/image-resizer/",
-  "/study-abroad-calculator/", "/wedding-cost-calculator/", "/word-counter/", "/qr-code-generator/",
+  "/study-abroad-calculator/", "/wedding-cost-calculator/", "/word-counter/", "/qr-code-generator/", "/jpg-to-pdf/", "/merge-pdf/",
 ];
