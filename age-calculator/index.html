@@ -365,7 +365,7 @@
                             class="qt-btn flex-1">
                             Calculate Age
                         </button>
-                        <button onclick="resetForm('age_calc')"
+                        <button onclick="resetForm('age_calc'); setToday();"
                             class="qt-btn">
                             Reset
                         </button>
@@ -443,7 +443,7 @@
                     <div class="qt-note is-tip">
                         <h4 class="font-bold mb-2">Fun Facts</h4>
                         <p class="text-sm mb-2"><strong>Generation:</strong> <span id="generation" class="font-bold"></span></p>
-                        <p class="text-sm"><strong>Next Milestone:</strong> You will be <span class="font-bold">10,000 days</span> old on <span id="tenkDate" class="font-bold"></span></p>
+                        <p class="text-sm"><strong>Next Milestone:</strong> You will be <span class="font-bold" id="milestoneDays">10,000 days</span> old on <span id="tenkDate" class="font-bold"></span></p>
                     </div>
 
                     <button onclick="shareResult('My Age', document.getElementById('ageInWords').innerText)"
@@ -642,8 +642,8 @@
 <script>
     // Set today's date on page load
     function setToday() {
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('currentDate').value = today;
+        // Local date, not the UTC one (toISOString was a day behind in India before 5:30 am)
+        document.getElementById('currentDate').value = QTCalc.age.todayLocal();
     }
 
     // Initialize with today's date
@@ -686,6 +686,7 @@
 
         // Next birthday text
         const nextBirthdayText = a.nextBirthday.toLocaleDateString('en-IN', {
+            timeZone: 'UTC',
             weekday: 'long',
             year: 'numeric',
             month: 'long',
@@ -695,8 +696,9 @@
 
         document.getElementById('generation').textContent = a.generation;
 
-        // 10,000th day (or the next round milestone)
-        document.getElementById('tenkDate').textContent = a.milestoneDate.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) + ' (' + a.milestoneDays.toLocaleString() + 'th Day)';
+        // 10,000th day (or the next round milestone), and the sentence names the same number
+        document.getElementById('milestoneDays').textContent = a.milestoneDays.toLocaleString('en-IN') + ' days';
+        document.getElementById('tenkDate').textContent = a.milestoneDate.toLocaleDateString('en-IN', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' }) + ' (' + a.milestoneDays.toLocaleString('en-IN') + 'th Day)';
 
         // Show results, hide placeholder
         document.getElementById('results').classList.remove('hidden');

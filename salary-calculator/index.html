@@ -393,6 +393,10 @@
                             <span>Professional Tax</span>
                             <span class="font-semibold" id="resProfTax">₹0</span>
                         </div>
+                        <div class="qt-panel flex justify-between p-3" id="rowEmployeeESI" hidden>
+                            <span>ESI, your 0.75%</span>
+                            <span class="font-semibold" id="resEmployeeESI">₹0</span>
+                        </div>
                         <div class="qt-panel flex justify-between p-3">
                             <span>Income Tax (TDS/month est.)</span>
                             <span class="font-semibold" id="resTDS">₹0</span>
@@ -721,6 +725,7 @@
 </main>
 
 
+<script src="/js/calc/income-tax.js"></script>
 <script src="/js/calc/salary.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -739,7 +744,8 @@
         const cityType = document.getElementById('cityType').value;
         const basicPercent = parseINR(document.getElementById('basicPercent').value) || 40;
         const monthlyBonus = parseINR(document.getElementById('monthlyBonus').value) || 0;
-        const profTax = parseINR(document.getElementById('profTax').value) || 200;
+        // A blank or 0 means no professional tax (Delhi, Haryana, Uttar Pradesh and Rajasthan levy none)
+        const profTax = parseINR(document.getElementById('profTax').value);
 
         // The payslip sums and the tax estimate live in /js/calc/salary.js (unit tested in tests/unit)
         const s = QTCalc.salary.calculate({ annualCTC, cityType, basicPercent, monthlyBonus, profTax });
@@ -761,6 +767,8 @@
         // Deductions
         document.getElementById('resEmployeePF').textContent = '- ' + fmt(Math.round(s.monthlyEmployeePF));
         document.getElementById('resProfTax').textContent = '- ' + fmt(Math.round(s.profTax));
+        document.getElementById('rowEmployeeESI').hidden = !(s.monthlyEmployeeESI > 0);
+        document.getElementById('resEmployeeESI').textContent = '- ' + fmt(Math.round(s.monthlyEmployeeESI));
         document.getElementById('resTDS').textContent = '- ' + fmt(Math.round(s.monthlyTDS));
         document.getElementById('resTotalDeductions').textContent = fmt(Math.round(s.totalMonthlyDeductions));
 

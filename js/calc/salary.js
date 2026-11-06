@@ -25,6 +25,9 @@
             var excessOver12L = taxableIncome - 1200000;
             if (tax > excessOver12L) tax = excessOver12L;
         }
+        // Surcharge above Rs 50 lakh, with marginal relief, through the income tax module's rule when it is loaded
+        var IT = (typeof module !== 'undefined' && module.exports) ? require('./income-tax.js') : (root.QTCalc && root.QTCalc.incomeTax);
+        if (IT && IT.surcharge) tax += IT.surcharge(taxableIncome, 'new');
         tax = tax + tax * 0.04;
         return Math.round(tax);
     }
@@ -52,7 +55,14 @@
         var monthlyEmployerESI = grossBeforeESI <= 21000 ? grossBeforeESI * 0.0325 : 0;
 
         var monthlyCTC = annualCTC / 12;
-        var monthlySpecialAllowance = Math.max(0, monthlyCTC - monthlyBasic - monthlyHRA - monthlyEmployerPF - monthlyGratuity - monthlyEmployerESI);
+        // What is left of the CTC is the special allowance. When a high basic leaves less than nothing (60% basic in a
+        // 50% city), HRA gives way so the parts never add up to more than the CTC.
+        var rest = monthlyCTC - monthlyBasic - monthlyHRA - monthlyEmployerPF - monthlyGratuity - monthlyEmployerESI;
+        if (rest < 0) {
+            monthlyHRA = Math.max(0, monthlyHRA + rest);
+            rest = 0;
+        }
+        var monthlySpecialAllowance = rest;
 
         var monthlyGross = monthlyBasic + monthlyHRA + monthlySpecialAllowance + monthlyBonus;
 
@@ -60,7 +70,11 @@
         var annualTax = newRegimeTax(annualGross);
         var monthlyTDS = Math.round(annualTax / 12);
 
-        var totalMonthlyDeductions = monthlyEmployeePF + profTax + monthlyTDS;
+        // ESI: the employee pays 0.75% of gross when the salary is ESI-covered (ESIC rates from 1 July 2019,
+        // coverage up to Rs 21,000 a month, the same test the employer's 3.25% uses above)
+        var monthlyEmployeeESI = grossBeforeESI <= 21000 ? monthlyGross * 0.0075 : 0;
+
+        var totalMonthlyDeductions = monthlyEmployeePF + profTax + monthlyTDS + monthlyEmployeeESI;
         var monthlyInHand = monthlyGross - totalMonthlyDeductions;
 
         return {
@@ -71,6 +85,7 @@
             monthlyBonus: monthlyBonus,
             monthlyGross: monthlyGross,
             monthlyEmployeePF: monthlyEmployeePF,
+            monthlyEmployeeESI: monthlyEmployeeESI,
             profTax: profTax,
             annualTax: annualTax,
             monthlyTDS: monthlyTDS,

@@ -297,11 +297,11 @@
                                 <span class="absolute left-3 top-1/2 transform -translate-y-1/2">₹</span>
                                 <input type="number" id="monthlyInvestment" value="5000" min="500"
                                     class="qt-input format-inr w-full pl-8 pr-4"
-                                    oninput="calculateSIP()">
+                                    oninput="syncSlider(this); calculateSIP()">
                             </div>
-                            <input type="range" aria-label="Monthly investment slider" min="500" max="100000" step="500" value="5000"
+                            <input type="range" data-for="monthlyInvestment" aria-label="Monthly investment slider" min="500" max="100000" step="500" value="5000"
                                 class="qt-range w-full mt-3"
-                                oninput="document.getElementById('monthlyInvestment').value = formatIndianNumber(this.value); calculateSIP()">
+                                oninput="syncField(this)">
                         </div>
 
                         <!-- Expected Return Rate Input -->
@@ -312,12 +312,12 @@
                             <div class="relative">
                                 <input type="number" id="returnRate" value="12" min="1" max="30" step="0.1"
                                     class="qt-input w-full pl-4 pr-8"
-                                    oninput="calculateSIP()">
+                                    oninput="syncSlider(this); calculateSIP()">
                                 <span class="absolute right-3 top-1/2 transform -translate-y-1/2">%</span>
                             </div>
-                            <input type="range" aria-label="Expected return slider" min="1" max="30" step="0.5" value="12"
+                            <input type="range" data-for="returnRate" aria-label="Expected return slider" min="1" max="30" step="0.5" value="12"
                                 class="qt-range w-full mt-3"
-                                oninput="document.getElementById('returnRate').value = this.value; calculateSIP()">
+                                oninput="syncField(this)">
                         </div>
 
                         <!-- Time Period Input -->
@@ -328,12 +328,12 @@
                             <div class="relative">
                                 <input type="number" id="timePeriod" value="10" min="1" max="40"
                                     class="qt-input w-full pl-4 pr-12"
-                                    oninput="calculateSIP()">
+                                    oninput="syncSlider(this); calculateSIP()">
                                 <span class="absolute right-3 top-1/2 transform -translate-y-1/2">Yr</span>
                             </div>
-                            <input type="range" aria-label="Time period slider" min="1" max="40" value="10"
+                            <input type="range" data-for="timePeriod" aria-label="Time period slider" min="1" max="40" value="10"
                                 class="qt-range w-full mt-3"
-                                oninput="document.getElementById('timePeriod').value = this.value; calculateSIP()">
+                                oninput="syncField(this)">
                         </div>
                     </div>
                 </div>
@@ -821,6 +821,19 @@
                 cutout: '70%'
             }
         });
+    }
+
+    // Each slider and its field stay in step. The field is the one that is saved: a slider move is written into the
+    // field and sent through the field's own input event, so auto-save and the sums see it. A typed value moves the slider.
+    function syncField(slider) {
+        const field = document.getElementById(slider.dataset.for);
+        field.value = field.classList.contains('format-inr') ? formatIndianNumber(slider.value) : slider.value;
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    function syncSlider(field) {
+        const slider = document.querySelector(`input[type="range"][data-for="${field.id}"]`);
+        const v = parseINR(field.value);
+        if (slider && v > 0) slider.value = v;
     }
 
     // Initialize on load

@@ -24,21 +24,19 @@
         var inflationRate = o.inflationPct / 100;
         var goldAmount = o.hasGold ? (o.goldAmount || 0) : 0;
 
+        // The wedding itself, grown by inflation. A destination wedding's 20% premium is its own line, so the
+        // breakdown (wedding + premium + gold) adds up to the total and the premium is never counted twice.
         var futureWeddingCost = baseBudget * Math.pow((1 + inflationRate), years);
-        var destinationPremium = 0;
-        if (o.isDestination) {
-            destinationPremium = futureWeddingCost * DESTINATION_PREMIUM;
-            futureWeddingCost += destinationPremium;
-        }
+        var destinationPremium = o.isDestination ? futureWeddingCost * DESTINATION_PREMIUM : 0;
 
         var futureGoldCost = 0;
         if (o.hasGold) futureGoldCost = goldAmount * Math.pow((1 + GOLD_GROWTH), years);
 
-        var totalFutureCost = futureWeddingCost + futureGoldCost;
+        var totalFutureCost = futureWeddingCost + destinationPremium + futureGoldCost;
         var currentTotalCost = baseBudget + (o.isDestination ? baseBudget * DESTINATION_PREMIUM : 0) + goldAmount;
 
         return {
-            futureWeddingCost: futureWeddingCost, // includes the destination premium
+            futureWeddingCost: futureWeddingCost, // the wedding alone, without the destination premium
             destinationPremium: destinationPremium,
             futureGoldCost: futureGoldCost,
             totalFutureCost: totalFutureCost,

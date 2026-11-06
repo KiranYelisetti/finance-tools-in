@@ -17,11 +17,15 @@
 
         var rtoAmount = (carPrice * rtoTaxPercent) / 100;
         var onRoadPrice = carPrice + rtoAmount + insurance + accessories + otherCharges;
-        var loanAmount = onRoadPrice - downPayment;
-
+        // A down payment above the on-road price leaves nothing to borrow (never a negative loan)
+        var paidDown = Math.min(downPayment, onRoadPrice);
+        var loanAmount = Math.max(0, onRoadPrice - downPayment);
         var monthlyRate = o.annualRate / 12 / 100;
         var tenureMonths = o.tenureYears * 12;
-        var emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) /
+        var emi;
+        if (loanAmount === 0 || !(tenureMonths > 0)) emi = 0;
+        else if (monthlyRate === 0) emi = loanAmount / tenureMonths; // interest-free (zero-cost EMI) loans
+        else emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) /
             (Math.pow(1 + monthlyRate, tenureMonths) - 1);
 
         var totalEMIPayments = emi * tenureMonths;
@@ -35,9 +39,9 @@
             emi: emi,
             totalEMIPayments: totalEMIPayments,
             totalInterest: totalInterest,
-            totalAmountPaid: downPayment + totalEMIPayments,
+            totalAmountPaid: paidDown + totalEMIPayments,
             interestPercentOfPrice: (totalInterest / carPrice) * 100,
-            downPaymentPercent: (downPayment / onRoadPrice) * 100
+            downPaymentPercent: onRoadPrice > 0 ? (paidDown / onRoadPrice) * 100 : 0
         };
     }
 

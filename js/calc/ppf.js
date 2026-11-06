@@ -20,11 +20,13 @@
         var balance = 0;
         var totalContribution = 0;
         var balanceAfter7Years = 0;
+        var balanceAfter4Years = 0;
 
         for (var year = 1; year <= years; year++) {
             balance += annualContribution;
             totalContribution += annualContribution;
             balance += balance * interestRate;
+            if (year === 4) balanceAfter4Years = balance;
             if (year === 7) balanceAfter7Years = balance;
         }
 
@@ -35,9 +37,12 @@
             totalContribution: totalContribution,
             totalInterest: balance - totalContribution,
             balanceAfter7Years: balanceAfter7Years,
-            partialWithdrawal: balanceAfter7Years * 0.50,
+            // PPF Scheme, 2019, para 9(1): from year 8, up to 50% of the lower of the balance at the end of the 4th
+            // year before and the balance at the end of the year before. In year 8 that is year 4 against year 7.
+            partialWithdrawal: 0.50 * Math.min(balanceAfter4Years, balanceAfter7Years),
             taxBenefit: taxBenefit,
-            taxSavings: taxBenefit * 0.30
+            // 30% slab plus the 4% health and education cess = 31.2% (old regime only, section 123)
+            taxSavings: taxBenefit * 0.312
         };
     }
 
