@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225082715542003"
+         crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3255KS80R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-C3255KS80R');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Design system - QuickTools India</title>
+    <meta name="description" content="The QuickTools India design system: colour tokens, type scale, components and states, in day and night themes.">
+    
+    <meta name="author" content="QuickTools India">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.quicktoolsindia.com/design-system/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.quicktoolsindia.com/design-system/">
+    <meta property="og:title" content="Design system - QuickTools India">
+    <meta property="og:description" content="The QuickTools India design system: colour tokens, type scale, components and states, in day and night themes.">
+    <meta property="og:image" content="https://www.quicktoolsindia.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Design system - QuickTools India">
+    <meta property="og:site_name" content="QuickTools India">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@quicktoolsindia">
+    <meta name="twitter:url" content="https://www.quicktoolsindia.com/design-system/">
+    <meta name="twitter:title" content="Design system - QuickTools India">
+    <meta name="twitter:description" content="The QuickTools India design system: colour tokens, type scale, components and states, in day and night themes.">
+    <meta name="twitter:image" content="https://www.quicktoolsindia.com/og-image.png">
+    <meta name="twitter:image:alt" content="Design system - QuickTools India">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
+    <script>
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+
+    
+
+    
+</head>
+
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
+
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
+
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
+        </div>
+    </div>
+</header>
+
+
+    
+<main class="qt-wrap pb-10">
+    <section class="qt-toolhead">
+        <div class="flex flex-wrap gap-3">
+            <span class="qt-sticker">Desi Pop v2</span>
+            <span class="qt-stamp">Internal reference, not indexed</span>
+        </div>
+        <h1 class="qt-h1 mt-4">Design system</h1>
+        <p class="qt-lede mt-4">Every colour, size and component QuickTools uses, in one place. Pages use roles and components only, never raw colours. Switch day and night with the button in the header to check both themes. Written up in <code>docs/DESIGN-SYSTEM.md</code>.</p>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-colour">
+        <h2 id="ds-colour" class="qt-h2 mb-2">1. Colour</h2>
+        <p class="text-ink-2 mb-6 max-w-2xl">Raw scales are named after Indian colours. Components never use them directly: they use the roles below, which the night theme swaps.</p>
+        <div class="space-y-5">
+            
+            <div>
+                <p class="font-bold">chai <span class="text-muted font-medium">warm neutrals, paper and ink</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-800)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">800</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-900)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">900</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--chai-950)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">950</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">haldi <span class="text-muted font-medium">turmeric yellow, main actions</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--haldi-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">rani <span class="text-muted font-medium">rani pink, second accent</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--rani-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">mor <span class="text-muted font-medium">peacock teal, links and focus</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mor-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">mehendi <span class="text-muted font-medium">henna green, success</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--mehendi-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">neel <span class="text-muted font-medium">indigo, the everyday group only</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--neel-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div>
+                <p class="font-bold">sindoor <span class="text-muted font-medium">vermilion, errors</span></p>
+                <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2 mt-2">
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-50)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">50</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-100)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">100</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-200)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">200</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-300)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">300</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-400)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">400</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-500)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">500</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-600)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">600</p>
+                    </div>
+                    
+                    <div class="rounded-field border-2 border-line overflow-hidden">
+                        <div class="h-12" style="background: var(--sindoor-700)"></div>
+                        <p class="text-xs font-bold px-2 py-1 bg-surface">700</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <h3 class="qt-h3 mt-10 mb-3">Roles</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-canvas)"></span>
+                <code class="text-sm font-bold">--qt-canvas</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-surface)"></span>
+                <code class="text-sm font-bold">--qt-surface</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-sunken)"></span>
+                <code class="text-sm font-bold">--qt-sunken</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-ink)"></span>
+                <code class="text-sm font-bold">--qt-ink</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-ink-2)"></span>
+                <code class="text-sm font-bold">--qt-ink-2</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-muted)"></span>
+                <code class="text-sm font-bold">--qt-muted</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-line)"></span>
+                <code class="text-sm font-bold">--qt-line</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-line-soft)"></span>
+                <code class="text-sm font-bold">--qt-line-soft</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-shadow)"></span>
+                <code class="text-sm font-bold">--qt-shadow</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-primary)"></span>
+                <code class="text-sm font-bold">--qt-primary</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-accent)"></span>
+                <code class="text-sm font-bold">--qt-accent</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-link)"></span>
+                <code class="text-sm font-bold">--qt-link</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-focus)"></span>
+                <code class="text-sm font-bold">--qt-focus</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-success)"></span>
+                <code class="text-sm font-bold">--qt-success</code>
+            </div>
+            
+            <div class="flex items-center gap-3 border-2 border-line rounded-field bg-surface p-2">
+                <span class="w-9 h-9 rounded-md border-2 border-line flex-none" style="background: var(--qt-danger)"></span>
+                <code class="text-sm font-bold">--qt-danger</code>
+            </div>
+            
+        </div>
+        <h3 class="qt-h3 mt-10 mb-3">Tool groups</h3>
+        <div class="flex flex-wrap gap-3">
+            <span class="qt-sticker is-amounts">.is-amounts · Amounts and words</span><span class="qt-sticker is-loans">.is-loans · Loans</span><span class="qt-sticker is-tax">.is-tax · Tax and salary</span><span class="qt-sticker is-savings">.is-savings · Savings and plans</span><span class="qt-sticker is-everyday">.is-everyday · Everyday</span>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-type">
+        <h2 id="ds-type" class="qt-h2 mb-2">2. Type</h2>
+        <p class="text-ink-2 mb-6 max-w-2xl">One family, Bricolage Grotesque, variable in weight and optical size. Big sizes get the chunky display cut on their own. Sizes are fluid between a 360 px phone and a 1440 px screen. Figures are tabular wherever money is shown.</p>
+        <div class="qt-card space-y-6">
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.qt-display · 5xl</code>
+                <p class="qt-display">Display: ₹15,00,000</p>
+            </div>
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.qt-h1 · 4xl</code>
+                <p class="qt-h1">Page title: ₹15,00,000</p>
+            </div>
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.qt-h2 · 3xl</code>
+                <p class="qt-h2">Section title: ₹15,00,000</p>
+            </div>
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.qt-h3 · xl</code>
+                <p class="qt-h3">Card title: ₹15,00,000</p>
+            </div>
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline border-b-2 border-dashed border-line-soft pb-5 last:border-0 last:pb-0">
+                <code class="text-sm text-muted">.qt-lede · lg</code>
+                <p class="qt-lede">Lede paragraph: ₹15,00,000</p>
+            </div>
+            
+            <div class="grid gap-2 md:grid-cols-[9rem_1fr] items-baseline">
+                <code class="text-sm text-muted">.qt-eyebrow</code>
+                <p class="qt-eyebrow">Eyebrow label above a title</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-shape">
+        <h2 id="ds-shape" class="qt-h2 mb-6">3. Shape, depth and space</h2>
+        <div class="grid gap-5 md:grid-cols-3">
+            <div class="qt-card"><p class="font-bold mb-3">Radius</p>
+                <div class="flex gap-3 items-end">
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-sm)"></div>
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-md)"></div>
+                    <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-lg)"></div>
+                    <div class="w-20 h-9 bg-primary border-2 border-line" style="border-radius: var(--qt-r-pill)"></div>
+                </div>
+                <p class="qt-hint">8, 12, 20 px and pill. Fields use 12, cards 20.</p>
+            </div>
+            <div class="qt-card"><p class="font-bold mb-3">Hard shadow</p>
+                <div class="flex gap-5 items-end">
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-1)"></div>
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-2)"></div>
+                    <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-3)"></div>
+                </div>
+                <p class="qt-hint">2, 4, 7 px offsets, no blur. Pressing a button moves it into its shadow.</p>
+            </div>
+            <div class="qt-card"><p class="font-bold mb-3">Space</p>
+                <div class="flex gap-2 items-end">
+                    <div class="bg-rani-400 border-2 border-line" style="width: 4px; height: 4px"></div><div class="bg-rani-400 border-2 border-line" style="width: 8px; height: 8px"></div><div class="bg-rani-400 border-2 border-line" style="width: 12px; height: 12px"></div><div class="bg-rani-400 border-2 border-line" style="width: 16px; height: 16px"></div><div class="bg-rani-400 border-2 border-line" style="width: 24px; height: 24px"></div><div class="bg-rani-400 border-2 border-line" style="width: 32px; height: 32px"></div><div class="bg-rani-400 border-2 border-line" style="width: 48px; height: 48px"></div>
+                </div>
+                <p class="qt-hint">A 4 px grid: 4, 8, 12, 16, 24, 32, 48. Card padding is fluid, 18 to 30 px.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-actions">
+        <h2 id="ds-actions" class="qt-h2 mb-6">4. Buttons and chips</h2>
+        <div class="qt-card space-y-6">
+            <div class="flex flex-wrap gap-3 items-center">
+                <button type="button" class="qt-btn">Primary</button>
+                <button type="button" class="qt-btn qt-btn--secondary">Secondary</button>
+                <button type="button" class="qt-btn qt-btn--ink">Ink</button>
+                <button type="button" class="qt-btn qt-btn--accent">Accent</button>
+                <button type="button" class="qt-btn qt-btn--ghost">Ghost</button>
+                <button type="button" class="qt-btn" disabled>Disabled</button>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center">
+                <button type="button" class="qt-btn qt-btn--sm">Small</button>
+                <button type="button" class="qt-btn">Medium</button>
+                <button type="button" class="qt-btn qt-btn--lg">Large</button>
+            </div>
+            <div class="qt-chips">
+                <button type="button" class="qt-chip">15 lakh</button>
+                <button type="button" class="qt-chip" aria-pressed="true">Pressed</button>
+                <button type="button" class="qt-chip">1.5 crore</button>
+            </div>
+            <div class="qt-seg" role="group" aria-label="Example">
+                <button type="button" aria-pressed="true">New regime</button>
+                <button type="button" aria-pressed="false">Old regime</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-fields">
+        <h2 id="ds-fields" class="qt-h2 mb-6">5. Fields</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+            <div class="qt-card qt-fields">
+                <div>
+                    <label class="qt-label" for="ds-a">Loan amount <span class="qt-label-value">₹50 lakh</span></label>
+                    <div class="qt-affix is-prefix is-xl"><span class="qt-affix-text" aria-hidden="true">₹</span><input id="ds-a" class="qt-input qt-input--xl" value="50,00,000"></div>
+                    <input type="range" class="qt-range" min="0" max="100" value="40" aria-label="Example slider">
+                    <div class="qt-range-ends"><span>₹5 lakh</span><span>₹2 crore</span></div>
+                </div>
+                <div>
+                    <label class="qt-label" for="ds-b">Rate</label>
+                    <div class="qt-affix is-suffix"><input id="ds-b" class="qt-input" value="8.5"><span class="qt-affix-text">% a year</span></div>
+                    <p class="qt-hint">A hint sits under the field it explains.</p>
+                </div>
+            </div>
+            <div class="qt-card qt-fields">
+                <div>
+                    <label class="qt-label" for="ds-c">City</label>
+                    <span class="qt-select"><select id="ds-c" class="qt-input"><option>Hyderabad</option><option>Mumbai</option></select></span>
+                </div>
+                <div>
+                    <label class="qt-label" for="ds-d">With an error</label>
+                    <input id="ds-d" class="qt-input" value="12,,00" aria-invalid="true">
+                    <p class="qt-error">Type the amount in digits, like 12,00,000.</p>
+                </div>
+                <label class="qt-check" for="ds-e"><input type="checkbox" id="ds-e" checked><span>A checkbox with a label you can tap</span></label>
+            </div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-cards">
+        <h2 id="ds-cards" class="qt-h2 mb-6">6. Cards, results and notes</h2>
+        <div class="grid gap-6 lg:grid-cols-3">
+            <div class="qt-card is-loans">
+                <p class="qt-eyebrow">Monthly EMI</p>
+                <p class="qt-big mt-2">₹43,391</p>
+                <div class="qt-split mt-5"><span class="is-a" style="width:48%"></span><span class="is-b" style="width:52%"></span></div>
+                <p class="qt-legend"><span><i class="bg-haldi-400"></i>Principal</span><span><i class="bg-rani-400"></i>Interest</span></p>
+            </div>
+            <div class="qt-card">
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Indian</span><span class="qt-row-val">15 Lakh<small>₹15,00,000</small></span><button type="button" class="qt-copy" onclick="qt.copy('₹15,00,000', this)">Copy</button></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total</span><span class="qt-row-val">₹97,73,879</span><span></span></div>
+                </div>
+            </div>
+            <div class="qt-card is-amounts">
+                <p class="qt-eyebrow mb-2">Answer in a well</p>
+                <div class="qt-well"><p class="qt-answer"><span class="qt-marker">Fifteen Lakh Rupees Only</span></p></div>
+            </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3 mt-6">
+            <p class="qt-note"><strong>Note</strong>Rates change. Check the official source.</p>
+            <p class="qt-note is-tip"><strong>Tip</strong>Prepay early in the loan, when most of the EMI is interest.</p>
+            <p class="qt-note is-danger"><strong>Careful</strong>The old regime deduction does not apply in the new regime.</p>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 mt-6">
+            <div class="qt-table-wrap"><table class="qt-table"><thead><tr><th>Loan</th><th class="num">EMI</th></tr></thead><tbody><tr><td>₹30 lakh</td><td class="num">₹26,035</td></tr><tr><td>₹50 lakh</td><td class="num">₹43,391</td></tr><tr class="is-total"><td>Total</td><td class="num">₹69,426</td></tr></tbody></table></div>
+            <div class="qt-faq"><details open><summary>Is this a question?</summary><p>Yes, and this is how its answer looks when open.</p></details><details><summary>A closed question</summary><p>Hidden until opened.</p></details></div>
+        </div>
+    </section>
+
+    <section class="qt-section" aria-labelledby="ds-home">
+        <h2 id="ds-home" class="qt-h2 mb-6">7. Home page pieces</h2>
+        <div class="qt-bento">
+            
+            <a href="/number-to-words/" class="qt-tile is-amounts">
+                <span class="qt-eyebrow">Amounts and words</span>
+                <span class="qt-tile-name">Number to Words</span>
+                <span class="qt-tile-desc">A tile in the amounts colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            
+            <a href="/home-loan-calculator/" class="qt-tile is-loans">
+                <span class="qt-eyebrow">Loans</span>
+                <span class="qt-tile-name">Home Loan EMI</span>
+                <span class="qt-tile-desc">A tile in the loans colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            
+            <a href="/income-tax-calculator/" class="qt-tile is-tax">
+                <span class="qt-eyebrow">Tax and salary</span>
+                <span class="qt-tile-name">Income Tax</span>
+                <span class="qt-tile-desc">A tile in the tax colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            
+            <a href="/sip-calculator/" class="qt-tile is-savings">
+                <span class="qt-eyebrow">Savings and plans</span>
+                <span class="qt-tile-name">SIP</span>
+                <span class="qt-tile-desc">A tile in the savings colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            
+            <a href="/age-calculator/" class="qt-tile is-everyday">
+                <span class="qt-eyebrow">Everyday</span>
+                <span class="qt-tile-name">Age Calculator</span>
+                <span class="qt-tile-desc">A tile in the everyday colour.</span>
+                <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            
+        </div>
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button type="button" class="qt-btn qt-btn--ink" onclick="qt.toast('This is a toast')">Show a toast</button>
+            <span class="qt-sticker">Sticker</span>
+            <span class="qt-sticker is-ink">Ink sticker</span>
+            <span class="qt-stamp">Updated 6 Nov 2026</span>
+        </div>
+    </section>
+</main>
+
+
+    
+
+
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
+            </div>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
+        </div>
+    </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
+</footer>
+
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
+
+<script>
+    // Tools menu
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        const btn = document.getElementById('dropdownToggleBtn');
+        const isHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+    }
+
+    function closeDropdown() {
+        document.getElementById('dropdownMenu').classList.add('hidden');
+        document.getElementById('dropdownToggleBtn')?.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('toolsDropdown');
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDropdown();
+    });
+</script>
+
+
+    <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
+
+    
+</body>
+</html>

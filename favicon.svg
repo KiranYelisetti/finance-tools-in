@@ -1,13 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Rounded Square Background with Indian Saffron Color -->
-  <rect x="0" y="0" width="512" height="512" rx="100" ry="100" fill="#FF9933"/>
-  
-  <!-- Subtle Gradient Overlay/border -->
-  <rect x="20" y="20" width="472" height="472" rx="80" ry="80" fill="none" stroke="#FFFFFF" stroke-width="20" opacity="0.5"/>
-  
-  <!-- "QT" Text or Symbol -->
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="280" fill="#FFFFFF">QT</text>
-  
-  <!-- Green accents at bottom to represent flag -->
-  <path d="M 0 412 A 100 100 0 0 0 100 512 L 412 512 A 100 100 0 0 0 512 412 L 512 450 A 100 100 0 0 1 412 512 L 100 512 A 100 100 0 0 1 0 450 Z" fill="#138808"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The QuickTools mark: a rupee drawn in two strokes on bank green -->
+  <rect x="1" y="1" width="30" height="30" rx="4" fill="#1E5B47"/>
+  <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#FFFDF7" stroke-width="2.3" stroke-linecap="square" stroke-linejoin="round"/>
 </svg>

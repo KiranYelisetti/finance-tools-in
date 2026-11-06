@@ -50,26 +50,27 @@
     <meta name="twitter:image:alt" content="SIP Calculator India 2026 - Calculate Returns for ₹500, ₹5000 Monthly Investment">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
     <script type="application/ld+json">
@@ -80,112 +81,94 @@
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 bg-indigo-50 dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 font-semibold">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" aria-current="page">SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -231,7 +214,7 @@
       "name": "Are SIP returns taxable?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. As of September 2026, gains on equity mutual fund units held for more than 12 months are long-term capital gains taxed at 12.5% on the portion above ₹1.25 lakh in a financial year, without indexation. Units held for 12 months or less produce short-term gains taxed at 20%. Debt fund units bought on or after 1 April 2023 are taxed at your income tax slab rate whatever the holding period. A 4% health and education cess applies on the tax. Each SIP instalment has its own purchase date, and the oldest units are treated as sold first."
+        "text": "Yes. As of November 2026, gains on equity mutual fund units held for more than 12 months are long-term capital gains taxed at 12.5% on the portion above ₹1.25 lakh in a financial year, without indexation. Units held for 12 months or less produce short-term gains taxed at 20%. Debt fund units bought on or after 1 April 2023 are taxed at your income tax slab rate whatever the holding period. A 4% health and education cess applies on the tax. Each SIP instalment has its own purchase date, and the oldest units are treated as sold first."
       }
     },
     {
@@ -287,89 +270,95 @@
 </script>
 
 <!-- Main Content -->
-<main class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-4">SIP Calculator
-        </h1>
-        <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Systematic Investment Plan Calculator - Calculate your mutual fund returns</p>
+<main>
+    <div class="qt-wrap">
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Savings and plans</span><span aria-hidden="true">/</span><span>SIP</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-savings">Savings and plans</span>
+                <span class="qt-stamp">Updated 6 Nov 2026</span>
+            </div>
+            <h1 class="qt-h1 mt-4">SIP Calculator</h1>
+            <p class="qt-lede mt-4">Systematic Investment Plan Calculator - Calculate your mutual fund returns</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border-2 border-gray-900 dark:border-gray-700 overflow-hidden">
+        <div class="qt-card overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <!-- Inputs Section -->
-                <div class="p-6 md:p-8 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-700 dark:to-gray-800">
+                <div class="qt-panel p-6 md:p-8">
                     <div class="space-y-6">
                         <!-- Monthly Investment Input -->
-                        <div class="input-group">
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <div>
+                            <label for="monthlyInvestment" class="qt-label mb-2">
                                 Monthly Investment (₹)
                             </label>
                             <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2">₹</span>
                                 <input type="number" id="monthlyInvestment" value="5000" min="500"
-                                    class="format-inr w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition shadow-sm font-bold text-lg"
+                                    class="qt-input format-inr w-full pl-8 pr-4"
                                     oninput="calculateSIP()">
                             </div>
-                            <input type="range" min="500" max="100000" step="500" value="5000"
-                                class="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            <input type="range" aria-label="Monthly investment slider" min="500" max="100000" step="500" value="5000"
+                                class="qt-range w-full mt-3"
                                 oninput="document.getElementById('monthlyInvestment').value = formatIndianNumber(this.value); calculateSIP()">
                         </div>
 
                         <!-- Expected Return Rate Input -->
-                        <div class="input-group">
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <div>
+                            <label for="returnRate" class="qt-label mb-2">
                                 Expected Return Rate (p.a)
                             </label>
                             <div class="relative">
                                 <input type="number" id="returnRate" value="12" min="1" max="30" step="0.1"
-                                    class="w-full pl-4 pr-8 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition shadow-sm font-bold text-lg"
+                                    class="qt-input w-full pl-4 pr-8"
                                     oninput="calculateSIP()">
-                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
+                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2">%</span>
                             </div>
-                            <input type="range" min="1" max="30" step="0.5" value="12"
-                                class="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            <input type="range" aria-label="Expected return slider" min="1" max="30" step="0.5" value="12"
+                                class="qt-range w-full mt-3"
                                 oninput="document.getElementById('returnRate').value = this.value; calculateSIP()">
                         </div>
 
                         <!-- Time Period Input -->
-                        <div class="input-group">
-                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <div>
+                            <label for="timePeriod" class="qt-label mb-2">
                                 Time Period (Years)
                             </label>
                             <div class="relative">
                                 <input type="number" id="timePeriod" value="10" min="1" max="40"
-                                    class="w-full pl-4 pr-12 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition shadow-sm font-bold text-lg"
+                                    class="qt-input w-full pl-4 pr-12"
                                     oninput="calculateSIP()">
-                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">Yr</span>
+                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2">Yr</span>
                             </div>
-                            <input type="range" min="1" max="40" value="10"
-                                class="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            <input type="range" aria-label="Time period slider" min="1" max="40" value="10"
+                                class="qt-range w-full mt-3"
                                 oninput="document.getElementById('timePeriod').value = this.value; calculateSIP()">
                         </div>
                     </div>
                 </div>
 
                 <!-- Results Section -->
-                <div class="p-6 md:p-8 bg-white dark:bg-gray-800 flex flex-col justify-center">
+                <div class="p-6 md:p-8 flex flex-col justify-center">
                     <div class="space-y-6">
-                        <div class="text-center pb-6 border-b border-gray-100 dark:border-gray-700">
-                            <p class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Value</p>
-                            <h3 class="text-4xl md:text-5xl font-bold text-indigo-600 dark:text-indigo-400" id="totalValue">
+                        <div class="text-center pb-6 border-dashed border-line-soft border-b-2">
+                            <p class="text-sm font-medium mb-1">Total Value</p>
+                            <h3 class="qt-h3" id="totalValue">
                                 ₹11.62 Lakh
                             </h3>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 bg-green-50 dark:bg-gray-700 rounded-xl">
-                                <p class="text-gray-500 dark:text-gray-400 text-xs font-medium mb-1">Invested Amount
+                            <div class="qt-panel p-4">
+                                <p class="text-xs font-medium mb-1">Invested Amount
                                 </p>
-                                <p class="text-xl font-bold text-gray-800 dark:text-white" id="investedAmount">₹6.00
+                                <p class="text-xl font-bold" id="investedAmount">₹6.00
                                     Lakh</p>
                             </div>
-                            <div class="p-4 bg-indigo-50 dark:bg-gray-700 rounded-xl">
-                                <p class="text-gray-500 dark:text-gray-400 text-xs font-medium mb-1">Est. Returns
+                            <div class="qt-panel p-4">
+                                <p class="text-xs font-medium mb-1">Est. Returns
                                 </p>
-                                <p class="text-xl font-bold text-green-600 dark:text-green-400" id="estReturns">₹5.62
+                                <p class="text-xl font-bold" id="estReturns">₹5.62
                                     Lakh</p>
                             </div>
                         </div>
@@ -377,13 +366,10 @@
                         <!-- Share Button -->
                         <div class="flex gap-2">
                              <button onclick="shareResult('SIP Returns', document.getElementById('totalValue').innerText)"
-                                class="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                                <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                                class="qt-btn qt-btn--secondary flex-1 flex items-center justify-center">
+                                Share Result
                             </button>
-                            <button onclick="resetForm('sip_calc')" 
-                                class="px-4 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors shadow-md flex items-center justify-center">
-                                <i class="fas fa-undo"></i>
-                            </button>
+                            <button onclick="resetForm('sip_calc')" class="qt-btn qt-btn--secondary">Reset</button>
                         </div>
 
                         <!-- Chart Container -->
@@ -398,36 +384,36 @@
         <!-- Info Section -->
         <div class="mt-12 space-y-8">
             <!-- How it works -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How does this SIP calculator work?</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">How does this SIP calculator work?</h2>
+                <p class="leading-relaxed mb-4">
                     The calculator takes three inputs: the amount you invest every month, the annual return you expect,
                     and the number of years. It converts the annual rate into a monthly rate (12% a year becomes 1% a
                     month), counts the total number of instalments, and assumes each instalment is invested at the start
                     of its month and grows at that same monthly rate until the end of the period.
                 </p>
-                <div class="bg-indigo-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-indigo-500">
-                    <p class="text-sm text-gray-700 dark:text-gray-300 font-mono">
+                <div class="qt-note is-tip">
+                    <p class="text-sm font-mono">
                         FV = P x (((1 + i)^n - 1) / i) x (1 + i)
                     </p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    <p class="text-xs mt-2">
                         FV = projected value, P = monthly instalment, i = annual rate divided by 12 (as a decimal), n = years multiplied by 12
                     </p>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 mt-4">
+                <p class="leading-relaxed mb-4 mt-4">
                     Worked example with the default inputs: ₹5,000 a month for 10 years at 12% gives i = 0.01 and n = 120.
                     The formula produces ₹11,61,695. You would have invested ₹6,00,000, so the projected gain is ₹5,61,695.
                 </p>
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-6">The 12% is a nominal rate, and that matters</h3>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                <h3 class="qt-h3 mb-3 mt-6">The 12% is a nominal rate, and that matters</h3>
+                <p class="leading-relaxed mb-4">
                     Because the annual rate is split into twelve equal monthly rates and compounded, "12% a year" in this
                     calculator is really 1% a month, which works out to an effective 12.68% a year. The same conversion
                     turns 10% into 10.47% and 8% into 8.30%. Fund factsheets quote annualised returns (CAGR), so a
                     fund that reports 12% CAGR corresponds to a slightly lower number in this calculator. The difference is
                     small over a few years but noticeable over twenty.
                 </p>
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-6">What the calculator assumes</h3>
-                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 leading-relaxed mb-4 space-y-1">
+                <h3 class="qt-h3 mb-3 mt-6">What the calculator assumes</h3>
+                <ul class="list-disc list-inside leading-relaxed mb-4 space-y-1">
                     <li>The same return every single month. Real markets rise and fall, sometimes sharply.</li>
                     <li>No missed or delayed instalments and no change in the monthly amount.</li>
                     <li>Returns are net of the scheme's expense ratio, which is how fund NAVs are already reported.</li>
@@ -436,54 +422,54 @@
             </div>
 
             <!-- Scenario table -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">What ₹5,000 a month could become at different assumed returns</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">What ₹5,000 a month could become at different assumed returns</h2>
+                <p class="leading-relaxed mb-4">
                     The table applies the formula above to a ₹5,000 monthly SIP at three assumed rates. These are
                     arithmetic outcomes for a constant return, not forecasts, and no fund or category is implied. Use
                     the lower columns for planning and treat the higher ones as upside.
                 </p>
-                <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                        <thead class="bg-indigo-600 text-white">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left">Years</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Total invested</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">At 8%</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">At 10%</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">At 12%</th>
+                                <th class="text-xs font-semibold">Years</th>
+                                <th class="text-xs font-semibold text-center">Total invested</th>
+                                <th class="text-xs font-semibold text-center">At 8%</th>
+                                <th class="text-xs font-semibold text-center">At 10%</th>
+                                <th class="text-xs font-semibold text-center">At 12%</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">10 years</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹6,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹9,20,828</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹10,32,760</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹11,61,695</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">15 years</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹9,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹17,41,726</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹20,89,621</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹25,22,880</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">20 years</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹12,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹29,64,736</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹38,28,485</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹49,95,740</td></tr>
+                        <tbody>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">10 years</td><td class="whitespace-nowrap text-sm text-center">₹6,00,000</td><td class="whitespace-nowrap text-sm text-center">₹9,20,828</td><td class="whitespace-nowrap text-sm text-center">₹10,32,760</td><td class="whitespace-nowrap text-sm text-center">₹11,61,695</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">15 years</td><td class="whitespace-nowrap text-sm text-center">₹9,00,000</td><td class="whitespace-nowrap text-sm text-center">₹17,41,726</td><td class="whitespace-nowrap text-sm text-center">₹20,89,621</td><td class="whitespace-nowrap text-sm text-center">₹25,22,880</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">20 years</td><td class="whitespace-nowrap text-sm text-center">₹12,00,000</td><td class="whitespace-nowrap text-sm text-center">₹29,64,736</td><td class="whitespace-nowrap text-sm text-center">₹38,28,485</td><td class="whitespace-nowrap text-sm text-center">₹49,95,740</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Assumed constant monthly compounding at the stated annual rate, instalment at the start of each month, no tax, no exit load.</p>
+                <p class="text-xs mt-2">Assumed constant monthly compounding at the stated annual rate, instalment at the start of each month, no tax, no exit load.</p>
 
-                <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3 mt-6">Time does most of the work: ₹5,000 a month at an assumed 12%</h3>
-                <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                        <thead class="bg-indigo-600 text-white">
+                <h3 class="qt-h3 mb-3 mt-6">Time does most of the work: ₹5,000 a month at an assumed 12%</h3>
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Years</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Total invested</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Projected value</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center">Gain on amount invested</th>
+                                <th class="text-xs font-semibold text-center">Years</th>
+                                <th class="text-xs font-semibold text-center">Total invested</th>
+                                <th class="text-xs font-semibold text-center">Projected value</th>
+                                <th class="text-xs font-semibold text-center">Gain on amount invested</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-center">5</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹3,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹4,12,432</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">37%</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-center">10</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹6,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹11,61,695</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">94%</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-center">15</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹9,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹25,22,880</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">180%</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-center">20</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹12,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-green-600">₹49,95,740</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">316%</td></tr>
-                            <tr class="bg-indigo-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white text-center">30</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹18,00,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300 font-bold text-indigo-600 dark:text-green-400">₹1,76,49,569</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">881%</td></tr>
+                        <tbody>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold text-center">5</td><td class="whitespace-nowrap text-sm text-center">₹3,00,000</td><td class="whitespace-nowrap text-sm text-center font-bold">₹4,12,432</td><td class="whitespace-nowrap text-sm text-center">37%</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold text-center">10</td><td class="whitespace-nowrap text-sm text-center">₹6,00,000</td><td class="whitespace-nowrap text-sm text-center font-bold">₹11,61,695</td><td class="whitespace-nowrap text-sm text-center">94%</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold text-center">15</td><td class="whitespace-nowrap text-sm text-center">₹9,00,000</td><td class="whitespace-nowrap text-sm text-center font-bold">₹25,22,880</td><td class="whitespace-nowrap text-sm text-center">180%</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold text-center">20</td><td class="whitespace-nowrap text-sm text-center">₹12,00,000</td><td class="whitespace-nowrap text-sm text-center font-bold">₹49,95,740</td><td class="whitespace-nowrap text-sm text-center">316%</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold text-center">30</td><td class="whitespace-nowrap text-sm text-center">₹18,00,000</td><td class="whitespace-nowrap text-sm text-center font-bold">₹1,76,49,569</td><td class="whitespace-nowrap text-sm text-center">881%</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                <p class="text-sm mt-2">
                     Doubling the period from 15 to 30 years doubles the amount invested but multiplies the projected value
                     roughly seven times. That is what compounding over a long horizon looks like on paper, and it is why
                     starting early matters more than starting big.
@@ -491,15 +477,15 @@
             </div>
 
             <!-- CAGR vs XIRR -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">CAGR, XIRR and why your real SIP return looks different</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">CAGR, XIRR and why your real SIP return looks different</h2>
+                <p class="leading-relaxed mb-4">
                     CAGR (compound annual growth rate) describes one lump sum growing from a starting value to an ending
                     value over a number of years. A SIP is not one lump sum. It is dozens or hundreds of separate
                     purchases on different dates, each with a different holding period. The instalment you paid last month
                     has had four weeks to grow, while the first one has had years.
                 </p>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     The correct yardstick for such a stream of cash flows is XIRR, the internal rate of return calculated
                     from dated cash flows. Fund statements and most portfolio trackers report XIRR for SIPs. Two habits
                     help when reading your own numbers: do not compare a SIP's absolute return (gain divided by amount
@@ -510,33 +496,33 @@
             </div>
 
             <!-- Rupee cost averaging -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Rupee cost averaging, with a worked example</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Rupee cost averaging, with a worked example</h2>
+                <p class="leading-relaxed mb-4">
                     A SIP buys a fixed rupee amount each month, so it automatically buys more units when the NAV is low
                     and fewer when it is high. Suppose you invest ₹5,000 for four months and the NAV moves from 50 to 40,
                     back to 50, and then to 62.50.
                 </p>
-                <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left text-gray-500 dark:text-gray-300">Month</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center text-gray-500 dark:text-gray-300">NAV (₹)</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center text-gray-500 dark:text-gray-300">Invested</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-center text-gray-500 dark:text-gray-300">Units bought</th>
+                                <th class="text-xs font-semibold">Month</th>
+                                <th class="text-xs font-semibold text-center">NAV (₹)</th>
+                                <th class="text-xs font-semibold text-center">Invested</th>
+                                <th class="text-xs font-semibold text-center">Units bought</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">1</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">50.00</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹5,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">100</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">2</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">40.00</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹5,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">125</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">3</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">50.00</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹5,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">100</td></tr>
-                            <tr><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">4</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">62.50</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹5,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">80</td></tr>
-                            <tr class="bg-gray-50 dark:bg-gray-700 font-bold"><td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">Total</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300"></td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">₹20,000</td><td class="px-4 py-3 whitespace-nowrap text-sm text-center text-gray-700 dark:text-gray-300">405</td></tr>
+                        <tbody>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">1</td><td class="whitespace-nowrap text-sm text-center">50.00</td><td class="whitespace-nowrap text-sm text-center">₹5,000</td><td class="whitespace-nowrap text-sm text-center">100</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">2</td><td class="whitespace-nowrap text-sm text-center">40.00</td><td class="whitespace-nowrap text-sm text-center">₹5,000</td><td class="whitespace-nowrap text-sm text-center">125</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">3</td><td class="whitespace-nowrap text-sm text-center">50.00</td><td class="whitespace-nowrap text-sm text-center">₹5,000</td><td class="whitespace-nowrap text-sm text-center">100</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">4</td><td class="whitespace-nowrap text-sm text-center">62.50</td><td class="whitespace-nowrap text-sm text-center">₹5,000</td><td class="whitespace-nowrap text-sm text-center">80</td></tr>
+                            <tr><td class="whitespace-nowrap text-sm font-semibold">Total</td><td class="whitespace-nowrap text-sm text-center"></td><td class="whitespace-nowrap text-sm text-center">₹20,000</td><td class="whitespace-nowrap text-sm text-center">405</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 mt-4">
+                <p class="leading-relaxed mb-4 mt-4">
                     You hold 405 units for ₹20,000, an average cost of ₹49.38 per unit, even though the simple average of
                     the four NAVs is ₹50.63. At the final NAV of ₹62.50 the holding is worth ₹25,313. The averaging effect
                     is real, but it has limits: it does not protect you if the NAV keeps falling for years, and in a market
@@ -545,16 +531,16 @@
             </div>
 
             <!-- Step-up SIP -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Step-up SIP: growing the instalment with your income</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Step-up SIP: growing the instalment with your income</h2>
+                <p class="leading-relaxed mb-4">
                     A step-up (or top-up) SIP increases the monthly amount by a fixed percentage every year, typically
                     matched to expected salary increments. Start at ₹5,000 a month, raise it by 10% each year, and assume
                     12%: over 10 years you invest ₹9,56,245 and the projected value is ₹16,87,163. A flat ₹5,000 SIP over
                     the same period invests ₹6,00,000 for a projected ₹11,61,695. By the tenth year the stepped-up
                     instalment is ₹11,790 a month.
                 </p>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Notice where the extra comes from. The step-up path invests ₹3,56,245 more and ends ₹5,25,468 higher.
                     The advantage is mostly the additional money invested, not any improvement in return, which is exactly
                     why a step-up is useful: it turns future raises into investments before lifestyle spending absorbs them.
@@ -562,21 +548,21 @@
             </div>
 
             <!-- SIP vs Lumpsum -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">SIP versus lump sum</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">SIP versus lump sum</h2>
                 <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <h4 class="font-bold text-indigo-600 dark:text-indigo-400 mb-2">SIP (systematic investment plan)</h4>
-                        <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300 list-disc list-inside">
+                    <div class="qt-panel p-4">
+                        <h4 class="font-bold mb-2">SIP (systematic investment plan)</h4>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
                             <li>Small, regular amounts, so it fits a monthly salary.</li>
                             <li>Entry is spread across many dates, which reduces the impact of one badly timed purchase.</li>
                             <li>Builds the habit; the mandate runs whether or not the market news is frightening.</li>
                             <li>Late instalments have little time to grow, so the rupee gain trails a lump sum in a rising market.</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <h4 class="font-bold text-green-600 dark:text-green-400 mb-2">Lump sum (one-time)</h4>
-                        <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300 list-disc list-inside">
+                    <div class="qt-panel p-4">
+                        <h4 class="font-bold mb-2">Lump sum (one-time)</h4>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
                             <li>The full amount works from day one.</li>
                             <li>Outcome depends heavily on what the market does right after you invest.</li>
                             <li>Suited to a bonus, an inheritance or maturity proceeds that are already in hand.</li>
@@ -587,9 +573,9 @@
             </div>
 
             <!-- Direct vs regular -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Direct plans, regular plans and the expense ratio</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Direct plans, regular plans and the expense ratio</h2>
+                <p class="leading-relaxed mb-4">
                     Every open-ended scheme is sold in two plans with the same portfolio and the same fund manager. The
                     regular plan's NAV carries the distributor's commission inside its expense ratio, so the regular NAV
                     grows a little slower than the direct NAV every day. That small daily gap compounds for as long as you
@@ -597,7 +583,7 @@
                     Direct plans have been available since January 2013 and can be bought from the fund house or from
                     platforms that offer them.
                 </p>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                <p class="leading-relaxed mb-4">
                     Which one to choose is a fair trade-off rather than a trick question. If you select funds yourself and
                     do not need advice, a direct plan keeps more of the return. If a distributor helps you choose, rebalance
                     and stay disciplined, you are paying for that service through the regular plan's higher expense ratio.
@@ -606,46 +592,46 @@
             </div>
 
             <!-- Risks -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Risks the calculator cannot show</h2>
-                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 leading-relaxed mb-4 space-y-2">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">Risks the calculator cannot show</h2>
+                <ul class="list-disc list-inside leading-relaxed mb-4 space-y-2">
                     <li><strong>Market risk.</strong> The value of equity and debt funds moves with markets and can fall below what you invested. A SIP spreads timing risk; it does not remove it.</li>
                     <li><strong>No guaranteed return.</strong> The rate you enter is your assumption. Nothing in a mutual fund promises it, and past performance does not indicate future results.</li>
                     <li><strong>Category risk.</strong> Small-cap and sector funds swing far more than large-cap or index funds, in both directions.</li>
                     <li><strong>Sequence risk.</strong> A steep fall in the last year or two before you need the money hurts most, because that is when the corpus is largest. Many investors move part of the corpus to debt as the goal date approaches.</li>
                     <li><strong>Costs and liquidity.</strong> Exit loads, the expense ratio and tax all reduce what you actually receive. Read the scheme information document before investing.</li>
                 </ul>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
+                <p class="text-sm">
                     QuickTools India is an educational project and is not a SEBI-registered investment adviser. Nothing on
                     this page is investment advice.
                 </p>
             </div>
 
             <!-- Taxation -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How SIP gains are taxed (as of September 2026)</h2>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">How SIP gains are taxed (as of November 2026)</h2>
+                <p class="leading-relaxed mb-4">
                     Mutual fund gains are capital gains. The rules below follow the changes made by the Finance (No. 2)
                     Act, 2024, which apply to redemptions on or after 23 July 2024. Each SIP instalment is a separate
                     purchase with its own date, and when you redeem, the oldest units are treated as sold first.
                 </p>
-                <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-600">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                <div class="qt-table-wrap">
+                    <table class="qt-table">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left text-gray-500 dark:text-gray-300">Fund type</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left text-gray-500 dark:text-gray-300">Holding period</th>
-                                <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-left text-gray-500 dark:text-gray-300">Tax</th>
+                                <th class="text-xs font-semibold">Fund type</th>
+                                <th class="text-xs font-semibold">Holding period</th>
+                                <th class="text-xs font-semibold">Tax</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600 text-sm text-gray-700 dark:text-gray-300">
-                            <tr><td class="px-4 py-3 font-semibold text-gray-900 dark:text-white">Equity-oriented (at least 65% in domestic equity)</td><td class="px-4 py-3">12 months or less</td><td class="px-4 py-3">Short-term capital gains at 20%</td></tr>
-                            <tr><td class="px-4 py-3 font-semibold text-gray-900 dark:text-white">Equity-oriented</td><td class="px-4 py-3">More than 12 months</td><td class="px-4 py-3">Long-term capital gains at 12.5% on the amount above ₹1.25 lakh per financial year, no indexation</td></tr>
-                            <tr><td class="px-4 py-3 font-semibold text-gray-900 dark:text-white">Debt funds (units bought on or after 1 April 2023)</td><td class="px-4 py-3">Any</td><td class="px-4 py-3">Added to income and taxed at your slab rate</td></tr>
+                        <tbody>
+                            <tr><td class="font-semibold">Equity-oriented (at least 65% in domestic equity)</td><td>12 months or less</td><td>Short-term capital gains at 20%</td></tr>
+                            <tr><td class="font-semibold">Equity-oriented</td><td>More than 12 months</td><td>Long-term capital gains at 12.5% on the amount above ₹1.25 lakh per financial year, no indexation</td></tr>
+                            <tr><td class="font-semibold">Debt funds (units bought on or after 1 April 2023)</td><td>Any</td><td>Added to income and taxed at your slab rate</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 mt-4">
+                <p class="leading-relaxed mb-4 mt-4">
                     A 4% health and education cess is added to the tax. Example: if your equity long-term gains in a year
                     total ₹3,00,000, the first ₹1,25,000 is exempt, ₹1,75,000 is taxed at 12.5% (₹21,875), and cess adds
                     ₹875, for a total of ₹22,750. A short-term gain of ₹50,000 would cost ₹10,000 plus ₹400 cess. Units
@@ -653,102 +639,93 @@
                     rule. Dividend (IDCW) payouts are added to your income and taxed at slab rate. ELSS units are locked
                     in for three years from each instalment. Debt fund units bought before April 2023 follow older rules,
                     so check with a tax professional before redeeming them. Estimate your slab with our
-                    <a href="/income-tax-calculator/" class="text-indigo-600 dark:text-indigo-400 hover:underline">income tax calculator</a>.
+                    <a href="/income-tax-calculator/" class="qt-link">income tax calculator</a>.
                 </p>
             </div>
 
             <!-- How to start -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How to start a SIP</h2>
-                <ol class="list-decimal list-inside text-gray-600 dark:text-gray-300 leading-relaxed mb-4 space-y-2">
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-4">How to start a SIP</h2>
+                <ol class="list-decimal list-inside leading-relaxed mb-4 space-y-2">
                     <li><strong>Complete KYC once.</strong> You need a PAN and identity and address proof. KYC done with any fund house or registrar is valid across the industry.</li>
                     <li><strong>Match the fund to the goal.</strong> Money needed within three years is usually better placed in debt or liquid funds; longer goals are where equity funds are normally used.</li>
                     <li><strong>Pick direct or regular</strong>, as explained above, and check the scheme's expense ratio and exit load.</li>
                     <li><strong>Set the amount and date</strong> and register a bank mandate (NACH or UPI autopay) so the instalment is debited automatically.</li>
                     <li><strong>Review once a year</strong>, step up the amount when income rises, and avoid stopping during market falls, since those are the months that buy the most units.</li>
                 </ol>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                    New to mutual funds? Read our <a href="/blog/beginners-guide-to-sip-investments/" class="text-indigo-600 dark:text-indigo-400 hover:underline">beginner's guide to SIP investing</a>,
-                    or compare with a guaranteed option using the <a href="/ppf-calculator/" class="text-indigo-600 dark:text-indigo-400 hover:underline">PPF calculator</a>.
+                <p class="leading-relaxed mb-4">
+                    New to mutual funds? Read our <a href="/blog/beginners-guide-to-sip-investments/" class="qt-link">beginner's guide to SIP investing</a>,
+                    or compare with a guaranteed option using the <a href="/ppf-calculator/" class="qt-link">PPF calculator</a>.
                 </p>
             </div>
 
             <!-- FAQ Section -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border-2 border-gray-900 dark:border-gray-700 p-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+            <div class="qt-card">
+                <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
                 <div class="space-y-4">
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             What is a good SIP amount to start with?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Many mutual fund schemes accept a SIP of ₹500 a month, and some accept ₹100. The amount matters less than the number of years you stay invested. A practical approach is to work backwards: enter the amount you need for a goal, the years you have, and an assumed return, then adjust the monthly amount until the projected value matches the goal.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">Many mutual fund schemes accept a SIP of ₹500 a month, and some accept ₹100. The amount matters less than the number of years you stay invested. A practical approach is to work backwards: enter the amount you need for a goal, the years you have, and an assumed return, then adjust the monthly amount until the projected value matches the goal.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             Are SIP returns taxable?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. As of September 2026, gains on equity mutual fund units held for more than 12 months are long-term capital gains taxed at 12.5% on the portion above ₹1.25 lakh in a financial year, without indexation. Units held for 12 months or less produce short-term gains taxed at 20%. Debt fund units bought on or after 1 April 2023 are taxed at your income tax slab rate whatever the holding period. A 4% health and education cess applies on the tax. Each SIP instalment has its own purchase date, and the oldest units are treated as sold first.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">Yes. As of November 2026, gains on equity mutual fund units held for more than 12 months are long-term capital gains taxed at 12.5% on the portion above ₹1.25 lakh in a financial year, without indexation. Units held for 12 months or less produce short-term gains taxed at 20%. Debt fund units bought on or after 1 April 2023 are taxed at your income tax slab rate whatever the holding period. A 4% health and education cess applies on the tax. Each SIP instalment has its own purchase date, and the oldest units are treated as sold first.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             Does the 12% in this calculator mean the fund earns 12% every year?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">No. The calculator converts the annual rate you enter into a monthly rate (12% becomes 1% a month) and applies it to every instalment. Compounding at 1% a month works out to an effective 12.68% a year. Real funds do not deliver the same return every month, so treat the figure as a planning assumption, not a forecast.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">No. The calculator converts the annual rate you enter into a monthly rate (12% becomes 1% a month) and applies it to every instalment. Compounding at 1% a month works out to an effective 12.68% a year. Real funds do not deliver the same return every month, so treat the figure as a planning assumption, not a forecast.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             What return should I assume for an equity SIP?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">This calculator does not recommend a rate, and no rate is guaranteed. Equity returns vary widely from year to year and across fund categories. A cautious habit is to run three scenarios, for example 8%, 10% and 12%, and to plan around the lowest one so that a weaker decade does not derail the goal.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">This calculator does not recommend a rate, and no rate is guaranteed. Equity returns vary widely from year to year and across fund categories. A cautious habit is to run three scenarios, for example 8%, 10% and 12%, and to plan around the lowest one so that a weaker decade does not derail the goal.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             Can I stop, pause or change my SIP?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. Most schemes let you pause or stop a SIP without any penalty, because a SIP is just an instruction to invest regularly. The units you already hold stay invested. An exit load may apply if you redeem units within the period stated in the scheme document, and ELSS units are locked in for three years from the date of each instalment.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">Yes. Most schemes let you pause or stop a SIP without any penalty, because a SIP is just an instruction to invest regularly. The units you already hold stay invested. An exit load may apply if you redeem units within the period stated in the scheme document, and ELSS units are locked in for three years from the date of each instalment.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             Is a SIP safe or guaranteed?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">No. A SIP into an equity or debt mutual fund is market-linked, and the value can fall below the amount invested, especially over short periods. Investing regularly spreads your entry points but does not remove market risk. If you need a guaranteed, government-backed return, compare with the Public Provident Fund using our PPF calculator.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">No. A SIP into an equity or debt mutual fund is market-linked, and the value can fall below the amount invested, especially over short periods. Investing regularly spreads your entry points but does not remove market risk. If you need a guaranteed, government-backed return, compare with the Public Provident Fund using our PPF calculator.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             How does a step-up SIP change the outcome?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A step-up SIP raises the monthly amount by a fixed percentage every year, usually in line with salary increases. Starting at ₹5,000 a month with a 10% yearly step-up at an assumed 12% return, you would invest ₹9,56,245 over 10 years for a projected value of ₹16,87,163, against ₹6,00,000 invested and ₹11,61,695 projected for a flat ₹5,000 SIP. Most of the extra value comes from investing more, not from a higher return.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">A step-up SIP raises the monthly amount by a fixed percentage every year, usually in line with salary increases. Starting at ₹5,000 a month with a 10% yearly step-up at an assumed 12% return, you would invest ₹9,56,245 over 10 years for a projected value of ₹16,87,163, against ₹6,00,000 invested and ₹11,61,695 projected for a flat ₹5,000 SIP. Most of the extra value comes from investing more, not from a higher return.</p>
                     </details>
-                    <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
-                        <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                    <details class="qt-faq-item">
+                        <summary>
                             What is the difference between a SIP and a lump sum investment?
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                        </summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A lump sum puts the whole amount to work on one day, so it benefits fully if the market rises from there and suffers fully if it falls. A SIP spreads the same money across many dates, which lowers the impact of a badly timed entry and suits people investing from a monthly salary. Neither is always better; the outcome depends on how the market moves after you invest.</p>
+                                                    </summary>
+                        <p class="mt-3 text-sm">A lump sum puts the whole amount to work on one day, so it benefits fully if the market rises from there and suffers fully if it falls. A SIP spreads the same money across many dates, which lowers the impact of a badly timed entry and suits people investing from a monthly salary. Neither is always better; the outcome depends on how the market moves after you invest.</p>
                     </details>
                 </div>
             </div>
 
             <!-- Financial Disclaimer -->
-            <div class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+            <div class="qt-well">
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <i class="fas fa-exclamation-triangle text-yellow-400 mt-0.5"></i>
-                    </div>
+                                            </div>
                     <div class="ml-3">
-                        <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Important Disclaimer</h3>
-                        <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-200">
+                        <h3 class="qt-h3">Important Disclaimer</h3>
+                        <div class="mt-2 text-sm">
                             <p>
                                 The calculations on this page are illustrations based on the assumptions you enter and do
                                 not constitute financial advice. Mutual fund investments are subject to market risks. Actual
-                                returns can differ significantly from projections. Tax rules are stated as of September 2026
+                                returns can differ significantly from projections. Tax rules are stated as of November 2026
                                 and can change. Please consult a SEBI-registered investment adviser or a chartered accountant
                                 before making investment decisions.
                             </p>
@@ -765,6 +742,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
+<script src="/js/calc/sip.js"></script>
 <script>
     let myChart = null;
 
@@ -784,29 +762,18 @@
         const r = parseINR(document.getElementById('returnRate').value);
         const t = parseINR(document.getElementById('timePeriod').value);
 
-        // Calculate
-        const i = r / 12 / 100;
-        const n = t * 12;
-
-        let fv;
-        if (i === 0) {
-            fv = p * n;
-        } else {
-            fv = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
-        }
-        
-        const invested = p * n;
-        const returns = fv - invested;
+        // The sum lives in /js/calc/sip.js (unit tested in tests/unit)
+        const sip = QTCalc.sip.futureValue(p, r, t);
 
         // GA4 Event Tracking
         trackCalculatorUsage('SIP Calculator', p);
 
         // Update UI
-        document.getElementById('totalValue').innerText = formatCurrency(fv);
-        document.getElementById('investedAmount').innerText = formatCurrency(invested);
-        document.getElementById('estReturns').innerText = formatCurrency(returns);
+        document.getElementById('totalValue').innerText = formatCurrency(sip.futureValue);
+        document.getElementById('investedAmount').innerText = formatCurrency(sip.invested);
+        document.getElementById('estReturns').innerText = formatCurrency(sip.returns);
 
-        updateChart(invested, returns);
+        updateChart(sip.invested, sip.returns);
     }
 
     function updateChart(invested, returns) {
@@ -822,9 +789,10 @@
                 labels: ['Invested Amount', 'Est. Returns'],
                 datasets: [{
                     data: [invested, returns],
+                    // Design system colours: haldi for the money you put in, rani for what it earns
                     backgroundColor: [
-                        '#E0E7FF', // Light Indigo
-                        '#4F46E5'  // Indigo
+                        '#FFC629', // haldi-400, invested
+                        '#FF5C9E'  // rani-400, returns
                     ],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -864,30 +832,18 @@
 
 
     
-<section class="container mx-auto px-4 max-w-4xl mt-10" aria-labelledby="official-sources">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-        <h2 id="official-sources" class="text-xl font-bold text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-landmark text-indigo-500 mr-2"></i>Where to verify
-        </h2>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The rules and rates used on this page come from these official bodies. Rates and limits change, so confirm the current figure on the official site before you act on a number here.
-        </p>
-        <ul class="space-y-2 text-sm">
+<section class="qt-wrap qt-section" aria-labelledby="official-sources">
+    <div class="qt-card qt-card--sunken max-w-[46rem]">
+        <span class="qt-sticker is-mor is-flat">Check the source</span>
+        <h2 id="official-sources" class="qt-h3 mt-3 mb-1">Where to verify</h2>
+        <p class="mb-3 text-ink-2">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+        <ul class="space-y-1.5">
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">SEBI investor website</a><span class="text-gray-600 dark:text-gray-300"> for investor education on mutual funds and risk</span></span>
-            </li>
+            <li><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener" class="qt-link">SEBI investor website</a> for investor education on mutual funds and risk</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.amfiindia.com/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Association of Mutual Funds in India (AMFI)</a><span class="text-gray-600 dark:text-gray-300"> for fund categories and scheme information</span></span>
-            </li>
+            <li><a href="https://www.amfiindia.com/" target="_blank" rel="noopener" class="qt-link">Association of Mutual Funds in India (AMFI)</a> for fund categories and scheme information</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Income Tax Department e-filing portal</a><span class="text-gray-600 dark:text-gray-300"> for capital gains tax rules</span></span>
-            </li>
+            <li><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="qt-link">Income Tax Department e-filing portal</a> for capital gains tax rules</li>
             
         </ul>
     </div>
@@ -895,80 +851,57 @@
 
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -984,7 +917,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -995,6 +929,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

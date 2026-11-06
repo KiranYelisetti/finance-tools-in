@@ -50,138 +50,121 @@
     <meta name="twitter:image:alt" content="Home Loan EMI Calculator India 2026 - Calculate EMI, Interest &amp; Pre-payment">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 bg-indigo-50 dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 font-semibold">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" aria-current="page">Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -219,12 +202,12 @@
             {
                 "@type": "HowToStep",
                 "name": "Set Interest Rate",
-                "text": "Enter the annual interest rate offered by your bank (7.10% to 10.90%)"
+                "text": "Enter the annual interest rate on your sanction letter or the lender's current quote"
             },
             {
                 "@type": "HowToStep",
                 "name": "Choose Loan Tenure",
-                "text": "Select your loan tenure from 5 to 30 years"
+                "text": "Enter the loan tenure, from 1 to 30 years"
             },
             {
                 "@type": "HowToStep",
@@ -234,7 +217,7 @@
             {
                 "@type": "HowToStep",
                 "name": "Calculate EMI",
-                "text": "Click Calculate to see your monthly EMI, total interest, and tax benefits"
+                "text": "Read your monthly EMI, total interest and the old-regime tax deductions, which update as you type"
             }
         ]
     }
@@ -262,577 +245,373 @@
     </script>
 
 
-<div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="text-center mb-8">
-        <div class="inline-block p-4 bg-gradient-to-br from-orange-400 to-red-600 rounded-full mb-4">
-            <i class="fas fa-home text-4xl text-white"></i>
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Loans</span><span aria-hidden="true">/</span><span>Home Loan EMI</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-loans">Loans</span>
+            <span class="qt-stamp">Updated 6 Nov 2026</span>
         </div>
-        <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Home Loan EMI Calculator</h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400">Calculate your home loan EMI, total interest, and
-            pre-payment impact. Plan your dream home with accurate calculations for all major Indian banks.</p>
-    </div>
+        <h1 class="qt-h1 mt-4">Home Loan EMI Calculator</h1>
+        <p class="qt-lede mt-4 hidden sm:block">Your monthly EMI, the interest over the full tenure, and what a yearly prepayment saves. Drag a slider or type a figure and everything updates.</p>
+    </section>
 
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8 mb-8">
-        <div class="space-y-6">
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-rupee-sign mr-2 text-orange-600"></i>Loan Amount (₹)
-                </label>
-                <input type="number" id="loanAmount" value="5000000" min="100000" step="100000"
-                    class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Typical range: ₹20 Lac to ₹1 Cr</p>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-percent mr-2 text-orange-600"></i>Annual Interest Rate (%)
-                </label>
-                <input type="number" id="interestRate" value="8.5" min="5" max="15" step="0.1"
-                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Enter the rate on your sanction letter or the lender's current quote. Rates differ by lender, loan size and credit score.</p>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    <i class="fas fa-calendar-alt mr-2 text-orange-600"></i>Loan Tenure (Years)
-                </label>
-                <input type="number" id="loanTenure" value="20" min="5" max="30" step="1"
-                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Choose between 5 to 30 years</p>
-            </div>
-
-            <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" id="enablePrepayment"
-                        class="w-4 h-4 text-orange-600 rounded focus:ring-orange-500">
-                    <label for="enablePrepayment"
-                        class="ml-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-piggy-bank mr-2 text-green-600"></i>Enable Yearly Pre-payment
-                    </label>
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-5" aria-label="Loan details">
+            <div class="qt-card">
+                <div class="qt-card-head">
+                    <h2 class="qt-card-title">Your loan</h2>
+                    <span class="qt-sticker is-flat is-ink">Step 1</span>
                 </div>
-                <div id="prepaymentSection" class="hidden space-y-4">
+                <div class="qt-fields">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            Yearly Pre-payment Amount (₹)
+                        <label for="loanAmount" class="qt-label">Loan amount</label>
+                        <div class="qt-affix is-prefix is-xl">
+                            <span class="qt-affix-text" aria-hidden="true">₹</span>
+                            <input type="number" id="loanAmount" value="5000000" min="100000" step="100000" class="format-inr qt-input qt-input--xl">
+                        </div>
+                        <input type="range" class="qt-range" min="500000" max="20000000" step="100000" value="5000000" data-sync="loanAmount" aria-label="Loan amount slider">
+                        <p class="qt-hint" id="loanAmountWords">Fifty Lakh Rupees</p>
+                    </div>
+
+                    <div>
+                        <label for="interestRate" class="qt-label">Interest rate</label>
+                        <div class="qt-affix is-suffix">
+                            <input type="number" id="interestRate" value="8.5" min="5" max="15" step="0.05" class="qt-input" inputmode="decimal">
+                            <span class="qt-affix-text">% a year</span>
+                        </div>
+                        <input type="range" class="qt-range" min="6" max="14" step="0.05" value="8.5" data-sync="interestRate" aria-label="Interest rate slider">
+                    </div>
+
+                    <div>
+                        <label for="loanTenure" class="qt-label">Tenure</label>
+                        <div class="qt-affix is-suffix">
+                            <input type="number" id="loanTenure" value="20" min="1" max="30" step="1" class="qt-input" inputmode="numeric">
+                            <span class="qt-affix-text">years</span>
+                        </div>
+                        <input type="range" class="qt-range" min="1" max="30" step="1" value="20" data-sync="loanTenure" aria-label="Tenure slider">
+                        <p class="qt-hint">Use the rate on your sanction letter or the lender's current quote. It differs by lender, loan size and credit score.</p>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-dashed border-line-soft">
+                        <label class="qt-check" for="enablePrepayment">
+                            <input type="checkbox" id="enablePrepayment">
+                            <span>Add a prepayment every year</span>
                         </label>
-                        <input type="number" id="prepaymentAmount" value="100000" min="0" step="10000"
-                            class="format-inr w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Amount you plan to pre-pay every
-                            year</p>
+                        <div id="prepaymentSection" class="hidden mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="prepaymentAmount" class="qt-label">Each year</label>
+                                <div class="qt-affix is-prefix">
+                                    <span class="qt-affix-text" aria-hidden="true">₹</span>
+                                    <input type="number" id="prepaymentAmount" value="100000" min="0" step="10000" class="format-inr qt-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="prepaymentStartYear" class="qt-label">From year</label>
+                                <input type="number" id="prepaymentStartYear" value="2" min="1" max="30" step="1" class="qt-input" inputmode="numeric">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            Start Pre-payment from Year
-                        </label>
-                        <input type="number" id="prepaymentStartYear" value="2" min="1" max="30" step="1"
-                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white">
+
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" onclick="calculateHomeLoan()" class="qt-btn">Calculate</button>
+                        <button type="button" onclick="resetForm('home_loan_calc')" class="qt-btn qt-btn--secondary">Reset</button>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="flex gap-4">
-                <button onclick="calculateHomeLoan()"
-                    class="flex-1 bg-gradient-to-r from-orange-500 to-red-600 text-white py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-calculator mr-2"></i>Calculate EMI
-                </button>
-                <button onclick="resetForm('home_loan_calc')"
-                    class="px-6 py-4 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 shadow-md">
-                    <i class="fas fa-undo mr-2"></i>Reset
-                </button>
+        <section id="results" class="hidden lg:col-span-7 qt-sticky" aria-label="Results" aria-live="polite">
+            <div class="qt-card is-loans">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                    <p class="qt-eyebrow">Monthly EMI</p>
+                    <span class="qt-sticker is-haldi" style="--tilt: 3deg">Live</span>
+                </div>
+                <p class="qt-big mt-2"><span id="monthlyEMI">₹0</span></p>
+                <p class="text-sm font-semibold mt-2" id="emiLine">for 240 months</p>
+
+                <div class="mt-6">
+                    <div class="qt-split" role="img" id="splitBar" aria-label="Share of principal and interest">
+                        <span class="is-a" id="splitPrincipal" style="width:48%"></span>
+                        <span class="is-b" id="splitInterest" style="width:52%"></span>
+                    </div>
+                    <p class="qt-legend"><span><i class="bg-haldi-400"></i>Principal</span><span><i class="bg-rani-400"></i>Interest</span><span id="principalInterestRatio" class="tabular"></span></p>
+                </div>
             </div>
-        </div>
+
+            <div class="qt-card mt-6">
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Principal</span><span class="qt-row-val" id="principalAmount">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Total interest</span><span class="qt-row-val" id="totalInterest">₹0</span><span></span></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total you pay</span><span class="qt-row-val" id="totalAmount">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">EMI per lakh</span><span class="qt-row-val" id="emiRatio">-</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Months</span><span class="qt-row-val" id="totalMonths">-</span><span></span></div>
+                </div>
+            </div>
+
+            <div id="prepaymentResults" class="hidden qt-card is-savings mt-6">
+                <div class="qt-card-head mb-2">
+                    <h3 class="qt-card-title">With the yearly prepayment</h3>
+                    <span class="qt-sticker is-mehendi">Saved</span>
+                </div>
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Interest saved</span><span class="qt-row-val" id="interestSaved">₹0</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Loan closes</span><span class="qt-row-val"><span id="tenureReduced">0 years</span> early</span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">New tenure</span><span class="qt-row-val" id="newTenure">0 years</span><span></span></div>
+                </div>
+            </div>
+
+            <div class="qt-card qt-card--sunken mt-6">
+                <p class="qt-eyebrow mb-2">Tax deductions in year one, old regime only</p>
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Interest, section 22</span><span class="qt-row-val" id="taxBenefit24b">₹0<small>capped at ₹2,00,000 for a home you live in</small></span><span></span></div>
+                    <div class="qt-row"><span class="qt-row-key">Principal, section 123</span><span class="qt-row-val" id="taxBenefit80c">₹0</span><span></span></div>
+                    <div class="qt-row is-total"><span class="qt-row-key">Total deduction</span><span class="qt-row-val" id="totalTaxBenefit">₹0</span><span></span></div>
+                </div>
+                <p class="qt-hint mt-3">The tax you save is this deduction times your slab rate. The ₹1,50,000 principal limit (section 123, which was 80C) is shared with PPF, ELSS, insurance and the rest. The new regime gives no deduction for the home you live in. Section numbers are from the Income-tax Act, 2025, which applies from 1 April 2026.</p>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 qt-no-print">
+                <button type="button" class="qt-btn qt-btn--secondary qt-btn--sm" onclick="shareResult('Home Loan EMI', document.getElementById('monthlyEMI').innerText)">Share on WhatsApp</button>
+                <button type="button" class="qt-btn qt-btn--secondary qt-btn--sm" onclick="window.print()">Print</button>
+            </div>
+        </section>
     </div>
 
-    <div id="results" class="hidden space-y-6">
-        <div class="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl shadow-xl p-8 text-white">
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fas fa-chart-pie mr-3"></i>Your Home Loan Summary
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Monthly EMI</p>
-                    <p class="text-3xl font-bold" id="monthlyEMI">₹0</p>
-                </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Total Amount Payable</p>
-                    <p class="text-2xl font-bold" id="totalAmount">₹0</p>
-                </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Principal Amount</p>
-                    <p class="text-2xl font-bold" id="principalAmount">₹0</p>
-                </div>
-                <div class="bg-white bg-opacity-20 rounded-lg p-4">
-                    <p class="text-sm opacity-90 mb-1">Total Interest</p>
-                    <p class="text-2xl font-bold" id="totalInterest">₹0</p>
-                </div>
+    <article class="qt-prose qt-section">
+        <h2>Understanding home loans in India</h2>
+        <p>A home loan (also called a housing loan or mortgage) is a secured loan from a bank or housing finance company to buy, build or renovate a home. The property is the security, and you repay through equal monthly instalments (EMIs) over 5 to 30 years. Each EMI is part interest and part principal. Early on most of it is interest. In the default example above, the first year's EMIs pay about ₹4.2 lakh of interest and only about ₹1 lakh of principal.</p>
+
+        <h3>How home loan interest rates are set</h3>
+        <p>Most floating-rate home loans from banks are linked to an external benchmark, usually the RBI repo rate. Your rate is that benchmark plus a spread the bank fixes when it sanctions the loan. Since 1 October 2019 the RBI has required banks to link new floating-rate retail loans to an external benchmark, and the rate must be reset at least once every three months.</p>
+        <p>When the repo rate changes, your EMI or your remaining tenure changes at the next reset. The spread normally stays as sanctioned, which is why a lower spread is the most valuable thing to negotiate. Housing finance companies are not covered by this rule and usually price loans off their own benchmark rate.</p>
+        <p>Your credit score, the loan-to-value ratio, the loan amount and your type of employment all affect the spread you are offered. Lenders change their rates often, so use a current quote from the lender rather than any published table.</p>
+
+        <h3>Three worked examples</h3>
+        <div class="qt-table-wrap mb-5">
+            <table class="qt-table">
+                <thead><tr><th>Loan</th><th class="num">Rate</th><th class="num">Tenure</th><th class="num">EMI</th><th class="num">Total interest</th></tr></thead>
+                <tbody>
+                    
+                    <tr><td>₹50 lakh</td><td class="num">8.6%</td><td class="num">20 years</td><td class="num">₹43,708</td><td class="num">₹54,89,953</td></tr>
+                    
+                    <tr><td>₹1 crore</td><td class="num">8.75%</td><td class="num">25 years</td><td class="num">₹82,214</td><td class="num">₹1,46,64,309</td></tr>
+                    
+                    <tr><td>₹35 lakh</td><td class="num">8.4%</td><td class="num">15 years</td><td class="num">₹34,261</td><td class="num">₹26,66,986</td></tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <p>On the first loan, a prepayment of ₹1,00,000 at the end of every year from year 3 saves ₹14,84,339 of interest (about ₹14.84 lakh) and closes the loan 5.1 years early. Tick "Add a prepayment every year" above to try your own figures.</p>
+
+        <h3>Tax deductions on a home loan</h3>
+        <div class="qt-table-wrap mb-5">
+            <table class="qt-table">
+                <thead><tr><th>Deduction</th><th>What it covers</th><th class="num">Yearly limit</th></tr></thead>
+                <tbody>
+                    <tr><td>Section 22<br><span class="text-sm">24(b) in the 1961 Act</span></td><td>Interest on a loan for a home you live in, old regime only</td><td class="num">₹2,00,000</td></tr>
+                    <tr><td>Section 123<br><span class="text-sm">80C in the 1961 Act</span></td><td>Principal repaid, old regime only, within the one limit shared with PPF, ELSS, EPF and insurance</td><td class="num">₹1,50,000</td></tr>
+                    <tr><td>Section 131<br><span class="text-sm">80EEA in the 1961 Act</span></td><td>Extra interest for first-time buyers. Only for loans sanctioned from 1 April 2019 to 31 March 2022 on a home with a stamp duty value up to ₹45 lakh, so not for new loans</td><td class="num">₹1,50,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>From 1 April 2026 the Income-tax Act, 2025 replaced the 1961 Act, so these deductions have new section numbers. The limits did not change. In the new regime there is no deduction for the home you live in. For a home you let out, the interest is deducted from the rent you receive in either regime. If you are in the 30% slab under the old regime and claim the full ₹2,00,000 of interest and ₹1,50,000 of principal, your tax falls by up to ₹1,09,200 a year (31.2% with the 4% cess, before any surcharge). The <a href="/income-tax-calculator/">income tax calculator</a> shows which regime leaves you better off.</p>
+
+        <h3>What to compare between home loan offers</h3>
+        <div class="qt-table-wrap mb-5">
+            <table class="qt-table">
+                <thead><tr><th>What to check</th><th>Why it matters</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Rate type</strong></td><td>Floating rates move with the lender's benchmark. Fixed rates stay put but usually start higher, and some fixed loans convert to floating after a few years.</td></tr>
+                    <tr><td><strong>Spread over the benchmark</strong></td><td>For most floating loans the spread is fixed at sanction, so it decides what you pay for the whole tenure. Compare spreads, not just today's headline rate.</td></tr>
+                    <tr><td><strong>Reset frequency</strong></td><td>Bank loans on an external benchmark reset at least once every three months, so repo rate cuts and rises reach you quickly.</td></tr>
+                    <tr><td><strong>Processing fee</strong></td><td>Usually a percentage of the loan or a flat fee, with GST on top. It is sometimes waived during offers, so ask.</td></tr>
+                    <tr><td><strong>Prepayment charges</strong></td><td>RBI rules do not allow lenders to charge prepayment or foreclosure penalties on floating-rate loans taken by individuals for non-business purposes. Fixed-rate loans can carry a charge, so read the sanction letter.</td></tr>
+                    <tr><td><strong>Bundled insurance</strong></td><td>Check whether a loan protection insurance premium has been added to the loan amount. Ask for the quote without it so you compare like with like.</td></tr>
+                    <tr><td><strong>Total cost</strong></td><td>Put each offer's rate, tenure and fees into this calculator and compare the total interest, not the EMI alone.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-sm">General guidance as of November 2026. Confirm current rates and charges with the lender, and see the RBI's website for the rules on loan pricing.</p>
+
+        <h3>EMI for common loan amounts at 8.5%</h3>
+        <div class="qt-table-wrap mb-5">
+            <table class="qt-table">
+                <thead><tr><th>Loan</th><th class="num">15 years</th><th class="num">20 years</th><th class="num">25 years</th><th class="num">30 years</th></tr></thead>
+                <tbody>
+                    
+                    <tr><td><strong>₹20 lakh</strong></td><td class="num">₹19,695</td><td class="num">₹17,356</td><td class="num">₹16,105</td><td class="num">₹15,378</td></tr>
+                    
+                    <tr><td><strong>₹30 lakh</strong></td><td class="num">₹29,542</td><td class="num">₹26,035</td><td class="num">₹24,157</td><td class="num">₹23,067</td></tr>
+                    
+                    <tr><td><strong>₹40 lakh</strong></td><td class="num">₹39,390</td><td class="num">₹34,713</td><td class="num">₹32,209</td><td class="num">₹30,757</td></tr>
+                    
+                    <tr><td><strong>₹50 lakh</strong></td><td class="num">₹49,237</td><td class="num">₹43,391</td><td class="num">₹40,261</td><td class="num">₹38,446</td></tr>
+                    
+                    <tr><td><strong>₹75 lakh</strong></td><td class="num">₹73,855</td><td class="num">₹65,087</td><td class="num">₹60,392</td><td class="num">₹57,669</td></tr>
+                    
+                    <tr><td><strong>₹1 crore</strong></td><td class="num">₹98,474</td><td class="num">₹86,782</td><td class="num">₹80,523</td><td class="num">₹76,891</td></tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <p>Lenders look at how much of your take-home pay would go to EMIs (they call it FOIR) and often stop at around half, so this table is also a quick check on how big a loan your salary supports. The <a href="/salary-calculator/">salary calculator</a> gives your in-hand pay.</p>
+
+        <h3>Documents lenders usually ask for</h3>
+        <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+                <p class="font-semibold text-ink mb-1">Salaried</p>
+                <ul>
+                    <li>Identity proof (Aadhaar, PAN or passport)</li>
+                    <li>Address proof (utility bill or rent agreement)</li>
+                    <li>Last 3 months' salary slips</li>
+                    <li>Last 6 months' bank statement</li>
+                    <li>Form 16 for the last 2 years</li>
+                </ul>
             </div>
-            
-            <button onclick="shareResult('Home Loan EMI', document.getElementById('monthlyEMI').innerText)"
-                class="mt-6 w-full bg-white text-orange-600 hover:bg-gray-100 font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                <i class="fab fa-whatsapp text-xl mr-2 text-[#25D366]"></i> Share via WhatsApp
-            </button>
+            <div>
+                <p class="font-semibold text-ink mb-1">Self-employed</p>
+                <ul>
+                    <li>Identity and address proof</li>
+                    <li>Business proof (GST or registration certificate)</li>
+                    <li>ITR for the last 3 years with the computation of income</li>
+                    <li>Last 12 months' bank statement</li>
+                    <li>Balance sheet and profit and loss statement, certified by a CA</li>
+                </ul>
+            </div>
         </div>
 
-        <div id="prepaymentResults" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <i class="fas fa-piggy-bank mr-3 text-green-600"></i>Pre-payment Impact
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div
-                    class="bg-green-50 dark:bg-green-900 dark:bg-opacity-20 rounded-lg p-4 border border-green-200 dark:border-green-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Interest Saved</p>
-                    <p class="text-2xl font-bold text-green-600" id="interestSaved">₹0</p>
-                </div>
-                <div
-                    class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Tenure Reduced By</p>
-                    <p class="text-2xl font-bold text-blue-600" id="tenureReduced">0 years</p>
-                </div>
-                <div
-                    class="bg-purple-50 dark:bg-purple-900 dark:bg-opacity-20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">New Loan Tenure</p>
-                    <p class="text-2xl font-bold text-purple-600" id="newTenure">0 years</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <i class="fas fa-file-invoice mr-3 text-indigo-600"></i>Tax Benefits (Annual)
-            </h3>
-            <div class="space-y-4">
-                <div
-                    class="flex justify-between items-center p-4 bg-indigo-50 dark:bg-indigo-900 dark:bg-opacity-20 rounded-lg">
-                    <div>
-                        <p class="font-semibold text-gray-800 dark:text-white">Section 24(b) - Interest Deduction
-                        </p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Up to ₹2,00,000 on interest paid</p>
-                    </div>
-                    <p class="text-xl font-bold text-indigo-600" id="taxBenefit24b">₹0</p>
-                </div>
-                <div
-                    class="flex justify-between items-center p-4 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 rounded-lg">
-                    <div>
-                        <p class="font-semibold text-gray-800 dark:text-white">Section 80C - Principal Deduction</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Up to ₹1,50,000 on principal repayment
-                        </p>
-                    </div>
-                    <p class="text-xl font-bold text-green-600" id="taxBenefit80c">₹0</p>
-                </div>
-                <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
-                    <div class="flex justify-between items-center">
-                        <p class="text-lg font-semibold text-gray-800 dark:text-white">Total Annual Tax Benefit</p>
-                        <p class="text-2xl font-bold text-orange-600" id="totalTaxBenefit">₹0</p>
-                    </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                        <i class="fas fa-info-circle mr-1"></i>First-time buyers can claim additional ₹50,000 under
-                        Section 80EEA
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-8">
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                <i class="fas fa-info-circle mr-3 text-blue-600"></i>Loan Breakdown
-            </h3>
-            <div class="space-y-3 text-gray-700 dark:text-gray-300">
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span>Principal to Interest Ratio</span>
-                    <span class="font-semibold" id="principalInterestRatio">-</span>
-                </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span>Total Months</span>
-                    <span class="font-semibold" id="totalMonths">-</span>
-                </div>
-                <div class="flex justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <span>EMI to Loan Ratio</span>
-                    <span class="font-semibold" id="emiRatio">-</span>
-                </div>
-            </div>
-        </div>
+        <p class="qt-note mt-10">These are estimates from the figures you enter. Your lender's sanction letter and amortisation schedule are what count, and tax rules depend on your full return. This page is for information, not financial or tax advice.</p>
+    </article>
     </div>
-
-    <div class="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-            <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>Understanding Home Loans in India
-        </h2>
-
-        <div class="max-w-none space-y-6 text-gray-700 dark:text-gray-300">
-            <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">What is a Home Loan?</h3>
-                <p>A home loan (also called housing loan or mortgage) is a secured loan provided by banks and
-                    financial institutions to help you purchase, construct, or renovate a residential property. The
-                    property itself serves as collateral, and you repay the loan through fixed monthly installments
-                    (EMIs) over 5-30 years.</p>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">How home loan interest rates are set</h3>
-                <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-700 dark:to-gray-700 p-6 rounded-lg space-y-3 text-gray-700 dark:text-gray-300">
-                    <p>Most floating-rate home loans from banks are linked to an external benchmark, usually the RBI repo rate. Your rate is that benchmark plus a spread the bank fixes when it sanctions the loan. Since 1 October 2019 the RBI has required banks to link new floating-rate retail loans to an external benchmark, and the rate must be reset at least once every three months.</p>
-                    <p>When the repo rate changes, your EMI or your remaining tenure changes at the next reset. The spread normally stays as sanctioned, which is why a lower spread is the most valuable thing to negotiate. Housing finance companies are not covered by this rule and usually price loans off their own benchmark rate.</p>
-                    <p>Your credit score, the loan-to-value ratio, the loan amount and your type of employment all affect the spread you are offered. Lenders change their rates often, so use a current quote from the lender rather than any published table, including older versions of this page.</p>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Real-Life Examples</h3>
-
-                <div class="space-y-4">
-                    <div class="border-l-4 border-orange-500 pl-4 py-2 bg-orange-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">Young Professional in Bangalore</p>
-                        <p class="text-sm mt-1"><strong>Scenario:</strong> ₹50 Lac loan at 8.60% for 20 years</p>
-                        <p class="text-sm"><strong>Monthly EMI:</strong> ₹43,391 | <strong>Total Interest:</strong>
-                            ₹54.14 Lac</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-star text-yellow-500 mr-1"></i><strong>Smart Move:</strong> By
-                            pre-paying ₹1 Lac yearly from year 3, saves ₹19.8 Lac in interest and closes loan 5
-                            years early!</p>
-                    </div>
-
-                    <div class="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">Family Buying Dream Home in Mumbai
-                        </p>
-                        <p class="text-sm mt-1"><strong>Scenario:</strong> ₹1 Cr loan at 8.75% for 25 years</p>
-                        <p class="text-sm"><strong>Monthly EMI:</strong> ₹80,537 | <strong>Total Interest:</strong>
-                            ₹1.42 Cr</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-piggy-bank text-green-500 mr-1"></i><strong>Tax Benefit:</strong>
-                            Saves ₹1,09,000 annually (₹2L interest + ₹1.5L principal deductions in 30% tax bracket)
-                        </p>
-                    </div>
-
-                    <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 dark:bg-gray-700 rounded-r-lg">
-                        <p class="font-semibold text-gray-800 dark:text-white">First-Time Buyer in Delhi NCR</p>
-                        <p class="text-sm mt-1"><strong>Scenario:</strong> ₹35 Lac loan at 8.40% for 15 years</p>
-                        <p class="text-sm"><strong>Monthly EMI:</strong> ₹34,012 | <strong>Total Interest:</strong>
-                            ₹26.22 Lac</p>
-                        <p class="text-sm mt-2 text-gray-600 dark:text-gray-400"><i
-                                class="fas fa-trophy text-yellow-500 mr-1"></i><strong>Bonus:</strong> Claims
-                            additional ₹50,000 under Section 80EEA as first-time buyer, total annual benefit ₹3.5
-                            Lac!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-3">Maximum Tax Benefits Available
-                </h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border border-gray-300 dark:border-gray-600">
-                        <thead class="bg-gray-100 dark:bg-gray-700">
-                            <tr>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Section
-                                </th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">
-                                    Component</th>
-                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Maximum
-                                    Deduction</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">80C</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Principal
-                                    Repayment</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹1,50,000</td>
-                            </tr>
-                            <tr class="bg-gray-50 dark:bg-gray-800">
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">24(b)</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Interest Payment
-                                </td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹2,00,000</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">80EEA</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">Additional
-                                    Interest (1st time buyer)</td>
-                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">₹50,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- What to compare between lenders -->
-        <div class="mt-12">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">What to Compare Between Home Loan Offers</h3>
-            <div class="overflow-x-auto shadow-md rounded-lg">
-                <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                    <thead class="bg-indigo-600 text-white">
-                        <tr><th class="px-4 py-3 text-left">What to check</th><th class="px-4 py-3 text-left">Why it matters</th></tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-sm">
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Rate type</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Floating rates move with the lender's benchmark. Fixed rates stay put but usually start higher, and some fixed loans convert to floating after a few years.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Spread over the benchmark</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">For most floating loans the spread is fixed at sanction, so it decides what you pay for the whole tenure. Compare spreads, not just today's headline rate.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Reset frequency</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Bank loans on an external benchmark reset at least once every three months, so repo rate cuts and rises reach you quickly.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Processing fee</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Usually a percentage of the loan or a flat fee, with GST on top. It is sometimes waived during offers, so ask.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Prepayment charges</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">RBI rules do not allow lenders to charge prepayment or foreclosure penalties on floating-rate loans taken by individuals for non-business purposes. Fixed-rate loans can carry a charge, so read the sanction letter.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Bundled insurance</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Check whether a loan protection insurance premium has been added to the loan amount. Ask for the quote without it so you compare like with like.</td></tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition"><td class="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">Total cost</td><td class="px-4 py-3 text-gray-700 dark:text-gray-300">Put each offer's rate, tenure and fees into this calculator and compare the total interest, not the EMI alone.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">General guidance as of October 2026. Confirm current rates and charges with the lender and see the RBI's website for the rules on loan pricing.</p>
-        </div>
-
-        <!-- Popular Home Loan EMI Table -->
-        <div class="mt-12">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Home Loan EMI for Popular Amounts (8.5% Interest)</h3>
-            <div class="overflow-x-auto shadow-md rounded-lg">
-                <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                    <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th class="px-6 py-4 text-left">Loan Amount</th>
-                            <th class="px-6 py-4 text-center">15 Years</th>
-                            <th class="px-6 py-4 text-center">20 Years</th>
-                            <th class="px-6 py-4 text-center">25 Years</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">₹20 Lakhs</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹19,695</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹17,356</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹16,108</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">₹30 Lakhs</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹29,542</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹26,035</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹24,162</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">₹50 Lakhs</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹49,237</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹43,391</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹40,270</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">₹75 Lakhs</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹73,855</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹65,087</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹60,405</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">₹1 Crore</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹98,474</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹86,782</td>
-                            <td class="px-6 py-4 text-center text-gray-700 dark:text-gray-300">₹80,539</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Documents Required Checklist -->
-        <div class="mt-12 bg-blue-50 dark:bg-gray-800 p-8 rounded-xl border-l-4 border-blue-500 shadow-lg">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <i class="fas fa-file-alt text-blue-600 mr-3"></i>Documents Required for Home Loan
-            </h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2 border-gray-300 dark:border-gray-600">Salaried Employees</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Identity Proof (Aadhaar/PAN/Passport)</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Address Proof (Utility Bill/Rent Agreement)</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Last 3 Months Salary Slips</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Last 6 Months Bank Statement</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Form-16 for last 2 years</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2 border-gray-300 dark:border-gray-600">Self-Employed</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Identity & Address Proof</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Business Proof (GST/Registration)</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>ITR for last 3 years (Computation of Income)</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Last 12 Months Bank Statement</span>
-                        </li>
-                        <li class="flex items-start text-gray-600 dark:text-gray-300">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                            <span>Balance Sheet & P&L Statement (CA Certified)</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Financial Disclaimer -->
-<div class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-7xl mx-auto mb-8">
-    <div class="flex items-start">
-        <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-        <div>
-            <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-            <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-                <p><strong>For Informational Purposes Only:</strong> This calculator provides estimates based on the
-                    inputs you provide. Actual loan terms, EMI amounts, interest rates, and tax benefits may vary
-                    based on lender policies, credit score, and current government regulations.</p>
-                <p><strong>Not Financial/Legal Advice:</strong> The information and calculations provided here are
-                    NOT professional financial or legal advice. Do not make major financial decisions based solely
-                    on these calculations.</p>
-                <p><strong>Consult Professionals:</strong> Always consult with certified financial advisors, tax
-                    consultants, and loan officers for accurate and personalized advice before taking any loans or
-                    making investments.</p>
-                <p><strong>No Liability:</strong> QuickTools India assumes no responsibility for any financial
-                    losses, damages, or decisions taken based on the calculations or information provided on this
-                    tool.</p>
-            </div>
-        </div>
-    </div>
-</div>
+</main>
 
 
+<script src="/js/number-words.js"></script>
 <script>
+    const rupees = (x) => '₹' + Math.round(x).toLocaleString('en-IN');
+    const shortAmount = (x) => x >= 1e7 ? (x / 1e7).toFixed(2) + ' crore' : x >= 1e5 ? (x / 1e5).toFixed(2) + ' lakh' : '';
+    const withShort = (x) => rupees(x) + (shortAmount(x) ? '<small>' + shortAmount(x) + '</small>' : '');
+
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('home_loan_calc');
-        calculateHomeLoan(false);
-        // We don't verify auto-run here because the user has to click "Calculate" anyway.
-        // But we DO need to restore the "Enable Prepayment" toggle state visibility.
         if (document.getElementById('enablePrepayment').checked) {
-             document.getElementById('prepaymentSection').classList.remove('hidden');
+            document.getElementById('prepaymentSection').classList.remove('hidden');
         }
+        calculateHomeLoan(false);
+        // Sliders mirror the boxes next to them, both ways
+        document.querySelectorAll('[data-sync]').forEach((range) => {
+            const box = document.getElementById(range.dataset.sync);
+            const fromBox = () => {
+                const v = parseINR(box.value);
+                if (v) { range.value = v; if (window.qt) window.qt.fill(range); }
+            };
+            range.addEventListener('input', () => {
+                box.value = box.classList.contains('format-inr') ? formatIndianNumber(range.value) : range.value;
+                box.dispatchEvent(new Event('input', { bubbles: true }));
+            });
+            box.addEventListener('input', fromBox);
+            fromBox();
+        });
+        // Numbers update as you type
+        ['loanAmount', 'interestRate', 'loanTenure', 'prepaymentAmount', 'prepaymentStartYear'].forEach((id) => {
+            document.getElementById(id).addEventListener('input', () => calculateHomeLoan(false));
+        });
     });
 
     document.getElementById('enablePrepayment').addEventListener('change', function () {
-        const section = document.getElementById('prepaymentSection');
+        document.getElementById('prepaymentSection').classList.toggle('hidden', !this.checked);
         if (this.checked) {
-            section.classList.remove('hidden');
-            trackEvent('feature_use', {
-                feature_name: 'enable_prepayment',
-                tool_name: 'Home Loan Calculator'
-            });
-        } else {
-            section.classList.add('hidden');
+            trackEvent('feature_use', { feature_name: 'enable_prepayment', tool_name: 'Home Loan Calculator' });
         }
+        calculateHomeLoan(false);
     });
 
-    function formatIndianCurrency(amount) {
-        if (amount >= 10000000) {
-            return '₹' + (amount / 10000000).toFixed(2) + ' Cr';
-        } else if (amount >= 100000) {
-            return '₹' + (amount / 100000).toFixed(2) + ' Lac';
-        } else {
-            return '₹' + amount.toLocaleString('en-IN');
-        }
+    // Count one use per pause in typing, not one per keystroke
+    let trackTimer = null;
+    function trackLater(amount) {
+        clearTimeout(trackTimer);
+        trackTimer = setTimeout(() => trackCalculatorUsage('Home Loan Calculator', amount), 2000);
     }
 
     function calculateHomeLoan(shouldScroll = true) {
         const loanAmount = parseINR(document.getElementById('loanAmount').value);
         const annualRate = parseINR(document.getElementById('interestRate').value);
         const tenureYears = parseINR(document.getElementById('loanTenure').value);
-        const monthlyRate = annualRate / 12 / 100;
-        const tenureMonths = tenureYears * 12;
+        const results = document.getElementById('results');
+        if (!(loanAmount > 0 && annualRate > 0 && tenureYears > 0)) return;
 
+        const words = (typeof NumberWords !== 'undefined') ? NumberWords.convert(String(Math.round(loanAmount))) : null;
+        document.getElementById('loanAmountWords').textContent = words && !words.error ? words.inWords.replace(/ Only$/, '') : '';
+
+        const monthlyRate = annualRate / 12 / 100;
+        const tenureMonths = Math.round(tenureYears * 12);
         const emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) / (Math.pow(1 + monthlyRate, tenureMonths) - 1);
         const totalAmount = emi * tenureMonths;
         const totalInterest = totalAmount - loanAmount;
 
-        // GA4 Event Tracking
-        trackCalculatorUsage('Home Loan Calculator', loanAmount);
+        trackLater(loanAmount);
 
-        // Prepayment Calculation
+        // Yearly prepayment, applied at the end of each loan year from the start year
         const enablePrepayment = document.getElementById('enablePrepayment').checked;
-        let interestSaved = 0;
-        let tenureReduced = 0;
-        let newTenure = tenureYears;
-
         if (enablePrepayment) {
             const prepaymentAmount = parseINR(document.getElementById('prepaymentAmount').value);
-            const startYear = parseInt(document.getElementById('prepaymentStartYear').value);
-
-            // Simulation for prepayment
+            const startYear = parseInt(document.getElementById('prepaymentStartYear').value, 10) || 1;
             let principal = loanAmount;
-            let originalMonths = tenureMonths;
-            let currentMonth = 0;
-            let totalInterestWithPrepayment = 0;
-
-            while (principal > 0 && currentMonth < originalMonths) {
+            let month = 0;
+            let interestPaid = 0;
+            while (principal > 0.005 && month < tenureMonths) {
                 const interestForMonth = principal * monthlyRate;
-                let principalPaidForMonth = emi - interestForMonth;
-                totalInterestWithPrepayment += interestForMonth;
-
-                principal -= principalPaidForMonth;
-
-                // Apply prepayment
-                if ((currentMonth + 1) >= (startYear * 12) && (currentMonth + 1) % 12 === 0) {
-                    principal -= prepaymentAmount;
-                }
-
-                currentMonth++;
+                interestPaid += interestForMonth;
+                principal -= emi - interestForMonth;
+                if ((month + 1) >= startYear * 12 && (month + 1) % 12 === 0) principal -= prepaymentAmount;
+                month++;
                 if (principal < 0) principal = 0;
             }
-
-            interestSaved = totalInterest - totalInterestWithPrepayment;
-            tenureReduced = (originalMonths - currentMonth) / 12;
-            newTenure = currentMonth / 12;
-
-            document.getElementById('interestSaved').textContent = formatIndianCurrency(Math.round(interestSaved));
-            document.getElementById('tenureReduced').textContent = tenureReduced.toFixed(1) + ' years';
-            document.getElementById('newTenure').textContent = newTenure.toFixed(1) + ' years';
+            document.getElementById('interestSaved').innerHTML = withShort(Math.max(0, totalInterest - interestPaid));
+            document.getElementById('tenureReduced').textContent = ((tenureMonths - month) / 12).toFixed(1) + ' years';
+            document.getElementById('newTenure').textContent = (month / 12).toFixed(1) + ' years (' + month + ' months)';
             document.getElementById('prepaymentResults').classList.remove('hidden');
         } else {
             document.getElementById('prepaymentResults').classList.add('hidden');
         }
 
-        // Display Results
-        document.getElementById('monthlyEMI').textContent = formatIndianCurrency(Math.round(emi));
-        document.getElementById('totalAmount').textContent = formatIndianCurrency(Math.round(totalAmount));
-        document.getElementById('principalAmount').textContent = formatIndianCurrency(Math.round(loanAmount));
-        document.getElementById('totalInterest').textContent = formatIndianCurrency(Math.round(totalInterest));
+        const emiEl = document.getElementById('monthlyEMI');
+        emiEl.textContent = rupees(emi);
+        emiEl.classList.remove('qt-fresh');
+        void emiEl.offsetWidth;
+        emiEl.classList.add('qt-fresh');
+        document.getElementById('emiLine').textContent = 'every month for ' + tenureMonths + ' months, at ' + annualRate + '% a year';
+        document.getElementById('totalAmount').innerHTML = withShort(totalAmount);
+        document.getElementById('principalAmount').innerHTML = withShort(loanAmount);
+        document.getElementById('totalInterest').innerHTML = withShort(totalInterest);
 
-        document.getElementById('principalInterestRatio').textContent = ((loanAmount / totalAmount) * 100).toFixed(0) + ':' + ((totalInterest / totalAmount) * 100).toFixed(0);
+        const pShare = Math.round((loanAmount / totalAmount) * 100);
+        document.getElementById('splitPrincipal').style.width = pShare + '%';
+        document.getElementById('splitInterest').style.width = (100 - pShare) + '%';
+        document.getElementById('principalInterestRatio').textContent = pShare + ' : ' + (100 - pShare);
         document.getElementById('totalMonths').textContent = tenureMonths + ' months';
-        document.getElementById('emiRatio').textContent = '₹' + Math.round(emi / 100000) + ' per Lac';
+        document.getElementById('emiRatio').textContent = rupees(emi / (loanAmount / 100000)) + ' a month for every ₹1 lakh';
 
-        // Tax Benefits
-        const tax24b = Math.min(200000, totalInterest / tenureYears);
-        const tax80c = Math.min(150000, loanAmount / tenureYears);
-        let totalTax = tax24b + tax80c;
-
-        // 80EEA check (simplified assumption)
-        if (loanAmount <= 4500000) {
-            totalTax += 50000;
+        // Year-one interest and principal from the schedule, then the old-regime caps
+        let bal = loanAmount, yearInterest = 0, yearPrincipal = 0;
+        for (let k = 0; k < Math.min(12, tenureMonths); k++) {
+            const i = bal * monthlyRate;
+            yearInterest += i;
+            yearPrincipal += emi - i;
+            bal -= emi - i;
         }
+        const tax24b = Math.min(200000, yearInterest);
+        const tax80c = Math.min(150000, yearPrincipal);
+        document.getElementById('taxBenefit24b').innerHTML = rupees(tax24b) + '<small>of ' + rupees(yearInterest) + ' interest, capped at ₹2,00,000 for a home you live in</small>';
+        document.getElementById('taxBenefit80c').innerHTML = rupees(tax80c) + '<small>of ' + rupees(yearPrincipal) + ' principal, within the ₹1,50,000 limit</small>';
+        document.getElementById('totalTaxBenefit').textContent = rupees(tax24b + tax80c);
 
-        document.getElementById('taxBenefit24b').textContent = formatIndianCurrency(Math.round(tax24b));
-        document.getElementById('taxBenefit80c').textContent = formatIndianCurrency(Math.round(tax80c));
-        document.getElementById('totalTaxBenefit').textContent = formatIndianCurrency(Math.round(totalTax));
-
-        document.getElementById('results').classList.remove('hidden');
-        if (shouldScroll) {
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        results.classList.remove('hidden');
+        if (shouldScroll && window.innerWidth < 1024) {
+            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 </script>
@@ -840,25 +619,18 @@
 
 
     
-<section class="container mx-auto px-4 max-w-4xl mt-10" aria-labelledby="official-sources">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-        <h2 id="official-sources" class="text-xl font-bold text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-landmark text-indigo-500 mr-2"></i>Where to verify
-        </h2>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The rules and rates used on this page come from these official bodies. Rates and limits change, so confirm the current figure on the official site before you act on a number here.
-        </p>
-        <ul class="space-y-2 text-sm">
+<section class="qt-wrap qt-section" aria-labelledby="official-sources">
+    <div class="qt-card qt-card--sunken max-w-[46rem]">
+        <span class="qt-sticker is-mor is-flat">Check the source</span>
+        <h2 id="official-sources" class="qt-h3 mt-3 mb-1">Where to verify</h2>
+        <p class="mb-3 text-ink-2">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+        <ul class="space-y-1.5">
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.rbi.org.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Reserve Bank of India</a><span class="text-gray-600 dark:text-gray-300"> for rules on loan pricing, benchmarks and prepayment</span></span>
-            </li>
+            <li><a href="https://www.rbi.org.in/" target="_blank" rel="noopener" class="qt-link">Reserve Bank of India</a> for rules on loan pricing, benchmarks and prepayment</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Income Tax Department e-filing portal</a><span class="text-gray-600 dark:text-gray-300"> for home loan tax deductions</span></span>
-            </li>
+            <li><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="qt-link">Income Tax Department e-filing portal</a> for home loan tax deductions</li>
+            
+            <li><a href="https://egazette.gov.in/WriteReadData/2025/265620.pdf" target="_blank" rel="noopener" class="qt-link">The Income-tax Act, 2025 (Gazette of India)</a> for sections 22, 123 and 131, in force from 1 April 2026</li>
             
         </ul>
     </div>
@@ -866,80 +638,57 @@
 
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -955,7 +704,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -966,6 +716,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

@@ -50,168 +50,155 @@
     <meta name="twitter:image:alt" content="About Us | QuickTools India">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
 
 
     
-<section class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
+<main class="qt-wrap">
+<section class="mx-auto px-4 py-8 md:py-12">
+    <div class="max-w-4xl">
         <!-- Hero Section -->
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 mb-8 p-8 transition-colors duration-200">
-            <div class="text-center mb-8">
-                <i class="fas fa-tools text-6xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">About QuickTools India
-                </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300">Free, privacy-friendly financial calculators
-                    and everyday tools, built for Indian users</p>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>About QuickTools India</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                
+                <span class="qt-stamp">Updated 6 Nov 2026</span>
             </div>
+            <h1 class="qt-h1 mt-4">About QuickTools India</h1>
+            <p class="qt-lede mt-4">Free, privacy-friendly financial calculators and everyday tools, built for Indian users</p>
+        </section>
+        <div class="qt-card mb-8">
+            
 
             <!-- Our Mission -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-bullseye text-indigo-600 dark:text-indigo-400 mr-3"></i>Our Mission
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Our Mission
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     QuickTools India was founded with a clear mission: to <strong>democratize financial planning</strong>
                     for every Indian, whether you're a first-generation investor in a small town or a seasoned
                     professional in a metro city. We believe that access to accurate, easy-to-use financial calculators
                     should not require expensive software, sign-ups, or sharing your personal data.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300">
+                <p>
                     Every tool we build runs <strong>100% in your browser</strong>. Your numbers stay on your device. We
                     don't ask for your phone number, email, or any personal information. We simply want to help Indians
                     make better financial decisions, quickly and privately.
@@ -220,51 +207,51 @@
 
             <!-- What Makes Us Different -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-star text-indigo-600 dark:text-indigo-400 mr-3"></i>What Makes Us Different
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    What Makes Us Different
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     Most online calculators give you a basic EMI result and stop there. We go deeper, because real
                     financial decisions require real context:
                 </p>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div
-                        class="bg-orange-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-orange-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2"></i>Home Loan Calculator
+                        class="qt-note">
+                        <h3 class="qt-h3 mb-2">
+                            Home Loan Calculator
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Shows pre-payment impact (how ₹1 Lakh
-                            extra/year saves ₹15-20 Lakhs in interest), tax benefits under Section 24(b)/80C/80EEA, and
+                        <p class="text-sm">Shows pre-payment impact (how ₹1 Lakh
+                            extra/year saves ₹15-20 Lakhs in interest), tax benefits under section 22 (was 24(b)) and section 123 (was 80C), and
                             bank rate comparisons, features that generic calculators skip entirely.</p>
                     </div>
 
                     <div
-                        class="bg-red-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-red-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2"></i>Car Loan Calculator
+                        class="qt-note is-danger">
+                        <h3 class="qt-h3 mb-2">
+                            Car Loan Calculator
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Goes beyond EMI to show complete on-road
+                        <p class="text-sm">Goes beyond EMI to show complete on-road
                             price including RTO tax, insurance, and accessories. Compares new vs used car economics so
                             you don't end up "underwater" on your loan.</p>
                     </div>
 
                     <div
-                        class="bg-green-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-green-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2"></i>Investment
+                        class="qt-note is-tip">
+                        <h3 class="qt-h3 mb-2">
+                            Investment
                             Calculators
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">SIP, PPF, SSY calculators with inflation
+                        <p class="text-sm">SIP, PPF, SSY calculators with inflation
                             adjustment, step-up SIP projections, and year-wise growth tables, helping you visualize
                             long-term wealth creation.</p>
                     </div>
 
                     <div
-                        class="bg-blue-50 dark:bg-gray-600 p-5 rounded-lg border-l-4 border-blue-500 transition-colors duration-200">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                            <i class="fas fa-rupee-sign text-blue-600 dark:text-blue-400 mr-2"></i>Tax & Salary Tools
+                        class="qt-note is-tip">
+                        <h3 class="qt-h3 mb-2">
+                            Tax & Salary Tools
                         </h3>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm">Income Tax Calculator comparing Old vs New
+                        <p class="text-sm">Income Tax Calculator comparing Old vs New
                             Regime, CTC-to-In-Hand Salary Calculator, and GST Calculator with CGST/SGST breakdown, all updated for FY 2026-27 (see the Site Updates page for the dated change log).</p>
                     </div>
                 </div>
@@ -272,41 +259,41 @@
 
             <!-- How Our Calculators Work -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-flask text-indigo-600 dark:text-indigo-400 mr-3"></i>How Our Calculators Work
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    How Our Calculators Work
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     Each calculator uses publicly documented formulas. Here is how we approach them:
                 </p>
                 <div class="space-y-3">
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">1</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">1</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Public Formulas</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">EMI uses the standard reducing-balance formula. PPF, SSY, NPS, and tax calculations follow rules published by the Income Tax Department, the RBI, and the relevant scheme notifications. Default interest rates shown reflect publicly listed rates at the time we last updated the page, and may not match your bank or the current government rate.</p>
+                            <h4 class="font-bold">Public Formulas</h4>
+                            <p class="text-sm">EMI uses the standard reducing-balance formula. PPF, SSY, NPS, and tax calculations follow rules published by the Income Tax Department, the RBI, and the relevant scheme notifications. Default interest rates shown reflect publicly listed rates at the time we last updated the page, and may not match your bank or the current government rate.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">2</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">2</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Spot Checks</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">We compare output against bank EMI calculators and manual spreadsheet computations during development. If you spot a discrepancy, please email us so we can investigate.</p>
+                            <h4 class="font-bold">Spot Checks</h4>
+                            <p class="text-sm">We compare output against bank EMI calculators and manual spreadsheet computations during development. If you spot a discrepancy, please email us so we can investigate.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
-                            <span class="text-indigo-600 dark:text-indigo-300 font-bold text-sm">3</span>
+                            class="qt-panel w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">
+                            <span class="font-bold text-sm">3</span>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800 dark:text-white">Estimates, Not Advice</h4>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Results are estimates for planning and learning. Before acting on a number, please consult a SEBI-registered investment advisor, chartered accountant, or your bank. We are not financial advisors.</p>
+                            <h4 class="font-bold">Estimates, Not Advice</h4>
+                            <p class="text-sm">Results are estimates for planning and learning. Before acting on a number, please consult a SEBI-registered investment advisor, chartered accountant, or your bank. We are not financial advisors.</p>
                         </div>
                     </div>
                 </div>
@@ -314,18 +301,17 @@
 
             <!-- Our Values -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-heart text-indigo-600 dark:text-indigo-400 mr-3"></i>Our Values
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Our Values
                 </h2>
                 <div class="space-y-4">
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-lock text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Privacy First</h3>
-                            <p class="text-gray-700 dark:text-gray-300">All calculations happen in your browser. We
+                            <h3 class="qt-h3 mb-1">Privacy First</h3>
+                            <p>All calculations happen in your browser. We
                                 don't collect, store, or transmit your financial data. No registration, no phone number,
                                 no email, ever.</p>
                         </div>
@@ -333,25 +319,23 @@
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-gift text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Always Free</h3>
-                            <p class="text-gray-700 dark:text-gray-300">No hidden fees, no premium tiers, no
+                            <h3 class="qt-h3 mb-1">Always Free</h3>
+                            <p>No hidden fees, no premium tiers, no
                                 feature-gating. Every tool is 100% free to use, unlimited times.</p>
                         </div>
                     </div>
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-graduation-cap text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Education-First
+                            <h3 class="qt-h3 mb-1">Education-First
                                 Approach</h3>
-                            <p class="text-gray-700 dark:text-gray-300">Every calculator page includes detailed
+                            <p>Every calculator page includes detailed
                                 explanations, FAQs, and real-world examples. We don't just give you a number, we help
                                 you understand what it means for your financial life.</p>
                         </div>
@@ -359,12 +343,11 @@
 
                     <div class="flex items-start">
                         <div
-                            class="bg-indigo-100 dark:bg-indigo-800 rounded-full p-3 mr-4 transition-colors duration-200">
-                            <i class="fas fa-flag text-indigo-600 dark:text-indigo-300 text-xl"></i>
-                        </div>
+                            class="qt-panel p-3 mr-4">
+                                                    </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">Made for India</h3>
-                            <p class="text-gray-700 dark:text-gray-300">Rupee formatting (Lakhs/Crores), Indian tax
+                            <h3 class="qt-h3 mb-1">Made for India</h3>
+                            <p>Rupee formatting (Lakhs/Crores), Indian tax
                                 slabs, GST rates, government scheme rules, everything is tailored for the Indian
                                 context. No generic international calculators here.</p>
                         </div>
@@ -374,33 +357,33 @@
 
             <!-- About This Site -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-circle-info text-indigo-600 dark:text-indigo-400 mr-3"></i>About This Site
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    About This Site
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                <p class="mb-3">
                     QuickTools India is a small, independent project. There is no large editorial team behind it &mdash; just a handful of calculators and explainer articles built carefully and offered free of cost. We are not financial advisors, not affiliated with any bank, mutual fund house, insurance company, or government body, and we do not earn commissions on any product mentioned in our content.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                <p class="mb-3">
                     Articles on this site are educational. We try to keep the numbers accurate and the language plain, but tax laws and interest rates change, and we may not update every page immediately. Before making a financial decision, please verify the latest rules with your bank, a chartered accountant, or a SEBI-registered investment advisor.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300">
+                <p>
                     If you find an error in a calculation or want to suggest a tool, write to us &mdash; the email below is checked by a real person.
                 </p>
             </div>
 
             <!-- Contact Section -->
             <div
-                class="bg-indigo-50 dark:bg-indigo-900 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400 transition-colors duration-200">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-envelope text-indigo-600 dark:text-indigo-400 mr-3"></i>Get in Touch
+                class="qt-note is-tip">
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Get in Touch
                 </h2>
-                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                <p class="mb-4">
                     We'd love to hear from you! Whether you have a suggestion for a new tool, found an error in a
                     calculation, or want to contribute a guest article, feel free to reach out.
                 </p>
                 <a href="mailto:quicktoolsindiaa@gmail.com"
-                    class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    <i class="fas fa-paper-plane mr-2"></i>Email Us: quicktoolsindiaa@gmail.com
+                    class="qt-btn inline-flex items-center">
+                    Email Us: quicktoolsindiaa@gmail.com
                 </a>
             </div>
         </div>
@@ -408,91 +391,69 @@
         <!-- Back to Home -->
         <div class="text-center">
             <a href="/"
-                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition text-lg">
-                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                class="qt-link inline-flex items-center">
+                Back to Home
             </a>
         </div>
     </div>
 </section>
 
+</main>
 
     
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -508,7 +469,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -519,6 +481,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

@@ -50,138 +50,121 @@
     <meta name="twitter:image:alt" content="Lakh Crore in Numbers, with Zeros and Trillions | QuickTools India">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" aria-current="page">Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -240,49 +223,48 @@
 </script>
 
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-        <nav class="text-sm text-gray-500 dark:text-gray-400 mb-4" aria-label="Breadcrumb">
-            <a href="/" class="hover:text-purple-600 dark:hover:text-purple-400">Home</a>
-            <span class="mx-1">/</span>
-            <a href="/number-to-words/" class="hover:text-purple-600 dark:hover:text-purple-400">Number to Words</a>
-            <span class="mx-1">/</span>
-            <span class="text-gray-700 dark:text-gray-200">Lakh Crore in Numbers</span>
-        </nav>
+<main>
+    <div class="qt-wrap">
+        
 
-        <div class="text-center mb-4 md:mb-8">
-            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">Lakh Crore in Numbers</h1>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">1 lakh crore = 1,00,000 crore = 10,00,00,00,00,000 = one trillion</p>
-        </div>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Amounts and words</span><span aria-hidden="true">/</span><span>Lakh Crore in Numbers</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-amounts">Amounts and words</span>
+                <span class="qt-stamp">Updated 4 Nov 2026</span>
+            </div>
+            <h1 class="qt-h1 mt-4">Lakh Crore in Numbers</h1>
+            <p class="qt-lede mt-4">1 lakh crore = 1,00,000 crore = 10,00,00,00,00,000 = one trillion</p>
+        </section>
 
         <!-- Converter -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-4 md:p-8 transition-colors duration-200">
-            <label for="lcInput" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2 text-lg">How many lakh crore?</label>
+        <div class="qt-card">
+            <label for="lcInput" class="qt-label mb-2">How many lakh crore?</label>
             <div class="flex items-center gap-2">
                 <input type="text" id="lcInput" value="9.8" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="40"
-                    class="flex-1 min-w-0 px-4 py-4 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-2xl font-mono text-center transition-colors"
+                    class="qt-input"
                     oninput="convertLakhCrore()" placeholder="9.8">
-                <span class="text-lg font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap">lakh crore</span>
+                <span class="text-lg font-semibold whitespace-nowrap">lakh crore</span>
             </div>
-            <div id="lcBox" class="mt-4 rounded-lg bg-purple-700 dark:bg-purple-800 text-white p-4 md:p-5 text-center transition-opacity" aria-live="polite">
-                <p id="lcDigits" class="text-xl md:text-3xl font-bold font-mono break-all">98,00,00,00,00,000</p>
+            <div id="lcBox" class="qt-card is-amounts mt-4 md:p-5" aria-live="polite">
+                <p id="lcDigits" class="text-xl md:text-3xl font-extrabold tabular break-all tracking-tight">98,00,00,00,00,000</p>
                 <p id="lcWords" class="mt-1 text-base md:text-lg">Nine Lakh Eighty Thousand Crore</p>
-                <p id="lcMeta" class="mt-1 text-sm text-purple-100">9,80,000 crore · 9.8 trillion · 13 digits, 11 zeros</p>
+                <p id="lcMeta" class="mt-1 text-sm">9,80,000 crore · 9.8 trillion · 13 digits, 11 zeros</p>
             </div>
-            <p id="lcError" class="hidden mt-3 text-center text-sm font-semibold text-red-600 dark:text-red-300"></p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 text-center">Type the number in front of "lakh crore", for example 270, 9.08 or 1.44. For any other amount use the <a href="/number-to-words/" class="text-purple-700 dark:text-purple-300 underline">Number to Words converter</a>.</p>
+            <p id="lcError" class="hidden mt-3 text-center text-sm font-semibold"></p>
+            <p class="text-sm mt-3 text-center">Type the number in front of "lakh crore", for example 270, 9.08 or 1.44. For any other amount use the <a href="/number-to-words/" class="qt-link">Number to Words converter</a>.</p>
         </div>
 
         <!-- Rule -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">The rule that does the work</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">The rule that does the work</h2>
+            <p class="mb-4">
                 A lakh crore is a lakh of crores. One lakh is 1,00,000 and one crore is 1,00,00,000, so one lakh crore is 1 followed by 5 zeros and then 7 more: 12 zeros in all. That is exactly one trillion.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 Because the two are equal, you never need to convert. A figure in lakh crore is the same figure in trillion. 9.8 lakh crore is 9.8 trillion and 270 lakh crore is 270 trillion.
             </p>
-            <ul class="list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-2">
+            <ul class="list-disc pl-6 space-y-2">
                 <li><strong>To crore:</strong> multiply by 1,00,000. 9.8 lakh crore is 9,80,000 crore.</li>
                 <li><strong>To billion:</strong> multiply by 1,000. 9.8 lakh crore is 9,800 billion.</li>
                 <li><strong>To digits:</strong> move the decimal point 12 places to the right. 9.8 becomes 9,800,000,000,000, which in Indian grouping is 98,00,00,00,00,000.</li>
@@ -290,244 +272,244 @@
         </div>
 
         <!-- Table -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Lakh crore table</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">The figures people look up most, plus round numbers. Tap a figure to open it in the full converter with the words and cheque wording.</p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-2">Lakh crore table</h2>
+            <p class="mb-4">The figures people look up most, plus round numbers. Tap a figure to open it in the full converter with the words and cheque wording.</p>
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Lakh crore</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Crore</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">In digits (Indian grouping)</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Trillion</th>
-                            <th class="px-3 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Zeros</th>
+                            <th>Lakh crore</th>
+                            <th>Crore</th>
+                            <th>In digits (Indian grouping)</th>
+                            <th>Trillion</th>
+                            <th>Zeros</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
+                    <tbody>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=1%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">1 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">1,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">10,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">1</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=1%20lakh%20crore" class="qt-link">1 lakh crore</a></td>
+                            <td class="font-mono">1,00,000</td>
+                            <td class="font-mono whitespace-nowrap">10,00,00,00,00,000</td>
+                            <td>1</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=1.44%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">1.44 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">1,44,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">14,40,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">1.44</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">10</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=1.44%20lakh%20crore" class="qt-link">1.44 lakh crore</a></td>
+                            <td class="font-mono">1,44,000</td>
+                            <td class="font-mono whitespace-nowrap">14,40,00,00,00,000</td>
+                            <td>1.44</td>
+                            <td>10</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=1.5%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">1.5 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">1,50,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">15,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">1.5</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">11</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=1.5%20lakh%20crore" class="qt-link">1.5 lakh crore</a></td>
+                            <td class="font-mono">1,50,000</td>
+                            <td class="font-mono whitespace-nowrap">15,00,00,00,00,000</td>
+                            <td>1.5</td>
+                            <td>11</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=2%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">2 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">20,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">2</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=2%20lakh%20crore" class="qt-link">2 lakh crore</a></td>
+                            <td class="font-mono">2,00,000</td>
+                            <td class="font-mono whitespace-nowrap">20,00,00,00,00,000</td>
+                            <td>2</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=3.59%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">3.59 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">3,59,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">35,90,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">3.59</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">10</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=3.59%20lakh%20crore" class="qt-link">3.59 lakh crore</a></td>
+                            <td class="font-mono">3,59,000</td>
+                            <td class="font-mono whitespace-nowrap">35,90,00,00,00,000</td>
+                            <td>3.59</td>
+                            <td>10</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=5%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">5 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">5,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">50,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">5</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=5%20lakh%20crore" class="qt-link">5 lakh crore</a></td>
+                            <td class="font-mono">5,00,000</td>
+                            <td class="font-mono whitespace-nowrap">50,00,00,00,00,000</td>
+                            <td>5</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=7.5%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">7.5 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">7,50,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">75,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">7.5</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">11</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=7.5%20lakh%20crore" class="qt-link">7.5 lakh crore</a></td>
+                            <td class="font-mono">7,50,000</td>
+                            <td class="font-mono whitespace-nowrap">75,00,00,00,00,000</td>
+                            <td>7.5</td>
+                            <td>11</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=9.08%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">9.08 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">9,08,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">90,80,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">9.08</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">11</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=9.08%20lakh%20crore" class="qt-link">9.08 lakh crore</a></td>
+                            <td class="font-mono">9,08,000</td>
+                            <td class="font-mono whitespace-nowrap">90,80,00,00,00,000</td>
+                            <td>9.08</td>
+                            <td>11</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=9.8%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">9.8 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">9,80,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">98,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">9.8</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">11</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=9.8%20lakh%20crore" class="qt-link">9.8 lakh crore</a></td>
+                            <td class="font-mono">9,80,000</td>
+                            <td class="font-mono whitespace-nowrap">98,00,00,00,00,000</td>
+                            <td>9.8</td>
+                            <td>11</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=10%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">10 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">10,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">1,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">10</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=10%20lakh%20crore" class="qt-link">10 lakh crore</a></td>
+                            <td class="font-mono">10,00,000</td>
+                            <td class="font-mono whitespace-nowrap">1,00,00,00,00,00,000</td>
+                            <td>10</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=12%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">12 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">12,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">1,20,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=12%20lakh%20crore" class="qt-link">12 lakh crore</a></td>
+                            <td class="font-mono">12,00,000</td>
+                            <td class="font-mono whitespace-nowrap">1,20,00,00,00,00,000</td>
+                            <td>12</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=15%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">15 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">15,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">1,50,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">15</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=15%20lakh%20crore" class="qt-link">15 lakh crore</a></td>
+                            <td class="font-mono">15,00,000</td>
+                            <td class="font-mono whitespace-nowrap">1,50,00,00,00,00,000</td>
+                            <td>15</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=20%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">20 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">20,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">2,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">20</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=20%20lakh%20crore" class="qt-link">20 lakh crore</a></td>
+                            <td class="font-mono">20,00,000</td>
+                            <td class="font-mono whitespace-nowrap">2,00,00,00,00,00,000</td>
+                            <td>20</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=30%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">30 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">30,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">3,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">30</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=30%20lakh%20crore" class="qt-link">30 lakh crore</a></td>
+                            <td class="font-mono">30,00,000</td>
+                            <td class="font-mono whitespace-nowrap">3,00,00,00,00,00,000</td>
+                            <td>30</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=50%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">50 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">50,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">5,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">50</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=50%20lakh%20crore" class="qt-link">50 lakh crore</a></td>
+                            <td class="font-mono">50,00,000</td>
+                            <td class="font-mono whitespace-nowrap">5,00,00,00,00,00,000</td>
+                            <td>50</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=99%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">99 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">99,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">9,90,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">99</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=99%20lakh%20crore" class="qt-link">99 lakh crore</a></td>
+                            <td class="font-mono">99,00,000</td>
+                            <td class="font-mono whitespace-nowrap">9,90,00,00,00,00,000</td>
+                            <td>99</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=100%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">100 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">1,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">10,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">100</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">14</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=100%20lakh%20crore" class="qt-link">100 lakh crore</a></td>
+                            <td class="font-mono">1,00,00,000</td>
+                            <td class="font-mono whitespace-nowrap">10,00,00,00,00,00,000</td>
+                            <td>100</td>
+                            <td>14</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=123%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">123 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">1,23,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">12,30,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">123</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=123%20lakh%20crore" class="qt-link">123 lakh crore</a></td>
+                            <td class="font-mono">1,23,00,000</td>
+                            <td class="font-mono whitespace-nowrap">12,30,00,00,00,00,000</td>
+                            <td>123</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=200%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">200 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">20,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">200</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">14</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=200%20lakh%20crore" class="qt-link">200 lakh crore</a></td>
+                            <td class="font-mono">2,00,00,000</td>
+                            <td class="font-mono whitespace-nowrap">20,00,00,00,00,00,000</td>
+                            <td>200</td>
+                            <td>14</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=205%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">205 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,05,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">20,50,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">205</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=205%20lakh%20crore" class="qt-link">205 lakh crore</a></td>
+                            <td class="font-mono">2,05,00,000</td>
+                            <td class="font-mono whitespace-nowrap">20,50,00,00,00,00,000</td>
+                            <td>205</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=214%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">214 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,14,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">21,40,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">214</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=214%20lakh%20crore" class="qt-link">214 lakh crore</a></td>
+                            <td class="font-mono">2,14,00,000</td>
+                            <td class="font-mono whitespace-nowrap">21,40,00,00,00,00,000</td>
+                            <td>214</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=270%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">270 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,70,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">27,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">270</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=270%20lakh%20crore" class="qt-link">270 lakh crore</a></td>
+                            <td class="font-mono">2,70,00,000</td>
+                            <td class="font-mono whitespace-nowrap">27,00,00,00,00,00,000</td>
+                            <td>270</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=285%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">285 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">2,85,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">28,50,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">285</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=285%20lakh%20crore" class="qt-link">285 lakh crore</a></td>
+                            <td class="font-mono">2,85,00,000</td>
+                            <td class="font-mono whitespace-nowrap">28,50,00,00,00,00,000</td>
+                            <td>285</td>
+                            <td>12</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=300%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">300 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">3,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">30,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">300</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">14</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=300%20lakh%20crore" class="qt-link">300 lakh crore</a></td>
+                            <td class="font-mono">3,00,00,000</td>
+                            <td class="font-mono whitespace-nowrap">30,00,00,00,00,00,000</td>
+                            <td>300</td>
+                            <td>14</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=350%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">350 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">3,50,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">35,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">350</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">13</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=350%20lakh%20crore" class="qt-link">350 lakh crore</a></td>
+                            <td class="font-mono">3,50,00,000</td>
+                            <td class="font-mono whitespace-nowrap">35,00,00,00,00,00,000</td>
+                            <td>350</td>
+                            <td>13</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=500%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">500 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">5,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">50,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">500</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">14</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=500%20lakh%20crore" class="qt-link">500 lakh crore</a></td>
+                            <td class="font-mono">5,00,00,000</td>
+                            <td class="font-mono whitespace-nowrap">50,00,00,00,00,00,000</td>
+                            <td>500</td>
+                            <td>14</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=600%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">600 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">6,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">60,00,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">600</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">14</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=600%20lakh%20crore" class="qt-link">600 lakh crore</a></td>
+                            <td class="font-mono">6,00,00,000</td>
+                            <td class="font-mono whitespace-nowrap">60,00,00,00,00,00,000</td>
+                            <td>600</td>
+                            <td>14</td>
                         </tr>
                         
                         <tr>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-semibold"><a href="/number-to-words/?n=999%20lakh%20crore" class="text-purple-700 dark:text-purple-300 underline">999 lakh crore</a></td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono">9,99,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500 font-mono whitespace-nowrap">99,90,00,00,00,00,000</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">999</td>
-                            <td class="px-3 py-2 border dark:border-gray-500">12</td>
+                            <td class="font-semibold"><a href="/number-to-words/?n=999%20lakh%20crore" class="qt-link">999 lakh crore</a></td>
+                            <td class="font-mono">9,99,00,000</td>
+                            <td class="font-mono whitespace-nowrap">99,90,00,00,00,00,000</td>
+                            <td>999</td>
+                            <td>12</td>
                         </tr>
                         
                     </tbody>
@@ -536,85 +518,80 @@
         </div>
 
         <!-- News -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Reading a lakh crore figure in the news</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Reading a lakh crore figure in the news</h2>
+            <p class="mb-4">
                 Budget speeches, Reserve Bank reports and Indian newspapers often write large rupee amounts in lakh crore. International reports write the same amounts in trillion. Since one lakh crore is one trillion, the number in front stays the same when you switch between the two.
             </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="mb-4">
                 Watch the currency. A headline that says an economy is worth 4 trillion dollars is talking about dollars. To compare it with a rupee figure in lakh crore, first convert dollars to rupees at the exchange rate of that day, then compare. The unit (lakh crore or trillion) and the currency (rupees or dollars) are two separate questions.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Watch the decimals too. 9.08 lakh crore and 9.8 lakh crore look close but differ by 72,000 crore. Read the figure in crore when the gap matters.
             </p>
         </div>
 
         <!-- Per person -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Per person: dividing lakh crore by crore</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Per person: dividing lakh crore by crore</h2>
+            <p class="mb-4">
                 A common question is how much a national figure works out to per person, where the population is also in crore. There is a shortcut: lakh crore divided by crore leaves lakh. So divide the two front numbers and read the answer in lakh rupees.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Example of the arithmetic only: 205 lakh crore divided among 140 crore people is 205 ÷ 140 = 1.4643 lakh, which is ₹1,46,428.57 per person.
             </p>
         </div>
 
         <!-- Words and bigger -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Lakh crore in words, and what comes after</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-4">Lakh crore in words, and what comes after</h2>
+            <p class="mb-4">
                 In Indian English, 1 lakh crore is written "One Lakh Crore" and 270 lakh crore is "Two Hundred Seventy Lakh Crore". In international English the same amounts are one trillion and two hundred seventy trillion.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Indian English has no common word above crore, so amounts keep growing in lakh crore. 100 lakh crore (10,00,00,00,00,00,000, 14 zeros) is a crore crore, or 100 trillion, but newspapers still write it as 100 lakh crore.
             </p>
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="qt-card mt-8">
+            <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
                 
                 
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How many zeros are in 1 lakh crore?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1 lakh crore has 12 zeros. Written out it is 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">1 lakh crore has 12 zeros. Written out it is 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system.</p>
                 </details>
                 
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Is 1 lakh crore equal to 1 trillion?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. 1 lakh crore and 1 trillion are the same number, 10 to the power 12. So any figure in lakh crore is the same figure in trillion: 9.8 lakh crore is 9.8 trillion.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Yes. 1 lakh crore and 1 trillion are the same number, 10 to the power 12. So any figure in lakh crore is the same figure in trillion: 9.8 lakh crore is 9.8 trillion.</p>
                 </details>
                 
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How do you write 9.8 lakh crore in numbers?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">9.8 lakh crore is 98,00,00,00,00,000 in Indian grouping, which is 9,80,000 crore. In the international system it is 9,800,000,000,000, or 9.8 trillion.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">9.8 lakh crore is 98,00,00,00,00,000 in Indian grouping, which is 9,80,000 crore. In the international system it is 9,800,000,000,000, or 9.8 trillion.</p>
                 </details>
                 
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How many crore make 1 lakh crore?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1,00,000 crore make 1 lakh crore, the same way 1,00,000 rupees make 1 lakh. To turn lakh crore into crore, multiply by 1,00,000.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">1,00,000 crore make 1 lakh crore, the same way 1,00,000 rupees make 1 lakh. To turn lakh crore into crore, multiply by 1,00,000.</p>
                 </details>
                 
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How much is 1 lakh crore in billion?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1 lakh crore is 1,000 billion. Multiply a lakh crore figure by 1,000 to get billions: 270 lakh crore is 270,000 billion.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">1 lakh crore is 1,000 billion. Multiply a lakh crore figure by 1,000 to get billions: 270 lakh crore is 270,000 billion.</p>
                 </details>
                 
             </div>
@@ -653,80 +630,57 @@
     
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -742,7 +696,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -753,6 +708,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

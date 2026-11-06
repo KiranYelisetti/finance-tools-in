@@ -74,6 +74,11 @@ function initAutoSave(pagePrefix) {
         return;
     }
 
+    // Indian-format fields must be text fields before a saved "30,00,000" goes back in: a type=number
+    // field silently drops a value with commas. Pages call initAutoSave before main.js's own
+    // DOMContentLoaded handler runs, so upgrade them here (it is safe to call twice).
+    setupIndianInputs();
+
     const inputs = document.querySelectorAll('input:not([type="hidden"]):not([type="submit"]), select');
 
     // Load saved values
@@ -87,6 +92,8 @@ function initAutoSave(pagePrefix) {
             // Handle checkboxes specifically if needed, though most here are numbers/text
             if (input.type === 'checkbox') {
                 input.checked = (savedValue === 'true');
+            } else if (input.type === 'number') {
+                input.value = String(savedValue).replace(/,/g, '');
             } else {
                 input.value = savedValue;
             }

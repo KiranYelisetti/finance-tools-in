@@ -50,138 +50,121 @@
     <meta name="twitter:image:alt" content="SSY Calculator India 2026 - Calculate Maturity, Interest &amp; Tax Benefits">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 bg-indigo-50 dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 font-semibold">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" aria-current="page">Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -196,7 +179,7 @@
     "@type": "WebApplication",
     "name": "SSY Calculator - Sukanya Samriddhi Yojana Calculator",
     "url": "https://www.quicktoolsindia.com/ssy-calculator/",
-    "description": "Free online calculator for Sukanya Samriddhi Yojana (SSY). Calculate girl child education fund returns, tax benefits under Section 80C, and maturity value with accurate interest calculations.",
+    "description": "Free online calculator for Sukanya Samriddhi Yojana (SSY). Calculate girl child education fund returns, tax benefits under Section 123 (was 80C), and maturity value with accurate interest calculations.",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any",
     "offers": {
@@ -207,7 +190,7 @@
     "featureList": [
         "Calculate SSY maturity value with 8.2% interest",
         "Year-by-year investment growth breakdown",
-        "Tax benefit calculator (Section 80C)",
+        "Tax benefit calculator (Section 123 (was 80C))",
         "Partial withdrawal estimation at age 18",
         "Age-based contribution timeline",
         "Quick preset scenarios for planning",
@@ -275,33 +258,29 @@
 </script>
 
 
-<main class="container mx-auto px-4 py-8">
+<main class="qt-wrap">
     <!-- Title Section -->
-    <div class="text-center mb-8">
-        <div
-            class="inline-flex items-center justify-center w-20 h-20 bg-cyan-600 dark:bg-cyan-500 rounded-full mb-4">
-            <i class="fas fa-piggy-bank text-4xl text-white"></i>
-        </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            SSY Calculator
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-            Sukanya Samriddhi Yojana Calculator - Secure Your Daughter's Future
-        </p>
-    </div>
+    <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Savings and plans</span><span aria-hidden="true">/</span><span>Sukanya Samriddhi</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-savings">Savings and plans</span>
+                <span class="qt-stamp">Updated 6 Nov 2026</span>
+            </div>
+            <h1 class="qt-h1 mt-4">SSY Calculator</h1>
+            <p class="qt-lede mt-4">Sukanya Samriddhi Yojana Calculator - Secure Your Daughter's Future</p>
+        </section>
 
     <!-- Info Box -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded">
+        <div class="qt-note is-tip">
             <div class="flex items-start">
-                <i class="fas fa-info-circle text-blue-500 dark:text-blue-400 mt-1 mr-3"></i>
-                <div>
-                    <h3 class="font-bold text-blue-900 dark:text-blue-100 mb-1">What is Sukanya Samriddhi Yojana?
+                                <div>
+                    <h3 class="qt-h3 mb-1">What is Sukanya Samriddhi Yojana?
                     </h3>
-                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                    <p class="text-sm">
                         SSY is a government-backed savings scheme for girl child with <strong>8.2% interest</strong>
                         (compounded annually),
-                        <strong>tax-free returns</strong>, and <strong>Section 80C benefits</strong> up to ₹1.5L.
+                        <strong>tax-free returns</strong>, and <strong>Section 123 (was 80C) benefits</strong> up to ₹1.5L.
                         Account matures after 21 years.
                         Open before your daughter turns 10 years old.
                     </p>
@@ -312,22 +291,22 @@
 
     <!-- Calculator -->
     <div class="max-w-6xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <!-- Preset Buttons -->
             <div class="mb-6">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Quick Presets:</p>
+                <p class="text-sm font-semibold mb-3">Quick Presets:</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <button onclick="loadPreset('small')"
-                        class="bg-gradient-to-r from-cyan-500 to-teal-500 text-white py-2 px-4 rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all shadow">
-                        <i class="fas fa-seedling mr-2"></i>Small (₹50,000/year)
+                        class="qt-btn">
+                        Small (₹50,000/year)
                     </button>
                     <button onclick="loadPreset('medium')"
-                        class="bg-gradient-to-r from-cyan-600 to-teal-600 text-white py-2 px-4 rounded-lg hover:from-cyan-700 hover:to-teal-700 transition-all shadow">
-                        <i class="fas fa-hand-holding-usd mr-2"></i>Medium (₹1,00,000/year)
+                        class="qt-btn">
+                        Medium (₹1,00,000/year)
                     </button>
                     <button onclick="loadPreset('maximum')"
-                        class="bg-gradient-to-r from-cyan-700 to-teal-700 text-white py-2 px-4 rounded-lg hover:from-cyan-800 hover:to-teal-800 transition-all shadow">
-                        <i class="fas fa-gem mr-2"></i>Maximum (₹1,50,000/year)
+                        class="qt-btn">
+                        Maximum (₹1,50,000/year)
                     </button>
                 </div>
             </div>
@@ -335,64 +314,64 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Input Section -->
                 <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                        <i class="fas fa-edit text-cyan-600 dark:text-cyan-400 mr-2"></i>Enter Details
+                    <h2 class="qt-section-title mb-4">
+                        Enter Details
                     </h2>
 
                     <!-- Girl's Current Age -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="currentAge" class="qt-label mb-2">
                             Girl's Current Age (Years)
                         </label>
                         <input type="number" id="currentAge" min="0" max="10" value="5"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-cyan-500 dark:focus:border-cyan-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="validateAndCalculate()">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                            <i class="fas fa-exclamation-circle mr-1"></i>Account can only be opened for girls under
+                        <p class="text-xs mt-1">
+                            Account can only be opened for girls under
                             10 years
                         </p>
                     </div>
 
                     <!-- Annual Deposit Amount -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="annualDeposit" class="qt-label mb-2">
                             Annual Deposit Amount (₹)
                         </label>
                         <input type="number" id="annualDeposit" min="250" max="150000" value="100000" step="1000"
-                            class="format-inr w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-cyan-500 dark:focus:border-cyan-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input format-inr w-full"
                             oninput="syncInput('annualDeposit', 'annualDepositSlider', event)">
-                        <input type="range" id="annualDepositSlider" min="250" max="150000" value="100000"
+                        <input type="range" id="annualDepositSlider" aria-label="Annual deposit slider" min="250" max="150000" value="100000"
                             step="250"
-                            class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
+                            class="qt-range w-full mt-2"
                             oninput="syncInput('annualDeposit', 'annualDepositSlider', event)">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs mt-1">
                             Min: ₹250 | Max: ₹1,50,000 per year
                         </p>
                     </div>
 
                     <!-- Interest Rate -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="interestRate" class="qt-label mb-2">
                             Interest Rate (% p.a.)
                         </label>
                         <input type="number" id="interestRate" min="7.6" max="8.8" value="8.2" step="0.1"
-                            class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-cyan-500 dark:focus:border-cyan-400 focus:outline-none text-lg transition-colors"
+                            class="qt-input w-full"
                             oninput="syncInput('interestRate', 'interestRateSlider', event)">
-                        <input type="range" id="interestRateSlider" min="7.6" max="8.8" value="8.2" step="0.1"
-                            class="w-full h-2 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer mt-2"
+                        <input type="range" id="interestRateSlider" aria-label="Interest rate slider" min="7.6" max="8.8" value="8.2" step="0.1"
+                            class="qt-range w-full mt-2"
                             oninput="syncInput('interestRate', 'interestRateSlider', event)">
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <p class="text-xs mt-1">
                             Current govt. rate: 8.2% (October to December 2026 quarter)
                         </p>
                     </div>
 
                     <!-- Timeline Info -->
                     <div
-                        class="bg-cyan-50 dark:bg-cyan-900 rounded-lg p-4 border border-cyan-200 dark:border-cyan-700">
-                        <h3 class="font-semibold text-cyan-800 dark:text-cyan-200 mb-2">
-                            <i class="fas fa-clock mr-2"></i>Timeline
+                        class="qt-panel p-4">
+                        <h3 class="qt-h3 mb-2">
+                            Timeline
                         </h3>
-                        <div class="space-y-1 text-sm text-cyan-700 dark:text-cyan-300">
+                        <div class="space-y-1 text-sm">
                             <p><strong>Deposits Required:</strong> 15 years from account opening</p>
                             <p><strong>Maturity:</strong> 21 years from account opening</p>
                             <p><strong>Partial Withdrawal:</strong> At age 18 (up to 50%)</p>
@@ -400,82 +379,81 @@
                     </div>
 
                     <button onclick="resetForm('ssy_calc')"
-                        class="w-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 py-3 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-500 transition-all shadow-md mt-4">
-                        <i class="fas fa-undo mr-2"></i>Reset Calculator
+                        class="qt-btn w-full mt-4">
+                        Reset Calculator
                     </button>
                 </div>
 
                 <!-- Results Section -->
                 <div id="results" class="space-y-4 hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                        <i class="fas fa-chart-pie text-cyan-600 dark:text-cyan-400 mr-2"></i>Results
+                    <h2 class="qt-section-title mb-4">
+                        Results
                     </h2>
 
                     <!-- Total at Maturity -->
                     <div
-                        class="bg-gradient-to-br from-cyan-50 to-teal-100 dark:from-cyan-900 dark:to-teal-800 rounded-lg p-6 border-2 border-cyan-300 dark:border-cyan-600">
-                        <p class="text-sm font-semibold text-cyan-800 dark:text-cyan-200 mb-1">Maturity Value (After
+                        class="qt-panel p-6">
+                        <p class="text-sm font-semibold mb-1">Maturity Value (After
                             21 Years)</p>
-                        <p id="maturityValue" class="text-3xl font-bold text-cyan-900 dark:text-cyan-100">₹0</p>
+                        <p id="maturityValue" class="text-3xl font-bold">₹0</p>
                     </div>
 
                     <!-- Total Investment -->
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Total Contributions (15 years)</p>
-                        <p id="totalInvestment" class="text-xl font-bold text-gray-800 dark:text-white">₹0</p>
+                        class="p-4">
+                        <p class="text-sm">Total Contributions (15 years)</p>
+                        <p id="totalInvestment" class="text-xl font-bold">₹0</p>
                     </div>
 
                     <!-- Total Interest -->
                     <div
-                        class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Interest Earned (Tax-Free)</p>
-                        <p id="totalInterest" class="text-xl font-bold text-green-600 dark:text-green-400">₹0</p>
+                        class="p-4">
+                        <p class="text-sm">Interest Earned (Tax-Free)</p>
+                        <p id="totalInterest" class="text-xl font-bold">₹0</p>
                     </div>
 
                     <!-- Tax Benefit -->
                     <div
-                        class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-800 rounded-lg p-4 border border-green-200 dark:border-green-600">
-                        <p class="text-sm text-green-800 dark:text-green-200 flex items-center">
-                            <i class="fas fa-shield-alt mr-2"></i>Annual Tax Benefit (Section 80C)
+                        class="qt-panel p-4">
+                        <p class="text-sm flex items-center">
+                            Annual Tax Benefit (Section 123 (was 80C))
                         </p>
-                        <p id="taxBenefit" class="text-xl font-bold text-green-900 dark:text-green-100">₹0</p>
-                        <p class="text-xs text-green-700 dark:text-green-300 mt-1">30% tax bracket saves ₹<span
+                        <p id="taxBenefit" class="text-xl font-bold">₹0</p>
+                        <p class="text-xs mt-1">30% tax bracket saves ₹<span
                                 id="taxSavings">0</span>/year</p>
                     </div>
 
                     <!-- Partial Withdrawal at 18 -->
                     <div
-                        class="bg-gradient-to-br from-orange-50 to-amber-100 dark:from-orange-900 dark:to-amber-800 rounded-lg p-4 border border-orange-200 dark:border-orange-600">
-                        <p class="text-sm text-orange-800 dark:text-orange-200 flex items-center">
-                            <i class="fas fa-wallet mr-2"></i>Available at Age 18 (50% Withdrawal)
+                        class="qt-panel p-4">
+                        <p class="text-sm flex items-center">
+                            Available at Age 18 (50% Withdrawal)
                         </p>
-                        <p id="partialWithdrawal" class="text-xl font-bold text-orange-900 dark:text-orange-100">₹0
+                        <p id="partialWithdrawal" class="text-xl font-bold">₹0
                         </p>
-                        <p class="text-xs text-orange-700 dark:text-orange-300 mt-1">For higher education expenses
+                        <p class="text-xs mt-1">For higher education expenses
                         </p>
                     </div>
 
                     <!-- Breakdown -->
                     <div
-                        class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
-                        <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            <i class="fas fa-info-circle mr-2"></i>Summary
+                        class="qt-panel p-4">
+                        <p class="text-sm font-semibold mb-2">
+                            Summary
                         </p>
-                        <p id="breakdown" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed"></p>
+                        <p id="breakdown" class="text-sm leading-relaxed"></p>
                     </div>
 
                     <button onclick="shareResult('SSY Maturity', document.getElementById('maturityValue').innerText)"
-                        class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center transition-colors shadow-md">
-                        <i class="fab fa-whatsapp text-xl mr-2"></i> Share Result
+                        class="qt-btn w-full flex items-center justify-center">
+                        Share Result
                     </button>
                 </div>
 
                 <!-- Placeholder -->
                 <div id="placeholder" class="flex items-center justify-center">
-                    <div class="text-center text-gray-400">
-                        <i class="fas fa-piggy-bank text-6xl mb-4"></i>
-                        <p class="text-lg">Enter details to see results</p>
+                    <div class="text-center">
+                                                <p class="text-lg">Enter details to see results</p>
                     </div>
                 </div>
             </div>
@@ -484,33 +462,33 @@
 
     <!-- How to Use -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-question-circle text-cyan-600 dark:text-cyan-400 mr-2"></i>How to Use This
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">
+                How to Use This
                 Calculator
             </h2>
-            <ol class="space-y-3 text-gray-700 dark:text-gray-300">
+            <ol class="space-y-3">
                 <li class="flex items-start">
                     <span
-                        class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">1</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">1</span>
                     <span><strong>Enter Girl's Age:</strong> The account must be opened before she turns 10 years
                         old</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">2</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">2</span>
                     <span><strong>Set Annual Deposit:</strong> Choose how much you'll deposit annually (₹250 to
                         ₹1,50,000)</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">3</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">3</span>
                     <span><strong>Review Interest Rate:</strong> Current rate is 8.2% p.a. (compounded annually,
                         revised quarterly)</span>
                 </li>
                 <li class="flex items-start">
                     <span
-                        class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">4</span>
+                        class="w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">4</span>
                     <span><strong>View Results:</strong> See maturity value, tax benefits, and partial withdrawal
                         options</span>
                 </li>
@@ -520,55 +498,49 @@
 
     <!-- Key Features -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-star text-cyan-600 dark:text-cyan-400 mr-2"></i>Key Features of SSY
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">
+                Key Features of SSY
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Triple Tax Exemption (EEE)</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Deposits, interest, and maturity - all
+                                        <div>
+                        <h3 class="qt-h3">Triple Tax Exemption (EEE)</h3>
+                        <p class="text-sm">Deposits, interest, and maturity - all
                             tax-free</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">High Interest Rate</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">8.2% p.a., higher than most savings
+                                        <div>
+                        <h3 class="qt-h3">High Interest Rate</h3>
+                        <p class="text-sm">8.2% p.a., higher than most savings
                             schemes</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Partial Withdrawal</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">50% at age 18 for education expenses</p>
+                                        <div>
+                        <h3 class="qt-h3">Partial Withdrawal</h3>
+                        <p class="text-sm">50% at age 18 for education expenses</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Flexible Deposits</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Monthly, quarterly, or annual - your
+                                        <div>
+                        <h3 class="qt-h3">Flexible Deposits</h3>
+                        <p class="text-sm">Monthly, quarterly, or annual - your
                             choice</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Government Backed</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">100% safe, guaranteed by Govt. of India
+                                        <div>
+                        <h3 class="qt-h3">Government Backed</h3>
+                        <p class="text-sm">100% safe, guaranteed by Govt. of India
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Section 80C Benefit</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Up to ₹1.5L tax deduction annually</p>
+                                        <div>
+                        <h3 class="qt-h3">Section 123 (was 80C) Benefit</h3>
+                        <p class="text-sm">Up to ₹1.5L tax deduction annually</p>
                     </div>
                 </div>
             </div>
@@ -577,53 +549,53 @@
 
     <!-- FAQs -->
     <div class="max-w-4xl mx-auto">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-question-circle text-cyan-600 dark:text-cyan-400 mr-2"></i>Frequently Asked
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                Frequently Asked
                 Questions
             </h2>
             <div class="space-y-4">
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         What happens if I don't deposit for a year?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         The account becomes inactive. You can revive it by paying ₹50 penalty per year of default
                         along with the minimum deposit of ₹250 for each year.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Can I open SSY accounts for two daughters?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         Yes, you can open a maximum of 2 SSY accounts - one for each girl child. In case of
                         twins/triplets born after the first child, you can open 3 accounts with approval.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         When does the account mature?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         The account matures 21 years from the date of opening. For example, if opened when the girl
                         is 5 years old, it will mature when she turns 26.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Can I close the account before maturity?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         Premature closure is allowed only in exceptional cases like life-threatening illness of the
                         girl child or death of the guardian. Otherwise, the account runs for 21 years.
                     </p>
                 </details>
-                <details class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                    <summary class="font-semibold text-gray-800 dark:text-white cursor-pointer">
+                <details class="qt-faq-item">
+                    <summary>
                         Where can I open an SSY account?
                     </summary>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 pl-4">
+                    <p class="text-sm mt-2 pl-4">
                         You can open SSY account at any post office or authorized branches of banks like SBI, HDFC,
                         ICICI, Axis Bank, PNB, etc. Visit with your girl child's birth certificate and your KYC
                         documents.
@@ -635,21 +607,21 @@
 
     <!-- Example Scenarios -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-calculator text-cyan-600 dark:text-cyan-400 mr-2"></i>Real-Life Examples
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                Real-Life Examples
             </h2>
 
             <div class="space-y-6">
                 <!-- Example 1 -->
                 <div
-                    class="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900 dark:to-teal-900 rounded-lg p-6 border-l-4 border-cyan-500">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-3 flex items-center">
+                    class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-3 flex items-center">
                         <span
-                            class="bg-cyan-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
+                            class="w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
                         Small Start - ₹50,000 Annual Deposit
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                    <p class="text-sm mb-2">
                         <strong>Scenario:</strong> Rajesh opens SSY for his 5-year-old daughter with ₹50,000 yearly
                         deposit.
                     </p>
@@ -659,20 +631,20 @@
                         <div><strong>Tax Savings:</strong> ₹15,000/year (30% bracket)</div>
                         <div><strong>Interest Earned:</strong> ₹9.9 Lakhs (Tax-Free)</div>
                     </div>
-                    <p class="text-cyan-800 dark:text-cyan-200 text-xs mt-3 italic">
+                    <p class="text-xs mt-3 italic">
                         Perfect for middle-class families - doubles your investment in 21 years!
                     </p>
                 </div>
 
                 <!-- Example 2 -->
                 <div
-                    class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 rounded-lg p-6 border-l-4 border-green-500">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-3 flex items-center">
+                    class="qt-note is-tip">
+                    <h3 class="qt-h3 mb-3 flex items-center">
                         <span
-                            class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
+                            class="w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
                         Maximum Benefit - ₹1.5 Lakh Annual Deposit
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                    <p class="text-sm mb-2">
                         <strong>Scenario:</strong> Priya maximizes SSY benefits for her newborn daughter.
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-sm">
@@ -681,7 +653,7 @@
                         <div><strong>Tax Savings:</strong> ₹45,000/year (30% bracket)</div>
                         <div><strong>Interest Earned:</strong> ₹47.2 Lakhs (Tax-Free)</div>
                     </div>
-                    <p class="text-green-800 dark:text-green-200 text-xs mt-3 italic">
+                    <p class="text-xs mt-3 italic">
                         Almost 70 lakhs for your daughter's education/marriage - completely tax-free!
                     </p>
                 </div>
@@ -691,64 +663,64 @@
 
     <!-- Comparison Table -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-balance-scale text-cyan-600 dark:text-cyan-400 mr-2"></i>SSY vs Other Savings
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                SSY vs Other Savings
                 Schemes
             </h2>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="bg-cyan-100 dark:bg-cyan-900">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left text-gray-800 dark:text-white">Feature</th>
-                            <th class="px-4 py-3 text-left text-cyan-800 dark:text-cyan-200">SSY</th>
-                            <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300">PPF</th>
-                            <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300">FD</th>
+                            <th>Feature</th>
+                            <th>SSY</th>
+                            <th>PPF</th>
+                            <th>FD</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300">
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Interest Rate</td>
-                            <td class="px-4 py-3 text-cyan-700 dark:text-cyan-300 font-bold">8.2%</td>
-                            <td class="px-4 py-3">7.1%</td>
-                            <td class="px-4 py-3">6-7%</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Tax Benefit</td>
-                            <td class="px-4 py-3 text-cyan-700 dark:text-cyan-300 font-bold">EEE (Triple)</td>
-                            <td class="px-4 py-3">EEE (Triple)</td>
-                            <td class="px-4 py-3">Only Principal</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Lock-in Period</td>
-                            <td class="px-4 py-3">21 years</td>
-                            <td class="px-4 py-3">15 years</td>
-                            <td class="px-4 py-3">1-10 years</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Max Investment</td>
-                            <td class="px-4 py-3 text-cyan-700 dark:text-cyan-300 font-bold">₹1.5L/year</td>
-                            <td class="px-4 py-3">₹1.5L/year</td>
-                            <td class="px-4 py-3">No limit</td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-600">
-                            <td class="px-4 py-3 font-semibold">Eligibility</td>
-                            <td class="px-4 py-3 text-cyan-700 dark:text-cyan-300">Girl child only</td>
-                            <td class="px-4 py-3">Anyone</td>
-                            <td class="px-4 py-3">Anyone</td>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Interest Rate</td>
+                            <td class="font-bold">8.2%</td>
+                            <td>7.1%</td>
+                            <td>6-7%</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 font-semibold">Best For</td>
-                            <td class="px-4 py-3 text-cyan-700 dark:text-cyan-300 font-bold">Daughter's
+                            <td class="font-semibold">Tax Benefit</td>
+                            <td class="font-bold">EEE (Triple)</td>
+                            <td>EEE (Triple)</td>
+                            <td>Only Principal</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Lock-in Period</td>
+                            <td>21 years</td>
+                            <td>15 years</td>
+                            <td>1-10 years</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Max Investment</td>
+                            <td class="font-bold">₹1.5L/year</td>
+                            <td>₹1.5L/year</td>
+                            <td>No limit</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Eligibility</td>
+                            <td>Girl child only</td>
+                            <td>Anyone</td>
+                            <td>Anyone</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Best For</td>
+                            <td class="font-bold">Daughter's
                                 Education/Marriage</td>
-                            <td class="px-4 py-3">Retirement</td>
-                            <td class="px-4 py-3">Short-term savings</td>
+                            <td>Retirement</td>
+                            <td>Short-term savings</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 italic">
+            <p class="text-xs mt-4 italic">
                 *Interest rate for the October to December 2026 quarter (as of October 2026). Rates are revised quarterly by the Government of India.
             </p>
         </div>
@@ -756,42 +728,42 @@
 
     <!-- SSY Deposit Limits & Rules 2025 -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-book text-cyan-600 dark:text-cyan-400 mr-2"></i>SSY Deposit Limits & Rules 2025
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                SSY Deposit Limits & Rules 2025
             </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-cyan-50 dark:bg-gray-600">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Rule / Limit</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Details (2025)</th>
+                            <th>Rule / Limit</th>
+                            <th>Details (2025)</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300">
+                    <tbody>
                         <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Minimum Annual Deposit</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">₹250 per financial year</td>
+                            <td class="font-semibold">Minimum Annual Deposit</td>
+                            <td>₹250 per financial year</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Maximum Annual Deposit</td>
-                            <td class="px-4 py-3 border dark:border-gray-500 font-bold text-green-600 dark:text-green-400">₹1,50,000 per financial year</td>
+                            <td class="font-semibold">Maximum Annual Deposit</td>
+                            <td class="font-bold">₹1,50,000 per financial year</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Deposit Frequency</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Multiple times allowed (closest to ₹50 or ₹100 is preferred)</td>
+                            <td class="font-semibold">Deposit Frequency</td>
+                            <td>Multiple times allowed (closest to ₹50 or ₹100 is preferred)</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Penalty</td>
-                            <td class="px-4 py-3 border dark:border-gray-500 text-red-500">₹50 + min deposit if account becomes inactive</td>
+                            <td class="font-semibold">Penalty</td>
+                            <td>₹50 + min deposit if account becomes inactive</td>
                         </tr>
                          <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Age Limit</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">Must open before girl turns 10 years old</td>
+                            <td class="font-semibold">Age Limit</td>
+                            <td>Must open before girl turns 10 years old</td>
                         </tr>
                         <tr>
-                            <td class="px-4 py-3 font-semibold border dark:border-gray-500">Account Limit</td>
-                            <td class="px-4 py-3 border dark:border-gray-500">1 account per girl child (Max 2 girls per family)</td>
+                            <td class="font-semibold">Account Limit</td>
+                            <td>1 account per girl child (Max 2 girls per family)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -801,28 +773,28 @@
 
     <!-- SSY Withdrawal Rules -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                <i class="fas fa-hand-holding-usd text-cyan-600 dark:text-cyan-400 mr-2"></i>SSY Withdrawal Rules
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-6">
+                SSY Withdrawal Rules
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Partial Withdrawal -->
-                <div class="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 p-6 rounded-lg border-l-4 border-blue-500">
-                    <h3 class="font-bold text-lg text-blue-800 dark:text-blue-200 mb-3">Partial Withdrawal (Age 18)</h3>
-                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Eligibility:</strong> Only when girl child turns 18 years old or passes 10th standard.</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Purpose:</strong> Only for Higher Education expenses.</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Limit:</strong> Up to 50% of the account balance at the end of preceding financial year.</li>
+                <div class="qt-well">
+                    <h3 class="qt-h3 mb-3">Partial Withdrawal (Age 18)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><strong>Eligibility:</strong> Only when girl child turns 18 years old or passes 10th standard.</li>
+                        <li class="flex items-start"><strong>Purpose:</strong> Only for Higher Education expenses.</li>
+                        <li class="flex items-start"><strong>Limit:</strong> Up to 50% of the account balance at the end of preceding financial year.</li>
                     </ul>
                 </div>
 
                 <!-- Maturity Closure -->
-                <div class="bg-green-50 dark:bg-green-900 dark:bg-opacity-30 p-6 rounded-lg border-l-4 border-green-500">
-                    <h3 class="font-bold text-lg text-green-800 dark:text-green-200 mb-3">Maturity Closure (21 Years)</h3>
-                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                         <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Timeline:</strong> Account matures 21 years from date of opening.</li>
-                         <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Marriage Exception:</strong> Can be closed for marriage if girl is 18+.</li>
-                         <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><strong>Requirement:</strong> Birth certificate, ID proof, and withdrawal form required.</li>
+                <div class="qt-well">
+                    <h3 class="qt-h3 mb-3">Maturity Closure (21 Years)</h3>
+                    <ul class="space-y-2 text-sm">
+                         <li class="flex items-start"><strong>Timeline:</strong> Account matures 21 years from date of opening.</li>
+                         <li class="flex items-start"><strong>Marriage Exception:</strong> Can be closed for marriage if girl is 18+.</li>
+                         <li class="flex items-start"><strong>Requirement:</strong> Birth certificate, ID proof, and withdrawal form required.</li>
                     </ul>
                 </div>
             </div>
@@ -832,56 +804,50 @@
     <!-- Why Use This Calculator -->
     <div class="max-w-4xl mx-auto mb-8">
         <div
-            class="bg-gradient-to-br from-cyan-50 to-teal-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-6 md:p-8 border-2 border-cyan-200 dark:border-cyan-700 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>Why Use Our SSY Calculator?
+            class="qt-card is-savings md:p-8">
+            <h2 class="qt-section-title mb-4">
+                Why Use Our SSY Calculator?
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">100% Accurate Calculations</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Based on official SSY formula with
+                                        <div>
+                        <h3 class="qt-h3">100% Accurate Calculations</h3>
+                        <p class="text-sm">Based on official SSY formula with
                             compound interest, exactly as per government rules</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Updated Interest Rates</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Current 8.2% rate (October to December 2026 quarter),
+                                        <div>
+                        <h3 class="qt-h3">Updated Interest Rates</h3>
+                        <p class="text-sm">Current 8.2% rate (October to December 2026 quarter),
                             adjustable for future rate changes</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Tax Benefit Calculator</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Instantly see Section 80C deductions and
+                                        <div>
+                        <h3 class="qt-h3">Tax Benefit Calculator</h3>
+                        <p class="text-sm">Instantly see Section 123 (was 80C) deductions and
                             total tax savings over 15 years</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Partial Withdrawal Planning</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Calculate how much you can withdraw at
+                                        <div>
+                        <h3 class="qt-h3">Partial Withdrawal Planning</h3>
+                        <p class="text-sm">Calculate how much you can withdraw at
                             age 18 for higher education</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Free & Private</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">No registration, no data storage -
+                                        <div>
+                        <h3 class="qt-h3">Free & Private</h3>
+                        <p class="text-sm">No registration, no data storage -
                             calculations happen in your browser</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <i class="fas fa-check-double text-cyan-600 dark:text-cyan-400 mt-1"></i>
-                    <div>
-                        <h3 class="font-semibold text-gray-800 dark:text-white">Mobile Friendly</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300">Works perfectly on phones, tablets, and
+                                        <div>
+                        <h3 class="qt-h3">Mobile Friendly</h3>
+                        <p class="text-sm">Works perfectly on phones, tablets, and
                             desktop - calculate anywhere</p>
                     </div>
                 </div>
@@ -891,16 +857,16 @@
 
     <!-- SEO-Rich Content Section -->
     <div class="max-w-4xl mx-auto mb-8">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">About Sukanya Samriddhi Yojana
+        <div class="qt-card">
+            <h2 class="qt-section-title mb-4">About Sukanya Samriddhi Yojana
                 Calculator</h2>
-            <div class="max-w-none text-gray-600 dark:text-gray-300">
+            <div class="max-w-none">
                 <p class="mb-4">
                     Our <strong>SSY Calculator</strong> is the most accurate and user-friendly <strong>Sukanya
                         Samriddhi Yojana calculator</strong> available online in India for 2025.
                     This government scheme calculator helps parents plan their <strong>girl child education
                         fund</strong> with precision, showing exact maturity values,
-                    tax benefits under <strong>Section 80C</strong>, and withdrawal options.
+                    tax benefits under <strong>Section 123 (was 80C)</strong>, and withdrawal options.
                 </p>
                 <p class="mb-4">
                     The <strong>Sukanya Samriddhi Account</strong> is part of the <strong>Beti Bachao Beti
@@ -920,9 +886,9 @@
                 <p>
                     Start using our free Sukanya Yojana calculator today to secure your daughter's future. Calculate
                     different scenarios, compare with other savings schemes like
-                    <a href="/ppf-calculator/" class="text-cyan-600 dark:text-cyan-400 hover:underline">PPF</a>
+                    <a href="/ppf-calculator/" class="qt-link">PPF</a>
                     or
-                    <a href="/sip-calculator/" class="text-cyan-600 dark:text-cyan-400 hover:underline">SIP</a>,
+                    <a href="/sip-calculator/" class="qt-link">SIP</a>,
                     and make informed decisions for your family's financial future.
                 </p>
             </div>
@@ -931,12 +897,11 @@
 
     <!-- Financial Disclaimer -->
     <div
-        class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-l-4 border-yellow-500 p-6 max-w-4xl mx-auto mb-8">
+        class="qt-well max-w-4xl mx-auto mb-8">
         <div class="flex items-start">
-            <i class="fas fa-exclamation-triangle text-yellow-600 text-2xl mr-4 flex-shrink-0 mt-1"></i>
-            <div>
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2">Important Disclaimer</h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <div>
+                <h3 class="qt-h3 mb-2">Important Disclaimer</h3>
+                <div class="text-sm space-y-2">
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides estimates based on the
                         inputs you provide. Actual returns may vary based on changes in government-notified interest
                         rates and policy changes.</p>
@@ -948,7 +913,7 @@
                     <p><strong>Interest Rate Disclaimer:</strong> SSY interest rates are subject to change every
                         quarter. The current rate of 8.2% is as per government notification and may be revised. Always
                         verify current rates before investing.</p>
-                    <p><strong>Tax Benefits Disclaimer:</strong> Tax benefits under Section 80C and EEE status are
+                    <p><strong>Tax Benefits Disclaimer:</strong> Tax benefits under Section 123 (was 80C) and EEE status are
                         subject to prevailing tax laws. Maximum deduction limits and eligibility criteria may change.
                         Consult a qualified tax professional.</p>
                     <p><strong>No Liability:</strong> QuickTools India assumes no responsibility for any financial
@@ -960,6 +925,7 @@
 </main>
 
 
+<script src="/js/calc/ssy.js"></script>
 <script>
     // Input Synchronization
     function syncInput(inputId, sliderId, event) {
@@ -1019,76 +985,32 @@
 
         const currentAge = parseINR(currentAgeStr);
         const annualDeposit = parseINR(annualDepositStr);
-        const interestRate = parseINR(interestRateStr) / 100;
 
-        // Validation
-        if (currentAge < 0 || currentAge > 10) {
-            return;
-        }
-
-        if (annualDeposit < 250 || annualDeposit > 150000) {
-            return;
-        }
-
-        calculateSSY(currentAge, annualDeposit, interestRate);
+        // The sums and the range checks live in /js/calc/ssy.js (unit tested in tests/unit)
+        const r = QTCalc.ssy.calculate(currentAge, annualDeposit, parseINR(interestRateStr));
+        if (!r) return;
+        showSSY(currentAge, annualDeposit, r);
     }
 
-    // Calculate SSY
-    function calculateSSY(currentAge, annualDeposit, interestRate) {
-        const depositYears = 15; // Deposits required for 15 years
-        const maturityYears = 21; // Account matures after 21 years
-
-        let balance = 0;
-        let totalInvestment = 0;
-        let balanceAt18 = 0;
-
-        // Year-by-year calculation
-        for (let year = 1; year <= maturityYears; year++) {
-            // Add annual deposit for first 15 years
-            if (year <= depositYears) {
-                balance += annualDeposit;
-                totalInvestment += annualDeposit;
-            }
-
-            // Add interest (compounded annually)
-            balance += balance * interestRate;
-
-            // Capture balance when girl turns 18 (for partial withdrawal)
-            const girlAge = currentAge + year;
-            if (girlAge === 18) {
-                balanceAt18 = balance;
-            }
-        }
-
-        const maturityValue = balance;
-        const totalInterest = maturityValue - totalInvestment;
-        const partialWithdrawal = balanceAt18 * 0.50; // 50% withdrawal allowed
-
-        // Tax benefit (Section 80C)
-        const taxBenefit = Math.min(annualDeposit, 150000); // Max ₹1.5L
-        const taxSavings = taxBenefit * 0.30; // 30% tax bracket
-
+    function showSSY(currentAge, annualDeposit, r) {
         // GA4 Event Tracking
         trackCalculatorUsage('SSY Calculator', annualDeposit);
 
         // Display Results
-        document.getElementById('maturityValue').textContent = formatIndianCurrency(maturityValue);
-        document.getElementById('totalInvestment').textContent = formatIndianCurrency(totalInvestment);
-        document.getElementById('totalInterest').textContent = formatIndianCurrency(totalInterest);
-        document.getElementById('taxBenefit').textContent = formatIndianCurrency(taxBenefit);
-        document.getElementById('taxSavings').textContent = formatIndianCurrency(taxSavings).replace('₹', '');
-        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(partialWithdrawal);
+        document.getElementById('maturityValue').textContent = formatIndianCurrency(r.maturityValue);
+        document.getElementById('totalInvestment').textContent = formatIndianCurrency(r.totalInvestment);
+        document.getElementById('totalInterest').textContent = formatIndianCurrency(r.totalInterest);
+        document.getElementById('taxBenefit').textContent = formatIndianCurrency(r.taxBenefit);
+        document.getElementById('taxSavings').textContent = formatIndianCurrency(r.taxSavings).replace('₹', '');
+        document.getElementById('partialWithdrawal').textContent = formatIndianCurrency(r.partialWithdrawal);
 
         // Breakdown
-        const maturityAge = currentAge + maturityYears;
-        const depositEndAge = currentAge + depositYears;
-
         document.getElementById('breakdown').innerHTML = `
             With an annual deposit of <strong>${formatIndianCurrency(annualDeposit)}</strong> for 15 years
-            (from age ${currentAge} to ${depositEndAge}), your daughter's SSY account will have
-            <strong>${formatIndianCurrency(maturityValue)}</strong> when she turns ${maturityAge}.
-            This includes <strong>${formatIndianCurrency(totalInterest)}</strong> in tax-free interest earnings.
-            At age 18, she can withdraw up to <strong>${formatIndianCurrency(partialWithdrawal)}</strong>
+            (from age ${currentAge} to ${r.depositEndAge}), your daughter's SSY account will have
+            <strong>${formatIndianCurrency(r.maturityValue)}</strong> when she turns ${r.maturityAge}.
+            This includes <strong>${formatIndianCurrency(r.totalInterest)}</strong> in tax-free interest earnings.
+            At age 18, she can withdraw up to <strong>${formatIndianCurrency(r.partialWithdrawal)}</strong>
             for higher education expenses.
         `;
 
@@ -1126,30 +1048,18 @@
 
 
     
-<section class="container mx-auto px-4 max-w-4xl mt-10" aria-labelledby="official-sources">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-        <h2 id="official-sources" class="text-xl font-bold text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-landmark text-indigo-500 mr-2"></i>Where to verify
-        </h2>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The rules and rates used on this page come from these official bodies. Rates and limits change, so confirm the current figure on the official site before you act on a number here.
-        </p>
-        <ul class="space-y-2 text-sm">
+<section class="qt-wrap qt-section" aria-labelledby="official-sources">
+    <div class="qt-card qt-card--sunken max-w-[46rem]">
+        <span class="qt-sticker is-mor is-flat">Check the source</span>
+        <h2 id="official-sources" class="qt-h3 mt-3 mb-1">Where to verify</h2>
+        <p class="mb-3 text-ink-2">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+        <ul class="space-y-1.5">
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.nsiindia.gov.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">National Savings Institute</a><span class="text-gray-600 dark:text-gray-300"> for Sukanya Samriddhi rules and the current interest rate</span></span>
-            </li>
+            <li><a href="https://www.nsiindia.gov.in/" target="_blank" rel="noopener" class="qt-link">National Savings Institute</a> for Sukanya Samriddhi rules and the current interest rate</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://dea.gov.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Department of Economic Affairs, Ministry of Finance</a><span class="text-gray-600 dark:text-gray-300"> for the quarterly small savings rate notifications</span></span>
-            </li>
+            <li><a href="https://dea.gov.in/" target="_blank" rel="noopener" class="qt-link">Department of Economic Affairs, Ministry of Finance</a> for the quarterly small savings rate notifications</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">India Post</a><span class="text-gray-600 dark:text-gray-300"> for opening an SSY account</span></span>
-            </li>
+            <li><a href="https://www.indiapost.gov.in/" target="_blank" rel="noopener" class="qt-link">India Post</a> for opening an SSY account</li>
             
         </ul>
     </div>
@@ -1157,80 +1067,57 @@
 
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -1246,7 +1133,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -1257,6 +1145,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

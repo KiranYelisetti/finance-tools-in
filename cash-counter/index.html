@@ -50,138 +50,121 @@
     <meta name="twitter:image:alt" content="Cash Denomination Counter India - Calculate Total Cash in Words">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 bg-indigo-50 dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 font-semibold">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" aria-current="page">Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -341,96 +324,95 @@
 </script>
 
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-5xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="inline-block bg-gradient-to-br from-green-400 to-green-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-money-bill-wave text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Cash Denomination Counter</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Amounts and words</span><span aria-hidden="true">/</span><span>Cash Counter</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-amounts">Amounts and words</span>
+                <span class="qt-stamp">Updated 24 Sept 2026</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">Count Indian currency notes and coins instantly</p>
-        </div>
+            <h1 class="qt-h1 mt-4">Cash Denomination Counter</h1>
+            <p class="qt-lede mt-4">Count Indian currency notes and coins instantly</p>
+        </section>
 
         <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <!-- Notes Section -->
             <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-file-invoice-dollar text-green-600 dark:text-green-400 mr-2"></i>Currency Notes
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Currency Notes
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <!-- ₹2000 Note -->
-                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 rounded-lg p-4 border-2 border-pink-300 dark:border-pink-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-pink-700 dark:text-pink-300">₹2000</div>
-                            <div class="text-xs text-pink-600 dark:text-pink-400">(Withdrawn 2023, still legal tender)</div>
+                            <div class="text-2xl font-bold">₹2000</div>
+                            <div class="text-xs">(Withdrawn 2023, still legal tender)</div>
                         </div>
-                        <input type="number" id="note2000" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-pink-300 dark:border-pink-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-pink-500 dark:focus:border-pink-400 focus:outline-none text-center"
+                        <input type="number" id="note2000" aria-label="Number of ₹2000 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹500 Note -->
-                    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900 dark:to-yellow-800 rounded-lg p-4 border-2 border-yellow-300 dark:border-yellow-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-yellow-700 dark:text-yellow-300">₹500</div>
+                            <div class="text-2xl font-bold">₹500</div>
                         </div>
-                        <input type="number" id="note500" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-yellow-300 dark:border-yellow-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-yellow-500 dark:focus:border-yellow-400 focus:outline-none text-center"
+                        <input type="number" id="note500" aria-label="Number of ₹500 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹200 Note -->
-                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-lg p-4 border-2 border-orange-300 dark:border-orange-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-orange-700 dark:text-orange-300">₹200</div>
+                            <div class="text-2xl font-bold">₹200</div>
                         </div>
-                        <input type="number" id="note200" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-orange-300 dark:border-orange-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none text-center"
+                        <input type="number" id="note200" aria-label="Number of ₹200 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹100 Note -->
-                    <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-4 border-2 border-green-300 dark:border-green-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-green-700 dark:text-green-300">₹100</div>
+                            <div class="text-2xl font-bold">₹100</div>
                         </div>
-                        <input type="number" id="note100" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-green-300 dark:border-green-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-green-500 dark:focus:border-green-400 focus:outline-none text-center"
+                        <input type="number" id="note100" aria-label="Number of ₹100 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹50 Note -->
-                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-4 border-2 border-purple-300 dark:border-purple-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-purple-700 dark:text-purple-300">₹50</div>
+                            <div class="text-2xl font-bold">₹50</div>
                         </div>
-                        <input type="number" id="note50" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-purple-300 dark:border-purple-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-center"
+                        <input type="number" id="note50" aria-label="Number of ₹50 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹20 Note -->
-                    <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900 dark:to-red-800 rounded-lg p-4 border-2 border-red-300 dark:border-red-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-red-700 dark:text-red-300">₹20</div>
+                            <div class="text-2xl font-bold">₹20</div>
                         </div>
-                        <input type="number" id="note20" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-red-300 dark:border-red-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-red-500 dark:focus:border-red-400 focus:outline-none text-center"
+                        <input type="number" id="note20" aria-label="Number of ₹20 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹10 Note -->
-                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-4 border-2 border-blue-300 dark:border-blue-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-2xl font-bold text-blue-700 dark:text-blue-300">₹10</div>
+                            <div class="text-2xl font-bold">₹10</div>
                         </div>
-                        <input type="number" id="note10" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-blue-300 dark:border-blue-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none text-center"
+                        <input type="number" id="note10" aria-label="Number of ₹10 notes" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
                 </div>
@@ -438,111 +420,111 @@
 
             <!-- Coins Section -->
             <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                    <i class="fas fa-coins text-amber-600 dark:text-amber-400 mr-2"></i>Coins
+                <h2 class="qt-section-title mb-4 flex items-center">
+                    Coins
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <!-- ₹20 Coin -->
-                    <div class="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900 dark:to-teal-800 rounded-lg p-4 border-2 border-teal-300 dark:border-teal-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-xl font-bold text-teal-700 dark:text-teal-300">₹20</div>
+                            <div class="text-xl font-bold">₹20</div>
                         </div>
-                        <input type="number" id="coin20" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-teal-300 dark:border-teal-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-teal-500 dark:focus:border-teal-400 focus:outline-none text-center"
+                        <input type="number" id="coin20" aria-label="Number of ₹20 coins" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹10 Coin -->
-                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-lg p-4 border-2 border-amber-300 dark:border-amber-600">
+                    <div class="qt-panel p-4">
                         <div class="text-center mb-2">
-                            <div class="text-xl font-bold text-amber-700 dark:text-amber-300">₹10</div>
+                            <div class="text-xl font-bold">₹10</div>
                         </div>
-                        <input type="number" id="coin10" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-amber-300 dark:border-amber-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-amber-500 dark:focus:border-amber-400 focus:outline-none text-center"
+                        <input type="number" id="coin10" aria-label="Number of ₹10 coins" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹5 Coin -->
-                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-600 dark:to-gray-500 rounded-lg p-4 border-2 border-gray-300 dark:border-gray-400">
+                    <div class="qt-card is-amounts">
                         <div class="text-center mb-2">
-                            <div class="text-xl font-bold text-gray-700 dark:text-gray-300">₹5</div>
+                            <div class="text-xl font-bold">₹5</div>
                         </div>
-                        <input type="number" id="coin5" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-400 dark:bg-gray-800 dark:text-white rounded-lg focus:border-gray-500 dark:focus:border-gray-300 focus:outline-none text-center"
+                        <input type="number" id="coin5" aria-label="Number of ₹5 coins" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹2 Coin -->
-                    <div class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-600 dark:to-slate-500 rounded-lg p-4 border-2 border-slate-300 dark:border-slate-400">
+                    <div class="qt-card is-amounts">
                         <div class="text-center mb-2">
-                            <div class="text-xl font-bold text-slate-700 dark:text-slate-300">₹2</div>
+                            <div class="text-xl font-bold">₹2</div>
                         </div>
-                        <input type="number" id="coin2" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-slate-300 dark:border-slate-400 dark:bg-gray-800 dark:text-white rounded-lg focus:border-slate-500 dark:focus:border-slate-300 focus:outline-none text-center"
+                        <input type="number" id="coin2" aria-label="Number of ₹2 coins" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
 
                     <!-- ₹1 Coin -->
-                    <div class="bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-600 dark:to-zinc-500 rounded-lg p-4 border-2 border-zinc-300 dark:border-zinc-400">
+                    <div class="qt-card is-amounts">
                         <div class="text-center mb-2">
-                            <div class="text-xl font-bold text-zinc-700 dark:text-zinc-300">₹1</div>
+                            <div class="text-xl font-bold">₹1</div>
                         </div>
-                        <input type="number" id="coin1" min="0" value="0" step="1"
-                            class="w-full px-3 py-2 border-2 border-zinc-300 dark:border-zinc-400 dark:bg-gray-800 dark:text-white rounded-lg focus:border-zinc-500 dark:focus:border-zinc-300 focus:outline-none text-center"
+                        <input type="number" id="coin1" aria-label="Number of ₹1 coins" min="0" value="0" step="1"
+                            class="qt-input w-full"
                             oninput="calculateTotal()">
                     </div>
                 </div>
             </div>
 
             <!-- Total Display -->
-            <div class="bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 rounded-xl p-8 border-4 border-green-400 dark:border-green-600 text-center mb-6">
-                <h3 class="text-gray-700 dark:text-gray-300 text-lg mb-2 font-semibold">Total Cash Amount</h3>
-                <p id="totalAmount" class="text-5xl md:text-6xl font-bold text-green-700 dark:text-green-300">₹0</p>
-                <p id="totalInWords" class="text-gray-600 dark:text-gray-400 mt-3 text-sm md:text-base"></p>
+            <div class="qt-panel p-8 text-center mb-6">
+                <h3 class="qt-h3 mb-2">Total Cash Amount</h3>
+                <p id="totalAmount" class="text-5xl font-bold">₹0</p>
+                <p id="totalInWords" class="mt-3 text-sm md:text-base"></p>
 
                 <button onclick="shareResult('Cash Count', document.getElementById('totalAmount').innerText)"
-                    class="mt-6 w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg flex items-center justify-center mx-auto transition-colors shadow-sm text-sm">
-                    <i class="fab fa-whatsapp text-lg mr-2"></i> Share Total
+                    class="qt-btn qt-btn--sm mt-6 w-full flex items-center justify-center mx-auto">
+                    Share Total
                 </button>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex gap-4">
                 <button onclick="resetForm('cash_counter')"
-                    class="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-6 rounded-lg font-bold hover:from-red-600 hover:to-red-700 transition-all shadow-lg">
-                    <i class="fas fa-undo mr-2"></i>Reset All
+                    class="qt-btn flex-1">
+                    Reset All
                 </button>
                 <button onclick="calculateTotal(); trackCalculatorUsage('Cash Counter', document.getElementById('totalAmount').innerText)"
-                    class="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-bold hover:from-green-600 hover:to-green-700 transition-all shadow-lg">
-                    <i class="fas fa-calculator mr-2"></i>Recalculate
+                    class="qt-btn flex-1">
+                    Recalculate
                 </button>
             </div>
 
             <!-- Info Section -->
             <div
-                class="mt-8 bg-green-50 dark:bg-green-900 border-l-4 border-green-500 dark:border-green-400 p-4 rounded transition-colors">
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2"><i
-                        class="fas fa-info-circle text-green-500 dark:text-green-400 mr-2"></i>About
+                class="qt-note is-tip mt-8">
+                <h3 class="qt-h3 mb-2"><i
+                        class="mr-2"></i>About
                     This Tool</h3>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">This cash counter helps shopkeepers, cashiers and small businesses tally the day's cash. Enter the number of pieces of each denomination and the total appears in rupees and in words. Counts stay in your browser between visits, so a count interrupted by a customer is still there when you come back, and Reset All clears them.</p>
+                <p class="text-sm">This cash counter helps shopkeepers, cashiers and small businesses tally the day's cash. Enter the number of pieces of each denomination and the total appears in rupees and in words. Counts stay in your browser between visits, so a count interrupted by a customer is still there when you come back, and Reset All clears them.</p>
             </div>
 
              <!-- Currency Facts -->
-            <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Did You Know? Indian Currency Facts
+            <div class="mt-8 p-8">
+                <h3 class="qt-h3 mb-4">
+                    Did You Know? Indian Currency Facts
                 </h3>
-                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
-                    <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded">
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="qt-panel p-3">
                         <strong>₹1 Note:</strong> It is the only currency note issued by the Government of India and signed by the Finance Secretary, not the RBI Governor.
                     </div>
-                    <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded">
+                    <div class="qt-panel p-3">
                         <strong>₹0 Note:</strong> An organisation called 5th Pillar printed zero rupee notes as a protest tool against bribery.
                     </div>
-                    <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded">
+                    <div class="qt-panel p-3">
                         <strong>Pre-2005 Notes:</strong> Notes with no printing year on the back were withdrawn from circulation by the RBI in 2014. Exchange them at a bank branch rather than passing them on.
                     </div>
-                     <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded">
+                     <div class="qt-panel p-3">
                         <strong>Material:</strong> Indian notes are not ordinary paper. They are printed on cotton-based paper, which is why they survive a wash.
                     </div>
                 </div>
@@ -550,43 +532,43 @@
         </div>
 
         <!-- Notes and coins in circulation -->
-        <div class="mt-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Notes and Coins in Circulation (as of September 2026)</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
+        <div class="mt-12 p-8">
+            <h2 class="qt-section-title mb-4">Notes and Coins in Circulation (as of September 2026)</h2>
+            <p class="mb-6">
                 The Reserve Bank of India issues the notes and the Government of India mints the coins. This is what a till in India can legally contain today, and how each piece should be treated when it lands on the counter.
             </p>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+            <div class="qt-table-wrap mb-4">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Denomination</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Form</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Status</th>
+                            <th>Denomination</th>
+                            <th>Form</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹500</td><td class="px-4 py-3 border dark:border-gray-500">Note</td><td class="px-4 py-3 border dark:border-gray-500">In circulation (Mahatma Gandhi New Series)</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹200</td><td class="px-4 py-3 border dark:border-gray-500">Note</td><td class="px-4 py-3 border dark:border-gray-500">In circulation</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹100</td><td class="px-4 py-3 border dark:border-gray-500">Note</td><td class="px-4 py-3 border dark:border-gray-500">In circulation; the lavender new series and the older blue-green series are both valid</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹50</td><td class="px-4 py-3 border dark:border-gray-500">Note</td><td class="px-4 py-3 border dark:border-gray-500">In circulation</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹20</td><td class="px-4 py-3 border dark:border-gray-500">Note and coin</td><td class="px-4 py-3 border dark:border-gray-500">Both in circulation</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹10</td><td class="px-4 py-3 border dark:border-gray-500">Note and coin</td><td class="px-4 py-3 border dark:border-gray-500">Both in circulation</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹5 and ₹2</td><td class="px-4 py-3 border dark:border-gray-500">Coin</td><td class="px-4 py-3 border dark:border-gray-500">Coins in circulation; the older notes remain legal tender but are no longer printed</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹1</td><td class="px-4 py-3 border dark:border-gray-500">Coin</td><td class="px-4 py-3 border dark:border-gray-500">Coins in circulation; the ₹1 note is issued by the Government of India and appears only occasionally</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">50 paise</td><td class="px-4 py-3 border dark:border-gray-500">Coin</td><td class="px-4 py-3 border dark:border-gray-500">Legal tender but rarely seen; 25 paise and smaller coins were withdrawn on 30 June 2011</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">₹2,000</td><td class="px-4 py-3 border dark:border-gray-500">Note</td><td class="px-4 py-3 border dark:border-gray-500">Withdrawn from circulation by the RBI on 19 May 2023 but still legal tender; banks stopped exchanging it on 7 October 2023, and it can be exchanged or deposited through RBI issue offices under the RBI's current rules</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">₹500</td><td>Note</td><td>In circulation (Mahatma Gandhi New Series)</td></tr>
+                        <tr><td class="font-semibold">₹200</td><td>Note</td><td>In circulation</td></tr>
+                        <tr><td class="font-semibold">₹100</td><td>Note</td><td>In circulation; the lavender new series and the older blue-green series are both valid</td></tr>
+                        <tr><td class="font-semibold">₹50</td><td>Note</td><td>In circulation</td></tr>
+                        <tr><td class="font-semibold">₹20</td><td>Note and coin</td><td>Both in circulation</td></tr>
+                        <tr><td class="font-semibold">₹10</td><td>Note and coin</td><td>Both in circulation</td></tr>
+                        <tr><td class="font-semibold">₹5 and ₹2</td><td>Coin</td><td>Coins in circulation; the older notes remain legal tender but are no longer printed</td></tr>
+                        <tr><td class="font-semibold">₹1</td><td>Coin</td><td>Coins in circulation; the ₹1 note is issued by the Government of India and appears only occasionally</td></tr>
+                        <tr><td class="font-semibold">50 paise</td><td>Coin</td><td>Legal tender but rarely seen; 25 paise and smaller coins were withdrawn on 30 June 2011</td></tr>
+                        <tr><td class="font-semibold">₹2,000</td><td>Note</td><td>Withdrawn from circulation by the RBI on 19 May 2023 but still legal tender; banks stopped exchanging it on 7 October 2023, and it can be exchanged or deposited through RBI issue offices under the RBI's current rules</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 The counter above covers every denomination you are likely to meet in a till, and it works in whole rupees because 50 paise coins are too rare in daily takings to matter. The ₹2,000 row is kept for the odd note that still turns up.
             </p>
         </div>
 
         <!-- Closing routine -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">A Closing-Time Cash Routine That Catches Mistakes</h2>
-            <ol class="list-decimal list-inside text-gray-600 dark:text-gray-300 space-y-3 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">A Closing-Time Cash Routine That Catches Mistakes</h2>
+            <ol class="list-decimal list-inside space-y-3 mb-4">
                 <li><strong>Fix an opening float.</strong> Start each day with a known amount of change (a set number of ₹10, ₹20 and ₹50 notes plus coins) and write it down. Closing cash minus the float is what you actually took in.</li>
                 <li><strong>Sort before you count.</strong> Face all notes the same way and stack by denomination. Count each stack by hand, then enter the number of pieces here, not the value, so the multiplication cannot go wrong.</li>
                 <li><strong>Compare with sales.</strong> Cash sales for the day should equal total billed sales minus card, UPI and credit sales. The counter total minus the float should match that figure.</li>
@@ -594,47 +576,47 @@
                 <li><strong>Prepare the deposit.</strong> Bank pay-in slips ask for the number of notes of each denomination. The breakdown you entered above goes straight onto the slip, so fill the slip before you bundle the notes.</li>
                 <li><strong>Move cash off the premises.</strong> Deposit often and keep only the next day's float overnight. Shop insurance policies usually cap the cash they cover, so check your policy schedule.</li>
             </ol>
-            <p class="text-gray-600 dark:text-gray-300">
-                The <a href="/blog/cash-handling-tips-small-businesses/" class="text-green-700 dark:text-green-400 underline">cash handling guide</a> covers till discipline, staff handovers and petty cash in more detail. For the day's total in words on a voucher or receipt, paste the amount into the <a href="/number-to-words/" class="text-green-700 dark:text-green-400 underline">number to words converter</a>.
+            <p>
+                The <a href="/blog/cash-handling-tips-small-businesses/" class="qt-link">cash handling guide</a> covers till discipline, staff handovers and petty cash in more detail. For the day's total in words on a voucher or receipt, paste the amount into the <a href="/number-to-words/" class="qt-link">number to words converter</a>.
             </p>
         </div>
 
         <!-- Cash rules -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Cash Rules Every Indian Business Should Know (as of September 2026)</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Cash Rules Every Indian Business Should Know (as of September 2026)</h2>
+            <p class="mb-6">
                 Income tax law limits how much business can be done in cash. These limits were set under Sections 269ST, 40A(3), 269SS and 269T of the Income-tax Act, 1961 and carry forward under the Income-tax Act, 2025, which replaced the 1961 Act from 1 April 2026 and renumbered its sections, so look up the current section number before you cite one.
             </p>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+            <div class="qt-table-wrap mb-4">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Rule</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Limit</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">What it means at the counter</th>
+                            <th>Rule</th>
+                            <th>Limit</th>
+                            <th>What it means at the counter</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Cash receipts</td><td class="px-4 py-3 border dark:border-gray-500">₹2 lakh or more</td><td class="px-4 py-3 border dark:border-gray-500">You cannot accept ₹2 lakh or more in cash from one person in a day, for one transaction, or for one event or occasion, even in instalments. The penalty equals the amount received.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Cash expenses</td><td class="px-4 py-3 border dark:border-gray-500">Above ₹10,000 per person per day</td><td class="px-4 py-3 border dark:border-gray-500">Business payments in cash above this limit are disallowed as an expense (the limit is ₹35,000 for payments to transporters). Pay suppliers by cheque, transfer or UPI.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Cash loans and deposits</td><td class="px-4 py-3 border dark:border-gray-500">₹20,000 or more</td><td class="px-4 py-3 border dark:border-gray-500">Loans, deposits and advances against property cannot be accepted or repaid in cash at this level. The penalty equals the amount.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">PAN on large sales</td><td class="px-4 py-3 border dark:border-gray-500">Above ₹2 lakh per transaction</td><td class="px-4 py-3 border dark:border-gray-500">The customer's PAN must be recorded for any single sale or purchase of goods or services above ₹2 lakh, whatever the payment method.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Bank reporting</td><td class="px-4 py-3 border dark:border-gray-500">₹10 lakh (savings) or ₹50 lakh (current) in a year</td><td class="px-4 py-3 border dark:border-gray-500">Banks report cash deposits that cross these totals in a financial year to the Income Tax Department, so keep sales records that explain your deposits.</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">Cash receipts</td><td>₹2 lakh or more</td><td>You cannot accept ₹2 lakh or more in cash from one person in a day, for one transaction, or for one event or occasion, even in instalments. The penalty equals the amount received.</td></tr>
+                        <tr><td class="font-semibold">Cash expenses</td><td>Above ₹10,000 per person per day</td><td>Business payments in cash above this limit are disallowed as an expense (the limit is ₹35,000 for payments to transporters). Pay suppliers by cheque, transfer or UPI.</td></tr>
+                        <tr><td class="font-semibold">Cash loans and deposits</td><td>₹20,000 or more</td><td>Loans, deposits and advances against property cannot be accepted or repaid in cash at this level. The penalty equals the amount.</td></tr>
+                        <tr><td class="font-semibold">PAN on large sales</td><td>Above ₹2 lakh per transaction</td><td>The customer's PAN must be recorded for any single sale or purchase of goods or services above ₹2 lakh, whatever the payment method.</td></tr>
+                        <tr><td class="font-semibold">Bank reporting</td><td>₹10 lakh (savings) or ₹50 lakh (current) in a year</td><td>Banks report cash deposits that cross these totals in a financial year to the Income Tax Department, so keep sales records that explain your deposits.</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 These are limits, not advice. A chartered accountant can tell you how they apply to your business, and GST rules on invoicing apply to cash sales in the same way as to any other sale.
             </p>
         </div>
 
         <!-- Counterfeit notes -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Spotting a Counterfeit Note at the Counter</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Spotting a Counterfeit Note at the Counter</h2>
+            <p class="mb-4">
                 The RBI publishes the security features of every denomination on its website. These are the ones you can check in a second or two without equipment:
             </p>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
+            <ul class="list-disc list-inside space-y-2 mb-4">
                 <li><strong>Watermark:</strong> hold the note to the light to see the Mahatma Gandhi portrait and the denomination numeral in the blank area.</li>
                 <li><strong>Security thread:</strong> a windowed thread with the words भारत and RBI runs through the note; on the higher denominations it changes colour when you tilt the note.</li>
                 <li><strong>See-through register:</strong> the denomination numeral is printed in halves on the two sides and forms a complete number against the light.</li>
@@ -642,63 +624,56 @@
                 <li><strong>Number panel:</strong> in the current series the numerals grow from small to large from left to right.</li>
                 <li><strong>Micro lettering:</strong> RBI and the denomination value appear in tiny letters near the portrait, visible with a magnifying glass.</li>
             </ul>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Under RBI rules a bank that receives a counterfeit note impounds it, stamps it and gives you an acknowledgement; you do not get its value back. That is why checking large notes when they are tendered matters more than any check at the bank. A small UV lamp is a cheap addition to a busy counter: genuine notes have optical fibres and number panels that glow under it, and a note that stays dull deserves a closer look.
             </p>
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Which Indian currency notes are in circulation in 2026?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The RBI issues ₹10, ₹20, ₹50, ₹100, ₹200 and ₹500 notes. The ₹2,000 note was withdrawn from circulation in May 2023 but remains legal tender, and older ₹1, ₹2 and ₹5 notes are still valid even though they are no longer printed in volume.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">The RBI issues ₹10, ₹20, ₹50, ₹100, ₹200 and ₹500 notes. The ₹2,000 note was withdrawn from circulation in May 2023 but remains legal tender, and older ₹1, ₹2 and ₹5 notes are still valid even though they are no longer printed in volume.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Is the ₹2,000 note still valid?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. The RBI withdrew it from circulation on 19 May 2023, but it continues to be legal tender. Banks stopped exchanging it on 7 October 2023, and it can now be exchanged or deposited through RBI issue offices under the RBI's current rules.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Yes. The RBI withdrew it from circulation on 19 May 2023, but it continues to be legal tender. Banks stopped exchanging it on 7 October 2023, and it can now be exchanged or deposited through RBI issue offices under the RBI's current rules.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Are 50 paise coins still legal tender?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. Coins of 50 paise remain legal tender. Coins of 25 paise and below were withdrawn from 30 June 2011 and are no longer accepted.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Yes. Coins of 50 paise remain legal tender. Coins of 25 paise and below were withdrawn from 30 June 2011 and are no longer accepted.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How much cash can a shop accept from one customer?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Receiving ₹2 lakh or more in cash from one person in a day, for one transaction, or for one event is prohibited under income tax law, and the penalty equals the amount received. Below that limit cash sales are allowed, but the customer's PAN must be recorded for any single sale above ₹2 lakh whatever the payment method.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Receiving ₹2 lakh or more in cash from one person in a day, for one transaction, or for one event is prohibited under income tax law, and the penalty equals the amount received. Below that limit cash sales are allowed, but the customer's PAN must be recorded for any single sale above ₹2 lakh whatever the payment method.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How do shopkeepers count cash at the end of the day?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Sort the notes by denomination, count each stack, and multiply by the face value. Enter those counts here to get the total instantly, compare it with the day's cash sales, and note any shortage or excess before locking up.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Sort the notes by denomination, count each stack, and multiply by the face value. Enter those counts here to get the total instantly, compare it with the day's cash sales, and note any shortage or excess before locking up.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Does this cash counter store my counts?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Counts are saved only in your own browser so they survive a page refresh. Nothing is sent to a server, and Reset All clears the saved values.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Counts are saved only in your own browser so they survive a page refresh. Nothing is sent to a server, and Reset All clears the saved values.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Can I use this counter to fill a bank deposit slip?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes. Pay-in slips ask for the number of notes of each denomination. Enter the same counts here to check the total before you write it on the slip.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Yes. Pay-in slips ask for the number of notes of each denomination. Enter the same counts here to check the total before you write it on the slip.</p>
                 </details>
             </div>
         </div>
@@ -706,63 +681,27 @@
 </main>
 
 
+<script src="/js/calc/cash-counter.js"></script>
 <script>
     function formatIndianCurrency(num) {
         return '₹' + parseFloat(num).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     }
 
-    function numberToWords(num) {
-        if (num === 0) return '';
-
-        const crore = Math.floor(num / 10000000);
-        const lakh = Math.floor((num % 10000000) / 100000);
-        const thousand = Math.floor((num % 100000) / 1000);
-        const hundred = Math.floor((num % 1000) / 100);
-        const remainder = num % 100;
-
-        let words = [];
-        if (crore > 0) words.push(crore + ' Crore');
-        if (lakh > 0) words.push(lakh + ' Lakh');
-        if (thousand > 0) words.push(thousand + ' Thousand');
-        if (hundred > 0) words.push(hundred + ' Hundred');
-        if (remainder > 0) words.push(remainder);
-
-        return words.join(' ') + ' Rupees';
-    }
-
     function calculateTotal() {
-        const denominations = {
-            note2000: 2000,
-            note500: 500,
-            note200: 200,
-            note100: 100,
-            note50: 50,
-            note20: 20,
-            note10: 10,
-            coin20: 20,
-            coin10: 10,
-            coin5: 5,
-            coin2: 2,
-            coin1: 1
-        };
-
-        let total = 0;
-        for (const [id, value] of Object.entries(denominations)) {
-            let count = parseInt(document.getElementById(id).value) || 0;
+        // The denominations, limits and sums live in /js/calc/cash-counter.js (unit tested in tests/unit)
+        const cash = QTCalc.cashCounter;
+        const counts = {};
+        for (const id of Object.keys(cash.DENOMINATIONS)) {
+            const el = document.getElementById(id);
+            const c = cash.clampCount(el.value);
             // Limit invalid or excessive inputs
-            if (count > 99999) {
-                count = 99999;
-                document.getElementById(id).value = 99999;
-            }
-            if (count < 0) {
-                count = 0;
-                document.getElementById(id).value = 0;
-            }
-            total += count * value;
+            if (c.changed) el.value = c.count;
+            counts[id] = c.count;
         }
+        const total = cash.total(counts);
 
         document.getElementById('totalAmount').textContent = formatIndianCurrency(total);
-        document.getElementById('totalInWords').textContent = total > 0 ? numberToWords(total) : '';
+        document.getElementById('totalInWords').textContent = total > 0 ? cash.numberToWords(total) : '';
     }
 
 
@@ -777,25 +716,16 @@
 
 
     
-<section class="container mx-auto px-4 max-w-4xl mt-10" aria-labelledby="official-sources">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-        <h2 id="official-sources" class="text-xl font-bold text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-landmark text-indigo-500 mr-2"></i>Where to verify
-        </h2>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The rules and rates used on this page come from these official bodies. Rates and limits change, so confirm the current figure on the official site before you act on a number here.
-        </p>
-        <ul class="space-y-2 text-sm">
+<section class="qt-wrap qt-section" aria-labelledby="official-sources">
+    <div class="qt-card qt-card--sunken max-w-[46rem]">
+        <span class="qt-sticker is-mor is-flat">Check the source</span>
+        <h2 id="official-sources" class="qt-h3 mt-3 mb-1">Where to verify</h2>
+        <p class="mb-3 text-ink-2">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+        <ul class="space-y-1.5">
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.rbi.org.in/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Reserve Bank of India</a><span class="text-gray-600 dark:text-gray-300"> for banknote security features and currency in circulation</span></span>
-            </li>
+            <li><a href="https://www.rbi.org.in/" target="_blank" rel="noopener" class="qt-link">Reserve Bank of India</a> for banknote security features and currency in circulation</li>
             
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Income Tax Department e-filing portal</a><span class="text-gray-600 dark:text-gray-300"> for cash transaction limits under income tax law</span></span>
-            </li>
+            <li><a href="https://www.incometax.gov.in/iec/foportal/" target="_blank" rel="noopener" class="qt-link">Income Tax Department e-filing portal</a> for cash transaction limits under income tax law</li>
             
         </ul>
     </div>
@@ -803,80 +733,57 @@
 
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -892,7 +799,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -903,6 +811,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>

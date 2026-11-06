@@ -50,138 +50,121 @@
     <meta name="twitter:image:alt" content="Image Resizer Online 2026 - Resize JPG/PNG to 20kb, 50kb">
 
     <!-- Additional SEO -->
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Local Tailwind Build -->
-    <link rel="stylesheet" href="/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind Config for Dark Mode (Inline for FOUC prevention) -->
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
     <script>
-        // Initialize dark mode from localStorage on page load
-        (function initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode');
-            if (darkMode === 'enabled') {
-                document.documentElement.classList.add('dark');
-            }
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
         })();
     </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
 
     
 
     
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors duration-200">
-    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-200">
-    <div class="container mx-auto px-4 py-4 md:py-6">
-        <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
-                <i class="fas fa-tools text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                <span class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">QuickTools India</span>
-            </a>
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+        </a>
 
-            <!-- Navigation -->
-            <nav class="flex items-center space-x-4">
-                <!-- Home link - visible on all screen sizes -->
-                <a href="/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-home mr-1"></i><span class="hidden sm:inline">Home</span>
-                </a>
-
-                <!-- Blog link -->
-                <a href="/blog/"
-                    class="flex items-center font-semibold transition text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fas fa-book-open mr-1"></i><span class="hidden sm:inline">Blog</span>
-                </a>
-
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" id="darkModeToggle"
-                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                    aria-label="Toggle dark mode">
-                    <i class="fas fa-moon text-gray-600 dark:text-yellow-300 dark:hidden"></i>
-                    <i class="fas fa-sun text-yellow-500 hidden dark:inline"></i>
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
 
-                <!-- Tools Dropdown -->
-                <div class="relative" id="toolsDropdown">
-                    <button onclick="toggleDropdown()" id="dropdownToggleBtn"
-                        aria-haspopup="true" aria-expanded="false"
-                        class="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold transition">
-                        <i class="fas fa-th mr-1"></i>Tools
-                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                    </button>
-
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 z-50 max-h-[80vh] overflow-y-auto">
-                        <a href="/sip-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 mr-2 w-4"></i>SIP Calculator
-                        </a>
-                        <a href="/home-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-home text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Home Loan Calculator
-                        </a>
-                        <a href="/car-loan-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-car text-red-600 dark:text-red-400 mr-2 w-4"></i>Car Loan Calculator
-                        </a>
-                        <a href="/ppf-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-lock text-orange-600 dark:text-orange-400 mr-2 w-4"></i>PPF Calculator
-                        </a>
-                        <a href="/ssy-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-cyan-600 dark:text-cyan-400 mr-2 w-4"></i>SSY Calculator
-                        </a>
-                        <a href="/gst-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-percentage text-blue-600 dark:text-blue-400 mr-2 w-4"></i>GST Calculator
-                        </a>
-                        <a href="/wedding-cost-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-heart text-pink-600 dark:text-pink-400 mr-2 w-4"></i>Wedding Calculator
-                        </a>
-                        <a href="/study-abroad-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-graduation-cap text-red-600 dark:text-red-400 mr-2 w-4"></i>Study Abroad Calculator
-                        </a>
-                        <a href="/age-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-calendar-alt text-purple-600 dark:text-purple-400 mr-2 w-4"></i>Age Calculator
-                        </a>
-                        <a href="/cash-counter/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-money-bill-wave text-green-600 dark:text-green-400 mr-2 w-4"></i>Cash Counter
-                        </a>
-                        <a href="/number-to-words/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-font text-indigo-600 dark:text-indigo-400 mr-2 w-4"></i>Number to Words
-                        </a>
-                        <a href="/income-tax-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-file-invoice-dollar text-emerald-600 dark:text-emerald-400 mr-2 w-4"></i>Income Tax Calculator
-                        </a>
-                        <a href="/salary-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-wallet text-teal-600 dark:text-teal-400 mr-2 w-4"></i>Salary Calculator
-                        </a>
-                        <a href="/emi-prepayment-calculator/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition border-b border-gray-100 dark:border-gray-600 text-gray-800 dark:text-gray-200">
-                            <i class="fas fa-piggy-bank text-amber-600 dark:text-amber-400 mr-2 w-4"></i>EMI Prepayment
-                        </a>
-                        <a href="/image-resizer/"
-                            class="flex items-center px-4 py-3 hover:bg-indigo-50 dark:hover:bg-gray-600 transition bg-indigo-50 dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 font-semibold">
-                            <i class="fas fa-image text-orange-600 dark:text-orange-400 mr-2 w-4"></i>Image Resizer
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" aria-current="page">Image Resizer</a>
+                
+            </div>
+            
         </div>
     </div>
 </header>
@@ -343,43 +326,39 @@
 </script>
 
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-6xl mx-auto">
+<main>
+    <div class="qt-wrap">
         <!-- Title -->
-        <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="inline-block bg-gradient-to-br from-orange-400 to-orange-600 w-12 h-12 rounded-full flex items-center justify-center">
-                    <i class="fas fa-image text-xl text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">Image Resizer</h1>
+        <section class="qt-toolhead">
+            <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>Image Resizer</span></nav>
+            <div class="flex flex-wrap items-center gap-3 mt-5">
+                <span class="qt-sticker is-everyday">Everyday</span>
+                <span class="qt-stamp">Updated 24 Sept 2026</span>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">Resize and convert images instantly in your browser - 100%
-                private</p>
-        </div>
+            <h1 class="qt-h1 mt-4">Image Resizer</h1>
+            <p class="qt-lede mt-4">Resize and convert images instantly in your browser - 100% private</p>
+        </section>
 
         <!-- Main Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
+        <div class="qt-card">
             <!-- Upload Section -->
             <div id="uploadSection">
-                <div class="border-4 border-dashed border-orange-300 dark:border-orange-600 rounded-lg p-12 text-center hover:border-orange-500 dark:hover:border-orange-400 hover:bg-orange-50 dark:hover:bg-gray-600 transition-all cursor-pointer"
+                <div class="qt-panel p-12 text-center cursor-pointer"
                     onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-cloud-upload-alt text-6xl text-orange-500 dark:text-orange-400 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2">Click to upload or drag
+                                        <h3 class="qt-h3 mb-2">Click to upload or drag
                         and drop</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-2">Supports: JPG, PNG, WebP, GIF</p>
-                    <p class="text-sm text-gray-400 dark:text-gray-500">Max file size: 10MB</p>
-                    <input type="file" id="fileInput" accept="image/*" class="hidden"
+                    <p class="mb-2">Supports: JPG, PNG, WebP, GIF</p>
+                    <p class="text-sm">Max file size: 10MB</p>
+                    <input type="file" id="fileInput" aria-label="Choose an image to resize" accept="image/*" class="hidden"
                         onchange="handleFileSelect(event)">
                 </div>
 
                 <div
-                    class="mt-6 bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 dark:border-blue-400 p-4 rounded flex items-start transition-colors duration-200">
-                    <i class="fas fa-shield-alt text-blue-500 dark:text-blue-400 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <p class="text-sm text-blue-800 dark:text-blue-200 font-semibold mb-1">100% Private & Secure
+                    class="qt-note is-tip mt-6 flex items-start">
+                                        <div>
+                        <p class="text-sm font-semibold mb-1">100% Private & Secure
                         </p>
-                        <p class="text-sm text-blue-700 dark:text-blue-300">Your images are processed entirely in
+                        <p class="text-sm">Your images are processed entirely in
                             your browser. No
                             files are uploaded to any server.</p>
                     </div>
@@ -391,17 +370,17 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Controls -->
                     <div class="space-y-6">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
-                            <i class="fas fa-sliders-h text-orange-600 dark:text-orange-400 mr-2"></i>Resize Options
+                        <h3 class="qt-h3 flex items-center">
+                            Resize Options
                         </h3>
 
                         <div class="space-y-4">
                             <!-- Resize Mode -->
                             <div>
-                                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Resize
+                                <label for="resizeMode" class="qt-label mb-2">Resize
                                     Mode</label>
                                 <select id="resizeMode" onchange="updateResizeMode()"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors">
+                                    class="qt-input w-full">
                                     <option value="percentage">Percentage</option>
                                     <option value="dimensions">Custom Dimensions</option>
                                     <option value="preset">Preset Sizes</option>
@@ -410,44 +389,44 @@
 
                             <!-- Percentage Mode -->
                             <div id="percentageMode">
-                                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
+                                <label for="percentage" class="qt-label mb-2">
                                     Scale: <span id="percentageValue"
-                                        class="text-orange-600 dark:text-orange-400">100</span>%
+                                       >100</span>%
                                 </label>
                                 <input type="range" id="percentage" min="10" max="200" value="100"
-                                    class="w-full accent-orange-600" oninput="updatePercentage()">
+                                    class="qt-range w-full" oninput="updatePercentage()">
                             </div>
 
                             <!-- Custom Dimensions Mode -->
                             <div id="dimensionsMode" class="hidden space-y-4">
                                 <div>
-                                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Width
+                                    <label for="customWidth" class="qt-label mb-2">Width
                                         (px)</label>
                                     <input type="number" id="customWidth" min="1"
-                                        class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors"
+                                        class="qt-input w-full"
                                         oninput="updateCustomDimensions('width')">
                                 </div>
                                 <div>
-                                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Height
+                                    <label for="customHeight" class="qt-label mb-2">Height
                                         (px)</label>
                                     <input type="number" id="customHeight" min="1"
-                                        class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors"
+                                        class="qt-input w-full"
                                         oninput="updateCustomDimensions('height')">
                                 </div>
                                 <div class="flex items-center">
                                     <input type="checkbox" id="maintainRatio" checked
-                                        class="w-4 h-4 text-orange-600 mr-2">
-                                    <label for="maintainRatio" class="text-gray-700 dark:text-gray-300">Maintain
+                                        class="w-4 h-4 mr-2">
+                                    <label for="maintainRatio" class="font-semibold">Maintain
                                         aspect ratio</label>
                                 </div>
                             </div>
 
                             <!-- Preset Mode -->
                             <div id="presetMode" class="hidden">
-                                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select
+                                <label for="presetSize" class="qt-label mb-2">Select
                                     Size</label>
                                 <select id="presetSize" onchange="applyPreset()"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors">
+                                    class="qt-input w-full">
                                     <option value="">Choose a preset</option>
                                     <option value="1920,1080">Full HD (1920×1080)</option>
                                     <option value="1280,720">HD (1280×720)</option>
@@ -461,10 +440,10 @@
 
                             <!-- Format -->
                             <div>
-                                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Output
+                                <label for="outputFormat" class="qt-label mb-2">Output
                                     Format</label>
                                 <select id="outputFormat"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors">
+                                    class="qt-input w-full">
                                     <option value="image/png">PNG</option>
                                     <option value="image/jpeg">JPEG</option>
                                     <option value="image/webp">WebP</option>
@@ -473,52 +452,52 @@
 
                             <!-- Quality (for JPEG/WebP) -->
                             <div id="qualityControl">
-                                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
+                                <label for="quality" class="qt-label mb-2">
                                     Quality: <span id="qualityValue"
-                                        class="text-orange-600 dark:text-orange-400">90</span>%
+                                       >90</span>%
                                 </label>
                                 <input type="range" id="quality" min="1" max="100" value="90"
-                                    class="w-full accent-orange-600" oninput="updateQuality()">
+                                    class="qt-range w-full" oninput="updateQuality()">
                             </div>
                         </div>
 
                         <!-- Info -->
                         <div
-                            class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-600 dark:to-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors duration-200">
-                            <h4 class="font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center">
-                                <i class="fas fa-info-circle text-orange-600 dark:text-orange-400 mr-2"></i>Image
+                            class="qt-card is-everyday">
+                            <h4 class="font-bold mb-3">
+                                Image
                                 Info
                             </h4>
-                            <div class="text-sm space-y-1 text-gray-800 dark:text-gray-200">
+                            <div class="text-sm space-y-1">
                                 <p class="flex justify-between"><strong>Original:</strong> <span id="originalSize"
-                                        class="text-gray-600 dark:text-gray-300"></span></p>
+                                       ></span></p>
                                 <p class="flex justify-between"><strong>New:</strong> <span id="newSize"
-                                        class="text-orange-600 dark:text-orange-400 font-semibold"></span></p>
+                                        class="font-semibold"></span></p>
                                 <p class="flex justify-between"><strong>File Size:</strong> <span id="fileSize"
-                                        class="text-gray-600 dark:text-gray-300"></span></p>
+                                       ></span></p>
                             </div>
                         </div>
 
                         <!-- Buttons -->
                         <div class="space-y-3">
                             <button onclick="downloadImage()"
-                                class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-6 rounded-lg font-bold hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg">
-                                <i class="fas fa-download mr-2"></i>Download Resized Image
+                                class="qt-btn w-full">
+                                Download Resized Image
                             </button>
                             <button onclick="resetTool()"
-                                class="w-full bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
-                                <i class="fas fa-redo mr-2"></i>Upload New Image
+                                class="qt-btn w-full">
+                                Upload New Image
                             </button>
                         </div>
                     </div>
 
                     <!-- Preview -->
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                            <i class="fas fa-eye text-orange-600 dark:text-orange-400 mr-2"></i>Preview
+                        <h3 class="qt-h3 mb-4 flex items-center">
+                            Preview
                         </h3>
                         <div
-                            class="border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-gray-50 dark:bg-gray-800 overflow-auto max-h-[600px] transition-colors duration-200">
+                            class="qt-panel p-4 overflow-auto max-h-[600px]">
                             <canvas id="canvas" class="max-w-full mx-auto"></canvas>
                         </div>
                     </div>
@@ -527,166 +506,158 @@
         </div>
 
         <!-- How it works -->
-        <div class="mt-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How This Resizer Works</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-12 p-8">
+            <h2 class="qt-section-title mb-4">How This Resizer Works</h2>
+            <p class="mb-4">
                 When you pick a file, your browser reads it into memory and decodes it as a picture. The tool then draws that picture onto an invisible canvas at the new width and height, and asks the browser to encode the canvas as a fresh PNG, JPEG or WebP file. The File Size line is the size of that fresh file, recalculated every time you move a slider, so what you see is exactly what the Download button saves. No part of this leaves your computer, which is why the tool keeps working if you switch the internet off after the page has loaded.
             </p>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
+            <ul class="list-disc list-inside space-y-2 mb-4">
                 <li><strong>Percentage</strong> scales both sides by the same factor, from 10 to 200 percent.</li>
                 <li><strong>Custom Dimensions</strong> sets exact pixel values; with Maintain aspect ratio ticked, typing one side fills in the other.</li>
                 <li><strong>Preset Sizes</strong> jumps to common screen sizes such as 1920 by 1080 or 512 by 512.</li>
                 <li><strong>Output Format</strong> chooses the encoder. The quality slider applies to JPEG and WebP and is hidden for PNG, which is always lossless.</li>
             </ul>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Two side effects of re-encoding are worth knowing. The new file carries none of the original's metadata, so GPS coordinates and camera details from a phone photo are gone. And an animated GIF loses its animation, because only the first frame is drawn.
             </p>
         </div>
 
         <!-- Resizing vs compressing -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Resizing Dimensions vs Compressing Quality</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Resizing Dimensions vs Compressing Quality</h2>
+            <p class="mb-4">
                 Two different things shrink an image file. Resizing reduces the number of pixels: halving the width and the height leaves a quarter of the pixels, and the file size falls by roughly the same proportion. Compressing keeps every pixel but stores the colours less precisely, which is what the quality slider controls for JPEG and WebP. At 90 percent the loss is invisible; at 70 to 80 percent the file is far smaller and the photo still looks fine on a screen; below 50 percent blocky patches appear around edges and in smooth areas such as skin and sky.
             </p>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 Dimensions matter more than quality. A 12-megapixel phone photo is around 4000 by 3000 pixels, and no quality setting will bring it near 50 KB. Once the same photo is 413 by 531 pixels, it lands under 50 KB at a quality most people cannot tell from the original. Resize first, then compress.
             </p>
         </div>
 
         <!-- Formats -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">JPEG, PNG or WebP?</h2>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">JPEG, PNG or WebP?</h2>
+            <div class="qt-table-wrap mb-4">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Format</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Best for</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Transparency</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Notes</th>
+                            <th>Format</th>
+                            <th>Best for</th>
+                            <th>Transparency</th>
+                            <th>Notes</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">JPEG (.jpg)</td><td class="px-4 py-3 border dark:border-gray-500">Photographs, scanned photos, anything with a size limit</td><td class="px-4 py-3 border dark:border-gray-500">No</td><td class="px-4 py-3 border dark:border-gray-500">Lossy. The quality slider trades sharpness for size. Accepted by every portal.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">PNG</td><td class="px-4 py-3 border dark:border-gray-500">Screenshots, logos, text, scanned signatures</td><td class="px-4 py-3 border dark:border-gray-500">Yes</td><td class="px-4 py-3 border dark:border-gray-500">Lossless, so edges stay crisp. File size depends only on pixel count and detail; the only way to shrink it is fewer pixels.</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">WebP</td><td class="px-4 py-3 border dark:border-gray-500">Websites, sharing, storage</td><td class="px-4 py-3 border dark:border-gray-500">Yes</td><td class="px-4 py-3 border dark:border-gray-500">Usually 25 to 35 percent smaller than JPEG at similar quality. All current browsers open it, but many government forms accept only JPG or PNG.</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">JPEG (.jpg)</td><td>Photographs, scanned photos, anything with a size limit</td><td>No</td><td>Lossy. The quality slider trades sharpness for size. Accepted by every portal.</td></tr>
+                        <tr><td class="font-semibold">PNG</td><td>Screenshots, logos, text, scanned signatures</td><td>Yes</td><td>Lossless, so edges stay crisp. File size depends only on pixel count and detail; the only way to shrink it is fewer pixels.</td></tr>
+                        <tr><td class="font-semibold">WebP</td><td>Websites, sharing, storage</td><td>Yes</td><td>Usually 25 to 35 percent smaller than JPEG at similar quality. All current browsers open it, but many government forms accept only JPG or PNG.</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p>
                 One trap when converting: JPEG has no transparency, so a PNG logo or signature with a transparent background comes out with a black background after conversion. Keep PNG for those, or flatten the image onto white first.
             </p>
         </div>
 
         <!-- Target size for forms -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Hitting a Target Size for Application Forms</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Hitting a Target Size for Application Forms</h2>
+            <p class="mb-4">
                 Exam portals, job applications and university admissions reject uploads that miss their photo and signature rules, and every portal publishes its own figures in the notification or the upload page. Most ask for a photograph of a few tens of kilobytes at a size close to a printed passport photo, a signature of around 10 to 30 KB in a wide, short frame, and scanned documents in the range of 100 KB to 1 MB. The numbers differ between portals and change between years, so copy them from the page you are uploading to, and then:
             </p>
-            <ol class="list-decimal list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-4">
+            <ol class="list-decimal list-inside space-y-2 mb-4">
                 <li>Choose Custom Dimensions, untick Maintain aspect ratio if the portal gives both a width and a height, and type the pixel values it asks for. If it gives centimetres, use the DPI table below.</li>
                 <li>Pick the format the portal accepts. JPEG is the safe choice for photographs; use PNG only if the form asks for it.</li>
                 <li>Lower the quality slider until the File Size line is inside the allowed range. Stay above the minimum too: some portals reject files that are too small.</li>
                 <li>Download, then open the file once to confirm it is not blurred and that the face or signature fills the frame.</li>
             </ol>
-            <p class="text-gray-600 dark:text-gray-300">
-                Signatures are easiest scanned or photographed on plain white paper in black ink, cropped tight to the ink before resizing. The article on <a href="/blog/image-dimensions-indian-job-applications/" class="text-orange-600 dark:text-orange-400 underline">image dimensions for Indian job applications</a> walks through the photo and signature process step by step, and <a href="/blog/how-to-compress-and-resize-images-without-losing-quality/" class="text-orange-600 dark:text-orange-400 underline">how to compress and resize images without losing quality</a> covers the trade-offs in more depth.
+            <p>
+                Signatures are easiest scanned or photographed on plain white paper in black ink, cropped tight to the ink before resizing. The article on <a href="/blog/image-dimensions-indian-job-applications/" class="qt-link">image dimensions for Indian job applications</a> walks through the photo and signature process step by step, and <a href="/blog/how-to-compress-and-resize-images-without-losing-quality/" class="qt-link">how to compress and resize images without losing quality</a> covers the trade-offs in more depth.
             </p>
         </div>
 
         <!-- DPI -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Pixels, Centimetres and DPI</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Pixels, Centimetres and DPI</h2>
+            <p class="mb-4">
                 A digital image has no physical size, only a number of pixels. DPI (dots per inch) is a print setting that says how densely those pixels should be laid on paper, so a 3.5 by 4.5 cm photo printed at 300 DPI needs 413 by 531 pixels (divide the centimetres by 2.54 and multiply by 300). Portals that quote a size in centimetres or a DPI value are really asking for a pixel count, and this tool does not write a DPI value into the file at all.
             </p>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
+            <div class="qt-table-wrap">
+                <table class="qt-table">
+                    <thead>
                         <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Printed size</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Pixels at 200 DPI</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Pixels at 300 DPI</th>
+                            <th>Printed size</th>
+                            <th>Pixels at 200 DPI</th>
+                            <th>Pixels at 300 DPI</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">3.5 x 4.5 cm (common Indian passport size)</td><td class="px-4 py-3 border dark:border-gray-500">276 x 354</td><td class="px-4 py-3 border dark:border-gray-500">413 x 531</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">2 x 2 inch (51 x 51 mm)</td><td class="px-4 py-3 border dark:border-gray-500">400 x 400</td><td class="px-4 py-3 border dark:border-gray-500">600 x 600</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">A4 sheet (21 x 29.7 cm)</td><td class="px-4 py-3 border dark:border-gray-500">1654 x 2339</td><td class="px-4 py-3 border dark:border-gray-500">2480 x 3508</td></tr>
+                    <tbody>
+                        <tr><td class="font-semibold">3.5 x 4.5 cm (common Indian passport size)</td><td>276 x 354</td><td>413 x 531</td></tr>
+                        <tr><td class="font-semibold">2 x 2 inch (51 x 51 mm)</td><td>400 x 400</td><td>600 x 600</td></tr>
+                        <tr><td class="font-semibold">A4 sheet (21 x 29.7 cm)</td><td>1654 x 2339</td><td>2480 x 3508</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
         <!-- Privacy -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Metadata and Privacy</h2>
-            <p class="text-gray-600 dark:text-gray-300">
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-4">Metadata and Privacy</h2>
+            <p>
                 Photos from a phone carry EXIF metadata: the exact time, the camera model, the settings, and often the GPS coordinates of where the picture was taken. Uploading such a file to a form or a marketplace listing hands all of that over. Because this tool builds a new file from the pixels alone, the download contains none of the original metadata. Resizing a photo here before sharing it is therefore also a quick way to strip location data. The one thing to check is orientation: browsers apply the phone's rotation tag while decoding, so a portrait photo stays upright, but if a very old file appears sideways, rotate it in your gallery app before uploading.
             </p>
         </div>
 
         <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="mt-8 p-8">
+            <h2 class="qt-section-title mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         How do I reduce a photo to 20 KB or 50 KB for an online form?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Set the pixel dimensions the form asks for first, using Custom Dimensions. Then choose JPEG as the output format and lower the quality slider until the File Size line drops under your target. Dimensions do most of the work: a 4000 pixel phone photo will not reach 50 KB at any quality, but a 413 by 531 pixel photo will at around 80 percent.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Set the pixel dimensions the form asks for first, using Custom Dimensions. Then choose JPEG as the output format and lower the quality slider until the File Size line drops under your target. Dimensions do most of the work: a 4000 pixel phone photo will not reach 50 KB at any quality, but a 413 by 531 pixel photo will at around 80 percent.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Does resizing happen on my device or on a server?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">On your device. The image is read by your browser, drawn onto an invisible canvas at the new size and re-encoded there. Nothing is uploaded, so the tool also works with the internet switched off once the page has loaded.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">On your device. The image is read by your browser, drawn onto an invisible canvas at the new size and re-encoded there. Nothing is uploaded, so the tool also works with the internet switched off once the page has loaded.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         What is the difference between resizing and compressing?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Resizing changes the number of pixels, which changes both the picture's dimensions and its file size. Compressing keeps the pixels and reduces the file size by storing them less precisely, which is what the quality slider does for JPEG and WebP. Most forms need both: the right pixel size and a file under a size limit.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">Resizing changes the number of pixels, which changes both the picture's dimensions and its file size. Compressing keeps the pixels and reduces the file size by storing them less precisely, which is what the quality slider does for JPEG and WebP. Most forms need both: the right pixel size and a file under a size limit.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Which format should I choose: JPEG, PNG or WebP?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">JPEG for photographs and anything with a size limit, PNG for screenshots, logos and scanned signatures where sharp edges and transparency matter, and WebP when the destination accepts it and you want the smallest file. Government portals usually accept only JPG or PNG, so check the form before choosing WebP.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">JPEG for photographs and anything with a size limit, PNG for screenshots, logos and scanned signatures where sharp edges and transparency matter, and WebP when the destination accepts it and you want the smallest file. Government portals usually accept only JPG or PNG, so check the form before choosing WebP.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Why did the background turn black after converting to JPEG?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">JPEG cannot store transparency. When a PNG with a transparent background is converted, the transparent area is filled with black by the browser. Keep PNG or WebP for images with transparency, or place the image on a white background before converting.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">JPEG cannot store transparency. When a PNG with a transparent background is converted, the transparent area is filled with black by the browser. Keep PNG or WebP for images with transparency, or place the image on a white background before converting.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Does the resized image keep the location data from my phone?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">No. Phone cameras store EXIF metadata such as GPS coordinates, the date and the device model inside the file. The canvas re-encoding used here writes a fresh file with none of that metadata, so the download is clean.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">No. Phone cameras store EXIF metadata such as GPS coordinates, the date and the device model inside the file. The canvas re-encoding used here writes a fresh file with none of that metadata, so the download is clean.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         What pixel size is a 3.5 by 4.5 cm photo at 300 DPI?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">413 by 531 pixels. Divide each centimetre figure by 2.54 to get inches, then multiply by the DPI. At 200 DPI the same photo is 276 by 354 pixels. This tool does not write a DPI value into the file; portals that ask for one are really asking for a pixel size.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">413 by 531 pixels. Divide each centimetre figure by 2.54 to get inches, then multiply by the DPI. At 200 DPI the same photo is 276 by 354 pixels. This tool does not write a DPI value into the file; portals that ask for one are really asking for a pixel size.</p>
                 </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
+                <details class="qt-faq-item">
+                    <summary>
                         Does it work with animated GIFs or PDF files?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A GIF is accepted, but only its first frame is resized and the animation is lost. PDFs are not images and cannot be opened here; export the page as a JPG or PNG first, then resize that.</p>
+                                            </summary>
+                    <p class="mt-3 text-sm">A GIF is accepted, but only its first frame is resized and the animation is lost. PDFs are not images and cannot be opened here; export the page as a JPG or PNG first, then resize that.</p>
                 </details>
             </div>
         </div>
@@ -694,6 +665,7 @@
 </main>
 
 
+<script src="/js/calc/image-resizer.js"></script>
 <script>
     let originalImage = null;
     let canvas = document.getElementById('canvas');
@@ -763,49 +735,39 @@
             return;
         }
 
-        const widthVal = document.getElementById('customWidth').value;
-        const heightVal = document.getElementById('customHeight').value;
-        const ratio = originalImage.width / originalImage.height;
-
+        // The sizing sums live in /js/calc/image-resizer.js (unit tested in tests/unit)
         if (changedDimension === 'width') {
-            const width = parseInt(widthVal);
-            if (!isNaN(width) && width > 0) {
-                document.getElementById('customHeight').value = Math.round(width / ratio);
-            }
+            const height = QTCalc.imageResizer.linkedSide('width', document.getElementById('customWidth').value, originalImage);
+            if (height !== null) document.getElementById('customHeight').value = height;
         } else {
-            const height = parseInt(heightVal);
-            if (!isNaN(height) && height > 0) {
-                document.getElementById('customWidth').value = Math.round(height * ratio);
-            }
+            const width = QTCalc.imageResizer.linkedSide('height', document.getElementById('customHeight').value, originalImage);
+            if (width !== null) document.getElementById('customWidth').value = width;
         }
 
         resizeImage();
     }
 
     function applyPreset() {
-        const preset = document.getElementById('presetSize').value;
+        const preset = QTCalc.imageResizer.parsePreset(document.getElementById('presetSize').value);
         if (!preset) return;
 
-        const [width, height] = preset.split(',').map(Number);
-        document.getElementById('customWidth').value = width;
-        document.getElementById('customHeight').value = height;
+        document.getElementById('customWidth').value = preset.width;
+        document.getElementById('customHeight').value = preset.height;
         resizeImage();
     }
 
     function resizeImage() {
         if (!originalImage) return;
 
-        const mode = document.getElementById('resizeMode').value;
-        let newWidth, newHeight;
-
-        if (mode === 'percentage') {
-            const percentage = parseInt(document.getElementById('percentage').value) / 100;
-            newWidth = Math.round(originalImage.width * percentage);
-            newHeight = Math.round(originalImage.height * percentage);
-        } else {
-            newWidth = parseInt(document.getElementById('customWidth').value) || originalImage.width;
-            newHeight = parseInt(document.getElementById('customHeight').value) || originalImage.height;
-        }
+        const size = QTCalc.imageResizer.targetSize(
+            document.getElementById('resizeMode').value,
+            originalImage,
+            document.getElementById('percentage').value,
+            document.getElementById('customWidth').value,
+            document.getElementById('customHeight').value
+        );
+        const newWidth = size.width;
+        const newHeight = size.height;
 
         // Resize canvas
         canvas.width = newWidth;
@@ -822,9 +784,7 @@
         const quality = parseInt(document.getElementById('quality').value) / 100;
         canvas.toBlob((blob) => {
             if (blob) {
-                const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
-                const sizeKB = (blob.size / 1024).toFixed(2);
-                document.getElementById('fileSize').textContent = sizeMB > 1 ? sizeMB + ' MB' : sizeKB + ' KB';
+                document.getElementById('fileSize').textContent = QTCalc.imageResizer.fileSizeLabel(blob.size);
             }
         }, format, quality);
     }
@@ -842,11 +802,7 @@
             a.href = url;
 
             // Set filename with proper extension
-            let extension = 'png';
-            if (format === 'image/jpeg') extension = 'jpg';
-            else if (format === 'image/webp') extension = 'webp';
-
-            a.download = 'resized-image.' + extension;
+            a.download = 'resized-image.' + QTCalc.imageResizer.extensionFor(format);
             a.click();
             URL.revokeObjectURL(url);
         }, format, quality);
@@ -895,80 +851,57 @@
     
 
 
-    <footer class="bg-gray-800 text-white mt-16 py-8">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Feedback Section -->
-        <div class="text-center mb-6 pb-6 border-b border-gray-700">
-            <h3 class="text-lg font-semibold mb-2">
-                <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Have a Tool Idea or Feedback?
-            </h3>
-            <p class="text-gray-300 text-sm mb-3">We'd love to hear from you! Suggest new calculators or share your
-                thoughts.</p>
-            <a href="mailto:quicktoolsindiaa@gmail.com"
-                class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                <i class="fas fa-envelope mr-2"></i>quicktoolsindiaa@gmail.com
-            </a>
-        </div>
-
-        <!-- Links Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 pb-6 border-b border-gray-700">
-            <!-- Quick Links -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
-                <a href="/about/" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="/blog/" class="text-gray-300 hover:text-white transition">Blog</a>
-                <a href="/updates/" class="text-gray-300 hover:text-white transition">Site Updates</a>
-                <a href="/contact/" class="text-gray-300 hover:text-white transition">Contact Us</a>
-                <a href="/privacy-policy/" class="text-gray-300 hover:text-white transition">Privacy Policy</a>
-                <a href="/terms-of-service/" class="text-gray-300 hover:text-white transition">Terms of Service</a>
-                <a href="/disclaimer/" class="text-gray-300 hover:text-white transition">Disclaimer</a>
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
             </div>
-
-            <!-- Popular Calculators -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Popular Tools</h4>
-                <a href="/home-loan-calculator/" class="text-gray-300 hover:text-white transition">Home Loan EMI Calculator</a>
-                <a href="/car-loan-calculator/" class="text-gray-300 hover:text-white transition">Car Loan EMI Calculator</a>
-                <a href="/sip-calculator/" class="text-gray-300 hover:text-white transition">SIP Return Calculator</a>
-                <a href="/ppf-calculator/" class="text-gray-300 hover:text-white transition">PPF Calculator</a>
-                <a href="/ssy-calculator/" class="text-gray-300 hover:text-white transition">Sukanya Samriddhi Yojana</a>
-                <a href="/study-abroad-calculator/" class="text-gray-300 hover:text-white transition">Study Abroad Calculator</a>
-                <a href="/wedding-cost-calculator/" class="text-gray-300 hover:text-white transition">Wedding Cost Calculator</a>
-                <a href="/income-tax-calculator/" class="text-gray-300 hover:text-white transition">Income Tax Calculator</a>
-                <a href="/salary-calculator/" class="text-gray-300 hover:text-white transition">Salary Calculator</a>
-                <a href="/emi-prepayment-calculator/" class="text-gray-300 hover:text-white transition">EMI Prepayment Calculator</a>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
             </div>
-
-            <!-- More Utilities -->
-            <div class="flex flex-col space-y-2">
-                <h4 class="text-lg font-bold text-white mb-2">Utilities</h4>
-                <a href="/gst-calculator/" class="text-gray-300 hover:text-white transition">GST Calculator</a>
-                <a href="/age-calculator/" class="text-gray-300 hover:text-white transition">Age Calculator</a>
-                <a href="/cash-counter/" class="text-gray-300 hover:text-white transition">Cash Counter</a>
-                <a href="/number-to-words/" class="text-gray-300 hover:text-white transition">Number to Words</a>
-                <a href="/lakh-crore-in-numbers/" class="text-gray-300 hover:text-white transition">Lakh Crore in Numbers</a>
-                <a href="/image-resizer/" class="text-gray-300 hover:text-white transition">Image Resizer</a>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-2">&copy; 2026 QuickTools India. All rights reserved.</p>
-            <p class="text-gray-400 text-sm">Made with <i class="fas fa-heart text-red-500 dark:text-red-400"></i>
-                for India</p>
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools India. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
         </div>
     </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
 </footer>
 
-<script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        localStorage.setItem('darkMode', html.classList.contains('dark') ? 'enabled' : 'disabled');
-    }
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
 
-    // Tools Dropdown Toggle
+<script>
+    // Tools menu
     function toggleDropdown() {
         const menu = document.getElementById('dropdownMenu');
         const btn = document.getElementById('dropdownToggleBtn');
@@ -984,7 +917,8 @@
     // Close on outside click
     document.addEventListener('click', function (event) {
         const dropdown = document.getElementById('toolsDropdown');
-        if (dropdown && !dropdown.contains(event.target)) closeDropdown();
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
     });
 
     // Close on ESC key
@@ -995,6 +929,7 @@
 
 
     <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
 
     
 </body>
