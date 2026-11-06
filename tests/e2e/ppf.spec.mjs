@@ -125,21 +125,19 @@ test.describe("PPF calculator", () => {
   });
 
   test("the partial withdrawal follows the PPF rule", async ({ page }) => {
-    // KNOWN BUG: the page shows 50% of the balance at the end of year 7. PPF Scheme, 2019, para 9(1) allows 50% of
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the page shows 50% of the balance at the end of year 7. PPF Scheme, 2019, para 9(1) allows 50% of
     // the LOWER of the balance at the end of the 4th year before the withdrawal year and at the end of the
     // preceding year. For a withdrawal after 7 full years (year 8) that is 50% of the year-4 balance: about
     // ₹2.38 lakh on the default plan, not the ₹4.65 lakh shown. (A withdrawal in year 7 itself, the first allowed,
     // uses the year-3 balance, which is lower still.) The page's own rules box says "Up to 50% of balance (4 years
     // prior)", so the calculator disagrees with its own text.
-    test.fail();
     const b = ppfBalances(100000, 7.1, 15);
     await expectAmount(page.locator("#partialWithdrawal"), ppfWithdrawalLimit(b, 8));
   });
 
   test("the yearly tax saving includes the 4% cess", async ({ page }) => {
-    // KNOWN BUG (small): "30% tax bracket saves ₹30,000" leaves out the 4% Health and Education Cess (Finance Act,
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: "30% tax bracket saves ₹30,000" leaves out the 4% Health and Education Cess (Finance Act,
     // 2026, s.3(15)). A 1 lakh deduction in the 30% slab cuts tax by 30% x 1.04 = ₹31,200 (before any surcharge).
-    test.fail();
     await expectAmount(page.locator("#taxSavings"), 100000 * 0.3 * 1.04);
   });
 

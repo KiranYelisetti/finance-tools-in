@@ -30,21 +30,12 @@
     }
 
     // The words line under the total, e.g. 15750 -> "15 Thousand 7 Hundred 50 Rupees". Empty for 0.
+    // The total in words, from the site's tested Number to Words engine (src/js/number-words.js), so 15,750 reads
+    // "Fifteen Thousand Seven Hundred Fifty Rupees Only" and not "15 Thousand 7 Hundred 50 Rupees".
+    var NW = (typeof module !== 'undefined' && module.exports) ? require('../number-words.js') : root.NumberWords;
     function numberToWords(num) {
-        if (num === 0) return '';
-        var crore = Math.floor(num / 10000000);
-        var lakh = Math.floor((num % 10000000) / 100000);
-        var thousand = Math.floor((num % 100000) / 1000);
-        var hundred = Math.floor((num % 1000) / 100);
-        var remainder = num % 100;
-
-        var words = [];
-        if (crore > 0) words.push(crore + ' Crore');
-        if (lakh > 0) words.push(lakh + ' Lakh');
-        if (thousand > 0) words.push(thousand + ' Thousand');
-        if (hundred > 0) words.push(hundred + ' Hundred');
-        if (remainder > 0) words.push(remainder);
-        return words.join(' ') + ' Rupees';
+        if (!num) return '';
+        return NW.convert(String(num)).inWords;
     }
 
     var api = { DENOMINATIONS: DENOMINATIONS, MAX_COUNT: MAX_COUNT, clampCount: clampCount, total: total, numberToWords: numberToWords };

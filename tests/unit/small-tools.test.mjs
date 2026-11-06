@@ -36,11 +36,12 @@ test("cash: counts are whole numbers from 0 to 99,999", () => {
 
 test("cash: the words line as it is today", () => {
   assert.equal(Cash.numberToWords(0), "");
-  assert.equal(Cash.numberToWords(15750), "15 Thousand 7 Hundred 50 Rupees");
-  assert.equal(Cash.numberToWords(291797082), "29 Crore 17 Lakh 97 Thousand 82 Rupees");
+  assert.equal(Cash.numberToWords(15750), "Fifteen Thousand Seven Hundred Fifty Rupees Only");
+  assert.equal(Cash.numberToWords(291797082), "Twenty Nine Crore Seventeen Lakh Ninety Seven Thousand Eighty Two Rupees Only");
 });
 
-knownBug("cash: the words line is written in words", "prints digits with unit names", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: prints digits with unit names)
+test("cash: the words line is written in words", () => {
   assert.match(Cash.numberToWords(15750), /^Fifteen Thousand Seven Hundred Fifty Rupees/);
 });
 
@@ -81,7 +82,8 @@ test("monthly saving for a goal: 10 lakh in 10 years at 12% a year is ₹4,505.9
   close(Wedding.monthlySavingFor(1000000, 120), 4505.92, 0.005);
 });
 
-knownBug("study abroad: negative years are refused", "-5 years gives a negative monthly saving", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: -5 years gives a negative monthly saving)
+test("study abroad: negative years are refused", () => {
   const r = Study.calculate({ currency: "USD", currentCost: 200000, years: -5, inflationPct: 6, depreciationPct: 4 });
   assert.ok(r === null || r.monthlySaving >= 0);
 });
@@ -116,7 +118,8 @@ test("wedding: missing budget or years gives no result", () => {
   assert.equal(Wedding.calculate({ baseBudget: 2000000, years: 0, inflationPct: 8 }), null);
 });
 
-knownBug("wedding: the breakdown lines add up to the total", "'wedding expenses' already includes the destination premium", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: 'wedding expenses' already includes the destination premium)
+test("wedding: the breakdown lines add up to the total", () => {
   const r = Wedding.calculate({ baseBudget: 2000000, years: 5, inflationPct: 8, isDestination: true });
   close(r.futureWeddingCost + r.destinationPremium + r.futureGoldCost, r.totalFutureCost, 0.5);
 });

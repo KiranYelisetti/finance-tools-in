@@ -139,10 +139,9 @@ test.describe("Car Loan calculator", () => {
   });
 
   test("the Used Car choice is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG: initAutoSave stores a radio button's value ("used") and on reload writes it back into the
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: initAutoSave stores a radio button's value ("used") and on reload writes it back into the
     // radio's value attribute instead of ticking it. The restore also fires the radio's change handler, which
     // sets the rate to 13%. Result: "New Car" is ticked while the rate shows the used-car 13%.
-    test.fail();
     await page.getByRole("radio", { name: "Used Car" }).check();
     await page.reload();
     await expect(page.getByRole("radio", { name: "Used Car" })).toBeChecked();
@@ -150,9 +149,8 @@ test.describe("Car Loan calculator", () => {
   });
 
   test("0% interest gives an EMI of loan / months, not NaN", async ({ page }) => {
-    // KNOWN BUG: at 0% the formula divides 0 by 0 and the page shows ₹NaN. An interest-free loan's EMI is
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: at 0% the formula divides 0 by 0 and the page shows ₹NaN. An interest-free loan's EMI is
     // simply the loan divided by the number of months (zero-cost EMI offers work this way).
-    test.fail();
     const x = { ...DEFAULTS, rate: 0 };
     await fillAll(page, x);
     await page.getByRole("button", { name: "Calculate EMI" }).click();
@@ -162,8 +160,7 @@ test.describe("Car Loan calculator", () => {
   });
 
   test("a down payment above the on-road price never shows a negative loan or EMI", async ({ page }) => {
-    // KNOWN BUG: no check, so a 20 lakh down payment on an 11.4 lakh car shows a negative loan and EMI.
-    test.fail();
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: no check, so a 20 lakh down payment on an 11.4 lakh car shows a negative loan and EMI.
     await fillAll(page, { down: 2000000 });
     await page.getByRole("button", { name: "Calculate EMI" }).click();
     for (const id of ["#loanAmount", "#monthlyEMI", "#totalInterest"]) {

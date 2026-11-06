@@ -22,7 +22,7 @@
     function calculate(o) {
         var currentCost = o.currentCost;
         var years = o.years;
-        if (!currentCost || !years) return null;
+        if (!(currentCost > 0) || !(years > 0)) return null; // zero, negative or missing: no result, never a negative saving
         var inflationRate = o.inflationPct / 100;
         var depreciationRate = o.depreciationPct / 100;
         var exchangeRate = EXCHANGE_RATES[o.currency];

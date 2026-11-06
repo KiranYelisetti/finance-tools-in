@@ -237,7 +237,7 @@ export function surcharge(income, regime) {
 
 /**
  * Full computation for a resident individual below 60 with salary and other income at slab rates.
- * withSurcharge=false gives the figure the Income Tax page shows (it states it leaves surcharge out).
+ * withSurcharge=true adds surcharge above 50 lakh with marginal relief, as the Income Tax page does since 6 Nov 2026.
  */
 export function incomeTax({ salary = 0, otherIncome = 0, oldDeductions = 0 }, regime, { withSurcharge = false } = {}) {
   const std = Math.min(regime === "new" ? 75000 : 50000, salary);
@@ -272,7 +272,7 @@ export function salary({ ctc, basicPct = 40, hraPct = 50, monthlyBonus = 0, prof
   const employerEsi = esiCovered ? monthlyCtc * 0.0325 : 0;
   const special = monthlyCtc - basic - hra - employerPf - gratuity - employerEsi;
   const gross = basic + hra + special + monthlyBonus;
-  const annualTax = incomeTax({ salary: gross * 12 }, "new").total;
+  const annualTax = incomeTax({ salary: gross * 12 }, "new", { withSurcharge: true }).total; // surcharge above 50 lakh
   const employeePf = basic * 0.12;
   const esiEmployee = employeeEsi && esiCovered ? gross * 0.0075 : 0;
   const deductions = employeePf + profTax + annualTax / 12 + esiEmployee;

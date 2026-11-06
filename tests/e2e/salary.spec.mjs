@@ -16,7 +16,7 @@ async function fillAll(page, { ctc, city = "metro", basic = 40, bonus = 0, pt = 
 }
 
 async function expectResults(page, { ctc, city = "metro", basic = 40, bonus = 0, pt = 200 }) {
-  const s = salary({ ctc, basicPct: basic, hraPct: city === "metro" ? 50 : 40, monthlyBonus: bonus, profTax: pt });
+  const s = salary({ ctc, basicPct: basic, hraPct: city === "metro" ? 50 : 40, monthlyBonus: bonus, profTax: pt, employeeEsi: true });
   await expect(page.locator("#results")).toBeVisible();
   await expectAmount(page.locator("#monthlyInHand"), s.inHand, { slack: 1, label: "in-hand" });
   await expectAmount(page.locator("#annualInHand"), s.inHand * 12, { slack: 12, label: "annual in-hand" });
@@ -33,6 +33,8 @@ async function expectResults(page, { ctc, city = "metro", basic = 40, bonus = 0,
   await expectAmount(page.locator("#resGratuity"), s.gratuity, { label: "gratuity" });
   if (s.employerEsi > 0) await expectAmount(page.locator("#resEmployerESI"), s.employerEsi, { label: "employer ESI" });
   else await expect(page.locator("#resEmployerESI")).toHaveText("N/A");
+  if (s.esiEmployee > 0) await expectAmount(page.locator("#resEmployeeESI"), s.esiEmployee, { label: "employee ESI" });
+  else await expect(page.locator("#rowEmployeeESI")).toBeHidden();
   return s;
 }
 
@@ -139,28 +141,25 @@ test.describe("Salary calculator", () => {
   });
 
   test("professional tax can be set to zero", async ({ page }) => {
-    // KNOWN BUG: the page reads the field with `|| 200`, so 0 becomes ₹200. States such as Delhi, Haryana,
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the page reads the field with `|| 200`, so 0 becomes ₹200. States such as Delhi, Haryana,
     // Uttar Pradesh and Rajasthan levy no professional tax, so their in-hand pay is understated by ₹200 a month.
-    test.fail();
     await fillAll(page, { ctc: 1000000, pt: 0 });
     await expectResults(page, { ctc: 1000000, pt: 0 });
   });
 
   test("an ESI-covered salary deducts the employee's 0.75%", async ({ page }) => {
-    // KNOWN BUG: at a monthly CTC of 21,000 or less the page adds employer ESI (3.25%) but never deducts the
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: at a monthly CTC of 21,000 or less the page adds employer ESI (3.25%) but never deducts the
     // employee's 0.75% share (ESIC rates from 1 July 2019), although its own text says "the employee pays 0.75%".
     // In-hand pay is overstated by 0.75% of gross.
-    test.fail();
     await fillAll(page, { ctc: 240000, city: "nonmetro" });
     const s = salary({ ctc: 240000, hraPct: 40, employeeEsi: true });
     await expectAmount(page.locator("#monthlyInHand"), s.inHand, { slack: 1 });
   });
 
   test("the salary parts never add up to more than the CTC", async ({ page }) => {
-    // KNOWN BUG (small): at 60% basic in a metro, basic + HRA + employer PF + gratuity is 100.09% of CTC. Special
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: at 60% basic in a metro, basic + HRA + employer PF + gratuity is 100.09% of CTC. Special
     // allowance is floored at 0 instead of the excess being taken back, so the employer cost shown is more than
     // the CTC entered (₹72 a month more on a 10 lakh CTC).
-    test.fail();
     await fillAll(page, { ctc: 1000000, basic: 60 });
     const read = async (id) => Number((await page.locator("#" + id).textContent()).replace(/[^\d.]/g, ""));
     const cost = (await read("resGrossSalary")) + (await read("resEmployerPF")) + (await read("resGratuity"));

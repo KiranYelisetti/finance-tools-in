@@ -116,9 +116,8 @@ test.describe("EMI Prepayment calculator", () => {
   });
 
   test("a lump sum larger than the loan counts only what was owed", async ({ page }) => {
-    // KNOWN BUG: a 60 lakh lump sum on a 50 lakh loan is added in full to "total paid with prepayment" (₹60 lakh),
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: a 60 lakh lump sum on a 50 lakh loan is added in full to "total paid with prepayment" (₹60 lakh),
     // so the table claims you pay more than you owed. Paying off the loan at once costs exactly the 50 lakh owed.
-    test.fail();
     await fill(page, { extra: 0, lump: 6000000 });
     await page.getByRole("button", { name: "Calculate Savings" }).click();
     await expectAmount(page.locator("#newTotal"), 5000000, { slack: 0.5 });

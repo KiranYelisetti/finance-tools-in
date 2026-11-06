@@ -95,8 +95,7 @@ test.describe("Study Abroad calculator", () => {
   });
 
   test("negative years are refused", async ({ page }) => {
-    // KNOWN BUG (minor): -5 years is accepted and gives a smaller "future" cost and a negative monthly saving.
-    test.fail();
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: -5 years is accepted and gives a smaller "future" cost and a negative monthly saving.
     await setField(page.locator("#yearsToStudy"), "-5");
     await expect(page.locator("#monthlySIP")).not.toContainText("-");
   });

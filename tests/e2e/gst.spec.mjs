@@ -115,10 +115,9 @@ test.describe("GST calculator", () => {
   });
 
   test("an amount with paise can be typed key by key", async ({ page }) => {
-    // KNOWN BUG: the Indian-format field (main.js setupIndianInputs) reformats on every key. "1000." becomes
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the Indian-format field (main.js setupIndianInputs) reformats on every key. "1000." becomes
     // "1,000", so the decimal point vanishes and the next key adds a digit: typing 1000.50 gives 1,00,050.
     // Pasting works; typing paise does not.
-    test.fail();
     await typeInto(page.locator("#amount"), "1000.50");
     await expectResults(page, 1000.5, 18, "add");
   });

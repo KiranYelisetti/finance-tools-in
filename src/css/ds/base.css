@@ -46,6 +46,9 @@
         border-radius: 4px;
     }
 
+    /* The hidden attribute always hides, even on an element with a display utility such as .flex */
+    [hidden]:not([hidden="until-found"]) { display: none !important; }
+
     /* Figures line up in columns everywhere money is shown */
     body.qt .tabular, body.qt table, body.qt input { font-variant-numeric: tabular-nums lining-nums; }
 }

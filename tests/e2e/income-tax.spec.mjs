@@ -22,8 +22,8 @@ const pageMoney = (a) => (a >= 1e7 ? `₹${(a / 1e7).toFixed(2)} Cr` : a >= 1e5 
 
 async function expectResults(page, x) {
   const ded = oldDeductions(x);
-  const old = incomeTax({ salary: x.salary, otherIncome: x.other, oldDeductions: ded }, "old");
-  const neu = incomeTax({ salary: x.salary, otherIncome: x.other }, "new");
+  const old = incomeTax({ salary: x.salary, otherIncome: x.other, oldDeductions: ded }, "old", { withSurcharge: true });
+  const neu = incomeTax({ salary: x.salary, otherIncome: x.other }, "new", { withSurcharge: true });
   await expect(page.locator("#results")).toBeVisible();
   for (const [p, r] of [["old", old], ["new", neu]]) {
     await expectAmount(page.locator(`#${p}GrossIncome`), r.gross, { label: `${p} gross` });
@@ -31,6 +31,8 @@ async function expectResults(page, x) {
     await expectAmount(page.locator(`#${p}TaxableIncome`), r.taxable, { label: `${p} taxable` });
     await expectAmount(page.locator(`#${p}TaxBeforeCess`), r.slab, { slack: 0.5, label: `${p} slab tax` });
     await expectAmount(page.locator(`#${p}Rebate`), r.rebate, { slack: 0.5, label: `${p} rebate` });
+    if (r.surcharge > 0) await expectAmount(page.locator(`#${p}Surcharge`), r.surcharge, { slack: 0.5, label: `${p} surcharge` });
+    else await expect(page.locator(`#${p}SurchargeRow`)).toBeHidden();
     await expectAmount(page.locator(`#${p}Cess`), r.cess, { slack: 0.5, label: `${p} cess` });
     await expectAmount(page.locator(`#${p}TotalTax`), r.total, { slack: 0.5, label: `${p} total tax` });
     await expectAmount(page.locator(`#${p}MonthlyTax`), r.total / 12, { slack: 0.6, label: `${p} monthly tax` });
@@ -89,8 +91,8 @@ test.describe("Income Tax calculator", () => {
     ["other income only, no salary so no standard deduction", { ...ZERO, other: 1000000 }],
     ["salary below the standard deduction", { ...ZERO, salary: 40000 }],
     ["salary and other income together", { ...ZERO, salary: 900000, other: 450000, c80: 100000, d80: 30000, otherDed: 20000 }],
-    ["above 50 lakh (surcharge left out, as the page says)", { ...ZERO, salary: 6000000, c80: 150000 }],
-    ["2 crore", { ...ZERO, salary: 20000000 }],
+    ["above 50 lakh, with 10% surcharge", { ...ZERO, salary: 6000000, c80: 150000 }],
+    ["2 crore salary, with 15% surcharge", { ...ZERO, salary: 20000000 }],
   ];
   for (const [label, x] of cases) {
     test(label, async ({ page }) => {
@@ -113,9 +115,8 @@ test.describe("Income Tax calculator", () => {
   });
 
   test("80D is capped at the legal maximum of 1,00,000", async ({ page }) => {
-    // KNOWN BUG: the 80D field is not capped in the maths (only the input's max attribute says 1,00,000, which
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the 80D field is not capped in the maths (only the input's max attribute says 1,00,000, which
     // typing ignores). The most s.126 allows is 50,000 for a senior-citizen family plus 50,000 for senior parents.
-    test.fail();
     await fillAll(page, { ...ZERO, salary: 2000000, d80: 250000 });
     await expectAmount(page.locator("#oldChapterDeductions"), 100000);
   });
@@ -164,7 +165,6 @@ test.describe("Income Tax calculator", () => {
     // surcharge out, but its "Total Tax" line is then short for anyone above 50 lakh. At a 60 lakh salary (new
     // regime, taxable 59.25 lakh) the slab tax is 13,57,500, surcharge 10% is 1,35,750 (Finance Act, 2026,
     // s.3(4)(b)), and with 4% cess the tax is 15,52,980, against the ₹14.12 lakh shown.
-    test.fail();
     await fillAll(page, { ...ZERO, salary: 6000000 });
     const withSurcharge = incomeTax({ salary: 6000000 }, "new", { withSurcharge: true });
     await expectAmount(page.locator("#newTotalTax"), withSurcharge.total);

@@ -104,29 +104,31 @@ The page shows rounded figures such as "₹11.62 Lakh". `expectAmount` in the fi
 
 A test for a known bug states the right answer and is marked as expected to fail. In Playwright that is `test.fail()`. In the unit tests it is `knownBug(...)` from `tests/unit/_helpers.mjs`, which only counts a failed assertion, so a typo cannot hide as a bug. When someone fixes the bug, the test starts to pass, the run goes red with "expected to fail" or "no longer reproduces", and the marker has to come off. Each marked test has a comment saying what is wrong and what the right figure is.
 
-| Page | Known bug | Test |
+No bug is open. Every row below was a known bug, is fixed, and its test now runs as a regression test.
+
+| Page | Was | Fixed |
 |---|---|---|
-| Home Loan, Car Loan, EMI Prepayment, SIP, Income Tax, Salary | **Fixed 2026-11-06.** A typed amount with Indian commas came back empty after a reload. The page's own script ran before `main.js`, so auto-save wrote "30,00,000" into a number field. `initAutoSave` now upgrades the fields first. | "a typed ... is saved and comes back after a reload" (now a regression test) |
-| Car Loan | 0% interest shows ₹NaN | "0% interest gives an EMI of loan / months" |
-| Car Loan | A down payment above the on-road price gives a negative loan and EMI | "a down payment above the on-road price ..." |
-| Car Loan | The Used Car choice is not restored after a reload, while the rate is | "the Used Car choice is saved ..." |
-| EMI Prepayment | A lump sum above the loan is counted in full in "total paid" | "a lump sum larger than the loan ..." |
-| SIP | Slider moves are never saved, and typing does not move the slider | two tests |
-| PPF | Partial withdrawal uses 50% of the year-7 balance, not the PPF Scheme rule | "the partial withdrawal follows the PPF rule" |
-| PPF, SSY | "30% tax bracket saves" leaves out the 4% cess | "the yearly tax saving includes the 4% cess" |
-| SSY | An age such as 5.5 gives a ₹0 withdrawal at 18 | "a part-year age ..." |
-| GST | Typing 1000.50 key by key gives 1,00,050 (the decimal point is eaten) | "an amount with paise can be typed key by key" |
-| Income Tax | 80D is not capped at the legal ₹1,00,000 | "80D is capped ..." |
-| Income Tax | No surcharge above ₹50 lakh. The page says so, kept as a known gap. | "true tax above 50 lakh includes surcharge" |
-| Salary | **Fixed 2026-11-06.** The 50% HRA option named 4 cities. Rule 279 gives 8 from tax year 2026-27 and the option now lists all 8. | "HRA at 50% covers all eight Rule 279 cities" (now a regression test) |
-| Salary | Professional tax 0 becomes ₹200 | "professional tax can be set to zero" |
-| Salary | The employee's 0.75% ESI is never deducted | "an ESI-covered salary deducts the employee's 0.75%" |
-| Salary | At 60% basic in a metro the parts add up to more than the CTC | "the salary parts never add up to more than the CTC" |
-| Age | Negative days at month ends, days to birthday one short in India, today is yesterday before 5:30 am, wrong age in US time zones, milestone sentence and past milestones | six tests in `age.spec.mjs` |
-| Cash Counter | The words line is digits with unit names | "the total in words is written in words" |
-| Study Abroad | Negative years give a negative monthly saving | "negative years are refused" |
-| Wedding Cost | With a destination wedding the breakdown lines add up to more than the total | "the cost breakdown adds up to the total" |
-| 13 calculator pages | **Fixed 2026-11-06.** Field labels were not tied to their fields, and SIP had an icon-only Reset button. Labels now use `for=`, sliders and the cash counter fields carry names. | `KNOWN_UNNAMED_CONTROLS` in `site.spec.mjs` (now empty) |
+| Home Loan, Car Loan, EMI Prepayment, SIP, Income Tax, Salary | A typed amount with Indian commas came back empty after a reload | 2026-11-06, `initAutoSave` upgrades the fields first |
+| Car Loan | 0% interest showed ₹NaN | 2026-11-06, EMI = loan / months |
+| Car Loan | A down payment above the on-road price gave a negative loan and EMI | 2026-11-06, loan floored at 0 |
+| Car Loan | The Used Car choice was not restored after a reload | 2026-11-06, radio groups saved by name |
+| EMI Prepayment | A lump sum above the loan was counted in full in "total paid" | 2026-11-06, only what was owed counts |
+| SIP | Slider moves were never saved, and typing did not move the slider | 2026-11-06, slider writes through its field, field moves its slider |
+| PPF | Partial withdrawal used 50% of the year-7 balance | 2026-11-06, 50% of the lower of the year-4 and year-7 balances (para 9(1), PPF Scheme, 2019) |
+| PPF, SSY | "30% tax bracket saves" left out the 4% cess | 2026-11-06, 31.2% |
+| SSY | An age such as 5.5 gave a ₹0 withdrawal at 18 | 2026-11-06 |
+| GST | Typing 1000.50 key by key gave 1,00,050 | 2026-11-06, paise kept as typed in `setupIndianInputs` |
+| Income Tax | 80D was not capped at ₹1,00,000 | 2026-11-06 |
+| Income Tax | No surcharge above ₹50 lakh | 2026-11-06, surcharge with marginal relief, shown as its own row |
+| Salary | The 50% HRA option named 4 cities | 2026-11-06, all 8 Rule 279 cities |
+| Salary | Professional tax 0 became ₹200 | 2026-11-06 |
+| Salary | The employee's 0.75% ESI was never deducted | 2026-11-06, own row in deductions |
+| Salary | At 60% basic in a metro the parts added up to more than the CTC | 2026-11-06, HRA gives way |
+| Age | Negative days at month ends, days to birthday one short in India, today was yesterday before 5:30 am, wrong age in US time zones, milestone sentence fixed at 10,000, milestones in the past, Reset emptied today | 2026-11-06, calendar-day maths with no time zone (`src/js/calc/age.js`) |
+| Cash Counter | The words line was digits with unit names | 2026-11-06, NumberWords engine |
+| Study Abroad | Negative years gave a negative monthly saving | 2026-11-06 |
+| Wedding Cost | With a destination wedding the breakdown added up to more than the total | 2026-11-06 |
+| 13 calculator pages | Field labels were not tied to their fields | 2026-11-06, `KNOWN_UNNAMED_CONTROLS` in `site.spec.mjs` is empty |
 
 `KNOWN_UNNAMED_CONTROLS` is empty. A page that loses a name fails at once.
 

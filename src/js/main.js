@@ -47,7 +47,6 @@ function setupIndianInputs(root) {
             const before = el.value;
             const caret = el.selectionStart ?? before.length;
             // Keep only digits and at most one decimal point
-            const firstDot = before.indexOf('.');
             const raw = before.replace(/[^\d.]/g, '').replace(/\./g, (match, offset, str) => {
                 return str.indexOf('.') === offset ? match : '';
             });
@@ -55,7 +54,11 @@ function setupIndianInputs(root) {
                 el.value = raw;
                 return;
             }
-            const formatted = formatIndianNumber(raw);
+            // Group the rupees, keep the paise as typed (up to 2 digits). Formatting the whole number would drop a
+            // trailing "." while it is being typed, so "1000.50" typed key by key used to become 1,00,050.
+            const dot = raw.indexOf('.');
+            const rupees = dot === -1 ? raw : raw.slice(0, dot);
+            const formatted = formatIndianNumber(rupees === '' ? '0' : rupees) + (dot === -1 ? '' : '.' + raw.slice(dot + 1, dot + 3));
             el.value = formatted;
             // Best-effort cursor restore
             const diff = formatted.length - before.length;
@@ -83,6 +86,19 @@ function initAutoSave(pagePrefix) {
 
     // Load saved values
     inputs.forEach(input => {
+        // Radio buttons are saved per group: the value of the one that is ticked
+        if (input.type === 'radio' && input.name) {
+            const groupKey = `${pagePrefix}_${input.name}`;
+            const saved = localStorage.getItem(groupKey);
+            if (saved !== null && input.value === saved && !input.checked) {
+                input.checked = true;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            input.addEventListener('change', (e) => {
+                if (e.target.checked) localStorage.setItem(groupKey, e.target.value);
+            });
+            return;
+        }
         if (!input.id) return; // Skip inputs without ID
 
         const key = `${pagePrefix}_${input.id}`;
@@ -128,6 +144,7 @@ function resetForm(pagePrefix) {
         // Clear local storage
         const key = `${pagePrefix}_${input.id}`;
         localStorage.removeItem(key);
+        if (input.type === 'radio' && input.name) localStorage.removeItem(`${pagePrefix}_${input.name}`);
 
         // Reset to default value
         if (input.type === 'checkbox' || input.type === 'radio') {

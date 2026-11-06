@@ -33,7 +33,7 @@ test("agrees with the reference across CTCs, basic %, bonus and professional tax
   for (const annualCTC of [100000, 240000, 252000, 1000000, 1600000, 2500000, 5000000]) {
     for (const [basicPercent, cityType, monthlyBonus, profTax] of [[40, "metro", 0, 200], [50, "nonmetro", 10000, 250], [20, "metro", 0, 300]]) {
       const s = Sal.calculate({ annualCTC, cityType, basicPercent, monthlyBonus, profTax });
-      const r = salary({ ctc: annualCTC, basicPct: basicPercent, hraPct: cityType === "metro" ? 50 : 40, monthlyBonus, profTax });
+      const r = salary({ ctc: annualCTC, basicPct: basicPercent, hraPct: cityType === "metro" ? 50 : 40, monthlyBonus, profTax, employeeEsi: true });
       const tag = `${annualCTC} ${basicPercent}% ${cityType}`;
       close(s.monthlyGross, r.gross, 1e-6, tag);
       close(s.annualTax, r.annualTax, 0.5, tag);
@@ -45,7 +45,7 @@ test("agrees with the reference across CTCs, basic %, bonus and professional tax
 
 test("new-regime tax on salary matches the income tax rules", () => {
   for (const gross of [0, 500000, 1275000, 1285000, 1355000, 2475000, 6000000]) {
-    assert.equal(Sal.newRegimeTax(gross), Math.round(incomeTax({ salary: gross }, "new").total), String(gross));
+    assert.equal(Sal.newRegimeTax(gross), Math.round(incomeTax({ salary: gross }, "new", { withSurcharge: true }).total), String(gross));
   }
 });
 
@@ -64,13 +64,15 @@ test("zero CTC gives zero pay, never NaN", () => {
   assert.equal(s.monthlyInHand, 0);
 });
 
-knownBug("an ESI-covered salary deducts the employee's 0.75%", "employee ESI is never deducted", () => {
+// Fixed 2026-11-06 (was a known bug: employee ESI was never deducted)
+test("an ESI-covered salary deducts the employee's 0.75%", () => {
   const s = Sal.calculate({ ...base, annualCTC: 240000, cityType: "nonmetro" });
   const r = salary({ ctc: 240000, hraPct: 40, employeeEsi: true });
   close(s.monthlyInHand, r.inHand, 1);
 });
 
-knownBug("the parts never add up to more than the CTC", "at 60% basic in a metro they exceed it by 0.09%", () => {
+// Fixed 2026-11-06 (was a known bug: at 60% basic in a 50% city the parts exceeded the CTC by 0.09%)
+test("the parts never add up to more than the CTC", () => {
   const s = Sal.calculate({ ...base, basicPercent: 60 });
   assert.ok(s.monthlyGross + s.monthlyEmployerPF + s.monthlyGratuity + s.monthlyEmployerESI <= 1000000 / 12 + 1e-6);
 });

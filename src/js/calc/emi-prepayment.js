@@ -29,9 +29,10 @@
             totalPaidWithPrepay = origTotalPaid;
             totalInterestWithPrepay = origTotalInterest;
         } else {
-            var balance = P - lumpSum; // lump sum applied immediately
-            if (balance < 0) balance = 0;
-            totalPaidWithPrepay = lumpSum;
+            // The lump sum is applied at once. Only what was owed counts: a lump sum above the loan closes it, no more.
+            var lumpUsed = Math.min(lumpSum, P);
+            var balance = P - lumpUsed;
+            totalPaidWithPrepay = lumpUsed;
 
             while (balance > 0 && month < n * 2) { // safety limit
                 month++;

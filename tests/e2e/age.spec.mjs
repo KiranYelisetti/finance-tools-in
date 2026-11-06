@@ -129,9 +129,8 @@ test.describe("Age Calculator", () => {
   });
 
   test("Reset clears the birth date and keeps today as the 'as on' date", async ({ page, dialogs }) => {
-    // KNOWN BUG (minor): Reset sets each field back to its HTML default. The 'as on' field has none (today is
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: Reset sets each field back to its HTML default. The 'as on' field has none (today is
     // filled in by script), so after Reset it is blank and Calculate only says "Please select both dates".
-    test.fail();
     await page.locator("#birthDate").fill("1993-04-21");
     await page.getByRole("button", { name: "Reset" }).click();
     expect(dialogs.messages.at(-1)).toMatch(/reset/i);
@@ -146,39 +145,35 @@ test.describe("Age Calculator", () => {
   });
 
   test("days are never negative at a month end (31 Jan to 1 Mar)", async ({ page }) => {
-    // KNOWN BUG: days are borrowed from the month before the 'as on' date. From 31 Jan to 1 Mar 2026 that gives
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: days are borrowed from the month before the 'as on' date. From 31 Jan to 1 Mar 2026 that gives
     // 1 month and -2 days. The anniversary count gives 1 month 1 day (clamping 31 Jan + 1 month to 28 Feb) or
     // 29 days (rolling it to 3 Mar). Born on the 30th or 31st, many dates in March show negative days.
-    test.fail();
     await calc(page, "2026-01-31", "2026-03-01");
     const a = age("2026-01-31", "2026-03-01");
     expect([a.clamp, a.roll]).toContainEqual(await shown(page));
   });
 
   test("days to the next birthday", async ({ page }) => {
-    // KNOWN BUG: the page reads dates as UTC midnight (new Date("YYYY-MM-DD")) but builds the next birthday at local
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the page reads dates as UTC midnight (new Date("YYYY-MM-DD")) but builds the next birthday at local
     // midnight. In India that is 5 h 30 min apart, so "days to go" is always one short: 25 Dec is 49 days after
     // 6 Nov 2026, the page says 48. On the birthday itself it says 364 days instead of today.
-    test.fail();
     await calc(page, "2000-12-25");
     await expect(page.locator("#nextBirthday")).toContainText(`(${daysToNextBirthday("2000-12-25", TODAY)} days to go)`);
   });
 
   test("the milestone sentence names the right number of days", async ({ page }) => {
-    // KNOWN BUG: the sentence is hard-coded "You will be 10,000 days old on ..." while the date is for the next
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the sentence is hard-coded "You will be 10,000 days old on ..." while the date is for the next
     // milestone, 20,000 or 30,000 days. Born 1990-01-01 it reads "10,000 days old on 4 October 2044
     // (20,000th Day)".
-    test.fail();
     await calc(page, "1990-01-01");
-    const sentence = page.getByText("Next Milestone:");
+    const sentence = page.locator("p", { hasText: "Next Milestone:" });
     await expect(sentence).toContainText("20,000 days old");
     await expect(sentence).not.toContainText("10,000 days old");
   });
 
   test("the next milestone is never in the past", async ({ page }) => {
-    // KNOWN BUG (minor): milestones stop at 30,000 days, so anyone older than about 82 is shown a date that has
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: milestones stop at 30,000 days, so anyone older than about 82 is shown a date that has
     // already gone. Born 1940-01-01 (31,721 days old) the next round milestone is 40,000 days.
-    test.fail();
     await calc(page, "1940-01-01");
     await expect(page.locator("#tenkDate")).toContainText("40,000th Day");
   });
@@ -186,9 +181,8 @@ test.describe("Age Calculator", () => {
 
 test.describe("Age Calculator just after midnight in India", () => {
   test("Set to Today's Date gives today's date between midnight and 5:30 am", async ({ page }) => {
-    // KNOWN BUG: today is taken from toISOString(), which is UTC. From 00:00 to 05:30 IST that is still
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: today is taken from toISOString(), which is UTC. From 00:00 to 05:30 IST that is still
     // yesterday, so the 'as on' date and every age are a day behind for five and a half hours every night.
-    test.fail();
     await page.clock.setFixedTime(new Date("2026-11-06T02:00:00+05:30"));
     await page.goto("/age-calculator/");
     await expect(page.locator("#currentDate")).toHaveValue("2026-11-06");
@@ -199,10 +193,9 @@ test.describe("Age Calculator in a US time zone", () => {
   test.use({ timezoneId: "America/New_York" });
 
   test("age is the same wherever the visitor is", async ({ page }) => {
-    // KNOWN BUG: dates are parsed as UTC midnight and read back in local time, which is the previous evening west
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: dates are parsed as UTC midnight and read back in local time, which is the previous evening west
     // of UTC. Born 1 Mar 2000, on 6 Nov 2026 the page says 26 years 8 months 7 days. The right answer is 26 years
     // 8 months 5 days. Visitors in the Americas (NRIs included) get wrong ages.
-    test.fail();
     await page.clock.setFixedTime(new Date("2026-11-06T10:00:00-05:00"));
     await page.goto("/age-calculator/");
     await calc(page, "2000-03-01", "2026-11-06");

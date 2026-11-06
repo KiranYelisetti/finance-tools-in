@@ -54,12 +54,14 @@ test("a down payment equal to the on-road price leaves nothing to borrow", () =>
   assert.equal(r.emi, 0);
 });
 
-knownBug("0% interest gives EMI = loan / months", "0/0 gives NaN, the page shows ₹NaN", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: 0/0 gives NaN, the page shows ₹NaN)
+test("0% interest gives EMI = loan / months", () => {
   const r = Car.calculate({ ...DEFAULTS, annualRate: 0 });
   close(r.emi, 940000 / 60);
 });
 
-knownBug("a down payment above the on-road price does not give a negative loan", "no check, loan and EMI go negative", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: no check, loan and EMI go negative)
+test("a down payment above the on-road price does not give a negative loan", () => {
   const r = Car.calculate({ ...DEFAULTS, downPayment: 2000000 });
   assert.ok(r.loanAmount >= 0 && r.emi >= 0);
 });

@@ -241,6 +241,10 @@ noIconFont: true
                             <span>Rebate under section 156 (was 87A)</span>
                             <span class="font-semibold" id="oldRebate">- ₹0</span>
                         </div>
+                        <div class="qt-panel flex justify-between p-3" id="oldSurchargeRow" hidden>
+                            <span>Surcharge (income above ₹50 lakh)</span>
+                            <span class="font-semibold" id="oldSurcharge">₹0</span>
+                        </div>
                         <div class="qt-panel flex justify-between p-3">
                             <span>Education Cess (4%)</span>
                             <span class="font-semibold" id="oldCess">₹0</span>
@@ -289,6 +293,10 @@ noIconFont: true
                         <div class="qt-panel flex justify-between p-3">
                             <span>Rebate under section 156 (was 87A)</span>
                             <span class="font-semibold" id="newRebate">- ₹0</span>
+                        </div>
+                        <div class="qt-panel flex justify-between p-3" id="newSurchargeRow" hidden>
+                            <span>Surcharge (income above ₹50 lakh)</span>
+                            <span class="font-semibold" id="newSurcharge">₹0</span>
                         </div>
                         <div class="qt-panel flex justify-between p-3">
                             <span>Education Cess (4%)</span>
@@ -339,7 +347,7 @@ noIconFont: true
                         carried over unchanged, but the sections were renumbered. This page gives the new number first and the
                         1961 number in brackets, for example section 156 (was 87A).</p>
                     <p>The calculator assumes a resident individual below 60 with salary and, optionally, other income taxed at slab
-                        rates. It does not compute surcharge on income above ₹50 lakh, capital gains taxed at special rates, or the
+                        rates. It adds surcharge above ₹50 lakh, with marginal relief. It does not handle capital gains taxed at special rates, or the
                         higher basic exemption that senior citizens get under the old regime.</p>
                 </div>
             </div>
@@ -515,7 +523,7 @@ noIconFont: true
                         <p class="text-sm font-bold mt-1">Old regime saves ₹23,400, but only because deductions crossed the ₹8 lakh break-even.</p>
                     </div>
                 </div>
-                <p class="text-xs mt-4">All three figures include 4% cess and exclude surcharge. They are produced by the same formulas as the calculator above.</p>
+                <p class="text-xs mt-4">All three figures include 4% cess. None of them is high enough for surcharge. They are produced by the same formulas as the calculator above.</p>
             </div>
 
             <!-- Gross vs taxable, TDS, advance tax -->
@@ -634,7 +642,7 @@ noIconFont: true
                     <p><strong>For Informational Purposes Only:</strong> This calculator provides tax estimates based on the inputs you provide and the published slabs for FY 2025-26 and FY 2026-27, as checked on 6 November 2026. Actual tax liability may differ based on your specific financial situation.</p>
                     <p><strong>Not Tax Advice:</strong> The calculations and explanations provided here are education, NOT professional tax advice. Do not file your income tax return based solely on these calculations.</p>
                     <p><strong>Consult a CA:</strong> Always consult a qualified Chartered Accountant or tax professional for accurate tax planning and filing. Tax laws are subject to changes and interpretations.</p>
-                    <p><strong>Scope:</strong> The calculator assumes a resident individual below 60 and does not compute surcharge on income above ₹50 lakh, capital gains taxed at special rates, or the higher old regime exemption for senior citizens.</p>
+                    <p><strong>Scope:</strong> The calculator assumes a resident individual below 60. It adds surcharge above ₹50 lakh with marginal relief, but does not handle capital gains taxed at special rates or the higher old regime exemption for senior citizens.</p>
                     <p><strong>No Liability:</strong> QuickTools India assumes no responsibility for any decisions or actions taken based on the tax calculations provided on this tool.</p>
                 </div>
             </div>
@@ -684,6 +692,8 @@ noIconFont: true
         document.getElementById('oldTaxableIncome').textContent = fmt(o.taxableIncome);
         document.getElementById('oldTaxBeforeCess').textContent = fmt(Math.round(o.taxBeforeCess));
         document.getElementById('oldRebate').textContent = o.rebate > 0 ? '- ' + fmt(o.rebate) : '₹0';
+        document.getElementById('oldSurchargeRow').hidden = !(o.surcharge > 0);
+        document.getElementById('oldSurcharge').textContent = fmt(Math.round(o.surcharge));
         document.getElementById('oldCess').textContent = fmt(Math.round(o.cess));
         document.getElementById('oldTotalTax').textContent = fmt(o.totalTax);
         document.getElementById('oldEffectiveRate').textContent = totalGross > 0 ? ((o.totalTax / totalGross) * 100).toFixed(1) + '%' : '0%';
@@ -695,6 +705,8 @@ noIconFont: true
         document.getElementById('newTaxableIncome').textContent = fmt(n.taxableIncome);
         document.getElementById('newTaxBeforeCess').textContent = fmt(Math.round(n.taxBeforeCess));
         document.getElementById('newRebate').textContent = n.rebate > 0 ? '- ' + fmt(n.rebate) : '₹0';
+        document.getElementById('newSurchargeRow').hidden = !(n.surcharge > 0);
+        document.getElementById('newSurcharge').textContent = fmt(Math.round(n.surcharge));
         document.getElementById('newCess').textContent = fmt(Math.round(n.cess));
         document.getElementById('newTotalTax').textContent = fmt(n.totalTax);
         document.getElementById('newEffectiveRate').textContent = totalGross > 0 ? ((n.totalTax / totalGross) * 100).toFixed(1) + '%' : '0%';

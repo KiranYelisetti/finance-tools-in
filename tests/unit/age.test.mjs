@@ -32,7 +32,6 @@ test("agrees with the anniversary count for many dates (either month-end convent
       if (b > on) continue;
       const a = Age.calculate(b, on);
       const ref = age(b, on);
-      if (a.days < 0) continue; // the known month-end bug, tested below
       assert.ok([ref.clamp, ref.roll].some((r) => r.years === a.years && r.months === a.months && r.days === a.days), `${b} on ${on}: got ${JSON.stringify(pick(a))}`);
       assert.equal(a.totalDays, ref.totalDays, `${b} on ${on}: total days`);
     }
@@ -86,25 +85,55 @@ test("next round milestone: 10,000 days, then 20,000, then 30,000", () => {
   assert.equal(a.milestoneDate.toISOString().slice(0, 10), "2027-05-19"); // 1 Jan 2000 + 10,000 days
 });
 
-knownBug("days are never negative at a month end", "31 Jan to 1 Mar 2026 gives 1 month -2 days", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: 31 Jan to 1 Mar 2026 gives 1 month -2 days)
+test("days are never negative at a month end", () => {
   const a = Age.calculate("2026-01-31", "2026-03-01");
   const ref = age("2026-01-31", "2026-03-01");
   assert.ok([ref.clamp, ref.roll].some((r) => r.months === a.months && r.days === a.days));
 });
 
-knownBug("days to the next birthday in India time", "UTC dates against a local-midnight birthday: always one day short", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: UTC dates against a local-midnight birthday: always one day short)
+test("days to the next birthday in India time", () => {
   assert.equal(Age.calculate("2000-12-25", "2026-11-06").daysUntilBirthday, daysToNextBirthday("2000-12-25", "2026-11-06"));
 });
 
-knownBug("the next milestone is never in the past", "stops at 30,000 days", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: stops at 30,000 days)
+test("the next milestone is never in the past", () => {
   assert.equal(Age.calculate("1940-01-01", "2026-11-06").milestoneDays, 40000);
 });
 
-knownBug("age is the same in a US time zone", "dates parsed as UTC are the previous evening in New York", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: dates parsed as UTC are the previous evening in New York)
+test("age is the same in a US time zone", () => {
   const modulePath = fileURLToPath(new URL("../../src/js/calc/age.js", import.meta.url));
   const out = spawnSync(process.execPath, ["-e", `const a=require(${JSON.stringify(modulePath)}).calculate("2000-03-01","2026-11-06");process.stdout.write(JSON.stringify([a.years,a.months,a.days]))`], {
     env: { ...process.env, TZ: "America/New_York" },
     encoding: "utf8",
   });
   assert.deepEqual(JSON.parse(out.stdout), [26, 8, 5]);
+});
+
+test("on the birthday itself there are 0 days to the next one, and a 29 Feb birthday falls on 1 Mar", () => {
+  assert.equal(Age.calculate("2000-11-06", "2026-11-06").daysUntilBirthday, 0);
+  const leap = Age.calculate("2000-02-29", "2026-02-28");
+  assert.equal(leap.daysUntilBirthday, 1);
+  assert.equal(leap.nextBirthday.toISOString().slice(0, 10), "2026-03-01");
+  assert.equal(Age.calculate("2000-02-29", "2028-02-01").nextBirthday.toISOString().slice(0, 10), "2028-02-29");
+});
+
+test("today is the visitor's local date, not the UTC one", () => {
+  // 1:00 am on 7 Nov in India is still 6 Nov in UTC
+  assert.equal(Age.todayLocal(new Date(2026, 10, 7, 1, 0)), "2026-11-07");
+  assert.equal(Age.todayLocal(new Date(2026, 0, 5, 23, 59)), "2026-01-05");
+});
+
+test("days are never negative for any birth and 'as on' date pair", () => {
+  const start = Date.UTC(1999, 11, 1);
+  for (let i = 0; i < 1200; i += 7) {
+    const b = new Date(start + i * 86400000).toISOString().slice(0, 10);
+    for (const on of ["2026-02-28", "2026-03-01", "2026-03-02", "2026-04-30", "2028-02-29"]) {
+      const a = Age.calculate(b, on);
+      const ref = age(b, on).roll;
+      assert.deepEqual(pick(a), ref, `${b} on ${on}`);
+    }
+  }
 });

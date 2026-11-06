@@ -76,9 +76,8 @@ test.describe("SIP calculator", () => {
   });
 
   test("typing a value moves the matching slider", async ({ page }) => {
-    // KNOWN BUG (minor): the sliders only push values into the fields. Typing 20,000 leaves the amount slider at
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the sliders only push values into the fields. Typing 20,000 leaves the amount slider at
     // 5,000, so slider and field disagree. The PPF and SSY pages keep both in step.
-    test.fail();
     await typeInto(page.locator("#monthlyInvestment"), "20000");
     await expect(slider(page, 0)).toHaveValue("20000");
   });
@@ -116,9 +115,8 @@ test.describe("SIP calculator", () => {
   });
 
   test("a value set with a slider is saved and comes back after a reload", async ({ page }) => {
-    // KNOWN BUG: the slider writes into the rate field without firing an input event, and the slider itself has
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the slider writes into the rate field without firing an input event, and the slider itself has
     // no id, so auto-save never stores a slider move. After a reload the rate is back to 12%.
-    test.fail();
     await sliderTo(slider(page, 1), "max");
     await expect(page.locator("#returnRate")).toHaveValue("30");
     await page.reload();

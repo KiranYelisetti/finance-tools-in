@@ -37,13 +37,14 @@ test("PPF refuses deposits outside 500 to 1,50,000, periods under 15 years and m
   assert.ok(Ppf.calculate(150000, 15, 7.1));
 });
 
-knownBug("PPF partial withdrawal follows paragraph 9(1) of the PPF Scheme, 2019",
-  "uses 50% of the year-7 balance instead of 50% of the lower of the balances 4 years back and last year", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: uses 50% of the year-7 balance instead of 50% of the lower of the balances 4 years back and last year)
+test("PPF partial withdrawal follows paragraph 9(1) of the PPF Scheme, 2019", () => {
     const b = ppfBalances(100000, 7.1, 15);
     close(Ppf.calculate(100000, 15, 7.1).partialWithdrawal, ppfWithdrawalLimit(b, 8), 1);
   });
 
-knownBug("PPF tax saving in the 30% slab includes the 4% cess", "shows 30% instead of 31.2%", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: shows 30% instead of 31.2%)
+test("PPF tax saving in the 30% slab includes the 4% cess", () => {
   close(Ppf.calculate(100000, 15, 7.1).taxSavings, 31200, 0.5);
 });
 
@@ -73,6 +74,7 @@ test("SSY refuses ages outside 0 to 10 and deposits outside 250 to 1,50,000", ()
   assert.equal(Ssy.calculate(5, 150001, 8.2), null);
 });
 
-knownBug("SSY withdrawal at 18 works for a part-year age", "age + year === 18 never matches 5.5, so it is 0", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: age + year === 18 never matches 5.5, so it is 0)
+test("SSY withdrawal at 18 works for a part-year age", () => {
   assert.ok(Ssy.calculate(5.5, 100000, 8.2).partialWithdrawal > 0);
 });

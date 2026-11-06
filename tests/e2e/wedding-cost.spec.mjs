@@ -106,11 +106,10 @@ test.describe("Wedding Cost calculator", () => {
   });
 
   test("the cost breakdown adds up to the total", async ({ page }) => {
-    // KNOWN BUG: with a destination wedding, "Wedding expenses" already includes the 20% premium and the
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: with a destination wedding, "Wedding expenses" already includes the 20% premium and the
     // "Destination premium" line repeats it, so the lines add up to more than the total. For 20 lakh in 5 years at
     // 8% the lines show ₹35.26 lakh + ₹5.88 lakh against a total of ₹35.26 lakh. "Wedding expenses" should be
     // ₹29.39 lakh.
-    test.fail();
     await page.getByLabel(/Destination/).check();
     const r = expected({ destination: true });
     await expectAmount(page.locator("#weddingCost"), r.wedding, { label: "wedding expenses without the premium" });

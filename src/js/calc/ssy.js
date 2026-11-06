@@ -24,7 +24,9 @@
                 totalInvestment += annualDeposit;
             }
             balance += balance * interestRate;
-            if (currentAge + year === 18) balanceAt18 = balance; // balance when she turns 18
+            // The withdrawal at 18 uses the balance at the end of the year before she turns 18. For a part-year
+            // age (5.5) that is year 12, for a whole age (5) year 13: the year 18 - age, rounded down.
+            if (year === Math.floor(18 - currentAge)) balanceAt18 = balance;
         }
 
         var taxBenefit = Math.min(annualDeposit, 150000);
@@ -35,7 +37,7 @@
             balanceAt18: balanceAt18,
             partialWithdrawal: balanceAt18 * 0.50,
             taxBenefit: taxBenefit,
-            taxSavings: taxBenefit * 0.30,
+            taxSavings: taxBenefit * 0.312, // 30% slab plus 4% cess, old regime only
             depositEndAge: currentAge + DEPOSIT_YEARS,
             maturityAge: currentAge + MATURITY_YEARS
         };

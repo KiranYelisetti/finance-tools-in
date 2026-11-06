@@ -85,8 +85,8 @@ test("agrees with the reference for a grid of salaries, other income and deducti
     for (const other of [0, 450000]) {
       for (const ded of [0, 175000, 800000]) {
         const t = Tax.compare({ grossSalary: salary, otherIncome: other, deduction80C: Math.min(ded, 150000), otherDeductions: Math.max(0, ded - 150000) });
-        const o = incomeTax({ salary, otherIncome: other, oldDeductions: ded }, "old");
-        const n = incomeTax({ salary, otherIncome: other }, "new");
+        const o = incomeTax({ salary, otherIncome: other, oldDeductions: ded }, "old", { withSurcharge: true });
+        const n = incomeTax({ salary, otherIncome: other }, "new", { withSurcharge: true });
         assert.equal(t.old.totalTax, Math.round(o.total), `old ${salary}/${other}/${ded}`);
         assert.equal(t.new.totalTax, Math.round(n.total), `new ${salary}/${other}`);
       }
@@ -109,11 +109,13 @@ test("a very large income stays finite", () => {
   assert.ok(Number.isFinite(t.new.totalTax) && t.new.totalTax > 0);
 });
 
-knownBug("80D is capped at 1,00,000 (s.126)", "80D is not capped at all", () => {
+// Fixed 2026-11-06 (was a known bug: 80D was not capped)
+test("80D is capped at 1,00,000 (s.126)", () => {
   assert.equal(Tax.compare({ grossSalary: 2000000, deduction80D: 250000 }).old.deductions, 100000);
 });
 
-knownBug("tax above 50 lakh includes surcharge (disclosed limitation)", "no surcharge, as the page says", () => {
+// Fixed 2026-11-06 (was a known, disclosed gap: no surcharge)
+test("tax above 50 lakh includes surcharge with marginal relief", () => {
   const withSurcharge = incomeTax({ salary: 6000000 }, "new", { withSurcharge: true });
   assert.equal(Tax.compare({ grossSalary: 6000000 }).new.totalTax, Math.round(withSurcharge.total));
 });

@@ -83,10 +83,9 @@ test.describe("Cash Counter", () => {
   });
 
   test("the total in words is written in words", async ({ page }) => {
-    // KNOWN BUG: the page promises the total "in words" but prints digits with unit names: 15,750 shows as
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the page promises the total "in words" but prints digits with unit names: 15,750 shows as
     // "15 Thousand 7 Hundred 50 Rupees". Written out it is "Fifteen Thousand Seven Hundred Fifty Rupees" (the
     // site's own Number to Words engine, src/js/number-words.js, already does this).
-    test.fail();
     await count(page, { note500: 31, note200: 1, note50: 1 }); // 15,500 + 200 + 50 = 15,750
     await expect(page.locator("#totalAmount")).toHaveText("₹15,750");
     await expect(page.locator("#totalInWords")).toHaveText(/^Fifteen Thousand Seven Hundred Fifty Rupees/);

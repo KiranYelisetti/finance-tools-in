@@ -68,7 +68,8 @@ test("duration text", () => {
   assert.equal(Pre.durationText(76), "6 years 4 months");
 });
 
-knownBug("a lump sum larger than the loan counts only what was owed", "total paid shows the whole lump sum", () => {
+// Fixed 2026-11-06, kept as a regression test (was a known bug: total paid shows the whole lump sum)
+test("a lump sum larger than the loan counts only what was owed", () => {
   const r = Pre.calculate({ principal: 5000000, annualRate: 9, tenureYears: 20, lumpSum: 6000000 });
   assert.equal(r.totalPaidWithPrepay, 5000000);
 });

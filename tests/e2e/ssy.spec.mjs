@@ -122,17 +122,15 @@ test.describe("Sukanya Samriddhi calculator", () => {
   });
 
   test("a part-year age still shows the withdrawal at 18", async ({ page }) => {
-    // KNOWN BUG (minor): the balance at 18 is picked with an exact match (age + year === 18), so an age typed as
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the balance at 18 is picked with an exact match (age + year === 18), so an age typed as
     // 5.5 never matches and "Available at Age 18" shows ₹0. The field accepts decimals.
-    test.fail();
     await setField(page.locator("#currentAge"), "5.5");
     const shown = await page.locator("#partialWithdrawal").textContent();
     expect(Number(shown.replace(/[^\d.]/g, ""))).toBeGreaterThan(0);
   });
 
   test("the yearly tax saving includes the 4% cess", async ({ page }) => {
-    // KNOWN BUG (small): same as PPF, "30% tax bracket saves" leaves out the 4% cess: ₹31,200, not ₹30,000.
-    test.fail();
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: same as PPF, "30% tax bracket saves" leaves out the 4% cess: ₹31,200, not ₹30,000.
     await expectAmount(page.locator("#taxSavings"), 100000 * 0.3 * 1.04);
   });
 
