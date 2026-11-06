@@ -11,7 +11,8 @@ const NOINDEX = new Set(pages.filter((p) => /<meta name="robots" content="noinde
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
 /** Widths to check for sideways scrolling: the two phone widths on the phone project, the laptop on desktop. */
-const widthsFor = (project) => (project === "phone" ? [360, 390] : [1366]);
+const PHONES = new Set(["phone", "iphone"]);
+const widthsFor = (project) => (PHONES.has(project) ? [360, 390] : [1366]);
 
 const settle = (page) => page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
 

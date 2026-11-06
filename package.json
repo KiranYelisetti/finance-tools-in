@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node scripts/test-number-words.mjs && node scripts/run-unit-tests.mjs",
     "test:unit": "node scripts/run-unit-tests.mjs",
-    "test:e2e": "npm run build && npx playwright test",
+    "test:e2e": "npm run build && npx playwright test --project=desktop --project=phone",
+    "test:e2e:browsers": "npm run build && npx playwright test --project=iphone --project=firefox",
     "test:e2e:only": "npx playwright test",
     "build:css": "npx tailwindcss -i ./src/css/styles.css -o ./_site/css/styles.css --minify",
     "build": "npm run build:css && npx @11ty/eleventy",

@@ -1,6 +1,7 @@
-// End-to-end tests for the built site. Run: npm run test:e2e (builds first, then runs every spec in tests/e2e).
+// End-to-end tests for the built site. Run: npm run test:e2e (builds first, then Chromium desktop and phone).
+// npm run test:e2e:browsers runs the same specs in WebKit (iPhone) and Firefox.
 // The suite serves _site on port 8941 with scripts/serve-site.mjs and stops the server when it finishes.
-import { defineConfig } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test";
 
 const PORT = 8941;
 
@@ -38,6 +39,9 @@ export default defineConfig({
           "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
       },
     },
+    // Other engines: npm run test:e2e:browsers. WebKit is Safari's engine (every iPhone browser uses it).
+    { name: "iphone", use: { ...devices["iPhone 15"] } },
+    { name: "firefox", use: { ...devices["Desktop Firefox"], viewport: { width: 1366, height: 900 } } },
   ],
   webServer: process.env.BASE_URL ? undefined : {
     command: `node scripts/serve-site.mjs --port ${PORT} --dir _site`,

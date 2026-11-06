@@ -65,6 +65,19 @@ function setupIndianInputs(root) {
             const newPos = Math.max(0, Math.min(formatted.length, caret + diff));
             try { el.setSelectionRange(newPos, newPos); } catch (e2) { /* noop */ }
         });
+
+        // Safari (WebKit, so every iPhone browser) skips the change event when a script rewrote the value while
+        // typing, which the grouping above does on every key. Pages check limits on change, so send it on blur.
+        let atFocus = null;
+        let changed = false;
+        input.addEventListener('focus', () => { atFocus = input.value; changed = false; });
+        input.addEventListener('change', () => { changed = true; });
+        input.addEventListener('blur', () => {
+            if (!changed && atFocus !== null && input.value !== atFocus) {
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+            atFocus = null;
+        });
     });
 }
 

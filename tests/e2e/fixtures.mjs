@@ -44,12 +44,28 @@ async function stubThirdParty(route) {
 const dialogState = new WeakMap();
 
 export const test = base.extend({
-  context: async ({ context, baseURL }, use) => {
+  context: async ({ context }, use) => {
     await context.route((url) => !isLocal(url.href), stubThirdParty);
-    await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseURL });
     await context.addInitScript(() => {
       window.__printCalls = 0;
       window.print = () => { window.__printCalls += 1; };
+      // Copy buttons write to an in-page clipboard. Works in every engine (WebKit and Firefox have no clipboard
+      // permission to grant) and a test run never overwrites the clipboard of the person using this PC.
+      const store = { text: "" };
+      const clip = {
+        writeText: (t) => { store.text = String(t); return Promise.resolve(); },
+        readText: () => Promise.resolve(store.text),
+      };
+      try { Object.defineProperty(navigator, "clipboard", { value: clip, configurable: true }); } catch (e) { /* keep the real one */ }
+      const exec = document.execCommand.bind(document);
+      document.execCommand = (cmd, ...rest) => {
+        if (String(cmd).toLowerCase() !== "copy") return exec(cmd, ...rest);
+        const el = document.activeElement;
+        store.text = el && "value" in el && typeof el.selectionStart === "number"
+          ? el.value.slice(el.selectionStart, el.selectionEnd)
+          : String(window.getSelection() || "");
+        return true;
+      };
     });
     await use(context);
   },

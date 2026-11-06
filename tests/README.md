@@ -6,9 +6,10 @@ Three suites check the site. Two of them run in a second without a browser. The 
 |---|---|---|---|
 | Number to Words cases | `npm test` (first half) | 56 hand-worked cases for `src/js/number-words.js` | under a second |
 | Unit tests | `npm test` (second half), or `npm run test:unit` | the maths in `src/js/calc/*.js` | about a second |
-| End-to-end | `npm run test:e2e` | every built page and every control on every tool | about 2.5 minutes |
+| End-to-end | `npm run test:e2e` | every built page and every control on every tool, Chromium desktop and phone | about 2.5 minutes |
+| Other engines | `npm run test:e2e:browsers` | the same specs in WebKit (iPhone 15, Safari's engine) and Firefox | about 1.5 minutes each |
 
-The deploy workflow runs `npm test` before every build, so the first two suites guard each deploy. The end-to-end suite needs a browser, so run it by hand before you push a change to a page.
+The deploy workflow runs `npm test` before every build, so the first two suites guard each deploy. The end-to-end suite needs a browser, so run it by hand before you push a change to a page. Firefox crashes on Ravi's PC unless the test browser runs with `MOZ_DISABLE_CONTENT_SANDBOX=1`, which waits for his OK (6 Nov 2026). WebKit runs without it.
 
 ## Running the suites
 
@@ -38,6 +39,7 @@ It serves `_site` on port 8941 with `scripts/serve-site.mjs` and stops the serve
 npm run test:e2e:only                                   (skip the build, test the _site you have)
 npx playwright test tests/e2e/gst.spec.mjs              (one tool)
 npx playwright test --project=phone                     (only the phone run)
+npx playwright test --project=iphone                    (WebKit only)
 npx playwright test -g "Reset"                          (tests whose name contains Reset)
 npx playwright show-trace test-results/<folder>/trace.zip   (step through a failed test)
 ```
@@ -85,7 +87,7 @@ Things every spec gets from `tests/e2e/fixtures.mjs`:
 - Third-party files never load. AdSense, Google Analytics and Font Awesome get empty answers. Chart.js is served from `node_modules`, so the SIP chart really draws.
 - A console error or page error fails the test.
 - `alert` and `confirm` are recorded and accepted. A test can set `dialogs.respond = "dismiss"` to press Cancel.
-- The clipboard can be read, so Copy buttons are checked for real.
+- Copy buttons write to an in-page clipboard that the test reads back. It works in every engine and never touches the clipboard of the person using the PC.
 - `window.print` is replaced by a counter, so Print is checked without a dialog.
 
 ## Where the expected figures come from

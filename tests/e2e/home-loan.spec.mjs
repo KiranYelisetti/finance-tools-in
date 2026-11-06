@@ -88,7 +88,7 @@ test.describe("Home Loan EMI calculator", () => {
     await fill(page, { amount: 4000000, rate: 8, years: 20 });
     await page.getByRole("button", { name: "Calculate" }).click();
     await expect(page.locator("#results")).toBeVisible();
-    if (testInfo.project.name === "phone") await expect(page.locator("#results")).toBeInViewport();
+    if (["phone", "iphone"].includes(testInfo.project.name)) await expect(page.locator("#results")).toBeInViewport();
     await expectResults(page, 4000000, 8, 20);
   });
 
