@@ -1,0 +1,384 @@
+---
+title: "QR Code Generator: Links, Wi-Fi, UPI Payments, Phone and Email"
+layout: base.njk
+date: 2026-11-07
+updated: 2026-11-07
+meta_title: "Free QR Code Generator: Link, Wi-Fi, UPI, Phone, Email, PNG and SVG"
+meta_description: "Make a QR code for a link, text, Wi-Fi login, phone number, email or a UPI payment. Choose the error correction and size, then download a PNG or SVG. The codes never expire and nothing is uploaded."
+meta_keywords: "qr code generator, free qr code generator, wifi qr code, upi qr code generator, qr code for link, qr code svg, qr code png, static qr code"
+noIconFont: true
+faqs:
+  - q: "Do these QR codes expire?"
+    a: "No. The link, text or login is stored inside the pattern itself, so the code works for as long as the printed copy can be scanned. Some sites sell dynamic codes that point to their own short link and stop working when you stop paying. The codes made here do not go through any server."
+  - q: "Which error correction level should I pick?"
+    a: "Medium suits most uses. Higher levels add more spare data, so a code that is scratched, partly covered or printed with a logo on top can still be read, but the pattern gets denser. Low is fine for a code shown on a screen. High is the choice for a code printed outdoors or on packaging."
+  - q: "How does a UPI QR code work?"
+    a: "It holds a UPI payment link with your UPI ID, your name and, if you enter one, an amount. Any UPI app that scans it opens a payment screen with those details filled in. The payer still checks the name and confirms with their UPI PIN. This page only writes the link into a picture and never handles money."
+  - q: "Can a Wi-Fi QR code connect a phone without typing the password?"
+    a: "Yes. The camera apps on recent Android phones and iPhones read the Wi-Fi format and offer to join the network. Anyone who can see the code can also join, so print it where only your guests will see it, and make a new code if you change the password."
+  - q: "PNG or SVG?"
+    a: "PNG is a picture of fixed size that works everywhere, from WhatsApp to a Word file. SVG is a drawing that stays sharp at any size, so use it for posters, banners and anything sent to a printer."
+  - q: "Is anything I type sent to a server?"
+    a: "No. The code is drawn by your browser from what you type. Wi-Fi passwords, UPI IDs and phone numbers stay on your device and are not saved after you close the page."
+---
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Code Generator",
+  "url": "https://www.quicktoolsplus.com/qr-code-generator/",
+  "description": "Makes QR codes for links, text, Wi-Fi logins, phone numbers, email and UPI payments, with PNG and SVG downloads. Runs in the browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "inLanguage": "en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{% for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.quicktoolsplus.com/" },
+    { "@type": "ListItem", "position": 2, "name": "QR Code Generator", "item": "https://www.quicktoolsplus.com/qr-code-generator/" }
+  ]
+}
+</script>
+{% endblock %}
+
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>QR Code Generator</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-everyday">Everyday</span>
+            <span class="qt-stamp">Updated {{ updated | humanDate }}</span>
+        </div>
+        <h1 class="qt-h1 mt-4">QR Code Generator</h1>
+        <p class="qt-lede mt-4">Make a QR code for a link, text, Wi-Fi login, phone number, email or UPI payment, then download it as PNG or SVG. Codes never expire and nothing is uploaded.</p>
+    </section>
+
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-7 min-w-0" aria-label="What goes in the code">
+            <div class="qt-card">
+                <p class="qt-eyebrow mb-2.5" id="typeLabel">Code for</p>
+                <div class="qt-seg" role="group" aria-labelledby="typeLabel" id="qrType">
+                    <button type="button" data-type="url" aria-pressed="true">Link</button>
+                    <button type="button" data-type="text" aria-pressed="false">Text</button>
+                    <button type="button" data-type="wifi" aria-pressed="false">Wi-Fi</button>
+                    <button type="button" data-type="upi" aria-pressed="false">UPI payment</button>
+                    <button type="button" data-type="phone" aria-pressed="false">Phone</button>
+                    <button type="button" data-type="email" aria-pressed="false">Email</button>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="url">
+                    <div>
+                        <label for="qrUrl" class="qt-label">Web address</label>
+                        <input type="url" id="qrUrl" class="qt-input" value="https://www.quicktoolsplus.com/" autocomplete="off" spellcheck="false" placeholder="example.com/page">
+                        <p class="qt-error" data-error-for="url" hidden></p>
+                    </div>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="text" hidden>
+                    <div>
+                        <label for="qrText" class="qt-label">Text</label>
+                        <textarea id="qrText" class="qt-input" rows="4" placeholder="Any text, such as a short note or a reference number"></textarea>
+                        <p class="qt-error" data-error-for="text" hidden></p>
+                    </div>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="wifi" hidden>
+                    <div>
+                        <label for="wifiSsid" class="qt-label">Network name</label>
+                        <input type="text" id="wifiSsid" class="qt-input" autocomplete="off" spellcheck="false" placeholder="Exactly as your phone shows it">
+                        <p class="qt-error" data-error-for="ssid" hidden></p>
+                    </div>
+                    <div>
+                        <label for="wifiSecurity" class="qt-label">Security</label>
+                        <div class="qt-select"><select id="wifiSecurity" class="qt-input">
+                            <option value="WPA">WPA, WPA2 or WPA3 (most routers)</option>
+                            <option value="WEP">WEP (old routers)</option>
+                            <option value="nopass">No password</option>
+                        </select></div>
+                    </div>
+                    <div>
+                        <label for="wifiPassword" class="qt-label">Password</label>
+                        <input type="text" id="wifiPassword" class="qt-input" autocomplete="off" spellcheck="false">
+                        <p class="qt-error" data-error-for="password" hidden></p>
+                    </div>
+                    <label class="qt-check" for="wifiHidden"><input type="checkbox" id="wifiHidden"><span>The network is hidden</span></label>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="upi" hidden>
+                    <div>
+                        <label for="upiId" class="qt-label">UPI ID to receive the money</label>
+                        <input type="text" id="upiId" class="qt-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="name@okbank">
+                        <p class="qt-error" data-error-for="upiId" hidden></p>
+                    </div>
+                    <div>
+                        <label for="upiName" class="qt-label">Name the payer sees</label>
+                        <input type="text" id="upiName" class="qt-input" autocomplete="off" placeholder="Your name or shop name">
+                        <p class="qt-error" data-error-for="name" hidden></p>
+                    </div>
+                    <div>
+                        <label for="upiAmount" class="qt-label">Amount in rupees, optional</label>
+                        <input type="text" id="upiAmount" class="qt-input" inputmode="decimal" autocomplete="off" placeholder="Leave empty to let the payer type it">
+                        <p class="qt-error" data-error-for="amount" hidden></p>
+                    </div>
+                    <div>
+                        <label for="upiNote" class="qt-label">Note, optional</label>
+                        <input type="text" id="upiNote" class="qt-input" autocomplete="off" maxlength="50" placeholder="For example: Order 42">
+                    </div>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="phone" hidden>
+                    <div>
+                        <label for="qrPhone" class="qt-label">Phone number</label>
+                        <input type="tel" id="qrPhone" class="qt-input" autocomplete="off" placeholder="+91 98765 43210">
+                        <p class="qt-error" data-error-for="phone" hidden></p>
+                    </div>
+                </div>
+
+                <div class="qt-fields mt-6" data-fields="email" hidden>
+                    <div>
+                        <label for="qrEmail" class="qt-label">Email address</label>
+                        <input type="email" id="qrEmail" class="qt-input" autocomplete="off" spellcheck="false" placeholder="name@example.com">
+                        <p class="qt-error" data-error-for="email" hidden></p>
+                    </div>
+                    <div>
+                        <label for="qrSubject" class="qt-label">Subject, optional</label>
+                        <input type="text" id="qrSubject" class="qt-input" autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="qrBody" class="qt-label">Message, optional</label>
+                        <textarea id="qrBody" class="qt-input" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="grid gap-5 sm:grid-cols-2 mt-7">
+                    <div>
+                        <label for="qrLevel" class="qt-label">Error correction</label>
+                        <div class="qt-select"><select id="qrLevel" class="qt-input">
+                            <option value="L">Low, for screens</option>
+                            <option value="M" selected>Medium, for most uses</option>
+                            <option value="Q">Quartile, for print</option>
+                            <option value="H">High, for rough places</option>
+                        </select></div>
+                    </div>
+                    <div>
+                        <label for="qrSize" class="qt-label">PNG size</label>
+                        <div class="qt-select"><select id="qrSize" class="qt-input">
+                            <option value="256">Small, about 256 px</option>
+                            <option value="512" selected>Medium, about 512 px</option>
+                            <option value="1024">Large, about 1024 px</option>
+                            <option value="2048">Print, about 2048 px</option>
+                        </select></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lg:col-span-5 min-w-0" aria-label="Your QR code">
+            <div class="qt-card is-everyday">
+                <p class="qt-eyebrow">Your QR code</p>
+                <div class="qt-well mt-3">
+                    <div id="qrPreview" class="mx-auto w-full max-w-[18rem] aspect-square" role="img" aria-label="QR code preview"></div>
+                    <p id="qrMessage" class="qt-hint text-center mt-3" aria-live="polite"></p>
+                </div>
+                <div class="flex flex-wrap gap-3 mt-5">
+                    <button type="button" id="downloadPng" class="qt-btn">Download PNG</button>
+                    <button type="button" id="downloadSvg" class="qt-btn qt-btn--secondary">Download SVG</button>
+                </div>
+                <div class="qt-well mt-5">
+                    <p class="qt-row-key">Inside the code</p>
+                    <p id="qrPayload" class="mt-1.5 text-sm font-semibold break-all"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <article class="qt-prose qt-section">
+        <h2>How to make a QR code here</h2>
+        <ol>
+            <li>Pick what the code is for: a link, plain text, a Wi-Fi login, a UPI payment, a phone number or an email.</li>
+            <li>Fill in the fields. The code redraws as you type, and the box under it shows the exact text the code holds, so you can check it before printing.</li>
+            <li>Choose the error correction and the PNG size, then download a PNG for phones and documents or an SVG for print.</li>
+            <li>Test it before you share it: scan the code on your screen with your own phone camera and make sure it opens the right thing.</li>
+        </ol>
+
+        <h2>What is inside a QR code</h2>
+        <p>A QR code is a grid of black and white squares that stores text. The three large squares in the corners tell the camera where the code is and which way up it is. The rest of the grid holds the text itself plus extra repair data, so a phone can still read a code that is a little blurred, scratched or covered. That repair data is the error correction level. The QR standard defines four levels, and they can restore roughly 7, 15, 25 and 30 percent of a damaged code. More repair data means more squares, so a high level makes the pattern denser and harder to read when it is printed small.</p>
+        <p>The codes made on this page are static. The link or login sits inside the pattern itself, so the code keeps working forever and nobody can count who scans it. Paid QR services often sell dynamic codes instead, which point to their own short link first. Those can be edited and tracked, but they stop working if the service closes or the subscription ends.</p>
+
+        <h3>QR codes for UPI payments</h3>
+        <p>A UPI code holds a payment link that every UPI app understands. It names the UPI ID that receives the money, the name the payer sees and, if you add one, the amount. When someone scans it with a UPI app, a payment screen opens with those details filled in. They still confirm the payment with their own UPI PIN, so the code cannot take money by itself. Leave the amount empty for a code you print once for a shop counter, and the payer types the amount each time. Add an amount for a one-off bill, such as a share of a dinner or a fixed fee. Banks and UPI apps set their own daily and per-payment limits, so a very large amount may need to be split.</p>
+        <p>Before you print a payment code, scan it with a UPI app yourself and check that the name it shows is yours. A code is only as trustworthy as the person who made it, which is also why, when paying a stranger, you should always read the name your app shows before entering your PIN.</p>
+
+        <h3>Wi-Fi codes for guests</h3>
+        <p>A Wi-Fi code saves your guests from typing a long password. Recent Android phones and iPhones read it straight from the camera app and offer to join the network. Type the network name exactly as it appears on a phone, including capital letters and spaces, and choose the security type your router uses, which for nearly every router made in the last decade is WPA2 or WPA3. Anyone who can see the code can join, so keep it inside the house or office and make a new code whenever you change the password.</p>
+
+        <h3>Printing a code that scans</h3>
+        <ul>
+            <li>Keep the code dark on a light background. Light codes on dark backgrounds and coloured codes fail on many phones.</li>
+            <li>Leave the white border around the code. Cameras need that quiet zone to find the edges.</li>
+            <li>A common rule of thumb is to print the code at least a tenth as wide as the distance people will scan it from, so a code read from a metre away should be around 10 cm across.</li>
+            <li>Shorter content makes a simpler pattern that scans more easily. A short link is better than a long one with tracking parameters.</li>
+            <li>Use SVG for print. It stays sharp at any size, while a small PNG blown up for a poster turns blurry.</li>
+        </ul>
+
+        <h3>Your data stays on your device</h3>
+        <p>The code is drawn by your browser from what you type. Nothing is uploaded, and Wi-Fi passwords, UPI IDs and phone numbers are not saved after you close the page. That also means the code works with no account and no limit on how many you make.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            {% for f in faqs %}<details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+            {% endfor %}
+        </div>
+    </article>
+    </div>
+</main>
+
+{% block scripts %}
+<script src="/js/vendor/qrcode-generator-1.4.4.js"></script>
+<script src="/js/calc/qr-payload.js"></script>
+<script>
+(function () {
+    var QP = QTCalc.qrPayload;
+    qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+    var type = 'url';
+    var current = null; // { qr, payload }
+    var $ = function (id) { return document.getElementById(id); };
+    var preview = $('qrPreview'), message = $('qrMessage'), payloadBox = $('qrPayload');
+    var MARGIN = 4;
+
+    function fields() {
+        switch (type) {
+            case 'url': return { url: $('qrUrl').value };
+            case 'text': return { text: $('qrText').value };
+            case 'wifi': return { ssid: $('wifiSsid').value, security: $('wifiSecurity').value, password: $('wifiPassword').value, hidden: $('wifiHidden').checked };
+            case 'upi': return { upiId: $('upiId').value, name: $('upiName').value, amount: $('upiAmount').value, note: $('upiNote').value };
+            case 'phone': return { phone: $('qrPhone').value };
+            case 'email': return { email: $('qrEmail').value, subject: $('qrSubject').value, body: $('qrBody').value };
+        }
+        return {};
+    }
+
+    function showErrors(field, text, show) {
+        document.querySelectorAll('[data-error-for]').forEach(function (el) {
+            var mine = show && el.getAttribute('data-error-for') === field && el.closest('[data-fields]').getAttribute('data-fields') === type;
+            el.hidden = !mine;
+            el.textContent = mine ? text : '';
+        });
+    }
+
+    function setEmpty(text) {
+        current = null;
+        preview.innerHTML = '';
+        message.textContent = text;
+        payloadBox.textContent = '';
+        $('downloadPng').disabled = true;
+        $('downloadSvg').disabled = true;
+    }
+
+    function render() {
+        var f = fields();
+        var res = QP.build(type, f);
+        if (!res.ok) {
+            // Say what is missing, but do not shout at an empty form
+            var empty = Object.keys(f).every(function (k) { return f[k] === '' || f[k] === false || k === 'security'; });
+            showErrors(res.field, res.error, !empty);
+            setEmpty(empty ? 'Fill in the fields and your code appears here.' : res.error);
+            return;
+        }
+        showErrors(null, '', false);
+        var qr = qrcode(0, $('qrLevel').value);
+        try {
+            qr.addData(res.payload, 'Byte');
+            qr.make();
+        } catch (e) {
+            setEmpty('Too long for a QR code at this error correction level. Shorten it, or choose Low.');
+            return;
+        }
+        current = { qr: qr, payload: res.payload };
+        preview.innerHTML = QP.toSvg(qr.getModuleCount(), qr.isDark.bind(qr), MARGIN);
+        var svg = preview.firstChild;
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('aria-hidden', 'true');
+        message.textContent = 'Scan it with your phone to check before you share it.';
+        payloadBox.textContent = res.payload;
+        $('downloadPng').disabled = false;
+        $('downloadSvg').disabled = false;
+    }
+
+    var queued = false;
+    function schedule() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () { queued = false; render(); });
+    }
+
+    function save(blob, name) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }
+
+    /** Draw the current code on a canvas with whole pixels per module, close to the chosen size. */
+    function drawCanvas() {
+        var n = current.qr.getModuleCount(), total = n + 2 * MARGIN;
+        var want = Number($('qrSize').value) || 512;
+        var scale = Math.max(1, Math.round(want / total));
+        var canvas = document.createElement('canvas');
+        canvas.width = canvas.height = total * scale;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#000000';
+        for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
+            if (current.qr.isDark(r, c)) ctx.fillRect((c + MARGIN) * scale, (r + MARGIN) * scale, scale, scale);
+        }
+        return canvas;
+    }
+    window.__qrCanvas = function () { return current ? drawCanvas() : null; }; // used by the browser tests
+
+    $('downloadPng').addEventListener('click', function () {
+        if (!current) return;
+        drawCanvas().toBlob(function (b) { save(b, 'qr-code-' + type + '.png'); }, 'image/png');
+    });
+    $('downloadSvg').addEventListener('click', function () {
+        if (!current) return;
+        var px = Number($('qrSize').value) || 512;
+        save(new Blob([QP.toSvg(current.qr.getModuleCount(), current.qr.isDark.bind(current.qr), MARGIN, px)], { type: 'image/svg+xml' }), 'qr-code-' + type + '.svg');
+    });
+
+    $('qrType').addEventListener('click', function (ev) {
+        var b = ev.target.closest('button[data-type]');
+        if (!b) return;
+        type = b.getAttribute('data-type');
+        document.querySelectorAll('#qrType button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        document.querySelectorAll('[data-fields]').forEach(function (g) { g.hidden = g.getAttribute('data-fields') !== type; });
+        render();
+    });
+    document.querySelectorAll('[data-fields] input, [data-fields] textarea, [data-fields] select, #qrLevel, #qrSize').forEach(function (el) {
+        el.addEventListener('input', schedule);
+        el.addEventListener('change', schedule);
+    });
+    render();
+})();
+</script>
+{% endblock %}

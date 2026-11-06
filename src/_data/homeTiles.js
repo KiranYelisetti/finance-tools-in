@@ -44,5 +44,6 @@ module.exports = {
     "/wedding-cost-calculator/": {},
     "/age-calculator/": {},
     "/image-resizer/": { size: "full" },
+    "/qr-code-generator/": {},
     "/word-counter/": { input: `"${wcSample}"`, output: `${wc.words} words, ${wc.characters} characters` },
 };
