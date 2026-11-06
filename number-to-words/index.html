@@ -80,13 +80,13 @@
 <body class="qt min-h-screen font-sans">
     <header class="qt-header">
     <div class="qt-wrap qt-header-inner">
-        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+        <a href="/" class="qt-brand">
             <span class="qt-brand-mark" aria-hidden="true">
                 <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
                     <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </span>
-            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+            <span class="qt-brand-name">QuickTools <span class="qt-brand-tag">India</span></span>
         </a>
 
         <nav class="qt-nav" aria-label="Main">
@@ -96,7 +96,7 @@
                     <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
             </div>
-            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/blog/" class="qt-nav-link qt-roomy-only" >Guides</a>
             <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
             <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
                 <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -165,6 +165,10 @@
                 
             </div>
             
+            <nav class="qt-menu-more qt-tight-only" aria-label="More pages">
+                <a href="/blog/">Guides</a>
+                <a href="/updates/">Updates</a>
+            </nav>
         </div>
     </div>
 </header>
@@ -362,7 +366,7 @@
 
     <div class="qt-wrap">
     <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
-        <section class="lg:col-span-7" aria-label="Converter">
+        <section class="lg:col-span-7 min-w-0" aria-label="Converter">
             <div class="qt-card is-amounts">
                 <label for="numberInput" class="qt-label">Amount, in digits or in lakh and crore</label>
                 <input type="text" id="numberInput" value="1500000" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80"
@@ -392,7 +396,7 @@
             </div>
         </section>
 
-        <section class="lg:col-span-5" aria-label="Every format">
+        <section class="lg:col-span-5 min-w-0" aria-label="Every format">
             <div class="qt-card">
                 <div class="qt-card-head mb-1">
                     <h2 class="qt-card-title">Every format</h2>

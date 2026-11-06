@@ -246,24 +246,6 @@
 
   
   <url>
-    <loc>https://www.quicktoolsindia.com/</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/car-loan-calculator/</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
     <loc>https://www.quicktoolsindia.com/emi-prepayment-calculator/</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -273,34 +255,7 @@
 
   
   <url>
-    <loc>https://www.quicktoolsindia.com/study-abroad-calculator/</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/wedding-cost-calculator/</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-
-  
-  <url>
     <loc>https://www.quicktoolsindia.com/about/</loc>
-    <lastmod>2026-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-
-  
-  <url>
-    <loc>https://www.quicktoolsindia.com/blog/</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -355,6 +310,51 @@
   
   <url>
     <loc>https://www.quicktoolsindia.com/ssy-calculator/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/blog/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/car-loan-calculator/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/study-abroad-calculator/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.quicktoolsindia.com/wedding-cost-calculator/</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

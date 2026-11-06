@@ -78,13 +78,13 @@
 <body class="qt min-h-screen font-sans">
     <header class="qt-header">
     <div class="qt-wrap qt-header-inner">
-        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+        <a href="/" class="qt-brand">
             <span class="qt-brand-mark" aria-hidden="true">
                 <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
                     <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </span>
-            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+            <span class="qt-brand-name">QuickTools <span class="qt-brand-tag">India</span></span>
         </a>
 
         <nav class="qt-nav" aria-label="Main">
@@ -94,7 +94,7 @@
                     <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
             </div>
-            <a href="/blog/" class="qt-nav-link" aria-current="page">Guides</a>
+            <a href="/blog/" class="qt-nav-link qt-roomy-only" aria-current="page">Guides</a>
             <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
             <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
                 <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -163,6 +163,10 @@
                 
             </div>
             
+            <nav class="qt-menu-more qt-tight-only" aria-label="More pages">
+                <a href="/blog/">Guides</a>
+                <a href="/updates/">Updates</a>
+            </nav>
         </div>
     </div>
 </header>
@@ -182,165 +186,133 @@
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-4">
         
-        <a href="/blog/how-to-compress-and-resize-images-without-losing-quality/" class="qt-tile is-everyday qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Image Editing ·</span><span class="qt-eyebrow">Compression ·</span>
-            </span>
-            <span class="qt-tile-name">How to Resize and Compress Images Without Losing Quality</span>
-            <span class="qt-tile-desc">Learn the science of image resizing and compression. Discover the differences between JPEG, PNG, and WebP, and how to resize without losing quality.</span>
+        <article class="qt-tile is-everyday qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Image Editing · Compression</span>
+            <h2 class="qt-tile-name"><a href="/blog/how-to-compress-and-resize-images-without-losing-quality/" class="qt-tile-link">How to Resize and Compress Images Without Losing Quality</a></h2>
+            <p class="qt-tile-desc">Learn the science of image resizing and compression. Discover the differences between JPEG, PNG, and WebP, and how to resize without losing quality.</p>
             <span class="qt-tile-date mt-auto">25 May 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/cash-handling-tips-small-businesses/" class="qt-tile is-tax qt-reveal" style="--i: 1">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Business Operations ·</span><span class="qt-eyebrow">Cash Management ·</span>
-            </span>
-            <span class="qt-tile-name">Cash Handling Best Practices for Small Businesses in India</span>
-            <span class="qt-tile-desc">An operational guide for retail and small business owners in India to handle cash efficiently, prevent cash drawer leakage, and detect counterfeit notes.</span>
+        <article class="qt-tile is-tax qt-reveal" style="--i: 1">
+            <span class="qt-eyebrow">Business Operations · Cash Management</span>
+            <h2 class="qt-tile-name"><a href="/blog/cash-handling-tips-small-businesses/" class="qt-tile-link">Cash Handling Best Practices for Small Businesses in India</a></h2>
+            <p class="qt-tile-desc">An operational guide for retail and small business owners in India to handle cash efficiently, prevent cash drawer leakage, and detect counterfeit notes.</p>
             <span class="qt-tile-date mt-auto">25 May 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/ultimate-guide-to-study-abroad-loans-costs/" class="qt-tile is-savings qt-reveal" style="--i: 2">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Study Abroad ·</span><span class="qt-eyebrow">Education Loan ·</span>
-            </span>
-            <span class="qt-tile-name">The Ultimate Guide to Financing Study Abroad Dreams from India</span>
-            <span class="qt-tile-desc">Learn how to estimate the total cost of studying abroad from India, compare secured vs unsecured education loans, and avoid currency risk.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 2">
+            <span class="qt-eyebrow">Study Abroad · Education Loan</span>
+            <h2 class="qt-tile-name"><a href="/blog/ultimate-guide-to-study-abroad-loans-costs/" class="qt-tile-link">The Ultimate Guide to Financing Study Abroad Dreams from India</a></h2>
+            <p class="qt-tile-desc">Learn how to estimate the total cost of studying abroad from India, compare secured vs unsecured education loans, and avoid currency risk.</p>
             <span class="qt-tile-date mt-auto">24 May 2026 · 8 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/how-to-write-cheques-india/" class="qt-tile is-amounts qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Banking ·</span><span class="qt-eyebrow">Cheque Guide ·</span>
-            </span>
-            <span class="qt-tile-name">How to Write a Cheque in India: Step-by-Step Security Guide</span>
-            <span class="qt-tile-desc">A complete step-by-step guide to writing cheques in India safely. Learn how to write amounts in words, draw A/c Payee lines, and prevent fraud.</span>
+        <article class="qt-tile is-amounts qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Banking · Cheque Guide</span>
+            <h2 class="qt-tile-name"><a href="/blog/how-to-write-cheques-india/" class="qt-tile-link">How to Write a Cheque in India: Step-by-Step Security Guide</a></h2>
+            <p class="qt-tile-desc">A complete step-by-step guide to writing cheques in India safely. Learn how to write amounts in words, draw A/c Payee lines, and prevent fraud.</p>
             <span class="qt-tile-date mt-auto">23 May 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/image-dimensions-indian-job-applications/" class="qt-tile is-everyday qt-reveal" style="--i: 1">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Job Application ·</span><span class="qt-eyebrow">Image Resizer ·</span>
-            </span>
-            <span class="qt-tile-name">Guide to Image Dimensions &amp; File Sizes for Indian Job Applications</span>
-            <span class="qt-tile-desc">A comprehensive list of photo and signature dimension requirements for UPSC, SSC, IBPS, SBI, and passport applications. Learn how to resize easily.</span>
+        <article class="qt-tile is-everyday qt-reveal" style="--i: 1">
+            <span class="qt-eyebrow">Job Application · Image Resizer</span>
+            <h2 class="qt-tile-name"><a href="/blog/image-dimensions-indian-job-applications/" class="qt-tile-link">Guide to Image Dimensions &amp; File Sizes for Indian Job Applications</a></h2>
+            <p class="qt-tile-desc">A comprehensive list of photo and signature dimension requirements for UPSC, SSC, IBPS, SBI, and passport applications. Learn how to resize easily.</p>
             <span class="qt-tile-date mt-auto">22 May 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/understanding-credit-scores-india/" class="qt-tile is-loans qt-reveal" style="--i: 2">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">CIBIL ·</span><span class="qt-eyebrow">Credit Score ·</span>
-            </span>
-            <span class="qt-tile-name">Understanding Credit Scores (CIBIL) in India: Why 750+ is Critical</span>
-            <span class="qt-tile-desc">Learn how your CIBIL credit score is calculated in India, how it affects your Home Loan &amp; Car Loan interest rates, and actionable tips to maintain 750+.</span>
+        <article class="qt-tile is-loans qt-reveal" style="--i: 2">
+            <span class="qt-eyebrow">CIBIL · Credit Score</span>
+            <h2 class="qt-tile-name"><a href="/blog/understanding-credit-scores-india/" class="qt-tile-link">Understanding Credit Scores (CIBIL) in India: Why 750+ is Critical</a></h2>
+            <p class="qt-tile-desc">Learn how your CIBIL credit score is calculated in India, how it affects your Home Loan &amp; Car Loan interest rates, and actionable tips to maintain 750+.</p>
             <span class="qt-tile-date mt-auto">20 May 2026 · 7 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/how-to-plan-for-child-education-india/" class="qt-tile is-savings qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Child Education ·</span><span class="qt-eyebrow">SSY ·</span>
-            </span>
-            <span class="qt-tile-name">How to Plan for Your Child&#39;s Higher Education in India</span>
-            <span class="qt-tile-desc">A step-by-step financial guide for Indian parents to plan and invest for their children&#39;s higher education. Compare SSY, PPF, and Mutual Funds.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Child Education · SSY</span>
+            <h2 class="qt-tile-name"><a href="/blog/how-to-plan-for-child-education-india/" class="qt-tile-link">How to Plan for Your Child&#39;s Higher Education in India</a></h2>
+            <p class="qt-tile-desc">A step-by-step financial guide for Indian parents to plan and invest for their children&#39;s higher education. Compare SSY, PPF, and Mutual Funds.</p>
             <span class="qt-tile-date mt-auto">18 May 2026 · 9 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/ultimate-guide-to-compound-interest/" class="qt-tile is-savings qt-reveal" style="--i: 1">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Compounding ·</span><span class="qt-eyebrow">Finance ·</span>
-            </span>
-            <span class="qt-tile-name">The Ultimate Guide to Understanding Compound Interest: The Eighth Wonder</span>
-            <span class="qt-tile-desc">Understand how compound interest works, how Simple vs Compound interest differ, the Rule of 72, and how compounding accelerates wealth creation in India.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 1">
+            <span class="qt-eyebrow">Compounding · Finance</span>
+            <h2 class="qt-tile-name"><a href="/blog/ultimate-guide-to-compound-interest/" class="qt-tile-link">The Ultimate Guide to Understanding Compound Interest: The Eighth Wonder</a></h2>
+            <p class="qt-tile-desc">Understand how compound interest works, how Simple vs Compound interest differ, the Rule of 72, and how compounding accelerates wealth creation in India.</p>
             <span class="qt-tile-date mt-auto">15 May 2026 · 8 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/salary-ctc-inhand-explained/" class="qt-tile is-tax qt-reveal" style="--i: 2">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Salary ·</span><span class="qt-eyebrow">Income Tax ·</span>
-            </span>
-            <span class="qt-tile-name">CTC vs In-Hand Salary: Understanding Your Indian Salary Structure in 2026</span>
-            <span class="qt-tile-desc">Understand the difference between CTC, Gross Salary, and In-Hand (Take-Home) pay in India. Detailed breakdown of Basic, HRA, DA, PF, Gratuity, PT, and TDS with worked examples for ₹6 LPA, ₹12 LPA, and ₹25 LPA.</span>
+        <article class="qt-tile is-tax qt-reveal" style="--i: 2">
+            <span class="qt-eyebrow">Salary · Income Tax</span>
+            <h2 class="qt-tile-name"><a href="/blog/salary-ctc-inhand-explained/" class="qt-tile-link">CTC vs In-Hand Salary: Understanding Your Indian Salary Structure in 2026</a></h2>
+            <p class="qt-tile-desc">Understand the difference between CTC, Gross Salary, and In-Hand (Take-Home) pay in India. Detailed breakdown of Basic, HRA, DA, PF, Gratuity, PT, and TDS with worked examples for ₹6 LPA, ₹12 LPA, and ₹25 LPA.</p>
             <span class="qt-tile-date mt-auto">5 May 2026 · 10 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/how-to-save-income-tax-2026/" class="qt-tile is-tax qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Income Tax ·</span><span class="qt-eyebrow">Tax Saving ·</span>
-            </span>
-            <span class="qt-tile-name">How to Save Income Tax in India (FY 2025-26 and FY 2026-27): A Step-by-Step Guide</span>
-            <span class="qt-tile-desc">Old vs new tax regime for FY 2025-26 and FY 2026-27 with the current slabs, the Rs 12 lakh rebate, Section 80C, 80D, HRA and NPS explained, and worked examples showing when each regime wins.</span>
+        <article class="qt-tile is-tax qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Income Tax · Tax Saving</span>
+            <h2 class="qt-tile-name"><a href="/blog/how-to-save-income-tax-2026/" class="qt-tile-link">How to Save Income Tax in India (FY 2025-26 and FY 2026-27): A Step-by-Step Guide</a></h2>
+            <p class="qt-tile-desc">Old vs new tax regime for FY 2025-26 and FY 2026-27 with the current slabs, the Rs 12 lakh rebate, Section 80C, 80D, HRA and NPS explained, and worked examples showing when each regime wins.</p>
             <span class="qt-tile-date mt-auto">1 May 2026 · 12 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/ppf-vs-ssy-vs-fd-comparison/" class="qt-tile is-savings qt-reveal" style="--i: 1">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Investment ·</span><span class="qt-eyebrow">PPF ·</span>
-            </span>
-            <span class="qt-tile-name">PPF vs SSY vs FD: Which Government Savings Scheme is Best for You in 2026?</span>
-            <span class="qt-tile-desc">In-depth comparison of PPF, Sukanya Samriddhi Yojana, and Fixed Deposits in India. Compare interest rates, tax benefits, liquidity, lock-in periods, and returns with real calculations for 2026.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 1">
+            <span class="qt-eyebrow">Investment · PPF</span>
+            <h2 class="qt-tile-name"><a href="/blog/ppf-vs-ssy-vs-fd-comparison/" class="qt-tile-link">PPF vs SSY vs FD: Which Government Savings Scheme is Best for You in 2026?</a></h2>
+            <p class="qt-tile-desc">In-depth comparison of PPF, Sukanya Samriddhi Yojana, and Fixed Deposits in India. Compare interest rates, tax benefits, liquidity, lock-in periods, and returns with real calculations for 2026.</p>
             <span class="qt-tile-date mt-auto">28 Apr 2026 · 11 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/wedding-budget-planning-india/" class="qt-tile is-savings qt-reveal" style="--i: 2">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Wedding ·</span><span class="qt-eyebrow">Budget Planning ·</span>
-            </span>
-            <span class="qt-tile-name">Indian Wedding Budget Planning: The Complete 2026 Cost Breakdown</span>
-            <span class="qt-tile-desc">Plan your Indian wedding budget with real cost data by city tier. Complete 2026 breakdown covering venue, catering, photography, clothing, jewellery, and décor with money-saving tips.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 2">
+            <span class="qt-eyebrow">Wedding · Budget Planning</span>
+            <h2 class="qt-tile-name"><a href="/blog/wedding-budget-planning-india/" class="qt-tile-link">Indian Wedding Budget Planning: The Complete 2026 Cost Breakdown</a></h2>
+            <p class="qt-tile-desc">Plan your Indian wedding budget with real cost data by city tier. Complete 2026 breakdown covering venue, catering, photography, clothing, jewellery, and décor with money-saving tips.</p>
             <span class="qt-tile-date mt-auto">20 Apr 2026 · 10 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/smart-strategies-to-pre-pay-home-loan/" class="qt-tile is-loans qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Home Loan ·</span><span class="qt-eyebrow">Pre-payment</span>
-            </span>
-            <span class="qt-tile-name">Smart Strategies to Pre-pay Your Home Loan in India</span>
-            <span class="qt-tile-desc">Discover the best practical strategies to pre-pay your home loan in India. Learn how saving an extra ₹5,000 every month can save you lakhs in interest and reduce your loan tenure by years.</span>
+        <article class="qt-tile is-loans qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Home Loan · Pre-payment</span>
+            <h2 class="qt-tile-name"><a href="/blog/smart-strategies-to-pre-pay-home-loan/" class="qt-tile-link">Smart Strategies to Pre-pay Your Home Loan in India</a></h2>
+            <p class="qt-tile-desc">Discover the best practical strategies to pre-pay your home loan in India. Learn how saving an extra ₹5,000 every month can save you lakhs in interest and reduce your loan tenure by years.</p>
             <span class="qt-tile-date mt-auto">10 Apr 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/new-vs-used-car-loans-2026/" class="qt-tile is-loans qt-reveal" style="--i: 1">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Car Loan ·</span><span class="qt-eyebrow">Automobile</span>
-            </span>
-            <span class="qt-tile-name">New vs Used Car Loans in 2026: Which Makes More Sense?</span>
-            <span class="qt-tile-desc">Understand the financial differences between financing a new car versus a used car in India in 2026. Compare interest rates, depreciation, and RTO taxes to make the smartest automobile purchase.</span>
+        <article class="qt-tile is-loans qt-reveal" style="--i: 1">
+            <span class="qt-eyebrow">Car Loan · Automobile</span>
+            <h2 class="qt-tile-name"><a href="/blog/new-vs-used-car-loans-2026/" class="qt-tile-link">New vs Used Car Loans in 2026: Which Makes More Sense?</a></h2>
+            <p class="qt-tile-desc">Understand the financial differences between financing a new car versus a used car in India in 2026. Compare interest rates, depreciation, and RTO taxes to make the smartest automobile purchase.</p>
             <span class="qt-tile-date mt-auto">8 Apr 2026 · 5 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/beginners-guide-to-sip-investments/" class="qt-tile is-savings qt-reveal" style="--i: 2">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Investment ·</span><span class="qt-eyebrow">SIP ·</span>
-            </span>
-            <span class="qt-tile-name">A Beginner&#39;s Guide to SIP Investments in India</span>
-            <span class="qt-tile-desc">Start your mutual fund investment journey in India with our beginner&#39;s guide to SIPs (Systematic Investment Plans). Understand compounding, risk, and how to start with just ₹500.</span>
+        <article class="qt-tile is-savings qt-reveal" style="--i: 2">
+            <span class="qt-eyebrow">Investment · SIP</span>
+            <h2 class="qt-tile-name"><a href="/blog/beginners-guide-to-sip-investments/" class="qt-tile-link">A Beginner&#39;s Guide to SIP Investments in India</a></h2>
+            <p class="qt-tile-desc">Start your mutual fund investment journey in India with our beginner&#39;s guide to SIPs (Systematic Investment Plans). Understand compounding, risk, and how to start with just ₹500.</p>
             <span class="qt-tile-date mt-auto">5 Apr 2026 · 7 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         
-        <a href="/blog/understanding-indian-tax-system-gst/" class="qt-tile is-tax qt-reveal" style="--i: 0">
-            <span class="flex flex-wrap gap-1.5">
-                <span class="qt-eyebrow">Tax ·</span><span class="qt-eyebrow">Business ·</span>
-            </span>
-            <span class="qt-tile-name">Understanding GST in India: A Practical Guide</span>
-            <span class="qt-tile-desc">A practical guide to GST in India after the GST 2.0 reform of 22 September 2025: the 0%, 5%, 18% and 40% slabs, how CGST, SGST and IGST work, and what it means for consumers and small businesses.</span>
+        <article class="qt-tile is-tax qt-reveal" style="--i: 0">
+            <span class="qt-eyebrow">Tax · Business</span>
+            <h2 class="qt-tile-name"><a href="/blog/understanding-indian-tax-system-gst/" class="qt-tile-link">Understanding GST in India: A Practical Guide</a></h2>
+            <p class="qt-tile-desc">A practical guide to GST in India after the GST 2.0 reform of 22 September 2025: the 0%, 5%, 18% and 40% slabs, how CGST, SGST and IGST work, and what it means for consumers and small businesses.</p>
             <span class="qt-tile-date mt-auto">1 Apr 2026 · 6 min read</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a></div>
+        </article></div>
 </main>
 
 

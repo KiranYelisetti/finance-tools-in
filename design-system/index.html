@@ -78,13 +78,13 @@
 <body class="qt min-h-screen font-sans">
     <header class="qt-header">
     <div class="qt-wrap qt-header-inner">
-        <a href="/" class="qt-brand" aria-label="QuickTools India, home">
+        <a href="/" class="qt-brand">
             <span class="qt-brand-mark" aria-hidden="true">
                 <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
                     <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </span>
-            <span class="qt-brand-name">QuickTools<span class="qt-brand-tag">India</span></span>
+            <span class="qt-brand-name">QuickTools <span class="qt-brand-tag">India</span></span>
         </a>
 
         <nav class="qt-nav" aria-label="Main">
@@ -94,7 +94,7 @@
                     <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
             </div>
-            <a href="/blog/" class="qt-nav-link" >Guides</a>
+            <a href="/blog/" class="qt-nav-link qt-roomy-only" >Guides</a>
             <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
             <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
                 <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -163,6 +163,10 @@
                 
             </div>
             
+            <nav class="qt-menu-more qt-tight-only" aria-label="More pages">
+                <a href="/blog/">Guides</a>
+                <a href="/updates/">Updates</a>
+            </nav>
         </div>
     </div>
 </header>
@@ -610,7 +614,7 @@
         </div>
         <h3 class="qt-h3 mt-10 mb-3">Tool groups</h3>
         <div class="flex flex-wrap gap-3">
-            <span class="qt-sticker is-amounts">.is-amounts · Amounts and words</span><span class="qt-sticker is-loans">.is-loans · Loans</span><span class="qt-sticker is-tax">.is-tax · Tax and salary</span><span class="qt-sticker is-savings">.is-savings · Savings and plans</span><span class="qt-sticker is-everyday">.is-everyday · Everyday</span>
+            <span class="qt-sticker is-amounts max-w-full whitespace-normal">.is-amounts · Amounts and words</span><span class="qt-sticker is-loans max-w-full whitespace-normal">.is-loans · Loans</span><span class="qt-sticker is-tax max-w-full whitespace-normal">.is-tax · Tax and salary</span><span class="qt-sticker is-savings max-w-full whitespace-normal">.is-savings · Savings and plans</span><span class="qt-sticker is-everyday max-w-full whitespace-normal">.is-everyday · Everyday</span>
         </div>
     </section>
 
@@ -655,7 +659,7 @@
         <h2 id="ds-shape" class="qt-h2 mb-6">3. Shape, depth and space</h2>
         <div class="grid gap-5 md:grid-cols-3">
             <div class="qt-card"><p class="font-bold mb-3">Radius</p>
-                <div class="flex gap-3 items-end">
+                <div class="flex flex-wrap gap-3 items-end">
                     <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-sm)"></div>
                     <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-md)"></div>
                     <div class="w-14 h-14 bg-primary border-2 border-line" style="border-radius: var(--qt-r-lg)"></div>
@@ -664,7 +668,7 @@
                 <p class="qt-hint">8, 12, 20 px and pill. Fields use 12, cards 20.</p>
             </div>
             <div class="qt-card"><p class="font-bold mb-3">Hard shadow</p>
-                <div class="flex gap-5 items-end">
+                <div class="flex flex-wrap gap-5 items-end">
                     <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-1)"></div>
                     <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-2)"></div>
                     <div class="w-14 h-14 bg-surface border-2 border-line rounded-md" style="box-shadow: var(--qt-sh-3)"></div>
@@ -672,7 +676,7 @@
                 <p class="qt-hint">2, 4, 7 px offsets, no blur. Pressing a button moves it into its shadow.</p>
             </div>
             <div class="qt-card"><p class="font-bold mb-3">Space</p>
-                <div class="flex gap-2 items-end">
+                <div class="flex flex-wrap gap-2 items-end">
                     <div class="bg-rani-400 border-2 border-line" style="width: 4px; height: 4px"></div><div class="bg-rani-400 border-2 border-line" style="width: 8px; height: 8px"></div><div class="bg-rani-400 border-2 border-line" style="width: 12px; height: 12px"></div><div class="bg-rani-400 border-2 border-line" style="width: 16px; height: 16px"></div><div class="bg-rani-400 border-2 border-line" style="width: 24px; height: 24px"></div><div class="bg-rani-400 border-2 border-line" style="width: 32px; height: 32px"></div><div class="bg-rani-400 border-2 border-line" style="width: 48px; height: 48px"></div>
                 </div>
                 <p class="qt-hint">A 4 px grid: 4, 8, 12, 16, 24, 32, 48. Card padding is fluid, 18 to 30 px.</p>
@@ -774,40 +778,40 @@
         <h2 id="ds-home" class="qt-h2 mb-6">7. Home page pieces</h2>
         <div class="qt-bento">
             
-            <a href="/number-to-words/" class="qt-tile is-amounts">
+            <article class="qt-tile is-amounts">
                 <span class="qt-eyebrow">Amounts and words</span>
-                <span class="qt-tile-name">Number to Words</span>
-                <span class="qt-tile-desc">A tile in the amounts colour.</span>
+                <h3 class="qt-tile-name"><a href="/number-to-words/" class="qt-tile-link">Number to Words</a></h3>
+                <p class="qt-tile-desc">A tile in the amounts colour.</p>
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             
-            <a href="/home-loan-calculator/" class="qt-tile is-loans">
+            <article class="qt-tile is-loans">
                 <span class="qt-eyebrow">Loans</span>
-                <span class="qt-tile-name">Home Loan EMI</span>
-                <span class="qt-tile-desc">A tile in the loans colour.</span>
+                <h3 class="qt-tile-name"><a href="/home-loan-calculator/" class="qt-tile-link">Home Loan EMI</a></h3>
+                <p class="qt-tile-desc">A tile in the loans colour.</p>
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             
-            <a href="/income-tax-calculator/" class="qt-tile is-tax">
+            <article class="qt-tile is-tax">
                 <span class="qt-eyebrow">Tax and salary</span>
-                <span class="qt-tile-name">Income Tax</span>
-                <span class="qt-tile-desc">A tile in the tax colour.</span>
+                <h3 class="qt-tile-name"><a href="/income-tax-calculator/" class="qt-tile-link">Income Tax</a></h3>
+                <p class="qt-tile-desc">A tile in the tax colour.</p>
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             
-            <a href="/sip-calculator/" class="qt-tile is-savings">
+            <article class="qt-tile is-savings">
                 <span class="qt-eyebrow">Savings and plans</span>
-                <span class="qt-tile-name">SIP</span>
-                <span class="qt-tile-desc">A tile in the savings colour.</span>
+                <h3 class="qt-tile-name"><a href="/sip-calculator/" class="qt-tile-link">SIP</a></h3>
+                <p class="qt-tile-desc">A tile in the savings colour.</p>
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             
-            <a href="/age-calculator/" class="qt-tile is-everyday">
+            <article class="qt-tile is-everyday">
                 <span class="qt-eyebrow">Everyday</span>
-                <span class="qt-tile-name">Age Calculator</span>
-                <span class="qt-tile-desc">A tile in the everyday colour.</span>
+                <h3 class="qt-tile-name"><a href="/age-calculator/" class="qt-tile-link">Age Calculator</a></h3>
+                <p class="qt-tile-desc">A tile in the everyday colour.</p>
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             
         </div>
         <div class="flex flex-wrap gap-3 mt-8">
