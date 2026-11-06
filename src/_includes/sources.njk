@@ -1,18 +1,11 @@
 {% if sources %}
-<section class="container mx-auto px-4 max-w-4xl mt-10" aria-labelledby="official-sources">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 p-6 md:p-8 transition-colors duration-200">
-        <h2 id="official-sources" class="text-xl font-bold text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-landmark text-indigo-500 mr-2"></i>Where to verify
-        </h2>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-            The rules and rates used on this page come from these official bodies. Rates and limits change, so confirm the current figure on the official site before you act on a number here.
-        </p>
-        <ul class="space-y-2 text-sm">
+<section class="qt-wrap mt-14" aria-labelledby="official-sources">
+    <div class="qt-aside max-w-[44rem]">
+        <h2 id="official-sources" class="font-serif text-ink text-xl font-semibold mb-1">Where to verify</h2>
+        <p class="mb-3">The rules and rates on this page come from these official bodies. Rates and limits change, so check the current figure on the official site before you act on a number here.</p>
+        <ul class="space-y-1.5">
             {% for s in sources %}
-            <li class="flex items-start">
-                <i class="fas fa-arrow-up-right-from-square text-indigo-500 mt-1 mr-2 text-xs"></i>
-                <span><a href="{{ s.url }}" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">{{ s.name }}</a><span class="text-gray-600 dark:text-gray-300"> for {{ s.for }}</span></span>
-            </li>
+            <li><a href="{{ s.url }}" target="_blank" rel="noopener" class="qt-link">{{ s.name }}</a> for {{ s.for }}</li>
             {% endfor %}
         </ul>
     </div>

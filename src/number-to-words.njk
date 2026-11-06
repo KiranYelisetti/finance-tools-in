@@ -1,6 +1,7 @@
 ---
 title: Number to Words, Lakh and Crore to Numbers | QuickTools India
 layout: base.njk
+noIconFont: true
 date: 2026-09-24
 updated: 2026-11-04
 meta_title: Number to Words, Lakh and Crore to Numbers | QuickTools India
@@ -36,8 +37,7 @@ sources:
     "International format (Millions, Billions)",
     "Cheque writing format",
     "Rupees to words",
-    "Copy to clipboard",
-    "Dark mode support"
+    "Copy to clipboard"
   ],
   "inLanguage": "en-IN",
   "audience": {
@@ -191,355 +191,189 @@ sources:
 </script>
 {% endblock %}
 
-<main class="container mx-auto px-4 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-        <!-- Title -->
-        <div class="text-center mb-4 md:mb-8">
-            <div class="flex items-center justify-center gap-4 mb-2">
-                <div
-                    class="hidden md:flex bg-gradient-to-br from-purple-400 to-purple-600 w-12 h-12 rounded-full items-center justify-center">
-                    <i class="fas fa-spell-check text-xl text-white"></i>
-                </div>
-                <h1 class="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white">Number to Words and Crore to Numbers</h1>
-            </div>
-            <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">Amounts to words, and lakh or crore to digits, with paise</p>
-        </div>
+<main class="qt-wrap pt-6 md:pt-8">
+    <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Number to Words</span></nav>
 
-        <!-- Calculator Card -->
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow-xl border-2 border-gray-900 dark:border-gray-700 p-4 md:p-8 transition-colors duration-200">
-            <!-- Input Section -->
-            <div class="mb-6">
-                <label for="numberInput" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2 text-lg">Enter an amount, or lakh and crore</label>
+    <header class="mt-4 md:mt-7 max-w-3xl">
+        <h1 class="qt-h1">Number to Words, and Lakh or Crore to Numbers</h1>
+        <p class="qt-lede mt-4 hidden sm:block">Type an amount in digits to get the words and the cheque wording. Type 1.5 crore or 270 lakh crore to get the digits. Paise included.</p>
+        <p class="qt-updated mt-3">Updated {{ updated | humanDate }}</p>
+    </header>
+
+    <div class="grid gap-8 lg:gap-12 lg:grid-cols-12 mt-8 items-start">
+        <section class="lg:col-span-7" aria-label="Converter">
+            <div class="qt-sheet p-5 md:p-7">
+                <label for="numberInput" class="qt-label">Amount, in digits or in lakh and crore</label>
                 <input type="text" id="numberInput" value="1500000" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80"
-                    class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:border-purple-500 dark:focus:border-purple-400 focus:outline-none text-2xl font-mono text-center transition-colors"
-                    oninput="convertNumber()" placeholder="1500000, 15,00,000 or 1.5 crore">
-                <div id="answerBox" class="mt-4 rounded-lg bg-purple-700 dark:bg-purple-800 text-white p-4 md:p-5 text-center transition-opacity" aria-live="polite">
-                    <p id="answerMain" class="text-xl md:text-3xl font-bold break-words">Fifteen Lakh Rupees Only</p>
-                    <p id="answerSub" class="mt-1 text-base md:text-lg font-mono break-all">₹15,00,000</p>
-                    <p id="answerMeta" class="mt-1 text-sm text-purple-100">7 digits, 5 zeros · 1 Million 500 Thousand</p>
+                    class="qt-input qt-input-xl" oninput="convertNumber()" placeholder="1500000, 15,00,000 or 1.5 crore">
+                <div id="answerBox" class="qt-slip mt-4 transition-opacity" aria-live="polite">
+                    <p class="qt-answer"><span id="answerMain" class="qt-mark">Fifteen Lakh Rupees Only</span></p>
+                    <p id="answerSub" class="qt-figure text-lg mt-2 break-all">₹15,00,000</p>
+                    <p id="answerMeta" class="text-sm text-muted mt-1">7 digits, 5 zeros · 1 Million 500 Thousand</p>
                 </div>
-                <p id="inputError" class="hidden mt-3 text-center text-sm font-semibold text-red-600 dark:text-red-300"></p>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 text-center">Type digits (1500000, 15,00,000, 1500.50) or words: 1.5 crore, 1 cr 30 lakh, 270 lakh crore, 15 hazar crore, 6 arab, 2.5 million. Up to 99,999 lakh crore.</p>
+                <p id="inputError" class="hidden mt-3 text-sm font-semibold text-stamp"></p>
+                <p class="qt-hint mt-3">Digits (1500000, 15,00,000, 1500.50) or words: 1.5 crore, 1 cr 30 lakh, 270 lakh crore, 15 hazar crore, 6 arab, 2.5 million. Up to 99,999 lakh crore.</p>
+
+                <div class="mt-6">
+                    <p class="qt-kicker mb-2.5">Try</p>
+                    <div class="qt-try">
+                        <button type="button" onclick="setExample('100000')">1 lakh</button>
+                        <button type="button" onclick="setExample('1500000')">15 lakh</button>
+                        <button type="button" onclick="setExample('10000000')">1 crore</button>
+                        <button type="button" onclick="setExample('1.5 crore')">1.5 crore to digits</button>
+                        <button type="button" onclick="setExample('270 lakh crore')">270 lakh crore</button>
+                        <button type="button" onclick="setExample('15 hazar crore')">15 hazar crore</button>
+                        <button type="button" onclick="setExample('2.5 million')">2.5 million</button>
+                        <button type="button" onclick="setExample('1250.75')">1,250.75 with paise</button>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Results Section -->
-            <div class="space-y-4 mb-6">
-                <!-- Indian Format -->
-                <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-lg p-6 transition-colors">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="text-gray-700 dark:text-gray-300 font-semibold flex items-center">
-                            <i class="fas fa-flag text-orange-600 dark:text-orange-400 mr-2"></i>Indian Format (Lakh / Crore)
-                        </p>
-                        <button onclick="copyToClipboard('indianGrouped', event)" aria-label="Copy Indian format" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <p id="indianFormat" class="text-2xl md:text-3xl font-bold text-orange-700 dark:text-orange-300">15 Lakh</p>
-                    <p id="indianGrouped" class="text-lg font-mono text-orange-800 dark:text-orange-200 mt-1">₹15,00,000</p>
+        <section class="lg:col-span-5" aria-label="Every format">
+            <div class="qt-ledger is-stacked">
+                <div class="qt-ledger-row">
+                    <span class="qt-ledger-key">Indian</span>
+                    <span class="qt-ledger-val"><span id="indianFormat">15 Lakh</span><small id="indianGrouped">₹15,00,000</small></span>
+                    <button type="button" class="qt-copy" onclick="copyToClipboard('indianGrouped', event)" aria-label="Copy Indian format">Copy</button>
                 </div>
-
-                <!-- International Format -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-6 transition-colors">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="text-gray-700 dark:text-gray-300 font-semibold flex items-center">
-                            <i class="fas fa-globe text-blue-600 dark:text-blue-400 mr-2"></i>International Format (Million / Billion)
-                        </p>
-                        <button onclick="copyToClipboard('internationalGrouped', event)" aria-label="Copy international format" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <p id="internationalFormat" class="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-300">1 Million 500 Thousand</p>
-                    <p id="internationalGrouped" class="text-lg font-mono text-blue-800 dark:text-blue-200 mt-1">1,500,000</p>
+                <div class="qt-ledger-row">
+                    <span class="qt-ledger-key">International</span>
+                    <span class="qt-ledger-val"><span id="internationalFormat">1 Million 500 Thousand</span><small id="internationalGrouped">1,500,000</small></span>
+                    <button type="button" class="qt-copy" onclick="copyToClipboard('internationalGrouped', event)" aria-label="Copy international format">Copy</button>
                 </div>
-
-                <!-- In Words -->
-                <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-6 border-2 border-purple-300 dark:border-purple-600 transition-colors">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="text-gray-700 dark:text-gray-300 font-semibold flex items-center">
-                            <i class="fas fa-font text-purple-600 dark:text-purple-400 mr-2"></i>In Words (Rupees and Paise)
-                        </p>
-                        <button onclick="copyToClipboard('inWords', event)" aria-label="Copy amount in words" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <p id="inWords" class="text-xl md:text-2xl font-bold text-purple-700 dark:text-purple-300">Fifteen Lakh Rupees Only</p>
+                <div class="qt-ledger-row">
+                    <span class="qt-ledger-key">In words</span>
+                    <span class="qt-ledger-val" id="inWords">Fifteen Lakh Rupees Only</span>
+                    <button type="button" class="qt-copy" onclick="copyToClipboard('inWords', event)" aria-label="Copy amount in words">Copy</button>
                 </div>
-
-                <!-- Cheque Format -->
-                <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-6 transition-colors">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="text-gray-700 dark:text-gray-300 font-semibold flex items-center">
-                            <i class="fas fa-money-check text-green-600 dark:text-green-400 mr-2"></i>Cheque Writing Format
-                        </p>
-                        <button onclick="copyToClipboard('chequeFormat', event)" aria-label="Copy cheque format" class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <p id="chequeFormat" class="text-lg md:text-xl font-semibold text-green-700 dark:text-green-300">Rupees Fifteen Lakh Only</p>
+                <div class="qt-ledger-row">
+                    <span class="qt-ledger-key">On a cheque</span>
+                    <span class="qt-ledger-val" id="chequeFormat">Rupees Fifteen Lakh Only</span>
+                    <button type="button" class="qt-copy" onclick="copyToClipboard('chequeFormat', event)" aria-label="Copy cheque format">Copy</button>
                 </div>
-
-                <!-- International Words -->
-                <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 rounded-lg p-6 transition-colors">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="text-gray-700 dark:text-gray-300 font-semibold flex items-center">
-                            <i class="fas fa-language text-indigo-600 dark:text-indigo-400 mr-2"></i>International Words (Million / Billion)
-                        </p>
-                        <button onclick="copyToClipboard('internationalWords', event)" aria-label="Copy international words" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <p id="internationalWords" class="text-lg md:text-xl font-semibold text-indigo-700 dark:text-indigo-300">One Million Five Hundred Thousand</p>
+                <div class="qt-ledger-row">
+                    <span class="qt-ledger-key">International words</span>
+                    <span class="qt-ledger-val" id="internationalWords">One Million Five Hundred Thousand</span>
+                    <button type="button" class="qt-copy" onclick="copyToClipboard('internationalWords', event)" aria-label="Copy international words">Copy</button>
                 </div>
             </div>
 
-            <!-- Quick Examples -->
-            <div class="mb-6">
-                <p class="text-gray-700 dark:text-gray-300 font-semibold mb-3">Quick Examples:</p>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="setExample('100000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Lakh</button>
-                    <button onclick="setExample('1500000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">15 Lakh</button>
-                    <button onclick="setExample('10000000')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1 Crore</button>
-                    <button onclick="setExample('1.5 crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1.5 crore to digits</button>
-                    <button onclick="setExample('270 lakh crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">270 lakh crore</button>
-                    <button onclick="setExample('15 hazar crore')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">15 hazar crore</button>
-                    <button onclick="setExample('2.5 million')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">2.5 million</button>
-                    <button onclick="setExample('1250.75')" class="px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 rounded-lg text-gray-800 dark:text-white transition">1,250.75 (with paise)</button>
-                </div>
-            </div>
-
-            <!-- Info Section -->
-            <div
-                class="bg-purple-50 dark:bg-purple-900 border-l-4 border-purple-500 dark:border-purple-400 p-4 rounded transition-colors">
-                <h3 class="font-bold text-gray-800 dark:text-white mb-2"><i
-                        class="fas fa-info-circle text-purple-500 dark:text-purple-400 mr-2"></i>Number System Guide</h3>
-                <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
-                    <li><strong>1 Lakh</strong> = 1,00,000 = One Hundred Thousand</li>
-                    <li><strong>1 Crore</strong> = 1,00,00,000 = Ten Million = 100 Lakhs</li>
-                    <li><strong>1 Million</strong> = 10,00,000 = 10 Lakhs</li>
-                    <li><strong>1 Billion</strong> = 100 Crores = 1,000 Million</li>
-                    <li><strong>1 Trillion</strong> = 1 Lakh Crore = 1,000 Billion</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- How the Indian number system works -->
-        <div class="mt-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">How the Indian Number System Works</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                Indian and international numbers use the same digits. What changes is where the commas go and what the groups are called. The international system puts a comma after every three digits: 1,500,000. The Indian system puts the first comma after three digits and then after every two: 15,00,000. Read the Indian version from the left and the words fall out on their own: 15 lakh.
-            </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
-                The reason is the units themselves. English counts in thousands, millions and billions, each a thousand times the last. Indian counting adds two extra stops, the lakh (one hundred thousand) and the crore (ten million), and those are only a hundred times apart. Grouping in twos after the thousands keeps the commas lined up with lakh and crore.
-            </p>
-
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">The same number, two ways</h3>
-            <div class="overflow-x-auto mb-6">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
-                        <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Indian grouping</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Indian words</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">International grouping</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">International words</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000</td><td class="px-4 py-3 border dark:border-gray-500">One thousand</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000</td><td class="px-4 py-3 border dark:border-gray-500">One thousand</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,000</td><td class="px-4 py-3 border dark:border-gray-500">Ten thousand</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,000</td><td class="px-4 py-3 border dark:border-gray-500">Ten thousand</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,000</td><td class="px-4 py-3 border dark:border-gray-500">One lakh</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">100,000</td><td class="px-4 py-3 border dark:border-gray-500">One hundred thousand</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,00,000</td><td class="px-4 py-3 border dark:border-gray-500">Ten lakh</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000,000</td><td class="px-4 py-3 border dark:border-gray-500">One million</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">One crore</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,000,000</td><td class="px-4 py-3 border dark:border-gray-500">Ten million</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">Ten crore</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">100,000,000</td><td class="px-4 py-3 border dark:border-gray-500">One hundred million</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">One hundred crore (one arab)</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000,000,000</td><td class="px-4 py-3 border dark:border-gray-500">One billion</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,000 crore</td><td class="px-4 py-3 border dark:border-gray-500">One lakh crore</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000,000,000,000</td><td class="px-4 py-3 border dark:border-gray-500">One trillion</td></tr>
+            <div class="mt-8">
+                <p class="qt-kicker mb-1">The units at a glance</p>
+                <table class="qt-table">
+                    <tbody>
+                        <tr><td>1 lakh</td><td class="num">1,00,000</td><td>100 thousand</td></tr>
+                        <tr><td>1 crore</td><td class="num">1,00,00,000</td><td>10 million, or 100 lakh</td></tr>
+                        <tr><td>1 million</td><td class="num">10,00,000</td><td>10 lakh</td></tr>
+                        <tr><td>1 billion</td><td class="num">1,00,00,00,000</td><td>100 crore</td></tr>
+                        <tr><td>1 trillion</td><td class="num">1 lakh crore</td><td>1,000 billion</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
-                Where you meet each system: Indian newspapers, the Union Budget and company annual reports use lakh and crore (a budget line of 1.5 lakh crore is 1.5 trillion). Startup funding news, global markets and most software use million and billion. When a US headline says 2 billion dollars, that is 200 crore dollars, and the rupee figure depends on the exchange rate of the day.
-            </p>
-
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Conversion table with the number of zeros</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
-                        <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Unit</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Figure (Indian grouping)</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Zeros</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">Equivalent</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Thousand</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,000</td><td class="px-4 py-3 border dark:border-gray-500">3</td><td class="px-4 py-3 border dark:border-gray-500">One thousand</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Lakh</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,000</td><td class="px-4 py-3 border dark:border-gray-500">5</td><td class="px-4 py-3 border dark:border-gray-500">100 thousand</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Million</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,00,000</td><td class="px-4 py-3 border dark:border-gray-500">6</td><td class="px-4 py-3 border dark:border-gray-500">10 lakh</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Crore</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">7</td><td class="px-4 py-3 border dark:border-gray-500">10 million</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Arab</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">9</td><td class="px-4 py-3 border dark:border-gray-500">100 crore, or 1 billion</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Billion</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">9</td><td class="px-4 py-3 border dark:border-gray-500">100 crore, or 1 arab</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Kharab</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">1,00,00,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">11</td><td class="px-4 py-3 border dark:border-gray-500">10,000 crore, or 100 billion</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-semibold">Trillion</td><td class="px-4 py-3 border dark:border-gray-500 font-mono">10,00,00,00,00,000</td><td class="px-4 py-3 border dark:border-gray-500">12</td><td class="px-4 py-3 border dark:border-gray-500">1 lakh crore</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300">
-                Arab and kharab are common in Hindi and Urdu speech but rare in English documents, which stop at crore and switch to lakh crore for larger amounts. Beyond kharab come neel (10<sup>13</sup>), padma (10<sup>15</sup>) and shankh (10<sup>17</sup>), which you will only meet in traditional texts.
-            </p>
-            <p class="text-gray-600 dark:text-gray-300 mt-4">
-                Reading budget or GDP figures such as 9.8 or 270 lakh crore? The <a href="/lakh-crore-in-numbers/" class="text-purple-700 dark:text-purple-300 underline font-semibold">lakh crore in numbers table</a> has the digits, crore, trillion and zeros for the figures people look up most.
-            </p>
-        </div>
-
-        <!-- Cheque writing -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Writing an Amount in Words on a Cheque</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                A cheque carries the amount twice: in figures in the box on the right and in words on the line below the payee name. The Cheque Writing Format card above gives you the words line ready to copy. A few conventions make the cheque hard to alter and easy for the bank to read:
-            </p>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 mb-6">
-                <li><strong>Start with Rupees and end with Only.</strong> Rupees One Lakh Fifty Thousand Only. The word Only stops anyone from adding to the amount, and it is the form banks expect.</li>
-                <li><strong>Write paise after the rupees.</strong> Rupees One Thousand Five Hundred and Fifty Paise Only, with 1,500.50 in the figures box. If there are no paise, write Only straight after the rupee words.</li>
-                <li><strong>Close the gaps.</strong> Draw a line through any blank space after Only, and write the figures close to the ₹ symbol with /- after them (1,50,000/-) so extra digits cannot be squeezed in.</li>
-                <li><strong>Figures and words must agree.</strong> Section 18 of the Negotiable Instruments Act, 1881 says that when they differ, the amount in words is the amount payable. In practice a mismatched cheque is usually returned unpaid, so read both once more before signing.</li>
-                <li><strong>No corrections.</strong> Under the RBI's CTS-2010 cheque standards, changes to the payee name or to the amount in figures or words are not accepted, even if you countersign them. Cancel the leaf and write a fresh one.</li>
-                <li><strong>Date it right.</strong> A cheque is valid for three months from the date written on it (an RBI instruction in force since 1 April 2012). Write the date in the DD/MM/YYYY boxes printed on the leaf.</li>
-            </ul>
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Examples</h3>
-            <div class="overflow-x-auto mb-4">
-                <table class="w-full text-sm border-collapse">
-                    <thead class="bg-gray-100 dark:bg-gray-600">
-                        <tr>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">In figures</th>
-                            <th class="px-4 py-3 text-left border dark:border-gray-500 text-gray-800 dark:text-gray-200">On the words line</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700 dark:text-gray-300 divide-y divide-gray-200 dark:divide-gray-500">
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">₹500/-</td><td class="px-4 py-3 border dark:border-gray-500">Rupees Five Hundred Only</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">₹1,250.75</td><td class="px-4 py-3 border dark:border-gray-500">Rupees One Thousand Two Hundred Fifty and Seventy Five Paise Only</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">₹1,50,000/-</td><td class="px-4 py-3 border dark:border-gray-500">Rupees One Lakh Fifty Thousand Only</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">₹12,34,567/-</td><td class="px-4 py-3 border dark:border-gray-500">Rupees Twelve Lakh Thirty Four Thousand Five Hundred Sixty Seven Only</td></tr>
-                        <tr><td class="px-4 py-3 border dark:border-gray-500 font-mono">₹2,50,00,000/-</td><td class="px-4 py-3 border dark:border-gray-500">Rupees Two Crore Fifty Lakh Only</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300">
-                Our guide on <a href="/blog/how-to-write-cheques-india/" class="text-purple-600 dark:text-purple-400 underline">how to write a cheque in India</a> walks through the whole leaf, including account payee crossing and where to sign.
-            </p>
-        </div>
-
-        <!-- Invoices -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Amounts in Words on Invoices and GST Bills</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                Most invoice formats print an Amount in Words line under the total, and accounting software fills it automatically. For Indian customers use the lakh and crore form that matches the figures on the bill: Rupees Twelve Lakh Thirty Four Thousand Only against ₹12,34,000. Export invoices are raised in the currency of the contract, so the words follow that currency and the international scale: US Dollars One Million Five Hundred Thousand Only. Keep one system per document; mixing 15 lakh in one line and 1.5 million in the next invites errors.
-            </p>
-            <p class="text-gray-600 dark:text-gray-300">
-                GST invoices are usually rounded to the nearest rupee (the CGST Act allows tax amounts to be rounded off to the nearest rupee), which means the words end with Only and there are no paise to spell out. Use the <a href="/gst-calculator/" class="text-purple-600 dark:text-purple-400 underline">GST calculator</a> to work out the CGST, SGST or IGST split before you write the total in words, and the <a href="/cash-counter/" class="text-purple-600 dark:text-purple-400 underline">cash counter</a> when the payment arrives in notes.
-            </p>
-        </div>
-
-        <!-- Common mistakes -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Common Mistakes</h2>
-            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                <li><strong>1.5 lakh is not 15 lakh.</strong> 1.5 lakh is 1,50,000; 15 lakh is 15,00,000. Decimal shorthand is fine in conversation, but write the full figure on documents.</li>
-                <li><strong>Lakh, not lac.</strong> Both are understood, but lakh is the spelling in RBI and government usage and the one to put on official paperwork.</li>
-                <li><strong>1.5 crore is 15 million, not 1.5 million.</strong> 1.5 million is only 15 lakh. Converting between the systems is where most reporting errors creep in, so check the zeros with the table above.</li>
-                <li><strong>Hundred and one, or hundred one?</strong> Both forms appear on Indian cheques and both are read the same way. This converter leaves out the and inside the rupee amount and reserves it for the paise, which keeps the words unambiguous.</li>
-                <li><strong>Lakh or lakhs?</strong> On the words line the singular is conventional (Fifteen Lakh Rupees), just as you would write Fifteen Thousand and not Fifteen Thousands.</li>
-                <li><strong>Forgetting Only.</strong> Without it, a blank space at the end of the line is an invitation to add words.</li>
-            </ul>
-        </div>
-
-        <!-- Spreadsheets -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Indian Grouping in Excel and Google Sheets</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                Spreadsheets default to grouping in threes, and neither Excel nor Google Sheets has a built-in number to words function, which is why this page exists. For the commas, a custom number format switches a column to lakh and crore grouping:
-            </p>
-            <pre class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg p-4 text-sm overflow-x-auto mb-4"><code>[&gt;=10000000]##\,##\,##\,##0;[&gt;=100000]##\,##\,##0;##,##0</code></pre>
-            <p class="text-gray-600 dark:text-gray-300">
-                In Excel, select the cells, open Format Cells, pick Custom and paste the code. In Google Sheets, use Format, then Number, then Custom number format. The three sections handle crores, lakhs and smaller numbers in turn. Setting the Windows regional format to English (India) also makes Excel apply Indian grouping to its standard number formats.
-            </p>
-        </div>
-
-        <!-- FAQ -->
-        <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-lg border-2 border-gray-900 dark:border-gray-700 p-8 transition-colors duration-200">
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How many zeros are in a lakh?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">A lakh has 5 zeros. 1 lakh = 1,00,000, which is one hundred thousand in the international system.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How many lakhs make a crore?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">100 lakhs make 1 crore. 1 crore = 1,00,00,000, which is ten million in the international system.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How do you write 1.5 crore in numbers?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1.5 crore is 1,50,00,000 in Indian grouping, which is one crore fifty lakh. In the international system it is 15,000,000, or 15 million. Type 1.5 crore in the box above to see it.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How many zeros are in 1 lakh crore?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">One lakh crore has 12 zeros: 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system. That is one trillion, so 270 lakh crore is 270 trillion.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How do you write rupees in words on a cheque?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Start with the word Rupees, spell out the amount, and end with Only. For ₹1,50,000 write Rupees One Lakh Fifty Thousand Only, then draw a line through the leftover space so nothing can be added.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How do you write paise on a cheque?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Write the rupee part first, then the word and, then the paise. For ₹1,500.50 write Rupees One Thousand Five Hundred and Fifty Paise Only. If the amount has no paise, write Only straight after the rupee words.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        What happens if the amount in words and figures on a cheque do not match?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Under Section 18 of the Negotiable Instruments Act, 1881, the amount written in words is the amount ordered to be paid. Many banks simply return such a cheque unpaid, so check both before you sign.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        Is it lakh or lac?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Both spellings are understood, but lakh is the spelling used by the Reserve Bank of India and government departments. Use lakh on cheques, invoices and official forms.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        How much is 1 million in lakhs, and 1 billion in crores?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">1 million = 10 lakh (10,00,000) and 1 billion = 100 crore (1,00,00,00,000). Going the other way, 1 crore = 10 million and 1 lakh crore = 1 trillion.</p>
-                </details>
-                <details class="group bg-gray-50 dark:bg-gray-600 rounded-lg p-4 cursor-pointer">
-                    <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">
-                        What is the difference between the Indian and the international number system?
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The Indian system groups digits as 3, then 2, 2, 2 from the right and uses thousand, lakh and crore (1,00,00,000). The international system groups digits in threes and uses thousand, million and billion (10,000,000). The digits are the same, only the commas and the words change.</p>
-                </details>
-            </div>
-        </div>
+        </section>
     </div>
+
+    <article class="qt-article mt-4">
+        <h2>How the Indian number system works</h2>
+        <p>Indian and international numbers use the same digits. What changes is where the commas go and what the groups are called. The international system puts a comma after every three digits: 1,500,000. The Indian system puts the first comma after three digits and then after every two: 15,00,000. Read the Indian version from the left and the words fall out on their own: 15 lakh.</p>
+        <p>The reason is the units themselves. English counts in thousands, millions and billions, each a thousand times the last. Indian counting adds two extra stops, the lakh (one hundred thousand) and the crore (ten million), and those are only a hundred times apart. Grouping in twos after the thousands keeps the commas lined up with lakh and crore.</p>
+
+        <h3>The same number, two ways</h3>
+        <div class="qt-scroll">
+            <table class="qt-table">
+                <thead><tr><th>Indian grouping</th><th>Indian words</th><th>International grouping</th><th>International words</th></tr></thead>
+                <tbody>
+                    <tr><td class="fig">1,000</td><td>One thousand</td><td class="fig">1,000</td><td>One thousand</td></tr>
+                    <tr><td class="fig">10,000</td><td>Ten thousand</td><td class="fig">10,000</td><td>Ten thousand</td></tr>
+                    <tr><td class="fig">1,00,000</td><td>One lakh</td><td class="fig">100,000</td><td>One hundred thousand</td></tr>
+                    <tr><td class="fig">10,00,000</td><td>Ten lakh</td><td class="fig">1,000,000</td><td>One million</td></tr>
+                    <tr><td class="fig">1,00,00,000</td><td>One crore</td><td class="fig">10,000,000</td><td>Ten million</td></tr>
+                    <tr><td class="fig">10,00,00,000</td><td>Ten crore</td><td class="fig">100,000,000</td><td>One hundred million</td></tr>
+                    <tr><td class="fig">1,00,00,00,000</td><td>One hundred crore (one arab)</td><td class="fig">1,000,000,000</td><td>One billion</td></tr>
+                    <tr><td class="fig">1,00,000 crore</td><td>One lakh crore</td><td class="fig">1,000,000,000,000</td><td>One trillion</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Where you meet each system: Indian newspapers, the Union Budget and company annual reports use lakh and crore (a budget line of 1.5 lakh crore is 1.5 trillion). Startup funding news, global markets and most software use million and billion. When a US headline says 2 billion dollars, that is 200 crore dollars, and the rupee figure depends on the exchange rate of the day.</p>
+
+        <h3>Conversion table with the number of zeros</h3>
+        <div class="qt-scroll">
+            <table class="qt-table">
+                <thead><tr><th>Unit</th><th>Figure (Indian grouping)</th><th>Zeros</th><th>Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Thousand</strong></td><td class="fig">1,000</td><td class="fig">3</td><td>One thousand</td></tr>
+                    <tr><td><strong>Lakh</strong></td><td class="fig">1,00,000</td><td class="fig">5</td><td>100 thousand</td></tr>
+                    <tr><td><strong>Million</strong></td><td class="fig">10,00,000</td><td class="fig">6</td><td>10 lakh</td></tr>
+                    <tr><td><strong>Crore</strong></td><td class="fig">1,00,00,000</td><td class="fig">7</td><td>10 million</td></tr>
+                    <tr><td><strong>Arab</strong></td><td class="fig">1,00,00,00,000</td><td class="fig">9</td><td>100 crore, or 1 billion</td></tr>
+                    <tr><td><strong>Billion</strong></td><td class="fig">1,00,00,00,000</td><td class="fig">9</td><td>100 crore, or 1 arab</td></tr>
+                    <tr><td><strong>Kharab</strong></td><td class="fig">1,00,00,00,00,000</td><td class="fig">11</td><td>10,000 crore, or 100 billion</td></tr>
+                    <tr><td><strong>Trillion</strong></td><td class="fig">10,00,00,00,00,000</td><td class="fig">12</td><td>1 lakh crore</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Arab and kharab are common in Hindi and Urdu speech but rare in English documents, which stop at crore and switch to lakh crore for larger amounts. Beyond kharab come neel (10<sup>13</sup>), padma (10<sup>15</sup>) and shankh (10<sup>17</sup>), which you will only meet in traditional texts.</p>
+        <p>Reading budget or GDP figures such as 9.8 or 270 lakh crore? The <a href="/lakh-crore-in-numbers/">lakh crore in numbers table</a> has the digits, crore, trillion and zeros for the figures people look up most.</p>
+
+        <h2>Writing an amount in words on a cheque</h2>
+        <p>A cheque carries the amount twice: in figures in the box on the right and in words on the line below the payee name. The "On a cheque" line above gives you the words ready to copy. A few conventions make the cheque hard to alter and easy for the bank to read:</p>
+        <ul>
+            <li><strong>Start with Rupees and end with Only.</strong> Rupees One Lakh Fifty Thousand Only. The word Only stops anyone from adding to the amount, and it is the form banks expect.</li>
+            <li><strong>Write paise after the rupees.</strong> Rupees One Thousand Five Hundred and Fifty Paise Only, with 1,500.50 in the figures box. If there are no paise, write Only straight after the rupee words.</li>
+            <li><strong>Close the gaps.</strong> Draw a line through any blank space after Only, and write the figures close to the ₹ symbol with /- after them (1,50,000/-) so extra digits cannot be squeezed in.</li>
+            <li><strong>Figures and words must agree.</strong> Section 18 of the Negotiable Instruments Act, 1881 says that when they differ, the amount in words is the amount payable. In practice a mismatched cheque is usually returned unpaid, so read both once more before signing.</li>
+            <li><strong>No corrections.</strong> Under the RBI's CTS-2010 cheque standards, changes to the payee name or to the amount in figures or words are not accepted, even if you countersign them. Cancel the leaf and write a fresh one.</li>
+            <li><strong>Date it right.</strong> A cheque is valid for three months from the date written on it (an RBI instruction in force since 1 April 2012). Write the date in the DD/MM/YYYY boxes printed on the leaf.</li>
+        </ul>
+        <h3>Examples</h3>
+        <div class="qt-scroll">
+            <table class="qt-table">
+                <thead><tr><th>In figures</th><th>On the words line</th></tr></thead>
+                <tbody>
+                    <tr><td class="fig">₹500/-</td><td>Rupees Five Hundred Only</td></tr>
+                    <tr><td class="fig">₹1,250.75</td><td>Rupees One Thousand Two Hundred Fifty and Seventy Five Paise Only</td></tr>
+                    <tr><td class="fig">₹1,50,000/-</td><td>Rupees One Lakh Fifty Thousand Only</td></tr>
+                    <tr><td class="fig">₹12,34,567/-</td><td>Rupees Twelve Lakh Thirty Four Thousand Five Hundred Sixty Seven Only</td></tr>
+                    <tr><td class="fig">₹2,50,00,000/-</td><td>Rupees Two Crore Fifty Lakh Only</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Our guide on <a href="/blog/how-to-write-cheques-india/">how to write a cheque in India</a> walks through the whole leaf, including account payee crossing and where to sign.</p>
+
+        <h2>Amounts in words on invoices and GST bills</h2>
+        <p>Most invoice formats print an Amount in Words line under the total, and accounting software fills it automatically. For Indian customers use the lakh and crore form that matches the figures on the bill: Rupees Twelve Lakh Thirty Four Thousand Only against ₹12,34,000. Export invoices are raised in the currency of the contract, so the words follow that currency and the international scale: US Dollars One Million Five Hundred Thousand Only. Keep one system per document. Mixing 15 lakh in one line and 1.5 million in the next invites errors.</p>
+        <p>GST invoices are usually rounded to the nearest rupee (the CGST Act allows tax amounts to be rounded off to the nearest rupee), which means the words end with Only and there are no paise to spell out. Use the <a href="/gst-calculator/">GST calculator</a> to work out the CGST, SGST or IGST split before you write the total in words, and the <a href="/cash-counter/">cash counter</a> when the payment arrives in notes.</p>
+
+        <h2>Common mistakes</h2>
+        <ul>
+            <li><strong>1.5 lakh is not 15 lakh.</strong> 1.5 lakh is 1,50,000, while 15 lakh is 15,00,000. Decimal shorthand is fine in conversation, but write the full figure on documents.</li>
+            <li><strong>Lakh, not lac.</strong> Both are understood, but lakh is the spelling in RBI and government usage and the one to put on official paperwork.</li>
+            <li><strong>1.5 crore is 15 million, not 1.5 million.</strong> 1.5 million is only 15 lakh. Converting between the systems is where most reporting errors creep in, so check the zeros with the table above.</li>
+            <li><strong>Hundred and one, or hundred one?</strong> Both forms appear on Indian cheques and both are read the same way. This converter leaves out the and inside the rupee amount and keeps it for the paise, which keeps the words unambiguous.</li>
+            <li><strong>Lakh or lakhs?</strong> On the words line the singular is conventional (Fifteen Lakh Rupees), just as you would write Fifteen Thousand and not Fifteen Thousands.</li>
+            <li><strong>Forgetting Only.</strong> Without it, a blank space at the end of the line is an invitation to add words.</li>
+        </ul>
+
+        <h2>Indian grouping in Excel and Google Sheets</h2>
+        <p>Spreadsheets default to grouping in threes, and neither Excel nor Google Sheets has a built-in number to words function, which is why this page exists. For the commas, a custom number format switches a column to lakh and crore grouping:</p>
+        <pre><code>[&gt;=10000000]##\,##\,##\,##0;[&gt;=100000]##\,##\,##0;##,##0</code></pre>
+        <p>In Excel, select the cells, open Format Cells, pick Custom and paste the code. In Google Sheets, use Format, then Number, then Custom number format. The three sections handle crores, lakhs and smaller numbers in turn. Setting the Windows regional format to English (India) also makes Excel apply Indian grouping to its standard number formats.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            <details><summary>How many zeros are in a lakh?</summary><p>A lakh has 5 zeros. 1 lakh = 1,00,000, which is one hundred thousand in the international system.</p></details>
+            <details><summary>How many lakhs make a crore?</summary><p>100 lakhs make 1 crore. 1 crore = 1,00,00,000, which is ten million in the international system.</p></details>
+            <details><summary>How do you write 1.5 crore in numbers?</summary><p>1.5 crore is 1,50,00,000 in Indian grouping, which is one crore fifty lakh. In the international system it is 15,000,000, or 15 million. Type 1.5 crore in the box above to see it.</p></details>
+            <details><summary>How many zeros are in 1 lakh crore?</summary><p>One lakh crore has 12 zeros: 10,00,00,00,00,000 in Indian grouping, or 1,000,000,000,000 in the international system. That is one trillion, so 270 lakh crore is 270 trillion.</p></details>
+            <details><summary>How do you write rupees in words on a cheque?</summary><p>Start with the word Rupees, spell out the amount, and end with Only. For ₹1,50,000 write Rupees One Lakh Fifty Thousand Only, then draw a line through the leftover space so nothing can be added.</p></details>
+            <details><summary>How do you write paise on a cheque?</summary><p>Write the rupee part first, then the word and, then the paise. For ₹1,500.50 write Rupees One Thousand Five Hundred and Fifty Paise Only. If the amount has no paise, write Only straight after the rupee words.</p></details>
+            <details><summary>What happens if the amount in words and figures on a cheque do not match?</summary><p>Under Section 18 of the Negotiable Instruments Act, 1881, the amount written in words is the amount ordered to be paid. Many banks simply return such a cheque unpaid, so check both before you sign.</p></details>
+            <details><summary>Is it lakh or lac?</summary><p>Both spellings are understood, but lakh is the spelling used by the Reserve Bank of India and government departments. Use lakh on cheques, invoices and official forms.</p></details>
+            <details><summary>How much is 1 million in lakhs, and 1 billion in crores?</summary><p>1 million = 10 lakh (10,00,000) and 1 billion = 100 crore (1,00,00,00,000). Going the other way, 1 crore = 10 million and 1 lakh crore = 1 trillion.</p></details>
+            <details><summary>What is the difference between the Indian and the international number system?</summary><p>The Indian system groups digits as 3, then 2, 2, 2 from the right and uses thousand, lakh and crore (1,00,00,000). The international system groups digits in threes and uses thousand, million and billion (10,000,000). The digits are the same, only the commas and the words change.</p></details>
+        </div>
+    </article>
 </main>
 
 {% block scripts %}
@@ -577,6 +411,11 @@ sources:
         }
         setText('answerMeta', meta);
 
+        // Let the fresh answer settle in like ink (CSS skips this for reduced motion)
+        box.classList.remove('qt-ink');
+        void box.offsetWidth;
+        box.classList.add('qt-ink');
+
         setText('indianFormat', r.indianFormat);
         setText('indianGrouped', '₹' + r.indianGrouped);
         setText('internationalFormat', r.internationalFormat);
@@ -607,11 +446,11 @@ sources:
     function copyToClipboard(elementId, event) {
         trackCalculatorUsage('Number to Words', document.getElementById('numberInput').value);
         var text = document.getElementById(elementId).textContent;
+        var button = event.target.closest('button');
         navigator.clipboard.writeText(text).then(function () {
-            var button = event.target.closest('button');
-            var originalHTML = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i>';
-            setTimeout(function () { button.innerHTML = originalHTML; }, 1000);
+            button.textContent = 'Copied';
+            button.classList.add('is-done');
+            setTimeout(function () { button.textContent = 'Copy'; button.classList.remove('is-done'); }, 1200);
         });
     }
 

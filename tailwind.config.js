@@ -15,7 +15,22 @@ module.exports = {
         { pattern: /dark:border-(emerald|teal|cyan|amber)-(50|100|200|300|400|500|600|700|800|900)/ },
     ],
     theme: {
-        extend: {},
+        extend: {
+            // The ledger palette: paper, ink, bank green and stamp red. Everything else is a shade of these.
+            colors: {
+                paper: "#F4F0E6",
+                sheet: "#FFFDF7",
+                ink: "#1C1A16",
+                muted: "#635C50",
+                rule: "#DCD3C1",
+                bank: { DEFAULT: "#1E5B47", dark: "#164536" },
+                stamp: "#A3261B",
+            },
+            fontFamily: {
+                serif: ['"Source Serif 4"', "Georgia", "Cambria", '"Times New Roman"', "serif"],
+                sans: ["system-ui", "-apple-system", '"Segoe UI"', "Roboto", '"Noto Sans"', '"Helvetica Neue"', "Arial", "sans-serif"],
+            },
+        },
         container: {
             center: true,
             padding: '1rem',

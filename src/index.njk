@@ -1,8 +1,9 @@
 ---
 layout: base.njk
+noIconFont: true
 title: QuickTools India - Free Online Calculators & Tools
 meta_title: QuickTools India - Free Online Calculators & Tools
-meta_description: "Free online calculators for India: Home Loan EMI Calculator with pre-payment, Car Loan Calculator with on-road price, SIP Calculator, GST Calculator, Cash Counter, Number to Words converter. Fast, private, and mobile-friendly tools."
+meta_description: "Free calculators for Indian money: home loan EMI with prepayment, income tax old vs new regime, salary in-hand, GST, SIP, PPF, cash counter and number to words with cheque wording."
 meta_keywords: "home loan EMI calculator, car loan calculator India, SIP calculator India, GST calculator, PPF calculator, SSY calculator, cash counter, denomination counter, number to words, lakh crore converter, loan calculator, age calculator, mutual fund calculator, tax calculator India, online tools India, free calculators"
 json_ld:
   "@context": "https://schema.org"
@@ -22,562 +23,87 @@ json_ld:
       height: 630
 ---
 
-<!-- Hero Section -->
-<section class="container mx-auto px-4 py-8 md:py-12">
-    <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Your Go-To Indian Calculator
-            Hub</h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Fast, free, and easy-to-use online
-            calculators and tools
-            designed for India. No registration required!</p>
+<main class="qt-wrap pt-10 md:pt-16">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-14 items-start">
+        <section class="lg:col-span-7 lg:pt-4">
+            <p class="qt-kicker mb-5">Calculators for Indian money</p>
+            <h1 class="qt-h1 max-w-[17ch]">Loans, tax, savings and amounts in words, worked out the Indian way.</h1>
+            <p class="qt-lede mt-6">Lakh and crore, the old and new tax regimes, the GST 2.0 rates, cheque wording. The sums run in your browser, and pages that depend on a rule or a rate link to the official source and say when they last changed.</p>
+        </section>
+
+        <section class="lg:col-span-5 w-full" aria-labelledby="quick-words">
+            <div class="qt-sheet p-5 md:p-6">
+                <label id="quick-words" for="homeAmount" class="qt-label">Amount in words</label>
+                <input id="homeAmount" type="text" value="15,00,000" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80"
+                    class="qt-input qt-input-xl" placeholder="15,00,000 or 1.5 crore" oninput="homeConvert()">
+                <div class="qt-slip mt-4" aria-live="polite">
+                    <p class="qt-answer"><span id="homeWords" class="qt-mark">Fifteen Lakh Rupees Only</span></p>
+                    <p id="homeDigits" class="qt-figure text-muted mt-2">₹15,00,000, or 1.5 million</p>
+                    <p id="homeError" class="hidden mt-2 text-sm font-semibold text-stamp"></p>
+                </div>
+                <p class="mt-4 text-sm"><a id="homeMore" class="qt-link" href="/number-to-words/">Cheque wording and every format</a></p>
+            </div>
+        </section>
     </div>
 
-    <!-- Featured EMI & Loan Calculators Section -->
-    <div class="mb-16 max-w-6xl mx-auto">
-        <div class="text-center mb-8">
-            <div
-                class="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-2 rounded-full font-bold text-sm mb-4">
-                <i class="fas fa-fire mr-2"></i>Most Popular - EMI & Loan Calculators
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">Calculate Your Dream
-                Purchase</h3>
-            <p class="text-gray-600 dark:text-gray-300">Home loans, car loans - plan your EMI with pre-payment
-                strategies</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Home Loan Calculator - Featured -->
-            <a href="/home-loan-calculator/"
-                class="relative bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 p-8 border-2 border-orange-200 dark:border-orange-800 group overflow-hidden">
-                <div
-                    class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    HIGH VALUE
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div
-                        class="bg-gradient-to-br from-orange-500 to-red-600 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                        <i class="fas fa-home text-2xl text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Home Loan EMI Calculator
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Calculate EMI, tax benefits (up to
-                            ₹3.5L/year), and see how pre-payment can save lakhs in interest!</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span
-                                class="bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-xs px-2 py-1 rounded">Pre-payment
-                                Impact</span>
-                            <span
-                                class="bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-xs px-2 py-1 rounded">Tax
-                                Benefits</span>
-                            <span
-                                class="bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-xs px-2 py-1 rounded">All
-                                Banks</span>
-                        </div>
-                        <div
-                            class="text-orange-600 dark:text-orange-400 font-bold group-hover:text-orange-800 dark:group-hover:text-orange-300 flex items-center">
-                            Calculate Now <i
-                                class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Car Loan Calculator - Featured -->
-            <a href="/car-loan-calculator/"
-                class="relative bg-gradient-to-br from-red-50 to-pink-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 p-8 border-2 border-red-200 dark:border-red-800 group overflow-hidden">
-                <div
-                    class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    HIGH VALUE
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div
-                        class="bg-gradient-to-br from-red-500 to-pink-600 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                        <i class="fas fa-car text-2xl text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Car Loan EMI Calculator
-                        </h4>
-                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Calculate EMI, on-road price with
-                            RTO tax, insurance, and accessories. Compare new vs used car loans!</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span
-                                class="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 text-xs px-2 py-1 rounded">On-Road
-                                Price</span>
-                            <span
-                                class="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 text-xs px-2 py-1 rounded">New
-                                & Used</span>
-                            <span
-                                class="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 text-xs px-2 py-1 rounded">Total
-                                Cost</span>
-                        </div>
-                        <div
-                            class="text-red-600 dark:text-red-400 font-bold group-hover:text-red-800 dark:group-hover:text-red-300 flex items-center">
-                            Calculate Now <i
-                                class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- All Tools Grid -->
-    <div class="text-center mb-8">
-        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">More Financial & Utility Tools</h3>
-        <p class="text-gray-600 dark:text-gray-300">Investment planning, tax calculations, and everyday utilities
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <!-- SIP Calculator Card -->
-        <a href="/sip-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-green-400 to-green-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-chart-line text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">SIP Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Calculate your mutual fund returns with SIP
-                    investments</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- GST Calculator Card -->
-        <a href="/gst-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-blue-400 to-blue-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-percentage text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">GST Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Add or remove GST from any amount instantly</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Age Calculator Card -->
-        <a href="/age-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-purple-400 to-purple-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-calendar-alt text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Age Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Calculate exact age in years, months, and days
-                </p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Image Resizer Card -->
-        <a href="/image-resizer/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-orange-400 to-orange-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-image text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Image Resizer</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Resize and convert images instantly in your
-                    browser</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Study Abroad Calculator Card -->
-        <a href="/study-abroad-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-red-400 to-red-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-graduation-cap text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Study Abroad Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Sending child to USA/UK? See REAL cost - parents
-                    are shocked!</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Wedding Cost Calculator Card -->
-        <a href="/wedding-cost-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-pink-400 to-rose-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-heart text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Wedding Cost Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">₹20 lakhs wedding today = ₹50 lakhs in 10 years!
-                    Start planning your budget now!</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- SSY Calculator Card -->
-        <a href="/ssy-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-cyan-400 to-teal-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-piggy-bank text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">SSY Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Sukanya Samriddhi Yojana - Secure your
-                    daughter's future with 8.2% tax-free returns</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- PPF Calculator Card -->
-        <a href="/ppf-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-orange-400 to-amber-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-lock text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">PPF Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Public Provident Fund - Build retirement corpus
-                    with 7.1% tax-free interest</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Home Loan Calculator Card -->
-        <a href="/home-loan-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-orange-500 to-red-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-home text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Home Loan Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Calculate EMI, interest, pre-payment impact and
-                    tax benefits for your dream home</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Car Loan Calculator Card -->
-        <a href="/car-loan-calculator/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-red-500 to-pink-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-car text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Car Loan Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Calculate EMI, on-road price, and total cost for
-                    your new or used car</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Cash Counter (New) -->
-        <a href="/cash-counter/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-green-500 to-teal-500 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-money-bill-wave text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Cash Counter</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Tally your daily cash / Galla with Indian
-                    denominations (2000, 500, 200, 100)</p>
-                <div
-                    class="mt-4 text-green-600 dark:text-green-400 font-semibold group-hover:text-green-800 dark:group-hover:text-green-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Number to Words (New) -->
-        <a href="/number-to-words/"
-            class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-indigo-500 to-purple-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-font text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Number to Words</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Convert numbers to "Lakhs/Crores" and words for
-                    cheque writing</p>
-                <div
-                    class="mt-4 text-indigo-600 dark:text-indigo-400 font-semibold group-hover:text-indigo-800 dark:group-hover:text-indigo-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Income Tax Calculator (NEW) -->
-        <a href="/income-tax-calculator/"
-            class="relative bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="absolute top-3 right-3 bg-emerald-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</div>
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-emerald-400 to-green-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-file-invoice-dollar text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Income Tax Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Compare the old and new regimes for FY 2025-26 and FY 2026-27 and see which one costs you less.</p>
-                <div
-                    class="mt-4 text-emerald-600 dark:text-emerald-400 font-semibold group-hover:text-emerald-800 dark:group-hover:text-emerald-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- Salary Calculator (NEW) -->
-        <a href="/salary-calculator/"
-            class="relative bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="absolute top-3 right-3 bg-teal-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</div>
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-teal-400 to-cyan-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-wallet text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Salary Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">CTC to In-Hand, See your real take-home pay after PF, Tax & deductions</p>
-                <div
-                    class="mt-4 text-teal-600 dark:text-teal-400 font-semibold group-hover:text-teal-800 dark:group-hover:text-teal-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-
-        <!-- EMI Prepayment Calculator (NEW) -->
-        <a href="/emi-prepayment-calculator/"
-            class="relative bg-white dark:bg-gray-700 rounded-xl shadow-lg border-2 border-gray-900 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-6 group">
-            <div class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</div>
-            <div class="flex flex-col items-center text-center">
-                <div
-                    class="bg-gradient-to-br from-amber-400 to-yellow-600 w-20 h-20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-piggy-bank text-3xl text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">EMI Prepayment Calculator</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">See how extra payments save lakhs in interest and close your loan years early</p>
-                <div
-                    class="mt-4 text-amber-600 dark:text-amber-400 font-semibold group-hover:text-amber-800 dark:group-hover:text-amber-300">
-                    Try Now <i class="fas fa-arrow-right ml-1"></i>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <!-- Why Use Our Loan Calculators - Comparison Section -->
-    <div
-        class="mt-16 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-8 max-w-6xl mx-auto">
-        <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
-            Why Our Loan Calculators Are Better?
-        </h3>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
-                <thead class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-                    <tr>
-                        <th class="px-6 py-4 text-left font-semibold">Feature</th>
-                        <th class="px-6 py-4 text-center font-semibold">QuickTools India</th>
-                        <th class="px-6 py-4 text-center font-semibold">Basic Calculators</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Pre-payment Impact
-                            Calculator</td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Tax Benefits Calculator
-                            (Sec 24b, 80C, 80EEA)</td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">On-Road Price Breakdown
-                        </td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Real-Life Examples with
-                            Scenarios</td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Current Bank Rates (SBI,
-                            HDFC, ICICI)</td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Educational Content & Tips
-                        </td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800 dark:text-white">Dark Mode Support</td>
-                        <td class="px-6 py-4 text-center"><i
-                                class="fas fa-check-circle text-green-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-times-circle text-red-500 text-2xl"></i>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 dark:bg-opacity-20">
-                        <td class="px-6 py-4 font-bold text-gray-800 dark:text-white">No Registration Required</td>
-                        <td class="px-6 py-4 text-center"><i class="fas fa-star text-yellow-500 text-2xl"></i></td>
-                        <td class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 text-sm">Often Required</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Quick Money Facts Section -->
-    <div
-        class="mt-16 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-8 max-w-6xl mx-auto">
-        <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-800 dark:text-white mb-2">
-            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Did You Know?
-        </h3>
-        <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Money-saving facts every Indian should know</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
-                <div class="text-4xl font-bold text-orange-600 mb-2">₹19 Lakhs+</div>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    Average interest saved on a ₹50 Lac home loan by pre-paying just ₹1 Lac yearly from Year 2!
-                </p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-red-500">
-                <div class="text-4xl font-bold text-red-600 mb-2">15-25%</div>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    On-road price is typically 15-25% higher than ex-showroom price due to RTO tax and insurance!
-                </p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-green-500">
-                <div class="text-4xl font-bold text-green-600 mb-2">₹3.5 Lakhs</div>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">
-                    Maximum annual tax deduction for first-time home buyers (Sec 24b + 80C + 80EEA combined)!
-                </p>
+    <section class="qt-index mt-16 md:mt-24" aria-label="All tools">
+        {% for g in tools %}
+        <div class="grid gap-3 lg:grid-cols-12 lg:gap-14 {% if not loop.first %}mt-10{% endif %}">
+            <h2 class="lg:col-span-3 lg:pt-3">{{ g.group }}</h2>
+            <div class="lg:col-span-9 border-t-[1.5px] border-ink">
+                {% for t in g.tools %}
+                {% set changed = collections.all | lastChanged(t.url) %}
+                <a href="{{ t.url }}" class="qt-index-row">
+                    <span class="qt-index-name">{{ t.name }}</span>
+                    <span class="qt-index-desc">{{ t.desc }}</span>
+                    <span class="qt-index-date">{% if changed %}Updated {{ changed | humanDate }}{% endif %}</span>
+                </a>
+                {% endfor %}
             </div>
         </div>
-    </div>
+        {% endfor %}
+    </section>
 
-    <!-- Features Section -->
-    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div class="text-center">
-            <i class="fas fa-bolt text-4xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-            <h4 class="font-bold text-gray-800 dark:text-white mb-2">Lightning Fast</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">All calculations happen instantly in your browser
-            </p>
+    <section class="grid gap-3 lg:grid-cols-12 lg:gap-14 mt-16 md:mt-24">
+        <h2 class="lg:col-span-3 font-serif text-[1.35rem] font-semibold lg:pt-1">How these tools are kept right</h2>
+        <div class="lg:col-span-9 qt-article">
+            <p>Tax slabs, GST rates and small-savings interest rates change every year or every quarter, so a calculator is only as good as its last check. When a rule changes, the page that uses it is updated and the change is written down on the <a href="/updates/">updates page</a>, with the date.</p>
+            <p>Where a page depends on a rule, it links to the body that sets it: the Income Tax Department, the GST Council, the Reserve Bank of India or the Ministry of Finance for small-savings rates. The figures here are for planning. Before you sign a loan or file a return, confirm the numbers with the lender or a tax professional.</p>
+            <p>Found a figure that looks wrong? Write to <a href="mailto:quicktoolsindiaa@gmail.com">quicktoolsindiaa@gmail.com</a> and it will be checked.</p>
         </div>
-        <div class="text-center">
-            <i class="fas fa-shield-alt text-4xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-            <h4 class="font-bold text-gray-800 dark:text-white mb-2">100% Private</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Your data never leaves your device</p>
-        </div>
-        <div class="text-center">
-            <i class="fas fa-mobile-alt text-4xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-            <h4 class="font-bold text-gray-800 dark:text-white mb-2">Mobile Friendly</h4>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Works perfectly on all devices</p>
-        </div>
-    </div>
+    </section>
+</main>
 
-    <!-- SEO Content Section -->
-    <div class="mt-16 bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Free Online Calculators for India</h2>
-
-        <div class="space-y-4 text-gray-600 dark:text-gray-300">
-            <p>
-                <strong>QuickTools India</strong> provides comprehensive financial calculators and everyday tools
-                designed specifically for Indian users. Our most popular tools help you make informed decisions
-                about major life purchases and investments.
-            </p>
-
-            <div
-                class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-600 dark:to-gray-600 p-6 rounded-lg my-6">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">EMI & Loan Calculators - Our
-                    Premium Tools</h3>
-                <ul class="space-y-2">
-                    <li><i class="fas fa-home text-orange-600 mr-2"></i><strong>Home Loan EMI Calculator:</strong>
-                        Calculate your monthly EMI, see the impact of pre-payment strategies, and understand tax
-                        benefits up to ₹3.5 Lakhs per year under Section 24(b), 80C, and 80EEA. Our calculator shows
-                        you how paying an extra ₹50,000 yearly can save lakhs in interest!</li>
-                    <li><i class="fas fa-car text-red-600 mr-2"></i><strong>Car Loan Calculator:</strong> Get
-                        complete on-road price breakdown including RTO tax, insurance, and accessories. Compare new
-                        vs used car loan rates and understand the total cost of ownership. Our tool helps you avoid
-                        getting "underwater" on your car loan.</li>
-                </ul>
-            </div>
-
-            <p>
-                Beyond loan calculators, we offer comprehensive tools for wealth building: <strong>SIP
-                    Calculator</strong> for mutual fund planning, <strong>PPF Calculator</strong> for retirement
-                corpus with 7.1% tax-free returns, <strong>SSY Calculator</strong> for your daughter's future with
-                8.2% interest, and <strong>Study Abroad Calculator</strong> to plan international education costs.
-            </p>
-
-            <p>
-                For business and everyday use: <strong>GST Calculator</strong> with the GST 2.0 rates (0%, 5%, 18% and 40%, plus the older 12% and 28% for past invoices), <strong>Cash Counter</strong> for tallying currency denominations (perfect for shopkeepers),
-                <strong>Number to Words Converter</strong> for cheque writing and converting numbers to Lakhs/Crores format,
-                <strong>Age Calculator</strong> for precise age computation, and <strong>Wedding Cost
-                    Calculator</strong> to plan your dream wedding with inflation projections.
-            </p>
-
-            <p class="font-semibold text-gray-800 dark:text-white">
-                All tools work directly in your browser with no registration required. Fast, secure, private, and
-                completely free. Your data never leaves your device.
-            </p>
-        </div>
-    </div>
-</section>
-
+{% block scripts %}
+<script src="/js/number-words.js"></script>
+<script>
+    function homeConvert() {
+        var value = document.getElementById('homeAmount').value;
+        var r = NumberWords.convert(value);
+        var err = document.getElementById('homeError');
+        var words = document.getElementById('homeWords');
+        var digits = document.getElementById('homeDigits');
+        if (r.empty || r.error) {
+            err.textContent = r.error || '';
+            err.classList.toggle('hidden', !r.error);
+            words.parentElement.style.opacity = '.35';
+            return;
+        }
+        err.classList.add('hidden');
+        words.parentElement.style.opacity = '';
+        // Digits typed: show the words. Lakh or crore typed: show the digits.
+        if (r.hasUnits) {
+            words.textContent = '₹' + r.indianGrouped;
+            digits.textContent = r.inWords;
+        } else {
+            words.textContent = r.inWords;
+            digits.textContent = '₹' + r.indianGrouped + ', or ' + r.internationalFormat.toLowerCase();
+        }
+        words.parentElement.classList.remove('qt-ink');
+        void words.parentElement.offsetWidth;
+        words.parentElement.classList.add('qt-ink');
+        document.getElementById('homeMore').href = '/number-to-words/?n=' + encodeURIComponent(value.trim());
+    }
+    homeConvert();
+</script>
+{% endblock %}
