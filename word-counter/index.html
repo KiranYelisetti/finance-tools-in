@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225082715542003"
+         crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3255KS80R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-C3255KS80R');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Word Counter: Words, Characters, Reading Time and Limits</title>
+    <meta name="description" content="Count words, characters with and without spaces, sentences and paragraphs as you type. See reading and speaking time, the words you repeat most, and how your text fits an X post, an SMS or a YouTube title. Nothing is uploaded.">
+    
+    <meta name="keywords" content="word counter, character counter, word count online, character count with spaces, reading time calculator, sms character counter, tweet character counter, words per minute">
+    
+    <meta name="author" content="QuickTools Plus">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.quicktoolsplus.com/word-counter/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.quicktoolsplus.com/word-counter/">
+    <meta property="og:title" content="Word Counter: Words, Characters, Sentences and Reading Time">
+    <meta property="og:description" content="Count words, characters with and without spaces, sentences and paragraphs as you type. See reading and speaking time, the words you repeat most, and how your text fits an X post, an SMS or a YouTube title. Nothing is uploaded.">
+    <meta property="og:image" content="https://www.quicktoolsplus.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Word Counter: Words, Characters, Sentences and Reading Time">
+    <meta property="og:site_name" content="QuickTools Plus">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.quicktoolsplus.com/word-counter/">
+    <meta name="twitter:title" content="Word Counter: Words, Characters, Sentences and Reading Time">
+    <meta name="twitter:description" content="Count words, characters with and without spaces, sentences and paragraphs as you type. See reading and speaking time, the words you repeat most, and how your text fits an X post, an SMS or a YouTube title. Nothing is uploaded.">
+    <meta name="twitter:image" content="https://www.quicktoolsplus.com/og-image.png">
+    <meta name="twitter:image:alt" content="Word Counter: Words, Characters, Sentences and Reading Time">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
+    <script>
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+
+    
+
+    
+</head>
+
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools <span class="qt-brand-tag">Plus</span></span>
+        </a>
+
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link qt-roomy-only" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
+
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+                <a href="/word-counter/" aria-current="page">Word Counter</a>
+                
+                <a href="/qr-code-generator/" >QR Code Generator</a>
+                
+                <a href="/jpg-to-pdf/" >JPG to PDF</a>
+                
+                <a href="/merge-pdf/" >Merge PDF</a>
+                
+            </div>
+            
+            <nav class="qt-menu-more qt-tight-only" aria-label="More pages">
+                <a href="/blog/">Guides</a>
+                <a href="/updates/">Updates</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Word Counter",
+  "url": "https://www.quicktoolsplus.com/word-counter/",
+  "description": "Counts words, characters, sentences and paragraphs as you type, with reading time, speaking time, the most used words and common character limits. Runs in the browser.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "inLanguage": "en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does this counter decide what a word is?", "acceptedAnswer": { "@type": "Answer", "text": "A word is any run of characters between spaces that contains at least one letter or digit. That is the rule Microsoft Word uses, so e.g., 3.5 and well-known count as one word each, and a dash standing on its own is not counted. Chinese and Japanese are written without spaces, so each of their characters counts as one word." } },
+    { "@type": "Question", "name": "Does it count spaces as characters?", "acceptedAnswer": { "@type": "Answer", "text": "Both numbers are shown. Characters includes spaces and line breaks, which is how X, SMS and most forms count a limit. Characters without spaces leaves out every space, tab and line break, which some essay guidelines ask for." } },
+    { "@type": "Question", "name": "How is reading time worked out?", "acceptedAnswer": { "@type": "Answer", "text": "Word count divided by a reading speed. The default is 238 words a minute, the average silent reading rate for English non-fiction found in a 2019 review of 190 studies by Marc Brysbaert. Fiction is read a little faster and technical text slower, so change the speed if you know your readers." } },
+    { "@type": "Question", "name": "Why does the SMS line say Unicode and fewer characters per message?", "acceptedAnswer": { "@type": "Answer", "text": "A text message holds 160 characters only when every character is in the basic GSM alphabet. One character outside it, such as a Hindi letter, most emoji or a curly quote pasted from a word processor, switches the whole message to Unicode, which holds 70 characters, or 67 per part when the message is split." } },
+    { "@type": "Question", "name": "Is my text saved or sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. The counting runs in your browser as you type. The text is not uploaded, not stored and not shared with the analytics on this site. Close or reload the tab and it is gone. Only the reading speeds you set are remembered on your device." } },
+    { "@type": "Question", "name": "Why does X show a different count from this page?", "acceptedAnswer": { "@type": "Answer", "text": "X weighs characters. Every link counts as 23 characters whatever its length, and Chinese, Japanese and Korean characters and many emoji count as two. This page counts each character once, so for a post close to 280 characters, check the count X shows before posting." } },
+    { "@type": "Question", "name": "Can I count words in a PDF or a Word file?", "acceptedAnswer": { "@type": "Answer", "text": "Open the file, select all the text, copy it and paste it into the box. Page numbers, headers and footnotes come along with the paste, so the total can be a little higher than the body text alone." } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.quicktoolsplus.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Word Counter", "item": "https://www.quicktoolsplus.com/word-counter/" }
+  ]
+}
+</script>
+
+
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>Word Counter</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-everyday">Everyday</span>
+            <span class="qt-stamp">Updated 7 Nov 2026</span>
+        </div>
+        <h1 class="qt-h1 mt-4">Word Counter</h1>
+        <p class="qt-lede mt-4">Type or paste text to count words, characters, sentences and paragraphs as you go, with reading time and the limits that matter for posts, messages and titles. The text stays in your browser.</p>
+    </section>
+
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-7 min-w-0" aria-label="Your text">
+            <div class="qt-card">
+                <label for="text" class="qt-label">Your text</label>
+                <textarea id="text" class="qt-input mt-2" rows="14" spellcheck="true" placeholder="Type or paste your text here"></textarea>
+                <div class="flex flex-wrap gap-3 mt-4">
+                    <button type="button" id="copyStats" class="qt-btn qt-btn--sm">Copy the counts</button>
+                    <button type="button" id="clearText" class="qt-btn qt-btn--secondary qt-btn--sm">Clear the text</button>
+                </div>
+                <p class="qt-hint mt-3">Counts update as you type. Nothing is uploaded or saved.</p>
+            </div>
+
+            <div class="qt-card mt-7">
+                <h2 class="qt-card-title">Character limits</h2>
+                <p class="qt-hint mb-3">Measured against the characters count, spaces included.</p>
+                <div class="qt-rows is-stacked" id="limits">
+                    <div class="qt-row"><span class="qt-row-key">SMS</span><span class="qt-row-val" id="smsInfo">0 messages</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lg:col-span-5 min-w-0" aria-label="Counts">
+            <div class="qt-card is-everyday" aria-live="polite">
+                <p class="qt-eyebrow">Words</p>
+                <p class="qt-big mt-1" id="words">0</p>
+                <div class="qt-well mt-5">
+                <div class="qt-rows">
+                    <div class="qt-row"><span class="qt-row-key">Characters</span><span class="qt-row-val" id="characters">0</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Without spaces</span><span class="qt-row-val" id="charactersNoSpaces">0</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Sentences</span><span class="qt-row-val" id="sentences">0</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Paragraphs</span><span class="qt-row-val" id="paragraphs">0</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Reading time</span><span class="qt-row-val" id="readingTime">0 sec</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Speaking time</span><span class="qt-row-val" id="speakingTime">0 sec</span></div>
+                    <div class="qt-row"><span class="qt-row-key">Average word</span><span class="qt-row-val" id="avgWordLength">0 characters</span></div>
+                </div>
+                </div>
+            </div>
+
+            <div class="qt-card mt-7">
+                <h2 class="qt-card-title">Most used words</h2>
+                <label class="qt-check mt-3" for="skipCommon"><input type="checkbox" id="skipCommon" checked><span>Leave out common words such as the, and, of</span></label>
+                <p id="topEmpty" class="qt-hint mt-3">Words you use more than once appear here.</p>
+                <div class="qt-table-wrap mt-3" id="topWrap" hidden>
+                    <table class="qt-table">
+                        <thead><tr><th scope="col">Word</th><th scope="col" class="num">Times</th><th scope="col" class="num">Share</th></tr></thead>
+                        <tbody id="topWords"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="qt-card mt-7">
+                <h2 class="qt-card-title">Reading and speaking speed</h2>
+                <div class="qt-fields mt-3">
+                    <div>
+                        <label for="readWpm" class="qt-label">Reading, words a minute</label>
+                        <input type="number" id="readWpm" class="qt-input" min="50" max="1500" step="1" value="238" inputmode="numeric">
+                        <p class="qt-hint">238 is the average for silent reading of English non-fiction (Brysbaert, 2019).</p>
+                    </div>
+                    <div>
+                        <label for="speakWpm" class="qt-label">Speaking, words a minute</label>
+                        <input type="number" id="speakWpm" class="qt-input" min="50" max="400" step="1" value="140" inputmode="numeric">
+                        <p class="qt-hint">140 is an assumption for an unhurried talk. Time yourself reading a paragraph aloud and put your own pace here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <article class="qt-prose qt-section">
+        <h2>How the counts work</h2>
+        <p>Word counters disagree more than you might expect, because each one has its own idea of a word. This page follows the rule Microsoft Word uses: a word is a run of characters between spaces that contains at least one letter or digit. That keeps the count close to what a teacher, an editor or a publisher will see when they open your file. A number such as 3.5 or ₹1,50,000 is one word. Hyphenated words such as well-known and short forms such as e.g. are one word. A dash or a bullet standing on its own between spaces is not a word at all.</p>
+        <p>Characters are counted the way a reader sees them. An emoji built from several pieces, such as a family or a thumbs up with a skin tone, counts as one character, and so does a Hindi letter with its vowel sign. Spaces and line breaks are included in the main character count because that is how text boxes, messages and social posts measure their limits. The second figure leaves out every space and line break for guidelines that ask for characters without spaces.</p>
+        <p>Sentences are counted at full stops, question marks, exclamation marks and the Hindi danda when a space or a line break follows. A decimal point inside 3.5 does not end a sentence, but an abbreviation such as Dr. followed by a name does, so treat the sentence count as a close guide rather than an exact figure. Paragraphs are the lines that contain text, which is how Word counts them too.</p>
+
+        <h3>Reading time and speaking time</h3>
+        <p>Reading time is the word count divided by a reading speed. The default of 238 words a minute comes from a 2019 review of 190 reading studies by the psychologist Marc Brysbaert, which put the average silent reading rate for English non-fiction at that figure and fiction at 260. Readers going through dense or technical text, or reading in a second language, go slower, so lower the speed for a legal summary or a lesson and raise it for a light blog post.</p>
+        <p>Speaking time works the same way with a speaking pace. People talk at very different speeds, so the default of 140 words a minute is only a starting point for a calm talk. The quickest way to find your own pace is to read one paragraph from this box aloud at your normal speed, time it, and divide the word count by the minutes it took. Put that number in the speaking box and the estimate for a speech, a video script or a presentation becomes your own.</p>
+
+        <h3>Character limits worth knowing</h3>
+        <ul>
+            <li><strong>X posts:</strong> 280 characters on a standard account. X counts every link as 23 characters and counts Chinese, Japanese and Korean characters and many emoji as two, so a post near the limit can read differently there.</li>
+            <li><strong>Text messages:</strong> 160 characters in one message when every character is in the basic GSM alphabet, and 153 per part once a message is split. A single character outside that alphabet, including Hindi script, most emoji and curly quotes copied from a word processor, switches the message to Unicode, which holds 70 characters, or 67 per part. The SMS line shows which one your text needs.</li>
+            <li><strong>Search result descriptions:</strong> search engines trim the description under a result by its width on screen, not by a fixed count. Around 155 characters is a common target that usually shows in full.</li>
+            <li><strong>YouTube titles:</strong> up to 100 characters. <strong>Instagram captions:</strong> up to 2,200 characters.</li>
+        </ul>
+
+        <h3>Using the most used words list</h3>
+        <p>The list shows words you have used more than once, with how often and what share of all your words they make up. With common words left out, it becomes a quick check for repetition. If one word appears far more often than the rest, try a synonym or rephrase a sentence. It also works the other way for web pages: the topic you want a page to rank for should appear naturally, without being stuffed into every sentence.</p>
+
+        <h3>Your text stays private</h3>
+        <p>Everything on this page runs in your browser. The text you type or paste is not uploaded, not stored and not sent to the analytics on this site, so drafts, assignments and confidential notes are safe to paste. Close or reload the tab and the text is gone. The only things kept on your device are the two speed settings and the common words choice.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            <details><summary>How does this counter decide what a word is?</summary><p>A word is any run of characters between spaces that contains at least one letter or digit. That is the rule Microsoft Word uses, so e.g., 3.5 and well-known count as one word each, and a dash standing on its own is not counted. Chinese and Japanese are written without spaces, so each of their characters counts as one word.</p></details>
+            <details><summary>Does it count spaces as characters?</summary><p>Both numbers are shown. Characters includes spaces and line breaks, which is how X, SMS and most forms count a limit. Characters without spaces leaves out every space, tab and line break, which some essay guidelines ask for.</p></details>
+            <details><summary>How is reading time worked out?</summary><p>Word count divided by a reading speed. The default is 238 words a minute, the average silent reading rate for English non-fiction found in a 2019 review of 190 studies by Marc Brysbaert. Fiction is read a little faster and technical text slower, so change the speed if you know your readers.</p></details>
+            <details><summary>Why does the SMS line say Unicode and fewer characters per message?</summary><p>A text message holds 160 characters only when every character is in the basic GSM alphabet. One character outside it, such as a Hindi letter, most emoji or a curly quote pasted from a word processor, switches the whole message to Unicode, which holds 70 characters, or 67 per part when the message is split.</p></details>
+            <details><summary>Is my text saved or sent anywhere?</summary><p>No. The counting runs in your browser as you type. The text is not uploaded, not stored and not shared with the analytics on this site. Close or reload the tab and it is gone. Only the reading speeds you set are remembered on your device.</p></details>
+            <details><summary>Why does X show a different count from this page?</summary><p>X weighs characters. Every link counts as 23 characters whatever its length, and Chinese, Japanese and Korean characters and many emoji count as two. This page counts each character once, so for a post close to 280 characters, check the count X shows before posting.</p></details>
+            <details><summary>Can I count words in a PDF or a Word file?</summary><p>Open the file, select all the text, copy it and paste it into the box. Page numbers, headers and footnotes come along with the paste, so the total can be a little higher than the body text alone.</p></details>
+            
+        </div>
+    </article>
+    </div>
+</main>
+
+
+<script src="/js/calc/word-count.js"></script>
+<script>
+(function () {
+    var WC = QTCalc.wordCount;
+    var box = document.getElementById('text');
+    var readWpm = document.getElementById('readWpm');
+    var speakWpm = document.getElementById('speakWpm');
+    var skipCommon = document.getElementById('skipCommon');
+    var limitsBox = document.getElementById('limits');
+    var smsRow = document.getElementById('smsInfo').parentNode;
+    var fmt = function (n) { return Number(n).toLocaleString('en-IN'); };
+    var pace = function (input, fallback) {
+        var v = Math.round(Number(input.value));
+        return v >= 50 && v <= 1500 ? v : fallback;
+    };
+    var last = null;
+
+    // Settings are remembered on this device. The text itself never is.
+    try {
+        var saved = JSON.parse(localStorage.getItem('qt_word_counter') || '{}');
+        if (saved.readWpm) readWpm.value = saved.readWpm;
+        if (saved.speakWpm) speakWpm.value = saved.speakWpm;
+        if (typeof saved.skipCommon === 'boolean') skipCommon.checked = saved.skipCommon;
+    } catch (e) { /* private mode */ }
+    function saveSettings() {
+        try { localStorage.setItem('qt_word_counter', JSON.stringify({ readWpm: readWpm.value, speakWpm: speakWpm.value, skipCommon: skipCommon.checked })); } catch (e) { /* ignore */ }
+    }
+
+    // Build the limit rows once
+    var limitRows = {};
+    WC.LIMITS.forEach(function (l) {
+        var row = document.createElement('div');
+        row.className = 'qt-row';
+        row.innerHTML = '<span class="qt-row-key"></span><span class="qt-row-val"></span>';
+        row.firstChild.textContent = l.label + (l.soft ? ', about ' : ', ') + fmt(l.max);
+        row.lastChild.id = 'limit-' + l.key;
+        limitsBox.insertBefore(row, smsRow.parentNode === limitsBox ? smsRow : null);
+        limitRows[l.key] = row.lastChild;
+    });
+
+    function render() {
+        var a = WC.analyse(box.value, { readWpm: pace(readWpm, WC.READ_WPM), speakWpm: pace(speakWpm, WC.SPEAK_WPM), skipCommon: skipCommon.checked, top: 10 });
+        last = a;
+        document.getElementById('words').textContent = fmt(a.words);
+        document.getElementById('characters').textContent = fmt(a.characters);
+        document.getElementById('charactersNoSpaces').textContent = fmt(a.charactersNoSpaces);
+        document.getElementById('sentences').textContent = fmt(a.sentences);
+        document.getElementById('paragraphs').textContent = fmt(a.paragraphs);
+        document.getElementById('readingTime').textContent = a.reading.text;
+        document.getElementById('speakingTime').textContent = a.speaking.text;
+        document.getElementById('avgWordLength').textContent = a.averageWordLength + ' characters';
+
+        a.limits.forEach(function (l) {
+            var el = limitRows[l.key];
+            el.textContent = fmt(l.used) + ' of ' + fmt(l.max) + ', ' + (l.over ? fmt(-l.left) + ' over' : fmt(l.left) + ' left');
+            el.classList.toggle('text-danger', l.over);
+        });
+        var s = a.sms;
+        document.getElementById('smsInfo').textContent = s.parts === 0 ? '0 messages'
+            : s.parts + (s.parts === 1 ? ' message' : ' messages') + ', ' + (s.encoding === 'GSM-7' ? 'standard text, ' : 'Unicode, ') + s.perPart + ' characters per ' + (s.parts === 1 ? 'message' : 'part');
+
+        var tbody = document.getElementById('topWords');
+        tbody.textContent = '';
+        a.top.forEach(function (t) {
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td'); td1.textContent = t.word;
+            var td2 = document.createElement('td'); td2.className = 'num'; td2.textContent = fmt(t.count);
+            var td3 = document.createElement('td'); td3.className = 'num'; td3.textContent = (t.share * 100).toFixed(1) + '%';
+            tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+            tbody.appendChild(tr);
+        });
+        document.getElementById('topWrap').hidden = a.top.length === 0;
+        document.getElementById('topEmpty').hidden = a.top.length > 0;
+    }
+
+    // One count per frame, so pasting a long text or holding a key down stays smooth
+    var queued = false;
+    function schedule() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () { queued = false; render(); });
+    }
+
+    box.addEventListener('input', schedule);
+    [readWpm, speakWpm].forEach(function (el) { el.addEventListener('input', function () { saveSettings(); schedule(); }); });
+    skipCommon.addEventListener('change', function () { saveSettings(); render(); });
+    document.getElementById('clearText').addEventListener('click', function () { box.value = ''; render(); box.focus(); });
+    document.getElementById('copyStats').addEventListener('click', function (ev) {
+        if (!last) render();
+        var a = last;
+        var lines = ['Words: ' + fmt(a.words), 'Characters: ' + fmt(a.characters), 'Characters without spaces: ' + fmt(a.charactersNoSpaces),
+            'Sentences: ' + fmt(a.sentences), 'Paragraphs: ' + fmt(a.paragraphs), 'Reading time: ' + a.reading.text, 'Speaking time: ' + a.speaking.text];
+        if (window.qt && qt.copy) qt.copy(lines.join('\n'), ev.currentTarget);
+        else if (navigator.clipboard) navigator.clipboard.writeText(lines.join('\n'));
+    });
+    render();
+})();
+</script>
+
+
+
+    
+
+
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
+            </div>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li><li><a href="/word-counter/">Word Counter</a></li><li><a href="/qr-code-generator/">QR Code Generator</a></li><li><a href="/jpg-to-pdf/">JPG to PDF</a></li><li><a href="/merge-pdf/">Merge PDF</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools Plus. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
+        </div>
+    </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
+</footer>
+
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
+
+<script>
+    // Tools menu
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        const btn = document.getElementById('dropdownToggleBtn');
+        const isHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+    }
+
+    function closeDropdown() {
+        document.getElementById('dropdownMenu').classList.add('hidden');
+        document.getElementById('dropdownToggleBtn')?.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('toolsDropdown');
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDropdown();
+    });
+</script>
+
+
+    <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
+
+    
+</body>
+</html>

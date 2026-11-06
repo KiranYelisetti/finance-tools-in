@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225082715542003"
+         crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3255KS80R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-C3255KS80R');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>JPG to PDF: Turn Photos and Images into One PDF</title>
+    <meta name="description" content="Turn JPG and PNG images into one PDF in your browser. Put the pages in order, choose A4, US Letter or the image size, portrait or landscape and a margin. Phone photos come out upright. Nothing is uploaded.">
+    
+    <meta name="keywords" content="jpg to pdf, image to pdf, png to pdf, photos to pdf, convert jpg to pdf, combine images into pdf, jpg to pdf without upload">
+    
+    <meta name="author" content="QuickTools Plus">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.quicktoolsplus.com/jpg-to-pdf/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.quicktoolsplus.com/jpg-to-pdf/">
+    <meta property="og:title" content="JPG to PDF Converter: Images to One PDF, A4 or Letter, No Upload">
+    <meta property="og:description" content="Turn JPG and PNG images into one PDF in your browser. Put the pages in order, choose A4, US Letter or the image size, portrait or landscape and a margin. Phone photos come out upright. Nothing is uploaded.">
+    <meta property="og:image" content="https://www.quicktoolsplus.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="JPG to PDF Converter: Images to One PDF, A4 or Letter, No Upload">
+    <meta property="og:site_name" content="QuickTools Plus">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.quicktoolsplus.com/jpg-to-pdf/">
+    <meta name="twitter:title" content="JPG to PDF Converter: Images to One PDF, A4 or Letter, No Upload">
+    <meta name="twitter:description" content="Turn JPG and PNG images into one PDF in your browser. Put the pages in order, choose A4, US Letter or the image size, portrait or landscape and a margin. Phone photos come out upright. Nothing is uploaded.">
+    <meta name="twitter:image" content="https://www.quicktoolsplus.com/og-image.png">
+    <meta name="twitter:image:alt" content="JPG to PDF Converter: Images to One PDF, A4 or Letter, No Upload">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#13100D" media="(prefers-color-scheme: dark)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Theme before first paint: saved choice, else the device setting. Adds .js so reveals only hide content when JS runs. -->
+    <script>
+        (function () {
+            var d = document.documentElement; d.classList.add('js');
+            try {
+                var t = localStorage.getItem('qt-theme');
+                if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) d.classList.add('dark');
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Design system build (src/css/ds, docs/DESIGN-SYSTEM.md) -->
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+
+    
+
+    
+</head>
+
+<body class="qt min-h-screen font-sans">
+    <header class="qt-header">
+    <div class="qt-wrap qt-header-inner">
+        <a href="/" class="qt-brand">
+            <span class="qt-brand-mark" aria-hidden="true">
+                <svg width="22" height="22" viewBox="6 6 20 22" focusable="false">
+                    <path d="M10 9.5H22M10 14H22M13.2 9.5c6.4 0 6.4 8.6 0 8.6H10.6l8.6 6.9" fill="none" stroke="#16120E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="qt-brand-name">QuickTools <span class="qt-brand-tag">Plus</span></span>
+        </a>
+
+        <nav class="qt-nav" aria-label="Main">
+            <div id="toolsDropdown">
+                <button type="button" class="qt-nav-link" onclick="toggleDropdown()" id="dropdownToggleBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownMenu">
+                    Tools
+                    <svg class="qt-caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.2l3.5 3.6 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+            <a href="/blog/" class="qt-nav-link qt-roomy-only" >Guides</a>
+            <a href="/updates/" class="qt-nav-link qt-wide-only" >Updates</a>
+            <button type="button" class="qt-theme" id="themeToggle" aria-label="Switch to night mode" title="Day or night">
+                <svg class="is-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <svg class="is-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+            </button>
+        </nav>
+    </div>
+
+    <div id="dropdownMenu" class="qt-menu hidden" role="region" aria-label="All tools">
+        <div class="qt-wrap qt-menu-grid">
+            
+            <div class="qt-menu-group is-amounts">
+                <h3>Amounts and words</h3>
+                
+                <a href="/number-to-words/" >Number to Words</a>
+                
+                <a href="/lakh-crore-in-numbers/" >Lakh Crore in Numbers</a>
+                
+                <a href="/cash-counter/" >Cash Counter</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-loans">
+                <h3>Loans</h3>
+                
+                <a href="/home-loan-calculator/" >Home Loan EMI</a>
+                
+                <a href="/car-loan-calculator/" >Car Loan</a>
+                
+                <a href="/emi-prepayment-calculator/" >EMI Prepayment</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-tax">
+                <h3>Tax and salary</h3>
+                
+                <a href="/income-tax-calculator/" >Income Tax</a>
+                
+                <a href="/salary-calculator/" >Salary, CTC to In-hand</a>
+                
+                <a href="/gst-calculator/" >GST</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-savings">
+                <h3>Savings and plans</h3>
+                
+                <a href="/sip-calculator/" >SIP</a>
+                
+                <a href="/ppf-calculator/" >PPF</a>
+                
+                <a href="/ssy-calculator/" >Sukanya Samriddhi</a>
+                
+                <a href="/study-abroad-calculator/" >Study Abroad</a>
+                
+                <a href="/wedding-cost-calculator/" >Wedding Cost</a>
+                
+            </div>
+            
+            <div class="qt-menu-group is-everyday">
+                <h3>Everyday</h3>
+                
+                <a href="/age-calculator/" >Age Calculator</a>
+                
+                <a href="/image-resizer/" >Image Resizer</a>
+                
+                <a href="/word-counter/" >Word Counter</a>
+                
+                <a href="/qr-code-generator/" >QR Code Generator</a>
+                
+                <a href="/jpg-to-pdf/" aria-current="page">JPG to PDF</a>
+                
+                <a href="/merge-pdf/" >Merge PDF</a>
+                
+            </div>
+            
+            <nav class="qt-menu-more qt-tight-only" aria-label="More pages">
+                <a href="/blog/">Guides</a>
+                <a href="/updates/">Updates</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JPG to PDF",
+  "url": "https://www.quicktoolsplus.com/jpg-to-pdf/",
+  "description": "Turns JPG, PNG and other images into one PDF in the browser, with page order, page size, orientation and margin choices. Nothing is uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "inLanguage": "en-IN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Are my photos uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The PDF is built by your browser with an open-source library called pdf-lib, which runs on this page. Your images never leave your device, which is why the tool works even after you switch off the internet once the page has loaded." } },
+    { "@type": "Question", "name": "Does converting reduce the quality of my photos?", "acceptedAnswer": { "@type": "Answer", "text": "Usually not at all. JPG and PNG files are placed into the PDF exactly as they are, without being compressed again. Only photos that need turning upright, and formats a PDF cannot hold such as WebP or GIF, are redrawn and saved as high quality JPEG first." } },
+    { "@type": "Question", "name": "Should I pick A4 or Letter?", "acceptedAnswer": { "@type": "Answer", "text": "A4 is the standard paper size in India and most of the world, and it is what government portals, banks and colleges in India expect. US Letter is slightly wider and shorter and is the standard in the United States and Canada. Fit to image makes every page exactly the size of its picture, with no white border unless you add a margin." } },
+    { "@type": "Question", "name": "Why was my phone photo sideways in other converters?", "acceptedAnswer": { "@type": "Answer", "text": "Phones often save a photo sideways and add a small tag that tells viewers to turn it. Many converters ignore the tag. This page reads it and turns the picture upright before it goes into the PDF." } },
+    { "@type": "Question", "name": "How do I make the PDF smaller for an upload limit?", "acceptedAnswer": { "@type": "Answer", "text": "The PDF is roughly the size of the images inside it. Resize or compress the photos first with the Image Resizer, then convert them here. Choosing fewer pages or cropping out empty space helps too." } },
+    { "@type": "Question", "name": "Can I convert iPhone HEIC photos?", "acceptedAnswer": { "@type": "Answer", "text": "Safari can read HEIC, so on an iPhone or a Mac the photos convert directly. Most other browsers cannot open HEIC, and the page tells you which files it could not read. Set the iPhone camera to Most Compatible, or share the photo as JPG, and it will work everywhere." } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.quicktoolsplus.com/" },
+    { "@type": "ListItem", "position": 2, "name": "JPG to PDF", "item": "https://www.quicktoolsplus.com/jpg-to-pdf/" }
+  ]
+}
+</script>
+
+
+<main>
+    <section class="qt-wrap qt-toolhead">
+        <nav class="qt-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Everyday</span><span aria-hidden="true">/</span><span>JPG to PDF</span></nav>
+        <div class="flex flex-wrap items-center gap-3 mt-5">
+            <span class="qt-sticker is-everyday">Everyday</span>
+            <span class="qt-stamp">Updated 7 Nov 2026</span>
+        </div>
+        <h1 class="qt-h1 mt-4">JPG to PDF</h1>
+        <p class="qt-lede mt-4">Turn one photo or a stack of them into a single PDF. Put the pages in order, pick the paper size, and download. Everything happens in your browser.</p>
+    </section>
+
+    <div class="qt-wrap">
+    <div class="grid gap-7 lg:gap-8 lg:grid-cols-12 items-start">
+        <section class="lg:col-span-7 min-w-0" aria-label="Your images">
+            <div class="qt-card">
+                <div id="dropZone" class="qt-panel p-6 sm:p-8 text-center">
+                    <p class="qt-h3">Choose images or drop them here</p>
+                    <p class="qt-hint mt-2">JPG and PNG, plus WebP, GIF and other images your browser can open. Add as many as you need.</p>
+                    <label for="imageInput" class="qt-btn mt-4 inline-flex cursor-pointer">Choose images</label>
+                    <input type="file" id="imageInput" class="sr-only" accept="image/*" multiple>
+                </div>
+                <p id="fileErrors" class="qt-error mt-3" role="alert" hidden></p>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-6">
+                    <h2 class="qt-card-title" id="listTitle">Pages <span id="imageCount" class="text-muted">0</span></h2>
+                    <button type="button" id="clearImages" class="qt-btn qt-btn--ghost qt-btn--sm" disabled>Remove all</button>
+                </div>
+                <p id="emptyList" class="qt-hint mt-2">Your images appear here in page order. Drag them, or use the arrows, to change the order.</p>
+                <ol id="imageList" class="mt-3 grid gap-3" aria-labelledby="listTitle"></ol>
+            </div>
+        </section>
+
+        <section class="lg:col-span-5 min-w-0" aria-label="PDF settings">
+            <div class="qt-card is-everyday">
+                <p class="qt-eyebrow">Your PDF</p>
+                <div class="qt-well mt-3">
+                    <div class="qt-fields">
+                        <div>
+                            <label for="pageSize" class="qt-label">Page size</label>
+                            <div class="qt-select"><select id="pageSize" class="qt-input">
+                                <option value="a4" selected>A4 (210 x 297 mm)</option>
+                                <option value="letter">US Letter (8.5 x 11 in)</option>
+                                <option value="fit">Fit to each image</option>
+                            </select></div>
+                        </div>
+                        <div>
+                            <label for="orientation" class="qt-label">Orientation</label>
+                            <div class="qt-select"><select id="orientation" class="qt-input">
+                                <option value="auto" selected>Automatic, follows each image</option>
+                                <option value="portrait">Portrait</option>
+                                <option value="landscape">Landscape</option>
+                            </select></div>
+                        </div>
+                        <div>
+                            <label for="margin" class="qt-label">Margin</label>
+                            <div class="qt-select"><select id="margin" class="qt-input">
+                                <option value="none">None</option>
+                                <option value="small" selected>Small (6 mm)</option>
+                                <option value="large">Large (13 mm)</option>
+                            </select></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="makePdf" class="qt-btn qt-btn--block mt-5" disabled>Create PDF</button>
+                <p id="pdfStatus" class="mt-3 text-sm font-semibold text-center" aria-live="polite">Add images to begin.</p>
+            </div>
+        </section>
+    </div>
+
+    <article class="qt-prose qt-section">
+        <h2>How to turn images into a PDF</h2>
+        <ol>
+            <li>Choose your images, or drag them from a folder onto the box. You can add more in several goes.</li>
+            <li>Put them in order. Each image becomes one page, from the top of the list down. Drag a row to move it, or use the up and down arrows, which also work with a keyboard and on phones.</li>
+            <li>Pick the page size, the orientation and the margin. Automatic orientation turns the page sideways for wide pictures and keeps it upright for tall ones.</li>
+            <li>Press Create PDF. The file downloads straight away. Open it once to check the pages before you send it.</li>
+        </ol>
+
+        <h2>Which settings to use</h2>
+        <p>For documents you will upload to an Indian portal, such as an application form, a KYC submission or a college admission, A4 with a small margin is the safe choice. A4 is the paper size used across India and in most countries, and it prints without anything being cut off. US Letter is the standard in the United States and Canada, so pick it when the PDF will be printed there. Fit to each image makes every page exactly the size of its picture. That suits a set of screenshots, a photo album or a design file, where a white border would only get in the way.</p>
+        <p>The margin adds white space around each image. A small margin keeps the edge of a scanned page away from the very edge of the paper, which helps when the PDF is printed, because most printers cannot print right to the edge. Choose no margin when the picture should fill the whole page.</p>
+
+        <h3>Photos that come out sideways elsewhere</h3>
+        <p>Phone cameras often store a photo the way the sensor saw it and add a small tag that tells viewers which way is up. Gallery apps read the tag, so the photo looks right on your phone, but many PDF converters ignore it and the page comes out sideways or upside down. This page reads the tag and turns each photo upright before it is placed, so the PDF looks the way the photo looks in your gallery.</p>
+
+        <h3>Image quality and file size</h3>
+        <p>JPG and PNG images go into the PDF exactly as they are. They are not squeezed again, so no detail is lost and the PDF ends up close to the combined size of the pictures. Photos that need turning, and formats a PDF cannot hold such as WebP and GIF, are redrawn and stored as high quality JPEG. If a portal limits the upload to a few hundred kilobytes, make the photos smaller first with the <a href="/image-resizer/">Image Resizer</a>, then convert them here. A photo of a printed page usually stays easy to read at a much smaller size than the camera saved it at, so check the text after resizing.</p>
+
+        <h3>Private by design</h3>
+        <p>The PDF is assembled on this page by pdf-lib, an open-source library that runs in your browser. Your photos are never uploaded, so ID cards, certificates and bank statements stay on your device. Once the page has loaded, the tool keeps working with the internet switched off.</p>
+
+        <h2>Questions people ask</h2>
+        <div class="qt-faq">
+            <details><summary>Are my photos uploaded to a server?</summary><p>No. The PDF is built by your browser with an open-source library called pdf-lib, which runs on this page. Your images never leave your device, which is why the tool works even after you switch off the internet once the page has loaded.</p></details>
+            <details><summary>Does converting reduce the quality of my photos?</summary><p>Usually not at all. JPG and PNG files are placed into the PDF exactly as they are, without being compressed again. Only photos that need turning upright, and formats a PDF cannot hold such as WebP or GIF, are redrawn and saved as high quality JPEG first.</p></details>
+            <details><summary>Should I pick A4 or Letter?</summary><p>A4 is the standard paper size in India and most of the world, and it is what government portals, banks and colleges in India expect. US Letter is slightly wider and shorter and is the standard in the United States and Canada. Fit to image makes every page exactly the size of its picture, with no white border unless you add a margin.</p></details>
+            <details><summary>Why was my phone photo sideways in other converters?</summary><p>Phones often save a photo sideways and add a small tag that tells viewers to turn it. Many converters ignore the tag. This page reads it and turns the picture upright before it goes into the PDF.</p></details>
+            <details><summary>How do I make the PDF smaller for an upload limit?</summary><p>The PDF is roughly the size of the images inside it. Resize or compress the photos first with the Image Resizer, then convert them here. Choosing fewer pages or cropping out empty space helps too.</p></details>
+            <details><summary>Can I convert iPhone HEIC photos?</summary><p>Safari can read HEIC, so on an iPhone or a Mac the photos convert directly. Most other browsers cannot open HEIC, and the page tells you which files it could not read. Set the iPhone camera to Most Compatible, or share the photo as JPG, and it will work everywhere.</p></details>
+            
+        </div>
+    </article>
+    </div>
+</main>
+
+
+<script src="/js/vendor/pdf-lib-1.17.1.min.js"></script>
+<script src="/js/calc/pdf-tools.js"></script>
+<script>
+(function () {
+    var PT = QTCalc.pdfTools;
+    var items = []; // { id, name, size, file, url }
+    var nextId = 1;
+    var $ = function (id) { return document.getElementById(id); };
+    var list = $('imageList'), status = $('pdfStatus'), errors = $('fileErrors');
+    var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
+
+    function render() {
+        list.textContent = '';
+        items.forEach(function (it, i) {
+            var li = document.createElement('li');
+            li.className = 'qt-panel flex items-center gap-3 p-3';
+            li.draggable = true;
+            li.dataset.index = String(i);
+            li.innerHTML = '<span class="qt-row-key w-6 text-center"></span><img alt="" class="w-14 h-14 object-cover rounded-md border border-line shrink-0">' +
+                '<span class="min-w-0 flex-1"><span class="block font-semibold break-all"></span><span class="block qt-hint mt-0"></span></span>' +
+                '<span class="flex gap-1 shrink-0"></span>';
+            li.children[0].textContent = String(i + 1);
+            li.children[1].src = it.url;
+            li.children[2].children[0].textContent = it.name;
+            li.children[2].children[1].textContent = kb(it.size);
+            var btns = li.children[3];
+            [['up', '↑', 'Move ' + it.name + ' up', i === 0], ['down', '↓', 'Move ' + it.name + ' down', i === items.length - 1], ['remove', '×', 'Remove ' + it.name, false]].forEach(function (b) {
+                var el = document.createElement('button');
+                el.type = 'button';
+                el.className = 'qt-btn qt-btn--secondary qt-btn--sm';
+                el.textContent = b[1];
+                el.setAttribute('aria-label', b[2]);
+                el.disabled = b[3];
+                el.dataset.act = b[0];
+                btns.appendChild(el);
+            });
+            list.appendChild(li);
+        });
+        $('imageCount').textContent = String(items.length);
+        $('emptyList').hidden = items.length > 0;
+        $('makePdf').disabled = items.length === 0;
+        $('clearImages').disabled = items.length === 0;
+        if (!items.length) status.textContent = 'Add images to begin.';
+        else status.textContent = items.length + (items.length === 1 ? ' image, one page.' : ' images, one page each.');
+    }
+
+    function add(files) {
+        var bad = [];
+        Array.prototype.forEach.call(files, function (f) {
+            if (!/^image\//.test(f.type) && !/\.(jpe?g|png|webp|gif|bmp|avif|heic|heif)$/i.test(f.name)) { bad.push(f.name); return; }
+            items.push({ id: nextId++, name: f.name, size: f.size, file: f, url: URL.createObjectURL(f) });
+        });
+        errors.hidden = bad.length === 0;
+        errors.textContent = bad.length ? 'Not an image, so left out: ' + bad.join(', ') + '.' : '';
+        render();
+    }
+
+    list.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button[data-act]');
+        if (!b) return;
+        var i = Number(b.closest('li').dataset.index);
+        if (b.dataset.act === 'up') items = PT.move(items, i, i - 1);
+        else if (b.dataset.act === 'down') items = PT.move(items, i, i + 1);
+        else { URL.revokeObjectURL(items[i].url); items.splice(i, 1); }
+        render();
+        var again = list.querySelector('li[data-index="' + Math.min(b.dataset.act === 'up' ? i - 1 : b.dataset.act === 'down' ? i + 1 : i, items.length - 1) + '"] button[data-act="' + b.dataset.act + '"]');
+        if (again && !again.disabled) again.focus();
+    });
+
+    // Drag a row onto another to move it there
+    var dragFrom = null;
+    list.addEventListener('dragstart', function (ev) { var li = ev.target.closest('li'); if (li) { dragFrom = Number(li.dataset.index); ev.dataTransfer.effectAllowed = 'move'; } });
+    list.addEventListener('dragover', function (ev) { if (dragFrom !== null) ev.preventDefault(); });
+    list.addEventListener('drop', function (ev) {
+        var li = ev.target.closest('li');
+        if (dragFrom === null || !li) return;
+        ev.preventDefault();
+        items = PT.move(items, dragFrom, Number(li.dataset.index));
+        dragFrom = null;
+        render();
+    });
+    list.addEventListener('dragend', function () { dragFrom = null; });
+
+    var zone = $('dropZone');
+    zone.addEventListener('dragover', function (ev) { if (ev.dataTransfer && Array.prototype.indexOf.call(ev.dataTransfer.types, 'Files') >= 0) ev.preventDefault(); });
+    zone.addEventListener('drop', function (ev) { if (ev.dataTransfer && ev.dataTransfer.files.length) { ev.preventDefault(); add(ev.dataTransfer.files); } });
+    $('imageInput').addEventListener('change', function (ev) { add(ev.target.files); ev.target.value = ''; });
+    $('clearImages').addEventListener('click', function () { items.forEach(function (it) { URL.revokeObjectURL(it.url); }); items = []; errors.hidden = true; render(); });
+
+    /** JPG and PNG go in as they are. Rotated photos and other formats are redrawn upright as JPEG. */
+    async function prepare(it) {
+        var bytes = new Uint8Array(await it.file.arrayBuffer());
+        var type = PT.sniff(bytes);
+        if (type === 'png' || (type === 'jpg' && PT.exifOrientation(bytes) === 1)) return { bytes: bytes, type: type };
+        var bmp;
+        try { bmp = await createImageBitmap(it.file, { imageOrientation: 'from-image' }); }
+        catch (e) { throw new Error('This browser cannot open ' + it.name + '. Save it as JPG or PNG and add it again.'); }
+        var c = document.createElement('canvas');
+        c.width = bmp.width; c.height = bmp.height;
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff'; // JPEG has no transparency: put see-through parts on white, not black
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(bmp, 0, 0);
+        var blob = await new Promise(function (res) { c.toBlob(res, 'image/jpeg', 0.92); });
+        return { bytes: new Uint8Array(await blob.arrayBuffer()), type: 'jpg' };
+    }
+
+    function save(bytes, name) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }
+
+    $('makePdf').addEventListener('click', async function () {
+        var btn = this;
+        btn.disabled = true;
+        errors.hidden = true;
+        try {
+            var ready = [];
+            for (var i = 0; i < items.length; i++) {
+                status.textContent = 'Reading image ' + (i + 1) + ' of ' + items.length + '...';
+                ready.push(await prepare(items[i]));
+            }
+            var opts = { size: $('pageSize').value, orientation: $('orientation').value, margin: $('margin').value };
+            var bytes = await PT.imagesToPdf(PDFLib, ready, opts, function (done, total) { status.textContent = 'Adding page ' + done + ' of ' + total + '...'; });
+            save(bytes, items.length === 1 ? items[0].name.replace(/\.[^.]+$/, '') + '.pdf' : 'images.pdf');
+            status.textContent = 'Done: ' + ready.length + (ready.length === 1 ? ' page, ' : ' pages, ') + kb(bytes.length) + '. Check your downloads.';
+        } catch (e) {
+            errors.hidden = false;
+            errors.textContent = e && e.message && /cannot open/.test(e.message) ? e.message : 'Something went wrong while making the PDF. Try fewer or smaller images.';
+            status.textContent = 'The PDF was not made.';
+        } finally {
+            btn.disabled = items.length === 0;
+        }
+    });
+    render();
+})();
+</script>
+
+
+
+    
+
+
+    <footer class="qt-footer">
+    <div class="qt-wrap">
+        <div class="grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <span class="qt-sticker is-haldi">Free, no sign-up</span>
+                <p class="mt-4 mb-3 text-chai-200">Calculators for Indian money. Every tool runs in your browser, and nothing you type is sent anywhere.</p>
+                <p>Found a wrong figure or want a tool?<br><a href="mailto:quicktoolsindiaa@gmail.com" class="font-bold underline underline-offset-4">quicktoolsindiaa@gmail.com</a></p>
+            </div>
+            
+            <div>
+                <h2>Amounts and words</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/number-to-words/">Number to Words</a></li><li><a href="/lakh-crore-in-numbers/">Lakh Crore in Numbers</a></li><li><a href="/cash-counter/">Cash Counter</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>Loans</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/home-loan-calculator/">Home Loan EMI</a></li><li><a href="/car-loan-calculator/">Car Loan</a></li><li><a href="/emi-prepayment-calculator/">EMI Prepayment</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2>More tools</h2>
+                <ul class="space-y-1.5">
+                    <li><a href="/income-tax-calculator/">Income Tax</a></li><li><a href="/salary-calculator/">Salary, CTC to In-hand</a></li><li><a href="/gst-calculator/">GST</a></li><li><a href="/sip-calculator/">SIP</a></li><li><a href="/ppf-calculator/">PPF</a></li><li><a href="/ssy-calculator/">Sukanya Samriddhi</a></li><li><a href="/study-abroad-calculator/">Study Abroad</a></li><li><a href="/wedding-cost-calculator/">Wedding Cost</a></li><li><a href="/age-calculator/">Age Calculator</a></li><li><a href="/image-resizer/">Image Resizer</a></li><li><a href="/word-counter/">Word Counter</a></li><li><a href="/qr-code-generator/">QR Code Generator</a></li><li><a href="/jpg-to-pdf/">JPG to PDF</a></li><li><a href="/merge-pdf/">Merge PDF</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-11 pt-6 border-t-2 border-chai-800 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm">
+            <p>&copy; 2026 QuickTools Plus. For information only, not financial advice.</p>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Guides</a></li>
+                <li><a href="/updates/">Updates</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/privacy-policy/">Privacy</a></li>
+                <li><a href="/terms-of-service/">Terms</a></li>
+                <li><a href="/disclaimer/">Disclaimer</a></li>
+            </ul>
+        </div>
+    </div>
+    <span class="qt-footer-word" aria-hidden="true">QuickTools</span>
+</footer>
+
+<div class="qt-toast" id="qtToast" role="status" aria-live="polite"></div>
+
+<script>
+    // Tools menu
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        const btn = document.getElementById('dropdownToggleBtn');
+        const isHidden = menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+    }
+
+    function closeDropdown() {
+        document.getElementById('dropdownMenu').classList.add('hidden');
+        document.getElementById('dropdownToggleBtn')?.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('toolsDropdown');
+        const menu = document.getElementById('dropdownMenu');
+        if (dropdown && !dropdown.contains(event.target) && menu && !menu.contains(event.target)) closeDropdown();
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDropdown();
+    });
+</script>
+
+
+    <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
+
+    
+</body>
+</html>
