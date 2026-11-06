@@ -682,6 +682,7 @@ meta_keywords: "wedding cost calculator India, marriage budget planner 2026, Ind
 </div>
 
 {% block scripts %}
+<script src="/js/calc/wedding-cost.js"></script>
 <script>
     // Preset configurations
     const presets = {
@@ -727,67 +728,46 @@ meta_keywords: "wedding cost calculator India, marriage budget planner 2026, Ind
     }
 
     function calculateWeddingCost() {
-        const baseBudget = parseINR(document.getElementById('currentBudget').value);
         const years = parseInt(document.getElementById('yearsToWedding').value);
-        const inflationRate = parseINR(document.getElementById('weddingInflation').value) / 100;
         const isDestination = document.getElementById('destinationWedding').checked;
         const hasGold = document.getElementById('goldPurchase').checked;
-        const goldAmount = hasGold ? parseINR(document.getElementById('goldAmount').value) : 0;
 
-        if (!baseBudget || !years) {
+        // The sums live in /js/calc/wedding-cost.js (unit tested in tests/unit)
+        const r = QTCalc.weddingCost.calculate({
+            baseBudget: parseINR(document.getElementById('currentBudget').value),
+            years,
+            inflationPct: parseINR(document.getElementById('weddingInflation').value),
+            isDestination,
+            hasGold,
+            goldAmount: hasGold ? parseINR(document.getElementById('goldAmount').value) : 0
+        });
+
+        if (!r) {
             document.getElementById('results').classList.add('hidden');
             document.getElementById('placeholder').classList.remove('hidden');
             return;
         }
 
-        // Calculate wedding cost with inflation
-        let futureWeddingCost = baseBudget * Math.pow((1 + inflationRate), years);
-
-        // Add destination premium (20%)
-        let destinationPremium = 0;
-        if (isDestination) {
-            destinationPremium = futureWeddingCost * 0.20;
-            futureWeddingCost += destinationPremium;
-        }
-
-        // Calculate gold cost separately (10% inflation)
-        let futureGoldCost = 0;
-        if (hasGold) {
-            const goldInflation = 0.10;
-            futureGoldCost = goldAmount * Math.pow((1 + goldInflation), years);
-        }
-
-        // Total cost
-        const totalFutureCost = futureWeddingCost + futureGoldCost;
-        const currentTotalCost = baseBudget + (isDestination ? baseBudget * 0.20 : 0) + goldAmount;
-        const increase = totalFutureCost - currentTotalCost;
-        const increasePercentage = ((totalFutureCost / currentTotalCost - 1) * 100).toFixed(1);
-
-        // Calculate SIP required (assuming 12% annual return)
-        const monthlyReturn = Math.pow(1.12, 1 / 12) - 1;
-        const months = years * 12;
-        const sipRequired = (totalFutureCost * monthlyReturn) / (Math.pow(1 + monthlyReturn, months) - 1);
-
         // Display results
-        document.getElementById('totalCost').textContent = '₹' + totalFutureCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('currentCost').textContent = '₹' + currentTotalCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-        document.getElementById('costIncrease').textContent = '+' + increasePercentage + '%';
+        document.getElementById('totalCost').textContent = '₹' + r.totalFutureCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('currentCost').textContent = '₹' + r.currentTotalCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('costIncrease').textContent = '+' + r.increasePercent.toFixed(1) + '%';
         document.getElementById('resultYears').textContent = years;
-        document.getElementById('monthlySIP').textContent = '₹' + sipRequired.toLocaleString('en-IN', { maximumFractionDigits: 0 }) + '/month';
+        document.getElementById('monthlySIP').textContent = '₹' + r.monthlySaving.toLocaleString('en-IN', { maximumFractionDigits: 0 }) + '/month';
 
         // Breakdown
-        document.getElementById('weddingCost').textContent = '₹' + futureWeddingCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+        document.getElementById('weddingCost').textContent = '₹' + r.futureWeddingCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
         if (hasGold) {
             document.getElementById('goldCostRow').classList.remove('hidden');
-            document.getElementById('goldCost').textContent = '₹' + futureGoldCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            document.getElementById('goldCost').textContent = '₹' + r.futureGoldCost.toLocaleString('en-IN', { maximumFractionDigits: 0 });
         } else {
             document.getElementById('goldCostRow').classList.add('hidden');
         }
 
         if (isDestination) {
             document.getElementById('destinationCostRow').classList.remove('hidden');
-            document.getElementById('destinationCost').textContent = '₹' + destinationPremium.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            document.getElementById('destinationCost').textContent = '₹' + r.destinationPremium.toLocaleString('en-IN', { maximumFractionDigits: 0 });
         } else {
             document.getElementById('destinationCostRow').classList.add('hidden');
         }

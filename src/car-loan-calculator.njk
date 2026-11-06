@@ -706,6 +706,7 @@ sources:
 </div>
 
 {% block scripts %}
+<script src="/js/calc/car-loan.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('car_loan_calc');
@@ -747,57 +748,43 @@ sources:
         const downPayment = parseINR(document.getElementById('downPayment').value);
         const annualRate = parseINR(document.getElementById('interestRate').value);
         const tenureYears = parseINR(document.getElementById('loanTenure').value);
-        
+
         // Optional Costs
         const insurance = parseINR(document.getElementById('insurance').value) || 0;
         const rtoTaxPercent = parseINR(document.getElementById('rtoTax').value) || 0;
         const accessories = parseINR(document.getElementById('accessories').value) || 0;
         const otherCharges = parseINR(document.getElementById('otherCharges').value) || 0;
 
-        // Calculate on-road price
-        const rtoAmount = (carPrice * rtoTaxPercent) / 100;
-        const onRoadPrice = carPrice + rtoAmount + insurance + accessories + otherCharges;
-
-        // Calculate loan amount
-        const loanAmount = onRoadPrice - downPayment;
-
-        // Calculate EMI
-        const monthlyRate = annualRate / 12 / 100;
-        const tenureMonths = tenureYears * 12;
-
-        const emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) /
-            (Math.pow(1 + monthlyRate, tenureMonths) - 1);
-
-        const totalEMIPayments = emi * tenureMonths;
-        const totalInterest = totalEMIPayments - loanAmount;
+        // The sums live in /js/calc/car-loan.js (unit tested in tests/unit)
+        const r = QTCalc.carLoan.calculate({ carPrice, downPayment, annualRate, tenureYears, insurance, rtoTaxPercent, accessories, otherCharges });
 
         // GA4 Event Tracking
-        trackCalculatorUsage('Car Loan Calculator', loanAmount);
+        trackCalculatorUsage('Car Loan Calculator', r.loanAmount);
 
         // Display results
-        document.getElementById('monthlyEMI').textContent = formatIndianCurrency(Math.round(emi));
-        document.getElementById('onRoadPrice').textContent = formatIndianCurrency(Math.round(onRoadPrice));
-        document.getElementById('loanAmount').textContent = formatIndianCurrency(Math.round(loanAmount));
-        document.getElementById('totalInterest').textContent = formatIndianCurrency(Math.round(totalInterest));
+        document.getElementById('monthlyEMI').textContent = formatIndianCurrency(Math.round(r.emi));
+        document.getElementById('onRoadPrice').textContent = formatIndianCurrency(Math.round(r.onRoadPrice));
+        document.getElementById('loanAmount').textContent = formatIndianCurrency(Math.round(r.loanAmount));
+        document.getElementById('totalInterest').textContent = formatIndianCurrency(Math.round(r.totalInterest));
 
         // On-road price breakdown
         document.getElementById('exShowroomPrice').textContent = formatIndianCurrency(carPrice);
-        document.getElementById('rtoAmount').textContent = formatIndianCurrency(Math.round(rtoAmount));
+        document.getElementById('rtoAmount').textContent = formatIndianCurrency(Math.round(r.rtoAmount));
         document.getElementById('insuranceAmount').textContent = formatIndianCurrency(insurance);
         document.getElementById('accessoriesAmount').textContent = formatIndianCurrency(accessories);
         document.getElementById('otherChargesAmount').textContent = formatIndianCurrency(otherCharges);
-        document.getElementById('totalOnRoadPrice').textContent = formatIndianCurrency(Math.round(onRoadPrice));
+        document.getElementById('totalOnRoadPrice').textContent = formatIndianCurrency(Math.round(r.onRoadPrice));
 
         // Payment analysis
         document.getElementById('downPaymentDisplay').textContent = formatIndianCurrency(downPayment);
-        document.getElementById('totalEMIPayments').textContent = formatIndianCurrency(Math.round(totalEMIPayments));
-        document.getElementById('totalInterestDisplay').textContent = formatIndianCurrency(Math.round(totalInterest));
-        document.getElementById('totalAmountPaid').textContent = formatIndianCurrency(Math.round(downPayment + totalEMIPayments));
-        document.getElementById('interestPercentage').textContent = ((totalInterest / carPrice) * 100).toFixed(1) + '%';
+        document.getElementById('totalEMIPayments').textContent = formatIndianCurrency(Math.round(r.totalEMIPayments));
+        document.getElementById('totalInterestDisplay').textContent = formatIndianCurrency(Math.round(r.totalInterest));
+        document.getElementById('totalAmountPaid').textContent = formatIndianCurrency(Math.round(r.totalAmountPaid));
+        document.getElementById('interestPercentage').textContent = r.interestPercentOfPrice.toFixed(1) + '%';
 
         // Loan details
-        document.getElementById('totalMonths').textContent = tenureMonths + ' months';
-        document.getElementById('downPaymentPercent').textContent = ((downPayment / onRoadPrice) * 100).toFixed(1) + '%';
+        document.getElementById('totalMonths').textContent = r.tenureMonths + ' months';
+        document.getElementById('downPaymentPercent').textContent = r.downPaymentPercent.toFixed(1) + '%';
 
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {

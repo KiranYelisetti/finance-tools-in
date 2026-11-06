@@ -532,63 +532,27 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/cash-counter.js"></script>
 <script>
     function formatIndianCurrency(num) {
         return '₹' + parseFloat(num).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     }
 
-    function numberToWords(num) {
-        if (num === 0) return '';
-
-        const crore = Math.floor(num / 10000000);
-        const lakh = Math.floor((num % 10000000) / 100000);
-        const thousand = Math.floor((num % 100000) / 1000);
-        const hundred = Math.floor((num % 1000) / 100);
-        const remainder = num % 100;
-
-        let words = [];
-        if (crore > 0) words.push(crore + ' Crore');
-        if (lakh > 0) words.push(lakh + ' Lakh');
-        if (thousand > 0) words.push(thousand + ' Thousand');
-        if (hundred > 0) words.push(hundred + ' Hundred');
-        if (remainder > 0) words.push(remainder);
-
-        return words.join(' ') + ' Rupees';
-    }
-
     function calculateTotal() {
-        const denominations = {
-            note2000: 2000,
-            note500: 500,
-            note200: 200,
-            note100: 100,
-            note50: 50,
-            note20: 20,
-            note10: 10,
-            coin20: 20,
-            coin10: 10,
-            coin5: 5,
-            coin2: 2,
-            coin1: 1
-        };
-
-        let total = 0;
-        for (const [id, value] of Object.entries(denominations)) {
-            let count = parseInt(document.getElementById(id).value) || 0;
+        // The denominations, limits and sums live in /js/calc/cash-counter.js (unit tested in tests/unit)
+        const cash = QTCalc.cashCounter;
+        const counts = {};
+        for (const id of Object.keys(cash.DENOMINATIONS)) {
+            const el = document.getElementById(id);
+            const c = cash.clampCount(el.value);
             // Limit invalid or excessive inputs
-            if (count > 99999) {
-                count = 99999;
-                document.getElementById(id).value = 99999;
-            }
-            if (count < 0) {
-                count = 0;
-                document.getElementById(id).value = 0;
-            }
-            total += count * value;
+            if (c.changed) el.value = c.count;
+            counts[id] = c.count;
         }
+        const total = cash.total(counts);
 
         document.getElementById('totalAmount').textContent = formatIndianCurrency(total);
-        document.getElementById('totalInWords').textContent = total > 0 ? numberToWords(total) : '';
+        document.getElementById('totalInWords').textContent = total > 0 ? cash.numberToWords(total) : '';
     }
 
 

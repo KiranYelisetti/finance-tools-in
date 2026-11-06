@@ -567,6 +567,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/salary.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('salary_calc');
@@ -579,33 +580,6 @@ sources:
         return '₹' + Math.round(amount).toLocaleString('en-IN');
     }
 
-    function estimateNewRegimeTax(grossAnnual) {
-        const stdDed = Math.min(75000, grossAnnual);
-        const taxableIncome = Math.max(0, grossAnnual - stdDed);
-        let tax = 0;
-        if (taxableIncome <= 400000) tax = 0;
-        else if (taxableIncome <= 800000) tax = (taxableIncome - 400000) * 0.05;
-        else if (taxableIncome <= 1200000) tax = 20000 + (taxableIncome - 800000) * 0.10;
-        else if (taxableIncome <= 1600000) tax = 60000 + (taxableIncome - 1200000) * 0.15;
-        else if (taxableIncome <= 2000000) tax = 120000 + (taxableIncome - 1600000) * 0.20;
-        else if (taxableIncome <= 2400000) tax = 200000 + (taxableIncome - 2000000) * 0.25;
-        else tax = 300000 + (taxableIncome - 2400000) * 0.30;
-
-        // Rebate u/s 87A with marginal relief (Finance Act 2025):
-        // Up to ₹12L → full rebate. Just above ₹12L → tax cannot exceed excess over ₹12L.
-        if (taxableIncome <= 1200000) {
-            tax = Math.max(0, tax - 60000);
-        } else {
-            const excessOver12L = taxableIncome - 1200000;
-            if (tax > excessOver12L) {
-                tax = excessOver12L;
-            }
-        }
-        // Cess
-        tax = tax + tax * 0.04;
-        return Math.round(tax);
-    }
-
     function calculateSalary(shouldScroll = true) {
         const annualCTC = parseINR(document.getElementById('annualCTC').value) || 0;
         const cityType = document.getElementById('cityType').value;
@@ -613,64 +587,33 @@ sources:
         const monthlyBonus = parseINR(document.getElementById('monthlyBonus').value) || 0;
         const profTax = parseINR(document.getElementById('profTax').value) || 200;
 
-        // Calculate components
-        const annualBasic = annualCTC * (basicPercent / 100);
-        const monthlyBasic = annualBasic / 12;
-
-        const hraPercent = cityType === 'metro' ? 50 : 40;
-        const monthlyHRA = monthlyBasic * (hraPercent / 100);
-
-        const monthlyEmployerPF = monthlyBasic * 0.12;
-        const monthlyEmployeePF = monthlyBasic * 0.12;
-        const monthlyGratuity = monthlyBasic * 0.0481;
-
-        // ESI only if gross <= 21000/month
-        const grossBeforeESI = annualCTC / 12;
-        const monthlyEmployerESI = grossBeforeESI <= 21000 ? grossBeforeESI * 0.0325 : 0;
-
-        // Special Allowance = Monthly CTC - Basic - HRA - Employer PF - Gratuity - Employer ESI
-        const monthlyCTC = annualCTC / 12;
-        const monthlySpecialAllowance = Math.max(0, monthlyCTC - monthlyBasic - monthlyHRA - monthlyEmployerPF - monthlyGratuity - monthlyEmployerESI);
-
-        // Gross Salary (what employee sees on payslip before deductions)
-        const monthlyGross = monthlyBasic + monthlyHRA + monthlySpecialAllowance + monthlyBonus;
-
-        // Estimate annual income tax (TDS)
-        const annualGross = monthlyGross * 12;
-        const annualTax = estimateNewRegimeTax(annualGross);
-        const monthlyTDS = Math.round(annualTax / 12);
-
-        // Total Deductions
-        const totalMonthlyDeductions = monthlyEmployeePF + profTax + monthlyTDS;
-
-        // In-Hand
-        const monthlyInHand = monthlyGross - totalMonthlyDeductions;
-        const annualInHand = monthlyInHand * 12;
+        // The payslip sums and the tax estimate live in /js/calc/salary.js (unit tested in tests/unit)
+        const s = QTCalc.salary.calculate({ annualCTC, cityType, basicPercent, monthlyBonus, profTax });
 
         // GA4 Tracking
         trackCalculatorUsage('Salary Calculator', annualCTC);
 
         // Display Results
-        document.getElementById('monthlyInHand').textContent = fmt(Math.round(monthlyInHand));
-        document.getElementById('annualInHand').textContent = 'Annual In-Hand: ' + fmt(Math.round(annualInHand));
+        document.getElementById('monthlyInHand').textContent = fmt(Math.round(s.monthlyInHand));
+        document.getElementById('annualInHand').textContent = 'Annual In-Hand: ' + fmt(Math.round(s.annualInHand));
 
         // Earnings
-        document.getElementById('resBasicPay').textContent = fmt(Math.round(monthlyBasic));
-        document.getElementById('resHRA').textContent = fmt(Math.round(monthlyHRA));
-        document.getElementById('resSpecialAllowance').textContent = fmt(Math.round(monthlySpecialAllowance));
-        document.getElementById('resBonus').textContent = fmt(Math.round(monthlyBonus));
-        document.getElementById('resGrossSalary').textContent = fmt(Math.round(monthlyGross));
+        document.getElementById('resBasicPay').textContent = fmt(Math.round(s.monthlyBasic));
+        document.getElementById('resHRA').textContent = fmt(Math.round(s.monthlyHRA));
+        document.getElementById('resSpecialAllowance').textContent = fmt(Math.round(s.monthlySpecialAllowance));
+        document.getElementById('resBonus').textContent = fmt(Math.round(s.monthlyBonus));
+        document.getElementById('resGrossSalary').textContent = fmt(Math.round(s.monthlyGross));
 
         // Deductions
-        document.getElementById('resEmployeePF').textContent = '- ' + fmt(Math.round(monthlyEmployeePF));
-        document.getElementById('resProfTax').textContent = '- ' + fmt(Math.round(profTax));
-        document.getElementById('resTDS').textContent = '- ' + fmt(Math.round(monthlyTDS));
-        document.getElementById('resTotalDeductions').textContent = fmt(Math.round(totalMonthlyDeductions));
+        document.getElementById('resEmployeePF').textContent = '- ' + fmt(Math.round(s.monthlyEmployeePF));
+        document.getElementById('resProfTax').textContent = '- ' + fmt(Math.round(s.profTax));
+        document.getElementById('resTDS').textContent = '- ' + fmt(Math.round(s.monthlyTDS));
+        document.getElementById('resTotalDeductions').textContent = fmt(Math.round(s.totalMonthlyDeductions));
 
         // Employer Side
-        document.getElementById('resEmployerPF').textContent = fmt(Math.round(monthlyEmployerPF));
-        document.getElementById('resGratuity').textContent = fmt(Math.round(monthlyGratuity));
-        document.getElementById('resEmployerESI').textContent = monthlyEmployerESI > 0 ? fmt(Math.round(monthlyEmployerESI)) : 'N/A';
+        document.getElementById('resEmployerPF').textContent = fmt(Math.round(s.monthlyEmployerPF));
+        document.getElementById('resGratuity').textContent = fmt(Math.round(s.monthlyGratuity));
+        document.getElementById('resEmployerESI').textContent = s.monthlyEmployerESI > 0 ? fmt(Math.round(s.monthlyEmployerESI)) : 'N/A';
 
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {

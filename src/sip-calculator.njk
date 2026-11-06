@@ -617,6 +617,7 @@ sources:
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
+<script src="/js/calc/sip.js"></script>
 <script>
     let myChart = null;
 
@@ -636,29 +637,18 @@ sources:
         const r = parseINR(document.getElementById('returnRate').value);
         const t = parseINR(document.getElementById('timePeriod').value);
 
-        // Calculate
-        const i = r / 12 / 100;
-        const n = t * 12;
-
-        let fv;
-        if (i === 0) {
-            fv = p * n;
-        } else {
-            fv = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
-        }
-        
-        const invested = p * n;
-        const returns = fv - invested;
+        // The sum lives in /js/calc/sip.js (unit tested in tests/unit)
+        const sip = QTCalc.sip.futureValue(p, r, t);
 
         // GA4 Event Tracking
         trackCalculatorUsage('SIP Calculator', p);
 
         // Update UI
-        document.getElementById('totalValue').innerText = formatCurrency(fv);
-        document.getElementById('investedAmount').innerText = formatCurrency(invested);
-        document.getElementById('estReturns').innerText = formatCurrency(returns);
+        document.getElementById('totalValue').innerText = formatCurrency(sip.futureValue);
+        document.getElementById('investedAmount').innerText = formatCurrency(sip.invested);
+        document.getElementById('estReturns').innerText = formatCurrency(sip.returns);
 
-        updateChart(invested, returns);
+        updateChart(sip.invested, sip.returns);
     }
 
     function updateChart(invested, returns) {

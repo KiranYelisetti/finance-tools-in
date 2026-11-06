@@ -289,6 +289,7 @@ sources:
 </main>
 
 {% block scripts %}
+<script src="/js/calc/emi-prepayment.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         initAutoSave('prepay_calc');
@@ -308,52 +309,11 @@ sources:
         const monthlyExtra = parseINR(document.getElementById('monthlyExtra').value) || 0;
         const lumpSum = parseINR(document.getElementById('lumpSum').value) || 0;
 
-        const r = annualRate / 12 / 100;
-        const n = tenureYears * 12;
-
-        if (P <= 0 || r <= 0 || n <= 0) return;
-
-        // Original EMI
-        const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-        const origTotalPaid = emi * n;
-        const origTotalInterest = origTotalPaid - P;
-
-        let month = 0;
-        let totalPaidWithPrepay = 0;
-        let totalInterestWithPrepay = 0;
-
-        if (monthlyExtra === 0 && lumpSum === 0) {
-            month = n;
-            totalPaidWithPrepay = origTotalPaid;
-            totalInterestWithPrepay = origTotalInterest;
-        } else {
-            // Simulate with prepayment
-            let balance = P - lumpSum; // Apply lump sum immediately
-            if (balance < 0) balance = 0;
-            totalPaidWithPrepay = lumpSum;
-            totalInterestWithPrepay = 0;
-
-            while (balance > 0 && month < n * 2) { // Safety limit
-                month++;
-                const interestThisMonth = balance * r;
-                let principalThisMonth = emi - interestThisMonth + monthlyExtra;
-
-                if (principalThisMonth > balance) {
-                    // Last month, pay only what's needed
-                    totalPaidWithPrepay += balance + interestThisMonth;
-                    totalInterestWithPrepay += interestThisMonth;
-                    balance = 0;
-                } else {
-                    balance -= principalThisMonth;
-                    totalPaidWithPrepay += emi + monthlyExtra;
-                    totalInterestWithPrepay += interestThisMonth;
-                }
-            }
-        }
-
-        const monthsSaved = Math.max(0, n - month);
-        const interestSaved = Math.max(0, origTotalInterest - totalInterestWithPrepay);
-        const totalSaved = Math.max(0, origTotalPaid - totalPaidWithPrepay);
+        // The sums live in /js/calc/emi-prepayment.js (unit tested in tests/unit)
+        const r = QTCalc.emiPrepayment.calculate({ principal: P, annualRate, tenureYears, monthlyExtra, lumpSum });
+        if (!r) return;
+        const n = r.tenureMonths;
+        const month = r.months;
 
         // Calculate new end date
         const today = new Date();
@@ -366,28 +326,23 @@ sources:
         trackCalculatorUsage('EMI Prepayment Calculator', P);
 
         // Display
-        document.getElementById('interestSaved').textContent = fmt(Math.round(interestSaved));
-        const yearsSaved = Math.floor(monthsSaved / 12);
-        const remainingMonths = monthsSaved % 12;
-        let timeSavedText = '';
-        if (yearsSaved > 0) timeSavedText += yearsSaved + ' year' + (yearsSaved > 1 ? 's' : '');
-        if (remainingMonths > 0) timeSavedText += (timeSavedText ? ' ' : '') + remainingMonths + ' month' + (remainingMonths > 1 ? 's' : '');
-        if (!timeSavedText) timeSavedText = '0 months';
+        document.getElementById('interestSaved').textContent = fmt(Math.round(r.interestSaved));
+        const timeSavedText = QTCalc.emiPrepayment.durationText(r.monthsSaved);
         document.getElementById('timeSaved').textContent = timeSavedText;
         document.getElementById('newEndDate').textContent = newEnd.toLocaleDateString('en-IN', { year: 'numeric', month: 'short' });
 
         // Comparison Table
-        document.getElementById('origEMI').textContent = fmt(Math.round(emi));
-        document.getElementById('newEMI').textContent = fmt(Math.round(emi)) + ' + ' + fmt(monthlyExtra);
+        document.getElementById('origEMI').textContent = fmt(Math.round(r.emi));
+        document.getElementById('newEMI').textContent = fmt(Math.round(r.emi)) + ' + ' + fmt(monthlyExtra);
         document.getElementById('origTenure').textContent = tenureYears + ' years (' + n + ' months)';
         document.getElementById('newTenure').textContent = Math.floor(month / 12) + ' yrs ' + (month % 12) + ' months';
         document.getElementById('tenureSaved').textContent = timeSavedText + ' saved!';
-        document.getElementById('origInterest').textContent = fmt(Math.round(origTotalInterest));
-        document.getElementById('newInterest').textContent = fmt(Math.round(totalInterestWithPrepay));
-        document.getElementById('interestSavedTable').textContent = fmt(Math.round(interestSaved)) + ' saved!';
-        document.getElementById('origTotal').textContent = fmt(Math.round(origTotalPaid));
-        document.getElementById('newTotal').textContent = fmt(Math.round(totalPaidWithPrepay));
-        document.getElementById('totalSaved').textContent = fmt(Math.round(totalSaved)) + ' saved!';
+        document.getElementById('origInterest').textContent = fmt(Math.round(r.origTotalInterest));
+        document.getElementById('newInterest').textContent = fmt(Math.round(r.totalInterestWithPrepay));
+        document.getElementById('interestSavedTable').textContent = fmt(Math.round(r.interestSaved)) + ' saved!';
+        document.getElementById('origTotal').textContent = fmt(Math.round(r.origTotalPaid));
+        document.getElementById('newTotal').textContent = fmt(Math.round(r.totalPaidWithPrepay));
+        document.getElementById('totalSaved').textContent = fmt(Math.round(r.totalSaved)) + ' saved!';
 
         document.getElementById('results').classList.remove('hidden');
         if (shouldScroll) {
