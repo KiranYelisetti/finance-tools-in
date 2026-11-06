@@ -64,9 +64,9 @@ export function auditLayout(opts) {
     return null;
   };
   // The part of a box that is actually drawn: cut down by every ancestor that clips or scrolls (either axis)
-  const visiblePart = (el, r) => {
+  const visiblePart = (el, r, self = false) => {
     let left = r.left, top = r.top, right = r.right, bottom = r.bottom;
-    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+    for (let a = self ? el : el.parentElement; a && a !== document.body; a = a.parentElement) {
       const s = getComputedStyle(a);
       const cx = s.overflowX !== "visible", cy = s.overflowY !== "visible";
       if (!cx && !cy) continue;
@@ -90,11 +90,14 @@ export function auditLayout(opts) {
   if (root.scrollWidth > vw + 1) problems.push(`page scrolls sideways: ${root.scrollWidth}px wide in a ${vw}px window`);
 
   // 2. Content off the side of the screen (even when the page hides the scrollbar)
-  const all = [...document.querySelectorAll("body *")].filter((el) => !ignored(el) && shown(el));
+  const all = [...document.querySelectorAll("body *")].filter((el) => !ignored(el) && shown(el) && !srOnly(el));
   const off = [];
   for (const el of all) {
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
+    // A closed drawer parked fully outside the window (fixed position) is not on the page
+    const layer = inFixedLayer(el);
+    if (layer) { const lr = layer.getBoundingClientRect(); if (lr.right <= 0 || lr.left >= vw) continue; }
     if ((r.right > vw + 1 || r.left < -1) && !clippedBy(el)) off.push(`${name(el)} spans ${Math.round(r.left)} to ${Math.round(r.right)}`);
   }
   if (off.length) problems.push(`off the screen (window ${vw}px): ${off.slice(0, 4).join(" | ")}`);
@@ -112,7 +115,8 @@ export function auditLayout(opts) {
     range.selectNodeContents(n);
     for (const raw of range.getClientRects()) {
       if (raw.width < 2 || raw.height < 2) continue;
-      const r = visiblePart(n.parentElement, raw);
+      // A text node is clipped by its own element too (a label cut short with an ellipsis)
+      const r = visiblePart(n.parentElement, raw, true);
       if (r) runs.push({ el: n.parentElement, r, layer: inFixedLayer(n.parentElement) });
     }
   }
@@ -185,24 +189,35 @@ export function auditLayout(opts) {
   }
   if (cut.length) problems.push(`text cut off: ${cut.slice(0, 4).join(" | ")}`);
 
-  // 6. Tap targets smaller than minTarget (links inside running text are exempt, WCAG 2.5.8)
+  // 6. Tap targets smaller than minTarget, with the WCAG 2.5.8 exceptions: links inside running text, and a small
+  // target that has room around it (a minTarget circle on its centre touches no other target)
   const small = [];
-  for (const el of controls) {
+  const boxes = controls.map((el) => el.getBoundingClientRect());
+  for (let i = 0; i < controls.length; i++) {
+    const el = controls[i], r = boxes[i];
     if (el.matches("input[type=range]")) continue;
-    const r = el.getBoundingClientRect();
     if (el.matches("a") && getComputedStyle(el).display === "inline") continue;
     if (el.matches("input[type=checkbox], input[type=radio]") && el.closest("label")) continue;
-    if (r.width < minTarget - 0.5 || r.height < minTarget - 0.5) small.push(`${name(el)} ${Math.round(r.width)}x${Math.round(r.height)}`);
+    if (r.width >= minTarget - 0.5 && r.height >= minTarget - 0.5) continue;
+    const cx = (r.left + r.right) / 2, cy = (r.top + r.bottom) / 2, rad = minTarget / 2;
+    const crowded = boxes.some((o, j) => {
+      if (j === i || controls[j].contains(el) || el.contains(controls[j])) return false;
+      const dx = Math.max(o.left - cx, 0, cx - o.right), dy = Math.max(o.top - cy, 0, cy - o.bottom);
+      return dx * dx + dy * dy < rad * rad;
+    });
+    if (crowded) small.push(`${name(el)} ${Math.round(r.width)}x${Math.round(r.height)}`);
   }
   if (small.length) problems.push(`tap targets under ${minTarget}px: ${small.slice(0, 4).join(" | ")}`);
 
-  // 7. Page columns centred on wide screens (the "empty right side" fault)
+  // 7. Page columns centred on wide screens (the "empty right side" fault), measured inside the parent's box so a
+  // sidebar layout counts the space beside the sidebar, not the whole window
   if (centred && vw >= 1600) {
     for (const el of document.querySelectorAll(centred)) {
       if (!shown(el)) continue;
       const r = el.getBoundingClientRect();
-      const left = r.left, right = vw - r.right;
-      if (Math.abs(left - right) > 4 && r.width < vw - 8) problems.push(`${name(el)} not centred: ${Math.round(left)}px left, ${Math.round(right)}px right`);
+      const box = el.parentElement.getBoundingClientRect();
+      const left = r.left - box.left, right = Math.min(box.right, vw) - r.right;
+      if (Math.abs(left - right) > 4 && r.width < box.width - 8) problems.push(`${name(el)} not centred: ${Math.round(left)}px left, ${Math.round(right)}px right`);
     }
   }
   return problems;
