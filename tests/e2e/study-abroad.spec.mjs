@@ -1,12 +1,13 @@
 // Study Abroad calculator (/study-abroad-calculator/).
 // Future cost in rupees = cost today x (1 + fee inflation)^years x rupees per unit today x (1 + rupee fall)^years.
-// The rupees-per-unit figures are the page's own stated approximations ("Today $1 = ₹83"), used here as given
+// The rupees-per-unit figures are the page's stated SBI card selling rates of 6 Nov 2026, used here as given
 // inputs. The monthly saving follows reference.sipNeededForGoal (12% a year, see the note there).
 import { test, expect, expectAmount, expectIndianGrouping, expectNoBadNumbers, expectWhatsAppShare, setField, setSlider, sliderTo, typeInto } from "./fixtures.mjs";
 import { grow, sipNeededForGoal } from "../lib/reference.mjs";
 
-// The page's stated rupee rates, inputs to the sum (not results). See tests/README.md: they look stale.
-const PAGE_RATES = { USD: 83, GBP: 105, EUR: 90, AUD: 55, CAD: 62 };
+// The page's stated rupee rates (SBI forex card TT selling, 6 Nov 2026), inputs to the sum, not results.
+// Refreshed 2026-11-06 from ₹83 to the dollar. Update with the page when the rates are refreshed again.
+const PAGE_RATES = { USD: 94.45, GBP: 127.41, EUR: 106.50, AUD: 65.77, CAD: 67.63 };
 const COUNTRY_DEFAULT_COST = { USD: 200000, GBP: 120000, EUR: 100000, AUD: 180000, CAD: 150000 };
 
 async function expectResults(page, { currency = "USD", cost = 200000, years = 10, inflation = 6, fall = 4 }) {

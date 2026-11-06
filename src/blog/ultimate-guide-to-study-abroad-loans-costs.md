@@ -5,6 +5,7 @@ meta_description: "Learn how to estimate the total cost of studying abroad from 
 tags: ["post", "Study Abroad", "Education Loan", "Financial Planning"]
 readTime: 8
 date: 2026-05-24
+updated: 2026-11-06
 sources:
   - name: "Reserve Bank of India"
     url: "https://www.rbi.org.in/"
@@ -29,7 +30,7 @@ A complete study abroad budget must include:
 2. **Tuition Fees:** Usually billed per semester or annually. This varies widely by country and course type (e.g., US MBA vs. German Masters).
 3. **Living Expenses:** Rent, food, utilities, phone bills, local transit, and books. This depends heavily on whether you live on-campus or off-campus and in a major city vs. a college town.
 4. **Health Insurance:** Mandatory in countries like the US and Germany. This can add several thousand dollars to your annual budget.
-5. **Currency Fluctuations:** The Indian Rupee (INR) historically depreciates against major currencies (like USD, GBP, EUR) by about 3-5% annually. A loan taken at ₹83 per USD might require repayment at ₹88 per USD years later, increasing your debt.
+5. **Currency Fluctuations:** The Indian Rupee (INR) historically depreciates against major currencies (like USD, GBP, EUR) by about 3-5% annually. A loan taken at ₹94.45 per USD (SBI card selling rate, 6 Nov 2026) might require repayment at ₹88 per USD years later, increasing your debt.
 
 *(To calculate an all-inclusive estimate for different countries, run the numbers on our **[Study Abroad Calculator](/study-abroad-calculator/)**).*
 
@@ -64,4 +65,4 @@ If you must take a loan, keep these guidelines in mind to ensure you do not drow
 * **The 1-Year Salary Rule:** Try to ensure your total education loan debt does not exceed your expected **first-year gross salary** after graduation. If your expected starting salary is $70,000, do not borrow more than $70,000.
 * **Start Your Search Early:** Secured education loans from government banks take 30 to 45 days to process because of legal and technical verifications. Start applying the moment you receive your admission offer.
 * **Understand the Moratorium Period:** A moratorium is a grace period during which you do not have to pay EMIs. However, **simple interest still accumulates** during this time and is added to your principal when EMIs start, increasing your loan balance. If your family can afford it, pay the simple interest monthly during your studies.
-* **Look for Tax Benefits Under Section 80E:** Under the Indian Income Tax Act, the interest paid on an education loan is **100% tax-deductible for up to 8 consecutive years** from the start of repayment. There is no upper limit on this deduction! (Estimate your tax savings using our **[Income Tax Calculator](/income-tax-calculator/)**).
+* **Look for Tax Benefits Under Section 129 (was 80E):** Under the Indian Income Tax Act, the interest paid on an education loan is **100% tax-deductible for up to 8 consecutive years** from the start of repayment. There is no upper limit on this deduction! (Estimate your tax savings using our **[Income Tax Calculator](/income-tax-calculator/)**).

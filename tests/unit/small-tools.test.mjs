@@ -46,22 +46,26 @@ knownBug("cash: the words line is written in words", "prints digits with unit na
 
 // ── Study abroad ──
 
+// Rupee rates are SBI forex card TT selling rates, 6 Nov 2026 2:09 pm IST (the page states the date).
+// When the page's rates are refreshed, update this table and the worked figure below from the same source.
+const RATES = { USD: 94.45, GBP: 127.41, EUR: 106.50, AUD: 65.77, CAD: 67.63 };
+
 test("study abroad: US degree, 2,00,000 dollars, 10 years, 6% fees, rupee falls 4% a year", () => {
-  // 2,00,000 x 1.06^10 (1.790848) x 83 x 1.04^10 (1.480244) = ₹4,40,04,808.33
+  // 2,00,000 x 1.06^10 (1.790848) x 94.45 x 1.04^10 (1.480244) = ₹50,075,351.16
   const r = Study.calculate({ currency: "USD", currentCost: 200000, years: 10, inflationPct: 6, depreciationPct: 4 });
-  close(r.futureCostINR, 44004808.33, 0.01);
-  assert.equal(r.currentCostINR, 200000 * 83);
+  close(r.futureCostINR, 50075351.16, 0.01);
+  close(r.currentCostINR, 200000 * RATES.USD, 1e-6);
   close(r.futureCostForeign, grow(200000, 6, 10), 1e-6);
-  close(r.inflationImpact, grow(200000, 6, 10) * 83 - 200000 * 83, 1e-6);
-  close(r.depreciationImpact, 200000 * grow(83, 4, 10) - 200000 * 83, 1e-6);
+  close(r.inflationImpact, grow(200000, 6, 10) * RATES.USD - 200000 * RATES.USD, 1e-6);
+  close(r.depreciationImpact, 200000 * grow(RATES.USD, 4, 10) - 200000 * RATES.USD, 1e-6);
   close(r.combinedRatePercent, (1.06 * 1.04 - 1) * 100, 1e-9);
   close(r.monthlySaving, sipNeededForGoal(r.futureCostINR, 12, 120), 1e-6);
 });
 
 test("study abroad: every currency uses its stated rupee rate", () => {
-  for (const [currency, rate] of Object.entries({ USD: 83, GBP: 105, EUR: 90, AUD: 55, CAD: 62 })) {
+  for (const [currency, rate] of Object.entries(RATES)) {
     const r = Study.calculate({ currency, currentCost: 1000, years: 1, inflationPct: 0, depreciationPct: 0 });
-    assert.equal(r.currentCostINR, 1000 * rate);
+    close(r.currentCostINR, 1000 * rate, 1e-6);
     close(r.futureCostINR, 1000 * rate, 1e-9);
   }
 });

@@ -5,6 +5,7 @@ meta_description: "A step-by-step financial guide for Indian parents to plan and
 tags: ["post", "Child Education", "SSY", "PPF", "Financial Planning"]
 readTime: 9
 date: 2026-05-18
+updated: 2026-11-06
 sources:
   - name: "National Savings Institute"
     url: "https://www.nsiindia.gov.in/"
@@ -46,7 +47,7 @@ Depending on your risk tolerance, your child's age, and gender, you can combine 
 If you have a daughter under the age of 10, SSY is arguably the best fixed-income investment tool available in India.
 
 * **Current Interest Rate:** 8.2% per annum (subject to quarterly government revision).
-* **Tax Status:** EEE (Exempt-Exempt-Exempt), No tax on investment, interest earned, or maturity amount under Section 80C.
+* **Tax Status:** EEE (Exempt-Exempt-Exempt), No tax on investment, interest earned, or maturity amount under Section 123 (was 80C).
 * **Lock-in:** Maturing when the girl child turns 21, with partial withdrawal allowed for higher education after she turns 18 or completes 10th standard.
 * **Pro Tip:** Calculate potential maturity wealth using our **[SSY Calculator](/ssy-calculator/)**.
 

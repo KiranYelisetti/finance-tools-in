@@ -5,8 +5,10 @@
 (function (root) {
     'use strict';
 
-    // Rupees per unit of each currency (approximate, for planning)
-    var EXCHANGE_RATES = { USD: 83, GBP: 105, EUR: 90, AUD: 55, CAD: 62 };
+    // Rupees per unit of each currency: SBI forex card TT selling rates, 6 Nov 2026, 2:09 pm IST
+    // (the rate a family pays to send fees abroad). Refresh with the page's "rates as of" note.
+    var EXCHANGE_RATES = { USD: 94.45, GBP: 127.41, EUR: 106.50, AUD: 65.77, CAD: 67.63 };
+    var RATES_AS_OF = '6 Nov 2026';
 
     // Monthly saving that reaches `target` in `months` months at 12% a year (monthly rate 1.12^(1/12) - 1,
     // saving made at the end of each month)
@@ -48,7 +50,7 @@
         };
     }
 
-    var api = { calculate: calculate, monthlySavingFor: monthlySavingFor, EXCHANGE_RATES: EXCHANGE_RATES };
+    var api = { calculate: calculate, monthlySavingFor: monthlySavingFor, EXCHANGE_RATES: EXCHANGE_RATES, RATES_AS_OF: RATES_AS_OF };
     if (typeof module !== 'undefined' && module.exports) module.exports = api;
     else (root.QTCalc = root.QTCalc || {}).studyAbroad = api;
 })(typeof window !== 'undefined' ? window : this);

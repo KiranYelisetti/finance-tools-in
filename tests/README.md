@@ -118,7 +118,7 @@ A test for a known bug states the right answer and is marked as expected to fail
 | GST | Typing 1000.50 key by key gives 1,00,050 (the decimal point is eaten) | "an amount with paise can be typed key by key" |
 | Income Tax | 80D is not capped at the legal ₹1,00,000 | "80D is capped ..." |
 | Income Tax | No surcharge above ₹50 lakh. The page says so, kept as a known gap. | "true tax above 50 lakh includes surcharge" |
-| Salary | The 50% HRA option names 4 cities, Rule 279 gives 8 from tax year 2026-27 | "HRA at 50% covers all eight Rule 279 cities" |
+| Salary | **Fixed 2026-11-06.** The 50% HRA option named 4 cities. Rule 279 gives 8 from tax year 2026-27 and the option now lists all 8. | "HRA at 50% covers all eight Rule 279 cities" (now a regression test) |
 | Salary | Professional tax 0 becomes ₹200 | "professional tax can be set to zero" |
 | Salary | The employee's 0.75% ESI is never deducted | "an ESI-covered salary deducts the employee's 0.75%" |
 | Salary | At 60% basic in a metro the parts add up to more than the CTC | "the salary parts never add up to more than the CTC" |
@@ -136,7 +136,7 @@ These are not marked as bugs, but a reader cannot see them on the page:
 
 - PPF and SSY assume each year's deposit is made by 5 April, so it earns the whole year's interest. That is the best case.
 - Study Abroad and Wedding Cost work out the monthly saving at 12% a year compounded yearly, saved at the end of each month. The SIP page uses 1% a month, saved at the start. The two give different answers for the same goal.
-- Study Abroad converts at ₹83 to the dollar, ₹105 to the pound, ₹90 to the euro, ₹55 to the Australian dollar and ₹62 to the Canadian dollar. These look out of date.
+- **Updated 2026-11-06.** Study Abroad converted at ₹83 to the dollar and similar stale rates. It now uses SBI card selling rates of 6 Nov 2026, stated on the page. Refresh them, and the test tables, every few months.
 - Choosing a country on Study Abroad, or a preset on several pages, writes the amount without Indian commas. The sums are still right.
 
 ## How to add tests for a new tool

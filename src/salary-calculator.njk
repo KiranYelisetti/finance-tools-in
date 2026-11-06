@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-date: 2026-09-24
+date: 2026-11-06
 title: "Salary Calculator India 2026 | CTC to In-Hand Take Home Pay"
 meta_title: "Salary Calculator India 2026 - CTC to In-Hand Pay Calculator"
 meta_description: "Calculate your in-hand salary from CTC instantly. See monthly take-home pay after PF, Professional Tax, HRA & Income Tax deductions. Covers Metro and Non-Metro cities."
@@ -83,7 +83,7 @@ sources:
       "name": "What is the PF wage ceiling?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The statutory wage ceiling for mandatory EPF is ₹15,000 a month of basic plus dearness allowance, so the minimum employer contribution is 12% of ₹15,000. Of the employer's 12%, 8.33% (₹1,250 at the ceiling) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF)."
+        "text": "The statutory wage ceiling for mandatory EPF is ₹25,000 a month from 17 September 2026 (it was ₹15,000 before), so the minimum employer contribution is 12% of ₹25,000, or ₹3,000. Of the employer's 12%, 8.33% (₹2,083 at the new ceiling, ₹1,250 at the old one) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF)."
       }
     },
     {
@@ -91,7 +91,7 @@ sources:
       "name": "Does the calculator use the old or the new tax regime?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 87A rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 80C deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here."
+        "text": "It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 156 (was 87A) rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 123 (was 80C) deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here."
       }
     },
     {
@@ -144,10 +144,10 @@ sources:
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">City Type</label>
                         <select id="cityType"
                             class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 dark:bg-gray-700 dark:text-white">
-                            <option value="metro">Metro (Delhi, Mumbai, Kolkata, Chennai)</option>
-                            <option value="nonmetro">Non-Metro (All other cities)</option>
+                            <option value="metro">50% city (Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune, Ahmedabad)</option>
+                            <option value="nonmetro">Any other city</option>
                         </select>
-                        <p class="text-xs text-gray-500 mt-1">Affects HRA exemption: Metro 50% vs Non-Metro 40% of Basic</p>
+                        <p class="text-xs text-gray-500 mt-1">HRA here is 50% of basic in these 8 cities, the list for tax year 2026-27 (rule 279), and 40% elsewhere. Before April 2026 only the first four counted.</p>
                     </div>
                 </div>
 
@@ -283,7 +283,7 @@ sources:
                 <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4"><i class="fas fa-info-circle mr-2 text-teal-600"></i>What this calculator does, step by step</h2>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                     The calculator rebuilds a typical Indian payslip from the CTC you enter. Basic pay is taken as the
-                    percentage you set (40% by default). HRA is 50% of basic for the four metro cities and 40% elsewhere.
+                    percentage you set (40% by default). HRA is 50% of basic in the eight cities the tax rules name from April 2026 (Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune, Ahmedabad) and 40% elsewhere.
                     The employer's PF contribution is 12% of basic and the gratuity accrual is 4.81% of basic. Employer ESI
                     (3.25% of gross) is added only when monthly CTC is ₹21,000 or less. Special allowance is whatever is
                     left of monthly CTC after those items, so the structure always adds up to your CTC.
@@ -291,7 +291,7 @@ sources:
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                     Gross salary is basic plus HRA plus special allowance plus any monthly bonus you enter. From gross, the
                     calculator deducts employee PF (12% of basic), the professional tax you enter, and an estimate of income
-                    tax under the new tax regime: a ₹75,000 standard deduction, the current slabs, the Section 87A rebate for
+                    tax under the new tax regime: a ₹75,000 standard deduction, the current slabs, the Section 156 (was 87A) rebate for
                     taxable income up to ₹12 lakh (with marginal relief just above it) and 4% cess, spread over twelve
                     months as TDS. What remains is your in-hand salary.
                 </p>
@@ -349,7 +349,7 @@ sources:
                             <li><strong>Variable or performance pay:</strong> counted at target in the CTC, paid quarterly or yearly and only to the extent earned.</li>
                             <li><strong>Insurance premiums:</strong> group health and life cover paid by the employer on your behalf.</li>
                             <li><strong>Employer ESI:</strong> 3.25% of wages, only when gross is ₹21,000 a month or less (the employee pays 0.75%).</li>
-                            <li><strong>Employer NPS contribution:</strong> where offered, deductible under Section 80CCD(2) within the limits set in the Income Tax Act.</li>
+                            <li><strong>Employer NPS contribution:</strong> where offered, deductible under Section 124(1) (was 80CCD(2)) within the limits set in the Income Tax Act.</li>
                         </ul>
                     </div>
                 </div>
@@ -361,14 +361,15 @@ sources:
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                     You contribute 12% of basic plus DA to the Employees' Provident Fund, and your employer contributes
                     another 12%. The employer's share is split: 8.33% goes to the Employees' Pension Scheme (EPS) and the
-                    rest to your EPF account. The EPS share is calculated on a wage ceiling of ₹15,000 a month, so it is
-                    capped at ₹1,250 a month; anything above that from the employer's 12% flows into EPF. The ₹15,000 ceiling
-                    is also the statutory minimum wage base for mandatory PF, which is why some employers contribute 12% of
-                    ₹15,000 rather than 12% of your full basic. This calculator assumes 12% of full basic on both sides,
+                    rest to your EPF account. The EPS share is calculated on the wage ceiling, which the Government raised from ₹15,000
+                    to ₹25,000 a month from 17 September 2026, so it is now capped at ₹2,083 a month (₹1,250 before).
+                    Anything above that from the employer's 12% flows into EPF. The ceiling
+                    is also the statutory minimum wage base for mandatory PF, which is why some employers contribute 12% of the ceiling (₹25,000 from 17 September 2026,
+                    ₹15,000 before) rather than 12% of your full basic. This calculator assumes 12% of full basic on both sides,
                     which many organised private employers follow.
                 </p>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                    Your own 12% counts toward the ₹1.5 lakh Section 80C limit under the old tax regime, and you can add a
+                    Your own 12% counts toward the ₹1.5 lakh Section 123 (was 80C) limit under the old tax regime, and you can add a
                     voluntary provident fund (VPF) contribution above 12% if you want more of your salary in EPF. EPFO
                     declares the interest rate for each financial year; check the current rate on the EPFO website rather
                     than relying on last year's figure.
@@ -417,18 +418,18 @@ sources:
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                     The new tax regime, which this calculator uses, gives a ₹75,000 standard deduction and taxes income in
                     slabs of 5% (₹4 lakh to ₹8 lakh), 10% (to ₹12 lakh), 15% (to ₹16 lakh), 20% (to ₹20 lakh), 25% (to ₹24
-                    lakh) and 30% above that, with a Section 87A rebate that brings tax to zero when taxable income is ₹12
-                    lakh or less. These slabs apply for FY 2025-26 and continue for FY 2026-27 as of September 2026. The old
+                    lakh) and 30% above that, with a Section 156 (was 87A) rebate that brings tax to zero when taxable income is ₹12
+                    lakh or less. These slabs apply for FY 2025-26 and continue for FY 2026-27 as of November 2026. The old
                     regime keeps a ₹50,000 standard deduction and older slabs (5% from ₹2.5 lakh, 20% from ₹5 lakh, 30%
-                    above ₹10 lakh) but allows HRA exemption, Section 80C, Section 80D and home loan interest deductions.
+                    above ₹10 lakh) but allows HRA exemption, Section 123 (was 80C), Section 126 (was 80D) and home loan interest deductions.
                 </p>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                     Take the ₹10 lakh example above. Under the new regime the taxable income is ₹8,57,760 and the tax is
                     zero after the rebate. Under the old regime, with rent of ₹20,000 a month giving a full ₹2,00,000 HRA
-                    exemption and ₹1,50,000 of Section 80C investments (your ₹48,000 of employee PF counts toward it), taxable
+                    exemption and ₹1,50,000 of Section 123 (was 80C) investments (your ₹48,000 of employee PF counts toward it), taxable
                     income is ₹5,32,760 and the tax is ₹19,814 including cess, about ₹1,651 a month. The new regime wins here.
                     The old regime tends to come out ahead only when large deductions stack up, typically home loan
-                    interest plus HRA plus 80C plus 80D. Test your own numbers with the
+                    interest plus HRA plus section 123 (was 80C) plus section 126 (was 80D). Test your own numbers with the
                     <a href="/income-tax-calculator/" class="text-teal-600 dark:text-teal-400 hover:underline">income tax calculator</a>, which compares both regimes.
                 </p>
             </div>
@@ -531,11 +532,11 @@ sources:
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
                         <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">What is the PF wage ceiling?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The statutory wage ceiling for mandatory EPF is ₹15,000 a month of basic plus dearness allowance, so the minimum employer contribution is 12% of ₹15,000. Of the employer's 12%, 8.33% (₹1,250 at the ceiling) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF).</p>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">The statutory wage ceiling for mandatory EPF is ₹25,000 a month from 17 September 2026 (it was ₹15,000 before), so the minimum employer contribution is 12% of ₹25,000, or ₹3,000. Of the employer's 12%, 8.33% (₹2,083 at the new ceiling, ₹1,250 at the old one) goes to the Employees' Pension Scheme and the balance goes to your EPF account. Many companies contribute 12% of full basic, which this calculator assumes for both the employee and the employer. You can also contribute more than 12% from your side through the voluntary provident fund (VPF).</p>
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
                         <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Does the calculator use the old or the new tax regime?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>
-                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 87A rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 80C deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here.</p>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">It estimates TDS under the new tax regime only: a ₹75,000 standard deduction, the slabs that apply for FY 2025-26 and FY 2026-27, the Section 156 (was 87A) rebate for taxable income up to ₹12 lakh with marginal relief just above it, and 4% cess. If you claim HRA, home loan interest or Section 123 (was 80C) deductions under the old regime, compare both regimes on our income tax calculator and use that figure in place of the estimate here.</p>
                     </details>
                     <details class="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 cursor-pointer">
                         <summary class="font-semibold text-gray-800 dark:text-white flex justify-between items-center">Is gratuity really part of my salary?<i class="fas fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i></summary>

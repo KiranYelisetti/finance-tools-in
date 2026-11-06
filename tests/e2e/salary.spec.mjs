@@ -124,11 +124,9 @@ test.describe("Salary calculator", () => {
   });
 
   test("HRA at 50% covers all eight Rule 279 cities from tax year 2026-27", async ({ page }) => {
-    // KNOWN BUG (given by the site owner): the 50% option names only Delhi, Mumbai, Kolkata and Chennai, and the
-    // page text says "four metro cities". Income-tax Rules, 2026, rule 279 (in force 1 April 2026) gives 50% to
-    // Mumbai, Kolkata, Delhi, Chennai, Hyderabad, Pune, Ahmedabad and Bengaluru. Someone in Hyderabad, Bengaluru,
-    // Pune or Ahmedabad picks "Non-Metro" and gets HRA at 40% of basic instead of 50%.
-    test.fail();
+    // FIXED 2026-11-06, kept as a regression test. Was a known bug: the 50% option named only Delhi, Mumbai, Kolkata
+    // and Chennai. Income-tax Rules, 2026, rule 279 (in force 1 April 2026) gives 50% to Mumbai, Kolkata, Delhi,
+    // Chennai, Hyderabad, Pune, Ahmedabad and Bengaluru.
     const options = await page.locator("#cityType option").evaluateAll((os) => os.map((o) => ({ value: o.value, text: o.textContent })));
     for (const city of RULE_279_CITIES) {
       const option = options.find((o) => o.text.includes(city));

@@ -5,6 +5,7 @@ meta_description: "Understand the difference between CTC, Gross Salary, and In-H
 tags: ["post", "Salary", "Income Tax", "Employment"]
 readTime: 10
 date: 2026-05-05
+updated: 2026-11-06
 sources:
   - name: "Income Tax Department: guidance for salaried individuals"
     url: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
@@ -47,7 +48,7 @@ Most companies keep Basic at 40% of CTC to balance PF contributions and tax bene
 
 ### House Rent Allowance: HRA (40-50% of Basic)
 
-HRA is designed to help employees pay rent. In metro cities (Delhi, Mumbai, Kolkata, Chennai), HRA is typically 50% of Basic. In non-metro cities, it's 40%.
+HRA is designed to help employees pay rent. In the cities the tax rules treat as 50% cities, HRA is typically 50% of Basic. Elsewhere it's 40%. From April 2026 that list has eight cities: Mumbai, Delhi, Kolkata, Chennai, Hyderabad, Bengaluru, Pune and Ahmedabad (it had only the first four before).
 
 - **Tax treatment:** Partially exempt if you actually pay rent (the exemption formula is the minimum of: actual HRA received, rent paid minus 10% of Basic, or 50%/40% of Basic)
 - **Key point:** If you don't pay rent or own your home, HRA is fully taxable
@@ -83,7 +84,7 @@ EPF is the most significant deduction from your salary. Both you and your employ
 - Employer's monthly contribution: ₹5,000 (part of CTC)
 - Total annual EPF savings: ₹1,20,000
 
-**Current EPF Interest Rate:** 8.25% p.a. (FY 2024-25), tax-free up to ₹2.5 Lakh employee contribution.
+**Current EPF Interest Rate:** 8.25% a year (FY 2024-25 and FY 2025-26), tax-free up to ₹2.5 Lakh employee contribution.
 
 ### Gratuity (4.81% of Basic)
 
@@ -134,7 +135,7 @@ Your employer deducts estimated income tax monthly based on your declared invest
 | (-) Income Tax (New Regime) | 0 | 0 |
 | **In-Hand Salary** | **4,60,320** | **₹38,360** |
 
-**Effective In-Hand:** 76.7% of CTC. Income tax is ₹0 because taxable income (₹6L - ₹75K standard deduction = ₹5.25L) falls within the rebate zone under Section 87A (New Regime).
+**Effective In-Hand:** 76.7% of CTC. Income tax is ₹0 because taxable income (₹6L - ₹75K standard deduction = ₹5.25L) falls within the rebate zone under Section 156 (was 87A) (New Regime).
 
 ### Example 2: ₹12 LPA (Mid-Level)
 
@@ -198,10 +199,10 @@ When evaluating a job offer, always ask for the **complete salary breakup**, not
 If you choose the Old Tax Regime, you can legally increase your in-hand salary:
 
 1. **Claim HRA:** Submit rent receipts to get HRA exemption (even rent paid to parents)
-2. **Max out 80C:** ₹1,50,000 deduction via EPF + PPF + ELSS
-3. **NPS 80CCD(1B):** Additional ₹50,000 deduction
-4. **Health Insurance 80D:** ₹25,000-₹1,00,000 deduction
-5. **Home Loan Interest 24(b):** Up to ₹2,00,000 deduction
+2. **Max out section 123 (was 80C):** ₹1,50,000 deduction via EPF + PPF + ELSS
+3. **NPS section 124(3) (was 80CCD(1B)):** Additional ₹50,000 deduction
+4. **Health Insurance section 126 (was 80D):** ₹25,000-₹1,00,000 deduction
+5. **Home Loan Interest section 22 (was 24(b)):** Up to ₹2,00,000 deduction
 6. **LTA:** Claim Leave Travel Allowance for domestic travel (twice in a block of 4 years)
 
 Compare Old vs New Regime impact with our **[Income Tax Calculator](/income-tax-calculator/)**.

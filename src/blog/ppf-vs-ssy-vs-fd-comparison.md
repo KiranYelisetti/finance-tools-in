@@ -5,6 +5,7 @@ meta_description: "In-depth comparison of PPF, Sukanya Samriddhi Yojana, and Fix
 tags: ["post", "Investment", "PPF", "SSY", "Fixed Deposit"]
 readTime: 11
 date: 2026-04-28
+updated: 2026-11-06
 sources:
   - name: "National Savings Institute"
     url: "https://www.nsiindia.gov.in/"
@@ -26,7 +27,7 @@ In this guide, we'll do a deep, side-by-side comparison of the three most popula
 | Feature | PPF | SSY | Fixed Deposit |
 |---------|-----|-----|---------------|
 | **Interest Rate** | 7.1% p.a. | 8.2% p.a. | 6.5% to 7.5% p.a. |
-| **Tax on Deposits** | Exempt (80C) | Exempt (80C) | 80C only for Tax-Saver FD |
+| **Tax on Deposits** | Exempt (section 123 (was 80C)) | Exempt (section 123 (was 80C)) | Section 123 (was 80C) only for Tax-Saver FD |
 | **Tax on Interest** | Exempt | Exempt | Taxable as per slab |
 | **Tax on Maturity** | Exempt | Exempt | No separate tax |
 | **Tax Status** | EEE | EEE | Taxable |
@@ -168,7 +169,7 @@ Banks deduct TDS at **10%** if your total FD interest exceeds ₹40,000/year (�
 ### Choose FD if:
 - You need guaranteed returns for a short-term goal (1-5 years)
 - You're a senior citizen seeking predictable monthly income
-- You've already maxed out 80C and need safe savings
+- You've already maxed out section 123 (was 80C) and need safe savings
 
 ### The Optimal Strategy: Use All Three
 
@@ -177,7 +178,7 @@ For a family with a daughter:
 2. **PPF:** ₹1,50,000/year for retirement corpus (tax-free compounding)
 3. **FD:** 3-6 months of expenses as emergency fund (liquidity)
 
-Both SSY and PPF qualify under 80C, but the combined limit is ₹1,50,000. Any amount above ₹1.5 Lakh doesn't get a deduction but still earns tax-free interest.
+Both SSY and PPF qualify under section 123 (was 80C), but the combined limit is ₹1,50,000. Any amount above ₹1.5 Lakh doesn't get a deduction but still earns tax-free interest.
 
 ## FAQs
 

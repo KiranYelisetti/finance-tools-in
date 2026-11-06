@@ -5,7 +5,7 @@ meta_description: "Start your mutual fund investment journey in India with our b
 tags: ["post", "Investment", "SIP", "Mutual Funds"]
 readTime: 7
 date: 2026-04-05
-updated: 2026-09-24
+updated: 2026-11-06
 sources:
   - name: "SEBI investor website"
     url: "https://investor.sebi.gov.in/"
@@ -87,7 +87,7 @@ Many first-time investors ask: "Why not just do an RD at my bank? It's safer." L
 
 ## Understanding Tax on SIP Returns
 
-Many new investors are surprised to learn that mutual fund gains are taxable. The rules below are as of September 2026 and follow the changes made by the Finance (No. 2) Act, 2024, which apply to redemptions on or after 23 July 2024. Here is how it works for equity mutual funds:
+Many new investors are surprised to learn that mutual fund gains are taxable. The rules below are as of November 2026 and follow the changes made by the Finance (No. 2) Act, 2024, which apply to redemptions on or after 23 July 2024. Here is how it works for equity mutual funds:
 
 ### Short-Term Capital Gains (STCG)
 - **Holding period:** 12 months or less

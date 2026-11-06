@@ -5,6 +5,7 @@ meta_description: "Discover the best practical strategies to pre-pay your home l
 tags: ["post", "Home Loan", "Pre-payment"]
 readTime: 6
 date: 2026-04-10
+updated: 2026-11-06
 sources:
   - name: "Reserve Bank of India"
     url: "https://www.rbi.org.in/"
@@ -111,13 +112,13 @@ This is the most important question. Pre-payment makes sense when:
 
 2. **You've already built an emergency fund** (6 months of expenses)
 
-3. **You've maxed out tax-saving investments** (80C, 80D, NPS)
+3. **You've maxed out tax-saving investments** (section 123 (was 80C), section 126 (was 80D), NPS)
 
 ### When Pre-Payment May NOT Be Optimal:
 
 - You're in the **early years** of your career and need liquidity
 - Your home loan rate is very low (below 7%) after negotiation
-- You're getting the **full Section 24(b) interest deduction** of ₹2 Lakhs and it significantly reduces your tax liability
+- You're getting the **full Section 22 (was 24(b)) interest deduction** of ₹2 Lakhs and it significantly reduces your tax liability
 - You have higher-interest debt to clear first (credit card at 36%, personal loan at 14%)
 
 ## The Mathematics Behind Pre-Payment: Why Early Years Matter Most
