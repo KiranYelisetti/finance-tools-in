@@ -16,9 +16,17 @@ import { fileURLToPath } from "node:url";
 
 const CHART_JS = fs.readFileSync(fileURLToPath(new URL("../../node_modules/chart.js/dist/chart.umd.min.js", import.meta.url)));
 
+// BASE_URL=https://www.quicktoolsindia.com runs the suite against the live site: its host then counts as "the site",
+// and third parties (AdSense, Analytics) are still stubbed, so test visits never reach Google Analytics.
+const SITE_HOSTS = new Set(["127.0.0.1", "localhost"]);
+if (process.env.BASE_URL) {
+  const h = new URL(process.env.BASE_URL).hostname;
+  SITE_HOSTS.add(h).add(h.replace(/^www\./, "")).add("www." + h.replace(/^www\./, ""));
+}
+
 function isLocal(url) {
   const { hostname, protocol } = new URL(url);
-  return protocol === "data:" || protocol === "blob:" || hostname === "127.0.0.1" || hostname === "localhost";
+  return protocol === "data:" || protocol === "blob:" || SITE_HOSTS.has(hostname);
 }
 
 async function stubThirdParty(route) {

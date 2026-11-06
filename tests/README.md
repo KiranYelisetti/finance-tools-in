@@ -164,3 +164,14 @@ tests/e2e/fixtures.mjs        shared fixtures and helpers
 tests/e2e/*.spec.mjs          one spec per page, plus site.spec.mjs
 tests/unit/*.test.mjs         unit tests for src/js/calc
 ```
+
+
+## Running the suite against the live site
+
+After a deploy, run the same browser suite against production. No local server is started, and analytics and ad
+requests are answered locally, so test visits never count as real users.
+
+- Git Bash: `BASE_URL=https://www.quicktoolsindia.com npx playwright test`
+- PowerShell: `$env:BASE_URL = "https://www.quicktoolsindia.com"; npx playwright test; Remove-Item Env:BASE_URL`
+
+First live run: 2026-11-06, right after the redesign went live. Every test passed.

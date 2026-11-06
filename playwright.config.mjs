@@ -15,7 +15,8 @@ export default defineConfig({
   expect: { timeout: 5_000 },
   reporter: [["list"], ["json", { outputFile: "test-results/e2e-results.json" }]],
   use: {
-    baseURL: `http://127.0.0.1:${PORT}`,
+    // BASE_URL runs the same suite against a deployed site, for example BASE_URL=https://www.quicktoolsindia.com
+    baseURL: process.env.BASE_URL || `http://127.0.0.1:${PORT}`,
     locale: "en-IN",
     timezoneId: "Asia/Kolkata",
     trace: "retain-on-failure",
@@ -38,7 +39,7 @@ export default defineConfig({
       },
     },
   ],
-  webServer: {
+  webServer: process.env.BASE_URL ? undefined : {
     command: `node scripts/serve-site.mjs --port ${PORT} --dir _site`,
     url: `http://127.0.0.1:${PORT}/`,
     // Never borrow a server someone else started on this port.
