@@ -83,6 +83,28 @@ function setupIndianInputs(root) {
 
 document.addEventListener('DOMContentLoaded', () => setupIndianInputs());
 
+// Tables that scroll (sideways or in a short box) must be reachable with the keyboard (WCAG 2.1.1): each scroller gets a tab stop
+// and a name taken from its caption or the nearest heading.
+function labelScrollers() {
+    document.querySelectorAll('.overflow-x-auto, .overflow-y-auto, .overflow-auto, .qt-table-wrap, table, pre').forEach(el => {
+        const cs = getComputedStyle(el);
+        if (el.hasAttribute('tabindex') || !/(auto|scroll)/.test(cs.overflowX + ' ' + cs.overflowY)) return;
+        if (!el.matches('table, pre') && !el.querySelector('table, pre')) return;
+        const cap = el.querySelector('caption');
+        let heading = null;
+        for (let n = el; n && !heading; n = n.parentElement) {
+            heading = n.querySelector('h2, h3, h4');
+            if (heading && !(heading.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING)) heading = null;
+        }
+        const text = (cap ? cap.textContent : heading ? heading.textContent : 'Table').replace(/\s+/g, ' ').trim();
+        el.setAttribute('tabindex', '0');
+        // A table keeps its table role (it can carry a name itself), anything else becomes a named region
+        if (el.tagName !== 'TABLE') el.setAttribute('role', 'region');
+        if (!el.hasAttribute('aria-label') && !el.hasAttribute('aria-labelledby')) el.setAttribute('aria-label', text.slice(0, 90));
+    });
+}
+document.addEventListener('DOMContentLoaded', labelScrollers);
+
 // Auto-Save Functionality
 function initAutoSave(pagePrefix) {
     if (!pagePrefix) {

@@ -21,15 +21,15 @@ meta_description: "Read our guides on personal finance, loans, SIPs, and taxes i
         {%- for post in collections.post | reverse -%}
         {% set key = "amounts" %}
         {% for tag in post.data.tags %}{% if tag != "post" and key == "amounts" %}{% set key = tag | tagKey %}{% endif %}{% endfor %}
-        <a href="{{ post.url }}" class="qt-tile is-{{ key }} qt-reveal" style="--i: {{ loop.index0 % 3 }}">
-            <span class="flex flex-wrap gap-1.5">
-                {% for tag in post.data.tags %}{% if tag != "post" and loop.index <= 3 %}<span class="qt-eyebrow">{{ tag }}{% if not loop.last %} ·{% endif %}</span>{% endif %}{% endfor %}
-            </span>
-            <span class="qt-tile-name">{{ post.data.title }}</span>
-            <span class="qt-tile-desc">{{ post.data.meta_description }}</span>
+        <article class="qt-tile is-{{ key }} qt-reveal" style="--i: {{ loop.index0 % 3 }}">
+            {%- set labels = [] -%}
+            {%- for tag in post.data.tags %}{% if tag != "post" and labels.length < 2 %}{% set _ = labels.push(tag) %}{% endif %}{% endfor %}
+            <span class="qt-eyebrow">{{ labels | join(" · ") }}</span>
+            <h2 class="qt-tile-name"><a href="{{ post.url }}" class="qt-tile-link">{{ post.data.title }}</a></h2>
+            <p class="qt-tile-desc">{{ post.data.meta_description }}</p>
             <span class="qt-tile-date mt-auto">{{ post.date | humanDate }}{% if post.data.readTime %} · {{ post.data.readTime }} min read{% endif %}</span>
             <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+        </article>
         {%- endfor -%}
     </div>
 </main>

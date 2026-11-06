@@ -54,7 +54,7 @@
     --qt-on-primary: var(--ink-900);    /* 12.9:1 on haldi-400 */
     --qt-accent: var(--rani-400);
     --qt-on-accent: var(--ink-900);
-    --qt-link: var(--mor-600);          /* 5.0:1 on canvas */
+    --qt-link: var(--mor-700);          /* 6.9:1 on canvas, 6.1:1 on sunken wells */
     --qt-focus: var(--mor-500);
     --qt-marker: var(--haldi-300);      /* highlighter behind answers */
     --qt-success: var(--mehendi-600);
@@ -141,6 +141,7 @@ html.dark {
    Wrap other things in .qt-light and every component inside uses the day roles. */
 .qt-light, .qt-cheque,
 .is-haldi, .is-amounts, .is-rani, .is-loans, .is-mehendi, .is-tax, .is-mor, .is-savings, .is-neel, .is-everyday {
+    --qt-canvas: var(--chai-100);       /* inverted stickers and chips use canvas for their text */
     --qt-surface: #FFFFFF;
     --qt-sunken: var(--chai-200);
     --qt-ink: var(--ink-900);
@@ -149,7 +150,7 @@ html.dark {
     --qt-line: var(--ink-900);
     --qt-line-soft: var(--chai-300);
     --qt-shadow: var(--ink-900);
-    --qt-link: var(--mor-600);
+    --qt-link: var(--mor-700);
     --qt-focus: var(--mor-500);
     --qt-danger: var(--sindoor-600);
     color-scheme: light;

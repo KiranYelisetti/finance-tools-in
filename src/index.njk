@@ -102,17 +102,17 @@ json_ld:
             {% set tile = homeTiles[t.url] or {} %}
             {% set changed = collections.all | lastChanged(t.url) %}
             {% set tid = t.url | replace("/", "") %}
-            <a href="{{ t.url }}" class="qt-tile qt-reveal is-{{ g.key }}{% if tile.size %} is-{{ tile.size }}{% endif %}" data-group="{{ g.key }}" style="--i: {{ loop.index0 }}" aria-labelledby="tile-{{ tid }}" aria-describedby="tile-{{ tid }}-desc">
+            <article class="qt-tile qt-reveal is-{{ g.key }}{% if tile.size %} is-{{ tile.size }}{% endif %}" data-group="{{ g.key }}" style="--i: {{ loop.index0 }}">
                 <span class="qt-eyebrow">{{ g.group }}</span>
-                <span class="qt-tile-name" id="tile-{{ tid }}">{{ t.name }}</span>
-                <span class="qt-tile-desc" id="tile-{{ tid }}-desc">{{ t.desc }}</span>
+                <h3 class="qt-tile-name"><a href="{{ t.url }}" class="qt-tile-link">{{ t.name }}</a></h3>
+                <p class="qt-tile-desc">{{ t.desc }}</p>
                 {% if tile.output %}
                 <span class="qt-tile-sample"><span>{{ tile.input }}</span><b>{{ tile.output }}</b></span>
                 {% elif changed %}
                 <span class="qt-tile-date mt-auto">Updated {{ changed | humanDate }}</span>
                 {% endif %}
                 <span class="qt-tile-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
+            </article>
             {% endfor %}{% endfor %}
         </div>
     </section>

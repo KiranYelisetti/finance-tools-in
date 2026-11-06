@@ -23,11 +23,15 @@
     }
     .qt-stack > * + * { margin-top: var(--gap, 1.2rem); }
     @media (max-width: 639px) { .qt-wide-only { display: none !important; } }
+    @media (max-width: 400px) { .qt-roomy-only { display: none !important; } }
+    @media (min-width: 401px) { .qt-tight-only { display: none !important; } }
 
     /* ---- Header ----------------------------------------------------------- */
     .qt-header { position: sticky; top: 0; z-index: var(--qt-z-header); background: var(--qt-canvas); border-bottom: var(--qt-bw) solid var(--qt-line); }
-    .qt-header-inner { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 4.25rem; }
-    .qt-brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--qt-ink); text-decoration: none; min-width: 0; }
+    /* Wraps to a second row only when it cannot fit, for example with the browser's text size at 200% */
+    .qt-header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem .75rem; min-height: 4.25rem; }
+    /* The brand never shrinks below its text (it used to, and the name ran under the Tools button at 360 px) */
+    .qt-brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--qt-ink); text-decoration: none; flex: none; }
     .qt-brand-mark {
         flex: none; width: 2.45rem; height: 2.45rem; display: grid; place-items: center; background: var(--qt-primary);
         border: var(--qt-bw) solid var(--ink-900); border-radius: 11px; box-shadow: var(--qt-sh-1); transform: rotate(-6deg);
@@ -36,11 +40,11 @@
     .qt-brand:hover .qt-brand-mark { transform: rotate(5deg) scale(1.06); }
     .qt-brand-name { font-weight: 800; font-size: 1.36rem; letter-spacing: -.035em; line-height: 1; white-space: nowrap; }
     .qt-brand-tag {
-        display: inline-block; margin-left: .3rem; font-size: .62rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+        display: inline-block; margin-left: .05rem; font-size: .62rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
         background: var(--qt-accent); color: var(--ink-900); border: 1.5px solid var(--ink-900); border-radius: 6px; padding: .2rem .38rem .16rem;
         transform: rotate(4deg) translateY(-.15rem);
     }
-    .qt-nav { display: flex; align-items: center; gap: .3rem; }
+    .qt-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .3rem; margin-left: auto; }
     .qt-nav-link {
         display: inline-flex; align-items: center; gap: .35rem; font: inherit; font-weight: 700; font-size: .97rem; color: var(--qt-ink);
         text-decoration: none; background: none; padding: .5rem .8rem; border: var(--qt-bw) solid transparent; border-radius: var(--qt-r-pill); cursor: pointer;
@@ -59,11 +63,25 @@
     .qt-theme svg { width: 1.2rem; height: 1.2rem; }
     .qt-theme .is-moon, html.dark .qt-theme .is-sun { display: none; }
     html.dark .qt-theme .is-moon { display: block; }
-    @media (max-width: 420px) {
+    /* Compact brand up to 500 px: the full brand plus Tools and Guides does not fit a 430 px iPhone */
+    @media (max-width: 500px) {
         .qt-brand-name { font-size: 1.15rem; }
         .qt-brand-tag { display: none; }
         .qt-nav-link { padding-inline: .6rem; }
     }
+    @media (max-width: 340px) {
+        .qt-header-inner { gap: .4rem; }
+        .qt-brand { gap: .5rem; }
+        .qt-brand-mark { width: 2.2rem; height: 2.2rem; }
+        .qt-brand-name { font-size: 1.05rem; }
+        .qt-nav-link { padding-inline: .5rem; }
+    }
+    /* Folded phones (280 px): the mark alone, the link keeps its name for screen readers */
+    @media (max-width: 300px) { .qt-brand-name { display: none; } }
+    /* Below 401 px Guides and Updates move into the Tools menu */
+    .qt-menu-more { display: flex; flex-wrap: wrap; gap: .6rem; grid-column: 1 / -1; }
+    .qt-menu-more a { flex: 1 1 8rem; text-align: center; font-weight: 750; color: var(--qt-ink); text-decoration: none; padding: .7rem 1rem;
+        background: var(--qt-surface); border: var(--qt-bw) solid var(--qt-line); border-radius: var(--qt-r-pill); box-shadow: var(--qt-sh-1); }
 
     /* Tools menu: one coloured card per group */
     .qt-menu { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--qt-z-menu); background: var(--qt-canvas); border-bottom: var(--qt-bw) solid var(--qt-line); padding-block: 1.25rem 1.6rem; max-height: min(72vh, calc(100vh - 4.5rem)); overflow-y: auto; }
@@ -136,7 +154,7 @@
         font-variant-numeric: tabular-nums; transition: transform var(--qt-dur-2) var(--qt-ease-pop), background-color var(--qt-dur-2);
     }
     .qt-chip:hover { background: var(--qt-primary); color: var(--ink-900); border-color: var(--ink-900); transform: rotate(-2deg); }
-    .qt-chip[aria-pressed="true"] { background: var(--qt-ink); color: var(--qt-canvas); border-color: var(--qt-ink); }
+    .qt-chip[aria-pressed="true"], .qt-chip.is-strong { background: var(--qt-ink); color: var(--qt-canvas); border-color: var(--qt-ink); }
 
     /* ---- Form fields ------------------------------------------------------ */
     .qt-fields { display: grid; gap: 1.3rem; }
@@ -300,6 +318,11 @@
     /* Section title inside a page, and an inset panel inside a card */
     .qt-section-title { font-size: var(--qt-text-2xl); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 1rem; color: var(--on-cat, var(--qt-ink)); }
     .qt-panel { background: var(--qt-sunken); color: var(--qt-ink); border-radius: var(--qt-r-md); }
+    /* Large text (browser text size up to 200%, WCAG 1.4.4): nothing may stick out of its box or run into its neighbour.
+       Long words and big figures may break, flex and grid children may shrink, label and value rows wrap. */
+    .qt-btn, .qt-preset, .qt-tile, .qt-panel, .qt-card, .qt-note, .qt-eyebrow, .qt-display, .qt-h1, .qt-h2, .qt-h3,
+    .qt-tile-name, .qt-tile-desc, .qt-label { overflow-wrap: anywhere; min-width: 0; }
+    .qt-panel.flex.justify-between, .qt-card .flex.justify-between { flex-wrap: wrap; column-gap: .75rem; }
     .qt-card .qt-card { box-shadow: var(--qt-sh-1); }
     .qt-card > .qt-table-wrap, .qt-panel > .qt-table-wrap { margin-top: .5rem; }
 
@@ -337,7 +360,7 @@
 
     /* ---- Breadcrumbs and page head --------------------------------------- */
     .qt-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: .86rem; color: var(--qt-muted); }
-    .qt-crumbs a { color: inherit; font-weight: 650; text-decoration: none; }
+    .qt-crumbs a { color: inherit; font-weight: 650; text-decoration: none; display: inline-flex; align-items: center; min-height: 1.6rem; }
     .qt-crumbs a:hover { color: var(--qt-ink); text-decoration: underline; text-underline-offset: 3px; }
     .qt-toolhead { padding-block: clamp(1.4rem, 1rem + 2vw, 2.6rem) clamp(1.2rem, 1rem + 1vw, 1.8rem); }
 
@@ -359,22 +382,33 @@
         box-shadow: 5px 5px 0 0 var(--qt-shadow); text-decoration: none;
         transition: transform var(--qt-dur-2) var(--qt-ease-pop), box-shadow var(--qt-dur-2) var(--qt-ease-out);
     }
+    /* The tool name is the link. Its ::after stretches over the whole card, so the card stays one big target while
+       screen readers and search engines get the name alone as the link text. */
+    .qt-tile { cursor: pointer; }
+    .qt-tile-link { color: inherit; text-decoration: none; }
+    .qt-tile-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 1; }
+    .qt-tile-link:focus-visible { outline: none; }
+    .qt-tile:has(.qt-tile-link:focus-visible) { outline: 3px solid var(--qt-focus); outline-offset: 4px; }
     .qt-tile:hover { transform: translate(-3px, -3px) rotate(-.5deg); box-shadow: 8px 8px 0 0 var(--qt-shadow); }
     .qt-tile:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 0 var(--qt-shadow); }
-    .qt-tile-name { font-weight: 800; font-size: 1.5rem; line-height: 1.04; letter-spacing: -.03em; padding-right: 2.6rem; }
-    .qt-tile-desc { font-size: .93rem; line-height: 1.45; color: rgba(22, 18, 14, .78); }
+    /* One thing to read first: the tool name is the biggest and darkest text on the card. The group label and the
+       description step back (68% ink, still 5:1 or more on every card colour), and in the sample only the answer is ink. */
+    .qt-tile .qt-eyebrow { color: rgba(22, 18, 14, .68); font-weight: 750; letter-spacing: .14em; padding-right: 2.6rem; }
+    .qt-tile-name { font-weight: 800; font-size: 1.62rem; line-height: 1.04; letter-spacing: -.03em; padding-right: 2.6rem; color: var(--ink-900); }
+    .qt-tile-desc { font-size: .93rem; line-height: 1.45; font-weight: 450; color: rgba(22, 18, 14, .68); }
     .qt-tile-sample {
         margin-top: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem .75rem; font-size: .88rem; font-weight: 650;
         background: var(--chai-50); border: 2px solid var(--ink-900); border-radius: 10px; padding: .45rem .65rem; font-variant-numeric: tabular-nums;
     }
-    .qt-tile-sample b { font-weight: 800; }
+    .qt-tile-sample > span { color: var(--chai-600); font-weight: 550; }
+    .qt-tile-sample b { font-weight: 800; color: var(--ink-900); }
     .qt-tile-go {
         position: absolute; top: .95rem; right: .95rem; width: 2.15rem; height: 2.15rem; display: grid; place-items: center;
         background: var(--chai-50); border: 2px solid var(--ink-900); border-radius: 50%; transition: transform var(--qt-dur-3) var(--qt-ease-pop);
     }
     .qt-tile-go svg { width: .95rem; height: .95rem; }
     .qt-tile:hover .qt-tile-go { transform: rotate(-45deg); background: var(--ink-900); color: var(--chai-50); }
-    .qt-tile-date { font-size: .74rem; font-weight: 700; color: rgba(22, 18, 14, .62); }
+    .qt-tile-date { font-size: .74rem; font-weight: 700; color: rgba(22, 18, 14, .72); }
 
     .qt-ticker { overflow: hidden; background: var(--qt-ink); color: var(--qt-canvas); border-block: var(--qt-bw) solid var(--qt-ink); }
     .qt-ticker-track { display: flex; width: max-content; }

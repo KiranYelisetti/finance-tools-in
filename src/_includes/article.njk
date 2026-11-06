@@ -37,7 +37,7 @@ noIconFont: true
             {% for g in tools %}{% if g.key == key %}{% for t in g.tools %}
             <a class="qt-chip" href="{{ t.url }}">{{ t.name }}</a>
             {% endfor %}{% endif %}{% endfor %}
-            <a class="qt-chip" href="/" aria-pressed="true">All tools</a>
+            <a class="qt-chip is-strong" href="/">All tools</a>
         </div>
     </aside>
 </main>
