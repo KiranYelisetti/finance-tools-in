@@ -6,14 +6,18 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2225082715542003"
          crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3255KS80R"></script>
+    <!-- Google tag (gtag.js), on the live site only: a local test run must never count as a visitor -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-C3255KS80R');
+        if (/(^|\.)quicktoolsplus\.com$/.test(location.hostname)) {
+            var gtagJs = document.createElement('script');
+            gtagJs.async = true;
+            gtagJs.src = 'https://www.googletagmanager.com/gtag/js?id=G-C3255KS80R';
+            document.head.appendChild(gtagJs);
+            gtag('js', new Date());
+            gtag('config', 'G-C3255KS80R');
+        }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
