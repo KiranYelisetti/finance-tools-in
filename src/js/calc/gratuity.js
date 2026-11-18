@@ -9,10 +9,10 @@
  * - Gratuity = monthly wages x 15 / 26 x years, where a part year of MORE than six months counts as a full year.
  * - Code wages: basic + DA + retaining allowance. If the other pay is more than half of all remuneration, the excess is
  *   added back (section 2(88)), which is the same as max(basic + DA, half of total pay).
- * - Ceiling Rs 20,00,000 (S.O. 1420(E), 2018, saved by section 164(2)(a)). Central government employees under the CCS
- *   rules are outside the Code, ceiling Rs 25,00,000 from 1 Jan 2024.
- * - Tax: Income-tax Act, 2025, section 19(1) Table. Government employees: fully exempt. Others covered by the gratuity
- *   law: exempt up to the least of the amount received, 15/26 of last salary (basic + DA) per year, and Rs 20,00,000.
+ * - Ceiling Rs 20,00,000 (S.O. 1420(E), 2018, saved by section 164(2)(a)).
+ * - Government employees under their own gratuity rules are outside the Code and are NOT worked out here.
+ * - Tax: Income-tax Act, 2025, section 19(1) Table. Employees covered by the gratuity law: exempt up to the least of
+ *   the amount received, 15/26 of last salary (basic + DA) per year, and Rs 20,00,000.
  */
 (function (root) {
     'use strict';
@@ -20,7 +20,6 @@
     var DAY_MS = 86400000;
     var CODE_START = '2025-11-21';
     var CAP = 2000000;
-    var CCS_CAP = 2500000;
     var TAX_FREE_LIMIT = 2000000;
 
     function parse(s) {
@@ -65,7 +64,7 @@
     }
 
     /*
-     * o: { joinDate, lastDay, basicDA, otherPay, type: 'permanent' | 'journalist' | 'fixedTerm' | 'government',
+     * o: { joinDate, lastDay, basicDA, otherPay, type: 'permanent' | 'journalist' | 'fixedTerm',
      *      reason: 'resignation' | 'retirement' | 'death' | 'disablement' | 'contractEnd' }
      * Returns null when a date or the pay is missing or the dates are reversed.
      */
@@ -74,8 +73,7 @@
         if (!s || !(o.basicDA > 0)) return null;
         var type = o.type || 'permanent';
         var reason = o.reason || 'resignation';
-        var gov = type === 'government';
-        var law = gov ? 'ccs' : lawFor(o.lastDay);
+        var law = lawFor(o.lastDay);
 
         var minYears = minimumYears(type, reason, law);
         var eligible = minYears === 0 ? s.years + s.months + s.days > 0 : s.years >= minYears;
@@ -84,11 +82,11 @@
         var oldRuleWage = Math.max(0, o.basicDA);
         var formula = monthlyWage * 15 / 26 * s.counted;
         var oldRuleFormula = oldRuleWage * 15 / 26 * s.counted;
-        var cap = gov ? CCS_CAP : CAP;
+        var cap = CAP;
         var payable = eligible ? Math.min(formula, cap) : 0;
 
-        // Tax: government employees fully exempt. Others: least of received, 15/26 of basic + DA per year, Rs 20 lakh.
-        var exempt = gov ? payable : Math.min(payable, oldRuleFormula, TAX_FREE_LIMIT);
+        // Tax: least of received, 15/26 of basic + DA per year, Rs 20 lakh
+        var exempt = Math.min(payable, oldRuleFormula, TAX_FREE_LIMIT);
 
         return {
             law: law,
@@ -109,7 +107,7 @@
 
     var api = {
         calculate: calculate, service: service, lawFor: lawFor, wages: wages, minimumYears: minimumYears,
-        CODE_START: CODE_START, CAP: CAP, CCS_CAP: CCS_CAP, TAX_FREE_LIMIT: TAX_FREE_LIMIT
+        CODE_START: CODE_START, CAP: CAP, TAX_FREE_LIMIT: TAX_FREE_LIMIT
     };
     if (typeof module !== 'undefined' && module.exports) module.exports = api;
     else (root.QTCalc = root.QTCalc || {}).gratuity = api;

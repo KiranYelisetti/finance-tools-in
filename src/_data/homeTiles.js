@@ -37,6 +37,7 @@ module.exports = {
     "/income-tax-calculator/": { size: "wide", input: "₹12.75 lakh salary, new regime, FY 2026-27", output: "₹0 tax" },
     "/salary-calculator/": { size: "half" },
     "/gst-calculator/": { size: "half", input: "₹1,000 + 18% GST", output: inr(1000 * 1.18) },
+    "/gratuity-calculator/": {},
     "/sip-calculator/": { input: "₹5,000 a month, 10 yrs, 12% assumed", output: lakh(sipValue(5000, 12, 10)) },
     "/ppf-calculator/": {},
     "/ssy-calculator/": {},

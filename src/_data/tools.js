@@ -23,6 +23,7 @@ module.exports = [
         tools: [
             { name: "Income Tax", url: "/income-tax-calculator/", desc: "Old regime against new regime for FY 2025-26 and FY 2026-27." },
             { name: "Salary, CTC to In-hand", url: "/salary-calculator/", desc: "Monthly take-home pay after PF, professional tax and income tax." },
+            { name: "Gratuity", url: "/gratuity-calculator/", desc: "Gratuity under the new labour code, with the 50% wage rule and the tax-free part." },
             { name: "GST", url: "/gst-calculator/", desc: "Add or remove GST and see the CGST, SGST or IGST split." },
         ],
     },

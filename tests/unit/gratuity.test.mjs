@@ -44,18 +44,13 @@ test("a worked case under the Code: 8 years, big allowances, part of it taxable"
   close(r.taxable, 46153.8462, 1e-3);
 });
 
-test("the Rs 20 lakh ceiling, and Rs 25 lakh for central government employees", () => {
-  const base = { joinDate: "2010-01-01", lastDay: "2019-12-31", basicDA: 400000, otherPay: 0, reason: "retirement" };
-  const p = G.calculate({ ...base, type: "permanent" });
+test("the Rs 20 lakh ceiling, and government service rules are not estimated here", () => {
+  const p = G.calculate({ joinDate: "2010-01-01", lastDay: "2019-12-31", basicDA: 400000, otherPay: 0, reason: "retirement", type: "permanent" });
   close(p.formula, (400000 * 15) / 26 * 10, 1e-6); // 23,07,692.31
   assert.equal(p.payable, 2000000);
   assert.equal(p.capped, true);
   assert.equal(p.law, "act1972");
-  const g = G.calculate({ ...base, type: "government" });
-  close(g.payable, (400000 * 15) / 26 * 10, 1e-6); // under the Rs 25 lakh CCS ceiling
-  assert.equal(g.capped, false);
-  close(g.taxFree, g.payable, 1e-6); // fully exempt for government employees
-  assert.equal(g.taxable, 0);
+  assert.equal(G.CCS_CAP, undefined);
 });
 
 test("eligibility: five years, three for journalists, none on death or disablement", () => {

@@ -164,13 +164,13 @@ test.describe("Home page amount-in-words box", () => {
     await expect(page.locator("#chequeFormat")).toHaveText("Rupees One Crore Fifty Lakh Only");
   });
 
-  test("the tool index links to all 20 tools", async ({ page }) => {
+  test("the tool index links to all 21 tools", async ({ page }) => {
     // The home page tool grid (v2 design: a section titled "Pick a calculator", one tile per tool)
     const index = page.locator("main").getByRole("region", { name: "Pick a calculator" });
     const expected = {
       "Number to Words": "/number-to-words/", "Lakh Crore in Numbers": "/lakh-crore-in-numbers/", "Cash Counter": "/cash-counter/",
       "Home Loan EMI": "/home-loan-calculator/", "Car Loan": "/car-loan-calculator/", "EMI Prepayment": "/emi-prepayment-calculator/",
-      "Income Tax": "/income-tax-calculator/", "Salary, CTC to In-hand": "/salary-calculator/", "GST": "/gst-calculator/",
+      "Income Tax": "/income-tax-calculator/", "Salary, CTC to In-hand": "/salary-calculator/", "Gratuity": "/gratuity-calculator/", "GST": "/gst-calculator/",
       "SIP": "/sip-calculator/", "PPF": "/ppf-calculator/", "Sukanya Samriddhi": "/ssy-calculator/",
       "Study Abroad": "/study-abroad-calculator/", "Wedding Cost": "/wedding-cost-calculator/",
       "Age Calculator": "/age-calculator/", "Image Resizer": "/image-resizer/",
